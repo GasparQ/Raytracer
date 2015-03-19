@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sat Mar 14 13:07:38 2015 quentin gasparotto
+** Last update Thu Mar 19 19:31:35 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -31,6 +31,12 @@ typedef struct	s_streight
   t_vector3	point;
   double	lambda;
 }		t_streight;
+
+typedef struct	s_tore
+{
+  double	ex_r;
+  double	int_r;
+}		t_tore;
 
 typedef struct	s_paraboloid
 {
