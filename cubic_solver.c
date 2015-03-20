@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Thu Mar 19 19:57:46 2015 fernand veyrier
-** Last update Fri Mar 20 15:55:07 2015 fernand veyrier
+** Last update Fri Mar 20 16:11:48 2015 fernand veyrier
 */
 
 #include <stdlib.h>
@@ -42,14 +42,16 @@ double		*cubic_solver(double *param)
       result[0] = (3 * q) / p - (param[1] / (3 * param[0]));
       result[1] = (-3 * q) / (2 * p) - (param[1] / (3 * param[0]));
       result[2] = result[1];
-      return (result);
     }
   else
     {
       alpha = 1. / 3. * acos(-q / 2. * pow(27 / (pow(-p, 3.)), 0.5));
-      result[0] = -param[1] / (3 * param[0]) + 2. * sqrt(-p / 3.) * cos(alpha);
-      result[1] = -param[1] / (3 * param[0]) + 2. * sqrt(-p / 3.) * cos(alpha + (2. * M_PI) / 3.);
-      result[2] = -param[1] / (3 * param[0]) + 2. * sqrt(-p / 3.) * cos(alpha + (4. * M_PI) / 3.);
+      result[0] = -param[1] / (3 * param[0]) + 2.
+	* sqrt(-p / 3.) * cos(alpha);
+      result[1] = -param[1] / (3 * param[0]) + 2.
+	* sqrt(-p / 3.) * cos(alpha + (2. * M_PI) / 3.);
+      result[2] = -param[1] / (3 * param[0]) + 2.
+	* sqrt(-p / 3.) * cos(alpha + (4. * M_PI) / 3.);
     }
   return (result);
 }
@@ -60,9 +62,9 @@ int		main(int ac, char **av)
   double	*result;
 
   param[0] = atoi(av[1]);
-  param[1] = atoi(av[2]);
-  param[2] = atoi(av[3]);
-  param[3] = atoi(av[4]);
+  param[1] = atoi(av[1]);
+  param[2] = atoi(av[1]);
+  param[3] = atoi(av[1]);
   result = cubic_solver(param);
   printf("z1 = %f z2 = %f z3 = %f\n", result[0], result[1], result[2]);
 }

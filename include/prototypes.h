@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Thu Mar 19 17:52:45 2015 quentin gasparotto
+** Last update Fri Mar 20 16:12:56 2015 fernand veyrier
 */
 
 #ifndef SYS_LIBX_H_
@@ -339,4 +339,4 @@ int	my_strlen(char *str);
 void	my_puterrchar(char c);
 void	my_put_error(char *str);
 
-#endif /* !SYS_LIBX_H_  */
+#endif /* !SYS_LIBX_H_ */
