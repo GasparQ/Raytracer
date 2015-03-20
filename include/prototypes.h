@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Fri Mar 20 18:41:18 2015 quentin gasparotto
+** Last update Fri Mar 20 19:20:46 2015 fernand veyrier
 */
 
 #ifndef SYS_LIBX_H_
@@ -185,6 +185,12 @@ int	add_cone(t_system *sys, double phi, int color, t_vector3 limit[2]);
 
 int	add_cylinder(t_system *sys, double radius,
 		     int color, t_vector3 limit[2]);
+
+/*
+**	add_holed_cube.c
+*/
+
+int	add_holed_cube(t_system *sys, double size, int color);
 
 /*
 **	add_object.c
