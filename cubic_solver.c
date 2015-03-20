@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Thu Mar 19 19:57:46 2015 fernand veyrier
-** Last update Thu Mar 19 22:21:23 2015 fernand veyrier
+** Last update Fri Mar 20 10:45:01 2015 fernand veyrier
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ double		*cubic_solver(double *param)
   if (delta > 0)
     {
       printf("v = %f u = %f\n", cbrt((-q + sqrt(delta)) / 2.0), cbrt((-q - sqrt(delta)) / 2.0));
-      result[0] = cbrt((-q + sqrt(delta)) / 2) + cbrt((-q - sqrt(delta)) / 2);
+      result[0] = cbrt((-q + sqrt(delta)) / 2) + cbrt((-q - sqrt(delta)) / 2) - (param[1] / (3 * param[0]));
       printf("result 1 = %f\n", result[0]);
       /* La légende raconte que ce calcul est juste. Il n'en est rien. */
       return (result);
@@ -38,7 +38,7 @@ double		*cubic_solver(double *param)
 
 int		main(int ac, char **av)
 {
-  double	param[4] = {-4, 2, 4, -3};
+  double	param[4] = {-3, -3, -2, 5};
 
   cubic_solver(param);
 }
