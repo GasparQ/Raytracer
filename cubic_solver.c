@@ -5,12 +5,24 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Thu Mar 19 19:57:46 2015 fernand veyrier
-** Last update Fri Mar 20 16:43:25 2015 fernand veyrier
+** Last update Fri Mar 20 16:51:48 2015 fernand veyrier
 */
 
 #include <stdlib.h>
 #include <math.h>
 #include "solver.h"
+
+void		cubic_solver_next(double *param, double *result, t_cubic cubic)
+{
+  cubic.alpha = 1. / 3. *
+    acos(-cubic.q / 2. * pow(27 / (pow(-cubic.p, 3.)), 0.5));
+  result[0] = -param[1] / (3 * param[0]) + 2.
+    * sqrt(-cubic.p / 3.) * cos(cubic.alpha);
+  result[1] = -param[1] / (3 * param[0]) + 2.
+    * sqrt(-cubic.p / 3.) * cos(cubic.alpha + (2. * M_PI) / 3.);
+  result[2] = -param[1] / (3 * param[0]) + 2.
+    * sqrt(-cubic.p / 3.) * cos(cubic.alpha + (4. * M_PI) / 3.);
+}
 
 void		cubic_solver(double *param, double *result)
 {
@@ -19,46 +31,24 @@ void		cubic_solver(double *param, double *result)
   result[0] = -1;
   result[1] = -1;
   result[2] = -1;
-  cubic.p = (-pow(param[1], 2) / (3 * pow(param[0], 2))) + (param[2] / param[0]);
-  cubic.q = param[1] / (27 * param[0]) * ((2 * pow(param[1], 2)) / pow(param[0], 2)
-				    - (9 * param[2]) / param[0]) + (param[3] / param[0]);
+  cubic.p = (-pow(param[1], 2) / (3 * pow(param[0], 2)))
+    + (param[2] / param[0]);
+  cubic.q = param[1] / (27 * param[0]) * ((2 * pow(param[1], 2))
+					  / pow(param[0], 2) - (9 * param[2])
+					  / param[0]) + (param[3] / param[0]);
   cubic.delta = pow(cubic.q, 2) + (4 * pow(cubic.p, 3)) / 27;
   if (cubic.delta > 0)
-    {
-      result[0] = cbrt((-cubic.q + sqrt(cubic.delta)) / 2.) + cbrt((-cubic.q - sqrt(cubic.delta)) / 2.)	- (param[1] / (3. * param[0]));
-    }
+    result[0] = cbrt((-cubic.q + sqrt(cubic.delta)) / 2.) +
+      cbrt((-cubic.q - sqrt(cubic.delta)) / 2.) - (param[1] / (3. * param[0]));
   else if (cubic.delta == 0)
     {
       if (cubic.p == 0)
-	{
-	  result[0] = cbrt(-cubic.q) - (param[1] / (3 * param[0]));
-	  return ;
-	}
+	return ((void)(result[0] = cbrt(-cubic.q) - (param[1] /
+						     (3 * param[0]))));
       result[0] = (3 * cubic.q) / cubic.p - (param[1] / (3 * param[0]));
       result[1] = (-3 * cubic.q) / (2 * cubic.p) - (param[1] / (3 * param[0]));
       result[2] = result[1];
     }
   else
-    {
-      cubic.alpha = 1. / 3. * acos(-cubic.q / 2. * pow(27 / (pow(-cubic.p, 3.)), 0.5));
-      result[0] = -param[1] / (3 * param[0]) + 2.
-	* sqrt(-cubic.p / 3.) * cos(cubic.alpha);
-      result[1] = -param[1] / (3 * param[0]) + 2.
-	* sqrt(-cubic.p / 3.) * cos(cubic.alpha + (2. * M_PI) / 3.);
-      result[2] = -param[1] / (3 * param[0]) + 2.
-	* sqrt(-cubic.p / 3.) * cos(cubic.alpha + (4. * M_PI) / 3.);
-    }
-}
-
-int		main(int ac, char **av)
-{
-  double	param[4];
-  double	result[3];
-
-  param[0] = atoi(av[1]);
-  param[1] = atoi(av[2]);
-  param[2] = atoi(av[3]);
-  param[3] = atoi(av[4]);
-  cubic_solver(param, result);
-  printf("z1 = %f z2 = %f z3 = %f\n", result[0], result[1], result[2]);
+    cubic_solver_next(param, result, cubic);
 }
