@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Fri Mar 20 16:12:56 2015 fernand veyrier
+** Last update Fri Mar 20 18:41:18 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -63,6 +63,12 @@ enum	COLORS
   };
 
 /*
+**	get_min_root.c
+*/
+
+double	get_min(double *roots, int size);
+
+/*
 **	unit_vec.c
 */
 
@@ -116,7 +122,7 @@ void	disp_color(t_system *sys, int x, int y);
 **	resolve_polynoms.c
 */
 
-void	resolve_polynoms(t_vector3 param, double *k_tab);
+void	resolve_polynoms(double *param, double *k_tab);
 
 /*
 **	get_isec_point.c
