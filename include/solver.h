@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Fri Mar 20 16:13:17 2015 fernand veyrier
-** Last update Fri Mar 20 16:15:06 2015 fernand veyrier
+** Last update Fri Mar 20 16:28:52 2015 fernand veyrier
 */
 
 #ifndef SOLVER_H_
@@ -16,7 +16,6 @@ typedef struct	s_cubic
   double	p;
   double	q;
   double	delta;
-  double	*result;
   double	alpha;
 }		t_cubic;
 
