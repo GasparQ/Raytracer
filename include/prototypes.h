@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Fri Mar 20 20:11:56 2015 fernand veyrier
+** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 */
 
 #ifndef SYS_LIBX_H_
@@ -247,6 +247,13 @@ void	init_cylinder_norm(t_vector3 *cylinder_norm, t_vector3 isec_point,
 void	init_cone_norm(t_vector3 *cone_norm, t_vector3 isec_point,
 		       t_object *obj);
 void	init_paraboloid_norm(t_vector3 *paraboloid_norm, t_vector3 isec_point,
+			     t_object *obj);
+
+/*
+**	obj_norms_next.c
+*/
+
+void	init_holed_cube_norm(t_vector3 *holed_cube_norm, t_vector3 isec_point,
 			     t_object *obj);
 
 /*

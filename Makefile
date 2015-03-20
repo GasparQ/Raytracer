@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Fri Mar 20 20:10:57 2015 fernand veyrier
+## Last update Fri Mar 20 20:20:27 2015 fernand veyrier
 ##
 
 CC=	gcc
@@ -56,7 +56,8 @@ SRCS=	./sources/rtv1.c \
 	./sources/unit_vec.c \
 	./sources/add_holed_cube.c \
 	./sources/holed_cube.c \
-	./sources/free_mesh_next.c
+	./sources/free_mesh_next.c \
+	./sources/obj_norms_next.c
 
 OBJS=	$(SRCS:.c=.o)
 
