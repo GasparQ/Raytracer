@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Fri Mar 20 19:20:46 2015 fernand veyrier
+** Last update Fri Mar 20 20:11:56 2015 fernand veyrier
 */
 
 #ifndef SYS_LIBX_H_
@@ -168,6 +168,12 @@ void	free_cone(t_mesh obj_mesh);
 void	free_paraboloid(t_mesh obj_mesh);
 
 /*
+**	free_mesh_next.c
+*/
+
+void	free_holed_cube(t_mesh obj_mesh);
+
+/*
 **	add_paraboloid.c
 */
 
@@ -296,6 +302,7 @@ double	draw_plan(t_streight strgt, t_object *my_obj);
 double	draw_cylinder(t_streight strgt, t_object *my_obj);
 double	draw_cone(t_streight strgt, t_object *my_obj);
 double	draw_paraboloid(t_streight strgt, t_object *my_obj);
+double	draw_holed_cube(t_streight strgt, t_object *my_obj);
 
 /*
 **	init_system.c
