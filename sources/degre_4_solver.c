@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar 20 16:45:25 2015 quentin gasparotto
-** Last update Fri Mar 20 19:06:38 2015 quentin gasparotto
+** Last update Fri Mar 20 19:42:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -63,9 +63,10 @@ int		calc_degre_4(double *param, double *roots)
   printf("y0 = %.3f\n", roots[0]);
 
   a0 = sqrt(-p + 2.0 * roots[0]);
-  if (a0 == F_ZERO)
-    return ;
-  b0 = -q / (2.0 * a0);
+  if (a0 != 0)
+    b0 = -q / (2.0 * a0);
+  else
+    b0 = sqrt(pow(roots[0], 2) - r);
 
   param[0] = 1;
   param[1] = -a0;
@@ -80,15 +81,17 @@ int		calc_degre_4(double *param, double *roots)
   return (4);
 }
 
-void	final_translation(double *param, double *roots)
+void		final_translation(double *param, double *roots)
 {
-  int	rank;
+  int		rank;
+  double	b;
 
+  b = - param[1] / (4.0 * param[0]);
   rank = 0;
   while (rank < 4)
     {
       if (roots[rank] != -1.0)
-	roots[rank] = roots[rank] - param[1] / (4.0 * param[0]);
+	roots[rank] = roots[rank] + b;
       rank = rank + 1;
     }
 }
