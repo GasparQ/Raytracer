@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Sat Mar 14 17:52:13 2015 quentin gasparotto
+** Last update Sat Mar 21 17:35:53 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -28,7 +28,8 @@ void	disp_color(t_system *sys, int x, int y)
   final_obj = bomb_ray(&strgt, sys->obj_list);
   if (final_obj != NULL)
     {
-      resolve_light(get_isec_point(strgt, final_obj), final_obj, sys, strgt);
+      //resolve_light(get_isec_point(strgt, final_obj), final_obj, sys, strgt);
+      get_color(final_obj->obj_color, final_obj->disp_color, sys);
       my_put_pixel_to_img(x, y, final_obj->disp_color, &sys->img);
     }
   else

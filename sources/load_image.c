@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Fri Mar 13 15:57:33 2015 quentin gasparotto
+** Last update Sat Mar 21 17:31:38 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -31,5 +31,6 @@ int	load_image(t_system *sys)
 				WDW_WIDTH / 2 - 70 + 30 * (y / 200 - 1),
 				WDW_HEIGHT / 2 - 10);
     }
+  mlx_put_image_to_window(sys->mlx, sys->wdw, sys->img.img, 0, 0);
   return (CLEAN);
 }

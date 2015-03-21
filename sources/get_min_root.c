@@ -5,10 +5,24 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar 20 18:33:29 2015 quentin gasparotto
-** Last update Sat Mar 21 16:24:59 2015 quentin gasparotto
+** Last update Sat Mar 21 17:23:06 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
+
+int	valid_roots(double *roots, int size)
+{
+  int	rank;
+
+  rank = 0;
+  while (rank < size)
+    {
+      if (roots[rank] != -4000000000)
+	return (1);
+      rank = rank + 1;
+    }
+  return (0);
+}
 
 double		get_min(double *roots, int size)
 {

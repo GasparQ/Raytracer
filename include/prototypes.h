@@ -6,7 +6,7 @@
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
 <<<<<<< HEAD
-** Last update Sat Mar 21 16:37:18 2015 quentin gasparotto
+** Last update Sat Mar 21 17:24:01 2015 quentin gasparotto
 =======
 ** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 >>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
@@ -65,6 +65,30 @@ enum	COLORS
     SOLAS= 0xBA004A,
     CYL= 0xDC2400,
   };
+
+/*
+**	sort_n_check.c
+*/
+
+void	sort_n_check(double tab[2]);
+
+/*
+**	tab_cpy.c
+*/
+
+void	tab_ncpy(double *src, double *dest, int n);
+
+/*
+**	cubic_solver.c
+*/
+
+void	cubic_solver(double *param, double *roots);
+
+/*
+**	quadratic_solver.c
+*/
+
+int	quadratic_solver(double *param, double *roots);
 
 /*
 **	get_min_root.c

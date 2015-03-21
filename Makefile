@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Fri Mar 20 20:20:27 2015 fernand veyrier
+## Last update Sat Mar 21 17:23:18 2015 quentin gasparotto
 ##
 
 CC=	gcc
@@ -57,11 +57,16 @@ SRCS=	./sources/rtv1.c \
 	./sources/add_holed_cube.c \
 	./sources/holed_cube.c \
 	./sources/free_mesh_next.c \
-	./sources/obj_norms_next.c
+	./sources/obj_norms_next.c \
+	./sources/quadratic_solver.c \
+	./sources/sort_n_check.c \
+	./sources/cubic_solver.c \
+	./sources/get_min_root.c \
+	./sources/tab_cpy.c \
 
 OBJS=	$(SRCS:.c=.o)
 
-CFLAGS=	-Wall -Wextra
+CFLAGS=	-Wall -Wextra -I ./include
 
 RT_FLAGS= -L/usr/lib64/ -lmlx -L/usr/lib64/X11 -lXext -lX11 -lm
 
