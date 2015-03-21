@@ -5,14 +5,14 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sat Mar 21 17:23:18 2015 quentin gasparotto
+## Last update Sat Mar 21 17:38:14 2015 fernand veyrier
 ##
 
 CC=	gcc
 
 RM=	rm -f
 
-NAME=	rtv1
+NAME=	rtracer
 
 SRCS=	./sources/rtv1.c \
 	./sources/error.c \
