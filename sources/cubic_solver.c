@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Thu Mar 19 19:57:46 2015 fernand veyrier
-** Last update Fri Mar 20 16:51:48 2015 fernand veyrier
+** Last update Sat Mar 21 17:13:28 2015 fernand veyrier
 */
 
 #include <stdlib.h>
@@ -28,9 +28,9 @@ void		cubic_solver(double *param, double *result)
 {
   t_cubic	cubic;
 
-  result[0] = -1;
-  result[1] = -1;
-  result[2] = -1;
+  result[0] = -4000000000;
+  result[1] = -4000000000;
+  result[2] = -4000000000;
   cubic.p = (-pow(param[1], 2) / (3 * pow(param[0], 2)))
     + (param[2] / param[0]);
   cubic.q = param[1] / (27 * param[0]) * ((2 * pow(param[1], 2))
