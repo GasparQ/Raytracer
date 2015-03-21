@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sat Mar 21 20:14:25 2015 fernand veyrier
+** Last update Sat Mar 21 19:02:10 2015 fernand veyrier
 */
 
 #include "../include/minilibx_system.h"
@@ -44,8 +44,8 @@ void		init_objects(t_system *sys)
   sys->obj_list = NULL;
   add_object(sys, ORIGIN, ORIGIN, SIMPLE);
   add_holed_cube(sys, 100.0, RED);
-  add_object(sys, get_vector3(-160, -100, 20), ORIGIN, SIMPLE);
-  add_sphere(sys, 20.0, BOLAS);
+/*   add_object(sys, get_vector3(-160, -100, 20), ORIGIN, SIMPLE); */
+/*   add_sphere(sys, 20.0, BOLAS); */
 /*   add_object(sys, get_vector3(-200, -20, 20), ORIGIN, SIMPLE); */
 /*   add_sphere(sys, 20.0, BOLAS); */
 /*   add_object(sys, get_vector3(-160, -60, 20), ORIGIN, SIMPLE); */
