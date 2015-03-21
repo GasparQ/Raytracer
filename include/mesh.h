@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Thu Mar 19 19:31:35 2015 quentin gasparotto
+** Last update Fri Mar 20 20:03:24 2015 fernand veyrier
 */
 
 #ifndef MESH_H_
@@ -66,6 +66,11 @@ typedef struct	s_cone
   t_vector3	limit[2];
 }		t_cone;
 
+typedef struct	s_holed_cube
+{
+  double	cote;
+}		t_holed_cube;
+
 typedef struct	s_mesh
 {
   t_plan	*plan;
@@ -73,6 +78,7 @@ typedef struct	s_mesh
   t_cylinder	*cylinder;
   t_cone	*cone;
   t_paraboloid	*paraboloid;
+  t_holed_cube	*holed_cube;
 }		t_mesh;
 
 typedef struct		s_object
