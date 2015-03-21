@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Fri Mar 20 20:03:24 2015 fernand veyrier
+** Last update Sat Mar 21 18:00:01 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -79,6 +79,7 @@ typedef struct	s_mesh
   t_cone	*cone;
   t_paraboloid	*paraboloid;
   t_holed_cube	*holed_cube;
+  t_tore	*tore;
 }		t_mesh;
 
 typedef struct		s_object

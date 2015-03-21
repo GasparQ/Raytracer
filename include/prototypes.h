@@ -6,7 +6,7 @@
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
 <<<<<<< HEAD
-** Last update Sat Mar 21 17:24:01 2015 quentin gasparotto
+** Last update Sat Mar 21 18:27:27 2015 quentin gasparotto
 =======
 ** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 >>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
@@ -65,6 +65,12 @@ enum	COLORS
     SOLAS= 0xBA004A,
     CYL= 0xDC2400,
   };
+
+/*
+**	tore.c
+*/
+
+double	draw_tore(t_streight strgt, t_object *my_obj);
 
 /*
 **	sort_n_check.c
@@ -200,6 +206,7 @@ void	free_paraboloid(t_mesh obj_mesh);
 */
 
 void	free_holed_cube(t_mesh obj_mesh);
+void	free_tore(t_mesh obj_mesh);
 
 /*
 **	add_paraboloid.c
@@ -283,6 +290,7 @@ void	init_paraboloid_norm(t_vector3 *paraboloid_norm, t_vector3 isec_point,
 
 void	init_holed_cube_norm(t_vector3 *holed_cube_norm, t_vector3 isec_point,
 			     t_object *obj);
+void	init_tore_norm(t_vector3 *norm, t_vector3 isec_point, t_object *obj);
 
 /*
 **	add_spot.c

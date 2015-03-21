@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sat Mar 21 17:38:14 2015 fernand veyrier
+## Last update Sat Mar 21 18:02:15 2015 quentin gasparotto
 ##
 
 CC=	gcc
@@ -63,6 +63,8 @@ SRCS=	./sources/rtv1.c \
 	./sources/cubic_solver.c \
 	./sources/get_min_root.c \
 	./sources/tab_cpy.c \
+	./sources/add_tore.c \
+	./sources/tore.c \
 
 OBJS=	$(SRCS:.c=.o)
 
