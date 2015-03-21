@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar 20 16:45:25 2015 quentin gasparotto
-** Last update Sat Mar 21 17:34:59 2015 quentin gasparotto
+** Last update Sat Mar 21 17:38:47 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -71,7 +71,7 @@ void		final_translation(double *param, double *roots, int deg)
       if (roots[rank] != -4000000000)
 	roots[rank] = roots[rank] + b;
       if (roots[rank] == -4000000000 || roots[rank] < 0)
-	roots[rank] = -1.0;
+	roots[rank] = -4000000000;
       rank = rank + 1;
     }
 }
