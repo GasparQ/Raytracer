@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar 20 18:33:29 2015 quentin gasparotto
-** Last update Fri Mar 20 18:35:02 2015 quentin gasparotto
+** Last update Sat Mar 21 16:24:59 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -21,8 +21,7 @@ double		get_min(double *roots, int size)
   rank = 0;
   while (rank < size)
     {
-      if ((roots[rank] < 0 && roots[rank] < final) ||
-	  (roots[rank] > 0 && final == -1.0))
+      if (roots[rank] > 0 && (roots[rank] < final || final == -1.0))
 	final = roots[rank];
       rank = rank + 1;
     }

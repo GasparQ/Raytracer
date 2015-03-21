@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-** Last update Fri Mar 20 19:20:46 2015 fernand veyrier
+** Last update Sat Mar 21 16:37:18 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -122,7 +122,7 @@ void	disp_color(t_system *sys, int x, int y);
 **	resolve_polynoms.c
 */
 
-void	resolve_polynoms(double *param, double *k_tab);
+int	resolve_polynoms(double *param, double *k_tab);
 
 /*
 **	get_isec_point.c
