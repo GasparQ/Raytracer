@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Fri Mar 20 20:09:00 2015 fernand veyrier
-** Last update Sat Mar 21 17:49:59 2015 quentin gasparotto
+** Last update Tue Mar 24 17:10:29 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -18,4 +18,9 @@ void		free_holed_cube(t_mesh obj_mesh)
 void	free_tore(t_mesh obj_mesh)
 {
   free(obj_mesh.tore);
+}
+
+void	free_moebius(t_mesh obj_mesh)
+{
+  free(obj_mesh.moebius);
 }

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Thu Mar 19 18:08:22 2015 quentin gasparotto
+** Last update Tue Mar 24 18:15:23 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -102,6 +102,7 @@ void		resolve_light(t_vector3 isec_point,
   average_to_color(sys->average, act_obj->disp_color,
 		   sys->spot_nb, sys->img.bpp / 8);
   if (act_obj->reflect > F_ZERO)
-    resolve_reflection(get_reflected_ray(unit_vec(norm), strgt.dir, isec_point),
+    resolve_reflection(get_reflected_ray(unit_vec(norm),
+					 strgt.dir, isec_point),
 		       act_obj, sys, 50);
 }

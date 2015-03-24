@@ -6,7 +6,7 @@
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
 <<<<<<< HEAD
-** Last update Sat Mar 21 18:27:27 2015 quentin gasparotto
+** Last update Tue Mar 24 18:15:13 2015 quentin gasparotto
 =======
 ** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 >>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
@@ -65,6 +65,25 @@ enum	COLORS
     SOLAS= 0xBA004A,
     CYL= 0xDC2400,
   };
+
+/*
+**	draw_moebius.c
+*/
+
+double	draw_moebius(t_streight strgt, t_object *my_obj);
+
+/*
+**	add_moebius.c
+*/
+
+double	*moebius_prop(double *prop, double radius, double nb_tors, double tors_angle);
+int	add_moebius(t_system *sys, double *prop, int color);
+
+/*
+**	add_tore.c
+*/
+
+int	add_tore(t_system *sys, double ex_r, double int_r, int color);
 
 /*
 **	tore.c
@@ -207,6 +226,7 @@ void	free_paraboloid(t_mesh obj_mesh);
 
 void	free_holed_cube(t_mesh obj_mesh);
 void	free_tore(t_mesh obj_mesh);
+void	free_moebius(t_mesh obj_mesh);
 
 /*
 **	add_paraboloid.c
@@ -291,6 +311,7 @@ void	init_paraboloid_norm(t_vector3 *paraboloid_norm, t_vector3 isec_point,
 void	init_holed_cube_norm(t_vector3 *holed_cube_norm, t_vector3 isec_point,
 			     t_object *obj);
 void	init_tore_norm(t_vector3 *norm, t_vector3 isec_point, t_object *obj);
+void	init_moebius_norm(t_vector3 *norm, t_vector3 isec_point, t_object *obj);
 
 /*
 **	add_spot.c

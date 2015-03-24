@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sat Mar 21 18:02:15 2015 quentin gasparotto
+## Last update Tue Mar 24 10:50:24 2015 quentin gasparotto
 ##
 
 CC=	gcc
@@ -65,6 +65,8 @@ SRCS=	./sources/rtv1.c \
 	./sources/tab_cpy.c \
 	./sources/add_tore.c \
 	./sources/tore.c \
+	./sources/draw_moebius.c \
+	./sources/add_moebius.c \
 
 OBJS=	$(SRCS:.c=.o)
 

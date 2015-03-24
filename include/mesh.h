@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sat Mar 21 18:00:01 2015 quentin gasparotto
+** Last update Tue Mar 24 17:10:05 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -31,6 +31,13 @@ typedef struct	s_streight
   t_vector3	point;
   double	lambda;
 }		t_streight;
+
+typedef struct	s_moebius
+{
+  double	radius;
+  double	nb_tors;
+  double	tors_angle;
+}		t_moebius;
 
 typedef struct	s_tore
 {
@@ -80,6 +87,7 @@ typedef struct	s_mesh
   t_paraboloid	*paraboloid;
   t_holed_cube	*holed_cube;
   t_tore	*tore;
+  t_moebius	*moebius;
 }		t_mesh;
 
 typedef struct		s_object
