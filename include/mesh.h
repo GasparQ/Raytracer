@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Tue Mar 24 17:10:05 2015 quentin gasparotto
+** Last update Tue Mar 24 19:26:36 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -98,6 +98,7 @@ typedef struct		s_object
   unsigned char		*disp_color;
   double		brightness;
   double		opacity;
+  double		middle_ind;
   double	        reflect;
   t_mesh		mesh;
   double		(*shape_resolver)(t_streight, struct s_object *);

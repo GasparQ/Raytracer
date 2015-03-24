@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sat Mar 21 20:14:25 2015 fernand veyrier
+** Last update Tue Mar 24 20:29:41 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -42,10 +42,16 @@ void		init_objects(t_system *sys)
   t_vector3	limit[2];
 
   sys->obj_list = NULL;
+  /* add_object(sys, ORIGIN, ORIGIN, SIMPLE); */
+  /* add_holed_cube(sys, 100.0, RED); */
+  add_object(sys, get_vector3(0, 0, 50), ORIGIN, get_properties(0, 0.5, 0, 0.5));
+  add_sphere(sys, 50.0, BOLAS);
   add_object(sys, ORIGIN, ORIGIN, SIMPLE);
-  add_holed_cube(sys, 100.0, RED);
-  add_object(sys, get_vector3(-160, -100, 20), ORIGIN, SIMPLE);
-  add_sphere(sys, 20.0, BOLAS);
+  add_plan(sys, WHITE, 0.0, get_vector3(0, 0, 1));
+  /* add_object(sys, get_vector3(100, 25, 0), ORIGIN, SIMPLE); */
+  /* add_cylinder(sys, 50.0, YELLOW, get_limit(limit, get_vector3(0, 0, -200), */
+  /* 					    get_vector3(0, 0, 200))); */
+
 /*   add_object(sys, get_vector3(-200, -20, 20), ORIGIN, SIMPLE); */
 /*   add_sphere(sys, 20.0, BOLAS); */
 /*   add_object(sys, get_vector3(-160, -60, 20), ORIGIN, SIMPLE); */
@@ -77,7 +83,9 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-100.0, 0.0, 0.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys, get_vector3(-500.0, 0.0, 500.0), WHITE) == ERROR)
+  if (add_spot(sys, get_vector3(-50.0, 50.0, 100.0), WHITE) == ERROR)
+    return (ERROR);
+  if (add_spot(sys, get_vector3(-50.0, -50.0, 100.0), WHITE) == ERROR)
     return (ERROR);
   sys->spot_nb = get_spot_nb(sys);
   return (CLEAN);
@@ -94,9 +102,9 @@ int	init_system(t_system *sys)
   if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL)
     return (my_strerror(MALLOC_ERR));
   init_load_img(sys, &sys->load);
-  sys->eye.pos.x = -3.0;
+  sys->eye.pos.x = -70.0;
   sys->eye.pos.y = 0.0;
-  sys->eye.pos.z = 0.0;
+  sys->eye.pos.z = 50.0;
   sys->eye.distance = 100;
   sys->eye.dir.x = 0.0;
   sys->eye.dir.y = 0.0;

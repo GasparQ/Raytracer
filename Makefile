@@ -5,10 +5,10 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Tue Mar 24 10:50:24 2015 quentin gasparotto
+## Last update Tue Mar 24 19:47:55 2015 quentin gasparotto
 ##
 
-CC=	gcc
+CC=	gcc -g
 
 RM=	rm -f
 
@@ -67,6 +67,8 @@ SRCS=	./sources/rtv1.c \
 	./sources/tore.c \
 	./sources/draw_moebius.c \
 	./sources/add_moebius.c \
+	./sources/get_refracted_ray.c \
+	./sources/transparency.c \
 
 OBJS=	$(SRCS:.c=.o)
 

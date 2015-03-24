@@ -6,7 +6,7 @@
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
 <<<<<<< HEAD
-** Last update Tue Mar 24 18:15:13 2015 quentin gasparotto
+** Last update Tue Mar 24 19:53:24 2015 quentin gasparotto
 =======
 ** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 >>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
@@ -45,7 +45,7 @@
 # define S_KEY		0x0073
 
 # define ORIGIN		get_vector3(0, 0, 0)
-# define SIMPLE		get_properties(0, 0, 0)
+# define SIMPLE		get_properties(0, 0, 0, 0)
 
 enum	COLORS
   {
@@ -65,6 +65,20 @@ enum	COLORS
     SOLAS= 0xBA004A,
     CYL= 0xDC2400,
   };
+
+/*
+**	get_refracted_ray.c
+*/
+
+t_streight	get_refracted_ray(t_vector3 norm, t_vector3 incident_ray,
+				  t_vector3 point, double coeff);
+
+/*
+**	transparency.c
+*/
+
+void	resolve_transparency(t_streight refracted_ray,
+			     t_object *act, t_system *sys);
 
 /*
 **	draw_moebius.c
@@ -151,7 +165,8 @@ t_streight	get_reflected_ray(t_vector3 norm,
 **	get_properties.c
 */
 
-double	*get_properties(double brightness, double opacity, double reflect);
+double	*get_properties(double brightness, double opacity,
+			double reflect, double middle_ind);
 
 /*
 **	get_limit.c

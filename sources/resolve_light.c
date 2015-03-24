@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Tue Mar 24 18:15:23 2015 quentin gasparotto
+** Last update Tue Mar 24 20:29:15 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -27,16 +27,17 @@ double		resolve_shadow(t_vector3 isec_point,
 			       t_vector3 norm)
 {
   t_streight	new_ray;
+  t_object	*touch;
   double	cos_a;
 
   if ((cos_a = get_scal(norm, light_vec) /
        (vec_norm(norm) * vec_norm(light_vec))) < F_ZERO)
     return (F_ZERO);
   new_ray = get_streight(light_vec, isec_point);
-  if (bomb_ray(&new_ray, sys->obj_list) != NULL)
+  if ((touch = bomb_ray(&new_ray, sys->obj_list)) != NULL)
     {
       if (new_ray.lambda > F_ZERO && new_ray.lambda < 1.0)
-	return (F_ZERO);
+	return ((1 - touch->opacity) * cos_a);
     }
   return (cos_a);
 }
@@ -55,24 +56,21 @@ void	reflect_color(unsigned char *obj, unsigned char *ref,
 }
 
 void		resolve_reflection(t_streight reflect_ray, t_object *act,
-				   t_system *sys, int limit)
+				   t_system *sys)
 {
   t_object	*touch;
   t_vector3	isec_point;
 
-  if (limit > 0)
+  if ((touch = bomb_ray(&reflect_ray, sys->obj_list)) != NULL)
     {
-      if ((touch = bomb_ray(&reflect_ray, sys->obj_list)) != NULL)
-	{
-	  isec_point = get_isec_point(reflect_ray, touch);
-	  resolve_light(isec_point, touch, sys, reflect_ray);
-	  reflect_color(act->disp_color, touch->disp_color, act->reflect,
-			sys->img.bpp / 8);
-	}
-      else
-	reflect_color(act->disp_color, sys->color, act->reflect,
-		      sys->img.bpp / 8);
+      isec_point = get_isec_point(reflect_ray, touch);
+      resolve_light(isec_point, touch, sys, reflect_ray);
+      reflect_color(act->disp_color, touch->disp_color, act->reflect,
+		    sys->img.bpp / 8);
     }
+  else
+    reflect_color(act->disp_color, sys->color, act->reflect,
+		  sys->img.bpp / 8);
 }
 
 void		resolve_light(t_vector3 isec_point,
@@ -104,5 +102,10 @@ void		resolve_light(t_vector3 isec_point,
   if (act_obj->reflect > F_ZERO)
     resolve_reflection(get_reflected_ray(unit_vec(norm),
 					 strgt.dir, isec_point),
-		       act_obj, sys, 50);
+		       act_obj, sys);
+  if (act_obj->opacity > F_ZERO)
+    resolve_transparency(get_refracted_ray(unit_vec(norm),
+					   strgt.dir, isec_point,
+					   act_obj->middle_ind),
+			 act_obj, sys);
 }

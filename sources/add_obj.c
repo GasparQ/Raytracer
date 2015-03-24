@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Sat Mar 14 14:43:09 2015 quentin gasparotto
+** Last update Tue Mar 24 19:33:03 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -26,6 +26,7 @@ void		add_object(t_system *sys, t_vector3 origin,
   new_obj.brightness = properties[0];
   new_obj.opacity = properties[1];
   new_obj.reflect = properties[2];
+  new_obj.middle_ind = properties[3];
   my_put_in_list(&sys->obj_list, new_obj);
   free(properties);
 }
