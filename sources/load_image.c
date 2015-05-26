@@ -5,22 +5,22 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Sat Mar 21 17:31:38 2015 quentin gasparotto
+** Last update Tue May 26 10:32:54 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
-int	load_image(t_system *sys)
+int	load_image(t_system *sys, t_vector2 pos, t_vector2 dim)
 {
   int	x;
   int	y;
 
-  y = 0;
-  while (y < WDW_HEIGHT)
+  y = pos.y;
+  while (y < WDW_HEIGHT && y < pos.y + dim.y)
     {
-      x = 0;
-      while (x < WDW_WIDTH)
+      x = pos.x;
+      while (x < WDW_WIDTH && x < pos.x + dim.x)
 	{
 	  disp_color(sys, x, y);
 	  x = x + 1;

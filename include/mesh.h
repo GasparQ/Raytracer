@@ -5,11 +5,17 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Tue Mar 24 19:26:36 2015 quentin gasparotto
+** Last update Tue May 26 10:31:54 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
 # define MESH_H_
+
+typedef struct	s_vector2
+{
+  double	x;
+  double	y;
+}		t_vector2;
 
 typedef struct	s_vector3
 {

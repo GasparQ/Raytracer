@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sat Apr 25 15:26:08 2015 quentin gasparotto
+** Last update Mon May 25 00:16:41 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -42,23 +42,23 @@ void		init_objects(t_system *sys)
   t_vector3	limit[2];
 
   sys->obj_list = NULL;
-  add_object(sys, get_vector3(0, 0, 75), get_vector3(0, 90, -45), get_properties(0, 0.2, 0, 1/* .33 */)/* SIMPLE */);
+  add_object(sys, get_vector3(0, 0, 75), get_vector3(0, 90, -45), get_properties(0, 0.5, 0, 1.33));
   add_tore(sys, 25, 50, RED);
   /* add_holed_cube(sys, 100.0, RED); */
   /* add_object(sys, get_vector3(30, 0, 50), ORIGIN, SIMPLE); */
   /* add_sphere(sys, 50.0, BOLAS); */
   add_object(sys, ORIGIN, ORIGIN, SIMPLE);
   add_plan(sys, WHITE, 0.0, get_vector3(0, 0, 1));
-  add_object(sys, get_vector3(140, -150, 100), get_vector3(0, 0, 0), get_properties(0, 0, 0.5, 1));
-  add_cylinder(sys, 100.0, YELLOW, get_limit(limit, get_vector3(0, 0, -100),
-					     get_vector3(0, 0, 100)));
+  /* add_object(sys, get_vector3(140, -150, 100), get_vector3(0, 0, 0), get_properties(0, 0, 0.5, 1)); */
+  /* add_cylinder(sys, 100.0, YELLOW, get_limit(limit, get_vector3(0, 0, -100), */
+  /* 					     get_vector3(0, 0, 100))); */
 
-  add_object(sys, get_vector3(-200, -20, 20), ORIGIN, SIMPLE);
-  add_sphere(sys, 20.0, BOLAS);
-  add_object(sys, get_vector3(-160, -60, 20), ORIGIN, SIMPLE);
-  add_sphere(sys, 20.0, BOLAS);
-  add_object(sys, get_vector3(-120, -100, 20), ORIGIN, SIMPLE);
-  add_sphere(sys, 20.0, BOLAS);
+  /* add_object(sys, get_vector3(-200, -20, 20), ORIGIN, SIMPLE); */
+  /* add_sphere(sys, 20.0, BOLAS); */
+  /* add_object(sys, get_vector3(-160, -60, 20), ORIGIN, SIMPLE); */
+  /* add_sphere(sys, 20.0, BOLAS); */
+  /* add_object(sys, get_vector3(-120, -100, 20), ORIGIN, SIMPLE); */
+  /* add_sphere(sys, 20.0, BOLAS); */
 /*   add_object(sys, get_vector3(100, 0, 0), get_vector3(0, -70, 0), SIMPLE); */
 /*   add_plan(sys, WHITE, 0.0, get_vector3(0, 0, 1)); */
 /*   add_object(sys, ORIGIN, ORIGIN, get_properties(0, 0, 0.6)); */
@@ -66,8 +66,8 @@ void		init_objects(t_system *sys)
 /*   add_object(sys, get_vector3(-100, 350, 50), get_vector3(90, 0, -60), SIMPLE); */
 /*   add_cylinder(sys, 50.0, YELLOW, get_limit(limit, get_vector3(0, 0, -100), */
 /*   					 get_vector3(0, 0, 100))); */
-  add_object(sys, get_vector3(0, 0, 1000), ORIGIN, get_properties(0, 0, 0.5, 1));
-  add_cone(sys, 120.0, CONAS, get_limit(limit, get_vector3(0, 0, -1000), ORIGIN));
+  /* add_object(sys, get_vector3(0, 0, 1000), ORIGIN, get_properties(0, 0, 0.5, 1)); */
+  /* add_cone(sys, 120.0, CONAS, get_limit(limit, get_vector3(0, 0, -1000), ORIGIN)); */
 /*   add_object(sys, get_vector3(-50, 150, 100), get_vector3(180, 0, 0), SIMPLE); */
 /*   add_paraboloid(sys, 20.0, PARAB); */
 }
@@ -87,8 +87,8 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-500.0, 0.0, 500.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys, get_vector3(-100.0, 100.0, 200.0), WHITE) == ERROR)
-    return (ERROR);
+  /* if (add_spot(sys, get_vector3(-100.0, 100.0, 200.0), WHITE) == ERROR) */
+  /*   return (ERROR); */
   if (add_spot(sys, get_vector3(-100.0, 500.0, 500.0), WHITE) == ERROR)
     return (ERROR);
   sys->spot_nb = get_spot_nb(sys);

@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Tue Mar 24 19:47:55 2015 quentin gasparotto
+## Last update Tue May 26 10:42:08 2015 quentin gasparotto
 ##
 
 CC=	gcc -g
@@ -35,7 +35,7 @@ SRCS=	./sources/rtv1.c \
 	./sources/scalaire.c \
 	./sources/get_streight.c \
 	./sources/add_obj.c \
-	./sources/get_vector3.c \
+	./sources/get_vectors.c \
 	./sources/add_cylinder.c \
 	./sources/add_cone.c \
 	./sources/free_mesh.c \

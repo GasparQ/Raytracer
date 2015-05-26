@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:17:57 2015 quentin gasparotto
-** Last update Thu Mar 12 11:55:52 2015 quentin gasparotto
+** Last update Tue May 26 10:34:26 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -28,4 +28,13 @@ t_vector3	get_vector3(double x, double y, double z)
   coord.y = y;
   coord.z = z;
   return (coord);
+}
+
+t_vector2	get_vector2(double x, double y)
+{
+  t_vector2	vec;
+
+  vec.x = x;
+  vec.y = y;
+  return (vec);
 }
