@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <object>
+  <mesh type="tore">
+    radius_in = 25
+    radius_out = 40
+  </mesh>
   <coord>
     position = (0, 0, 0)
     rotation = (0, 0, 0)
@@ -11,10 +15,6 @@
     brightness = 0
     color = 0x00FF0000
   </phong>
-  <mesh type="tore">
-    radius_in = 25
-    radius_out = 40
-  </mesh>
   <limit>
     <object>
       position = (0, 1, 0)

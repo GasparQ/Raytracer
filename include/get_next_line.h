@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Tue May 26 17:37:14 2015 fernand veyrier
+** Last update Tue May 26 22:00:09 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -18,14 +18,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <regex.h>
 
 # define	LINE_LEN 4096
 
-char	*get_next_line(const int fd);
-char	*my_realloc(char *ptr, int new_size);
-int	my_strncpy(char *src, char *dest, int n);
-int	init_buffer(char *buffer, int size);
-int	extract_line(char *buffer, char *line);
-int	search_for_char(char *buffer);
+char		*get_next_line(const int fd);
+char		*my_realloc(char *ptr, int new_size);
+int		my_strncpy(char *src, char *dest, int n);
+int		init_buffer(char *buffer, int size);
+int		extract_line(char *buffer, char *line);
+int		search_for_char(char *buffer);
 
 #endif /* !GET_NEXT_LINE_H_  */
