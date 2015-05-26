@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:42:07 2015 quentin gasparotto
-** Last update Tue Mar 24 19:46:26 2015 quentin gasparotto
+** Last update Tue May 26 21:47:04 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -28,6 +28,8 @@ int		my_put_in_list(t_object **list, t_object data)
   elem->reflect = data.reflect;
   elem->disp_color = data.disp_color;
   elem->middle_ind = data.middle_ind;
+  elem->limit = data.limit;
+  elem->obj_color = data.obj_color;
   elem->next = *list;
   *list = elem;
   return (CLEAN);
@@ -57,6 +59,7 @@ void		free_my_list(t_object *list)
       tmp = list->next;
       free(list->disp_color);
       list->free_mesh(list->mesh);
+      free_my_list(list->limit);
       free(list);
       list = tmp;
     }

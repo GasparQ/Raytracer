@@ -5,22 +5,21 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Feb 13 19:13:11 2015 quentin gasparotto
-** Last update Fri Mar 13 19:19:28 2015 quentin gasparotto
+** Last update Tue May 26 21:52:42 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_sphere(t_system *sys, double rad, int color)
+int		add_sphere(t_object *act_obj, double *mesh_prop)
 {
   t_sphere	*obj_sphere;
 
-  sys->obj_list->shape_resolver = &draw_sphere;
-  sys->obj_list->free_mesh = &free_sphere;
+  act_obj->shape_resolver = &draw_sphere;
+  act_obj->free_mesh = &free_sphere;
   if ((obj_sphere = malloc(sizeof(*obj_sphere))) == NULL)
     exit(my_strerror(MALLOC_ERR));
-  sys->obj_list->init = &init_sphere_norm;
-  obj_sphere->radius = rad;
-  sys->obj_list->mesh.sphere = obj_sphere;
-  sys->obj_list->obj_color = color;
+  act_obj->init = &init_sphere_norm;
+  obj_sphere->radius = *mesh_prop;
+  act_obj->mesh.sphere = obj_sphere;
   return (CLEAN);
 }

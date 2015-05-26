@@ -6,7 +6,7 @@
 ** 
 ** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
 <<<<<<< HEAD
-** Last update Tue May 26 10:41:52 2015 quentin gasparotto
+** Last update Tue May 26 22:23:48 2015 quentin gasparotto
 =======
 ** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
 >>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
@@ -268,11 +268,11 @@ int			add_cylinder(t_system *sys, double radius,
 int			add_holed_cube(t_system *sys, double size, int color);
 
 /*
-**	add_object.c
+**	add_obj.c
 */
 
-void			add_object(t_system *sys, t_vector3 origin,
-				   t_vector3 rotation, double *properties);
+void			add_object(t_vector3 *physics, int *colors,
+				   double *properties, t_object **obj_list);
 
 /*
 **	get_vectors.c
@@ -371,14 +371,13 @@ t_object		*bomb_ray(t_streight *ray, t_object *obj_list);
 **	add_sphere.c
 */
 
-int			add_sphere(t_system *sys, double rad, int color);
+int			add_sphere(t_object *act_obj, double *mesh_prop);
 
 /*
 **	add_plan.c
 */
 
-int			add_plan(t_system *sys, int color,
-				 double d, t_vector3 norm);
+int			add_plan(t_object *act_obj, double *mesh_prop);
 
 /*
 **	objects.c

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Tue May 26 11:25:41 2015 quentin gasparotto
+** Last update Tue May 26 22:25:42 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -39,16 +39,46 @@ int	init_mlx(t_system *sys)
 
 void		init_objects(t_system *sys)
 {
-  t_vector3	limit[2];
-
   sys->obj_list = NULL;
-  add_object(sys, get_vector3(0, 0, 75), get_vector3(0, 90, -45), get_properties(0, 0.5, 0, 1.33));
-  add_tore(sys, 25, 50, RED);
+
+  /*
+  **	Ajout sphere
+  */
+
+    add_object((t_vector3 [2]){get_vector3(0, 0, 100), ORIGIN},
+  	     (int [2]){sys->img.bpp / 8, BOLAS},
+  	     SIMPLE, &sys->obj_list);
+  add_sphere(sys->obj_list, (double [1]){100});
+
+  /*
+  **		Limite la sphere
+  */
+
+  add_object((t_vector3 [2]){get_vector3(0, 0, 200), ORIGIN},
+  	     (int [2]){sys->img.bpp / 8, BOLAS},
+  	     SIMPLE, &(sys->obj_list->limit));
+  add_sphere(sys->obj_list->limit, (double [1]){100});
+
+  /*
+  **	Ajout plan
+  */
+
+  add_object((t_vector3 [2]){ORIGIN, ORIGIN},
+  	     (int [2]){sys->img.bpp / 8, WHITE},
+  	     SIMPLE, &sys->obj_list);
+  add_plan(sys->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
+
+  /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
+  /* 	     (int [2]){sys->img.bpp / 8, BOLAS}, */
+  /* 	     SIMPLE, &sys->obj_list); */
+  /* add_tore(sys, 25, 50, RED); */
+  /* add_object(sys, get_vector3(0, 0, 75), get_vector3(0, 90, -45), SIMPLE/\* get_properties(0, 0.5, 0, 1.33) *\/); */
+  /* add_tore(sys, 25, 50, RED); */
+  /* add_limit(sys, get_vector3(0, 50, 150), ORIGIN, SIMPLE); */
+  /* add_lim_sphere(sys, 100.0, BOLAS); */
   /* add_holed_cube(sys, 100.0, RED); */
   /* add_object(sys, get_vector3(30, 0, 50), ORIGIN, SIMPLE); */
   /* add_sphere(sys, 50.0, BOLAS); */
-  add_object(sys, ORIGIN, ORIGIN, SIMPLE);
-  add_plan(sys, WHITE, 0.0, get_vector3(0, 0, 1));
   /* add_object(sys, get_vector3(140, -150, 100), get_vector3(0, 0, 0), get_properties(0, 0, 0.5, 1)); */
   /* add_cylinder(sys, 100.0, YELLOW, get_limit(limit, get_vector3(0, 0, -100), */
   /* 					     get_vector3(0, 0, 100))); */
@@ -89,7 +119,9 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-100.0, 100.0, 200.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys, get_vector3(-100.0, 500.0, 500.0), WHITE) == ERROR)
+  /* if (add_spot(sys, get_vector3(-100.0, 500.0, 500.0), WHITE) == ERROR) */
+  /*   return (ERROR); */
+  if (add_spot(sys, get_vector3(-500.0, 0.0, 500.0), WHITE) == ERROR)
     return (ERROR);
   sys->spot_nb = get_spot_nb(sys);
   return (CLEAN);
@@ -106,9 +138,9 @@ int	init_system(t_system *sys)
   if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL)
     return (my_strerror(MALLOC_ERR));
   init_load_img(sys, &sys->load);
-  sys->eye.pos.x = -400.0;
+  sys->eye.pos.x = -500.0;
   sys->eye.pos.y = 0.0;
-  sys->eye.pos.z = 100.0;
+  sys->eye.pos.z = 250.0;
   sys->eye.distance = 500;
   sys->eye.dir.x = 0.0;
   sys->eye.dir.y = 0.0;
