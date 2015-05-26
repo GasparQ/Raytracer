@@ -1,13 +1,102 @@
-<object>
-  position = (0, 0, 0)
-  rotation = (0, 0, 0)
-  reflection = 0
-  opacity = 1
-  refraction = 1
-  brightness = 0
-  color = 0x00FF0000
-  <mesh type="tore">
-    radius_in = 25
-    radius_out = 40
-  </mesh>
-</object>
+<?xml version="rtracer"?>
+<raytracer>
+  <scene id="1">
+    <object>
+      position = (0, 0, 10)
+      rotation = (0, 0, 0)
+      reflection = 0
+      opacity = 1
+      refraction = 1
+      brightness = 0
+      color = 0x00FF0000
+      <mesh type="tore">
+	radius_in = 25
+	radius_out = 40
+	<limit>
+	  <object>
+	    position = (0, 1, 0)
+	    rotation = (0, 0, 0)
+	    reflection = 0
+	    opacity = 1
+	    refraction = 1
+	    brightness = 0
+	    color = 0x0000FF00
+	    <mesh type="sphere">
+	      radius = 10
+	    </mesh>
+	  </object>
+	</limit>
+      </mesh>
+    </object>
+
+    <object>
+      position = (0, 0, 0)
+      rotation = (0, 0, 0)
+      reflection = 0
+      opacity = 1
+      refraction = 1
+      brightness = 0
+      color = 0x00FFFFFF
+      <mesh type="plan">
+	const = 0
+	normal = (0, 0, 1)
+      </mesh>
+    </object>
+  </scene>
+
+  <scene id="2">
+    <object>
+      position = (0, 0, 10)
+      rotation = (0, 0, 0)
+      reflection = 0
+      opacity = 1
+      refraction = 1
+      brightness = 0
+      color = 0x000000FF
+      <mesh type="cylinder">
+	radius = 100
+	<limit>
+	  <object>
+	    position = (0, 0, 100)
+	    rotation = (0, 0, 0)
+	    reflection = 0
+	    opacity = 1
+	    refraction = 1
+	    brightness = 0
+	    color = 0x0000FF00
+	    <mesh type="plan">
+	      const = 0
+	      normal = (0, 0, 1)
+	    </mesh>
+	  </object>
+	  <object>
+	    position = (0, 0, -100)
+	    rotation = (0, 0, 0)
+	    reflection = 0
+	    opacity = 1
+	    refraction = 1
+	    brightness = 0
+	    color = 0x0000FF00
+	    <mesh type="plan">
+	      const = 0
+	      normal = (0, 0, -1)
+	    </mesh>
+	  </object>
+	</limit>
+      </mesh>
+    </object>
+    <object>
+      position = (0, 0, 0)
+      rotation = (0, 0, 0)
+      reflection = 0
+      opacity = 1
+      refraction = 1
+      brightness = 0
+      color = 0x00FFFFFF
+      <mesh type="plan">
+	const = 0
+	normal = (0, 0, 1)
+      </mesh>
+    </object>
+  </scene>
+</raytracer>
