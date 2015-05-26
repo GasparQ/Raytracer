@@ -1,0 +1,13 @@
+<object>
+  position = (0, 0, 0)
+  rotation = (0, 0, 0)
+  reflection = 0
+  opacity = 1
+  refraction = 1
+  brightness = 0
+  color = 0x00FF0000
+  <mesh type="tore">
+    radius_in = 25
+    radius_out = 40
+  <\mesh>
+<\object>
