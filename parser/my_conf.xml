@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<object>
+  <coord>
+    position = (0, 0, 0)
+    rotation = (0, 0, 0)
+  </coord>
+  <phong>
+    reflection = 0
+    opacity = 1
+    refraction = 1
+    brightness = 0
+    color = 0x00FF0000
+  </phong>
+  <mesh type="tore">
+    radius_in = 25
+    radius_out = 40
+  </mesh>
+  <limit>
+    <object>
+      position = (0, 1, 0)
+      rotation = (0, 0, 0)
+      reflection = 0
+      opacity = 1
+      refraction = 1
+      brightness = 0
+      color = 0x0000FF00
+      <mesh type="sphere">
+	radius = 10
+      </mesh>
+    </object>
+  </limit>
+</object>
