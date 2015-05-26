@@ -5,28 +5,30 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Tue Mar 24 19:33:03 2015 quentin gasparotto
+** Last update Tue May 26 22:23:43 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void		add_object(t_system *sys, t_vector3 origin,
-			   t_vector3 rotation, double *properties)
+void		add_object(t_vector3 *physics, int *colors,
+			   double *properties, t_object **obj_list)
 {
   t_object	new_obj;
 
-  if ((new_obj.disp_color = malloc(sys->img.bpp / 8)) == NULL)
+  if ((new_obj.disp_color = malloc(colors[0])) == NULL)
     exit(my_strerror(MALLOC_ERR));
-  new_obj.origin.x = origin.x;
-  new_obj.origin.y = origin.y;
-  new_obj.origin.z = origin.z;
-  new_obj.rotation.x = rotation.x;
-  new_obj.rotation.y = rotation.y;
-  new_obj.rotation.z = rotation.z;
+  new_obj.obj_color = colors[1];
+  new_obj.origin.x = physics[0].x;
+  new_obj.origin.y = physics[0].y;
+  new_obj.origin.z = physics[0].z;
+  new_obj.rotation.x = physics[1].x;
+  new_obj.rotation.y = physics[1].y;
+  new_obj.rotation.z = physics[1].z;
   new_obj.brightness = properties[0];
   new_obj.opacity = properties[1];
   new_obj.reflect = properties[2];
   new_obj.middle_ind = properties[3];
-  my_put_in_list(&sys->obj_list, new_obj);
+  new_obj.limit = NULL;
+  my_put_in_list(obj_list, new_obj);
   free(properties);
 }

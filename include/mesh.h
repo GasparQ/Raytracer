@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Tue May 26 10:31:54 2015 quentin gasparotto
+** Last update Tue May 26 17:06:23 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -110,6 +110,7 @@ typedef struct		s_object
   double		(*shape_resolver)(t_streight, struct s_object *);
   void			(*free_mesh)(t_mesh);
   void			(*init)(t_vector3 *, t_vector3, struct s_object *);
+  struct s_object	*limit;
   struct s_object	*next;
 }			t_object;
 

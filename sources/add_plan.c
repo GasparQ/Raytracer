@@ -5,25 +5,24 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Feb 13 19:18:39 2015 quentin gasparotto
-** Last update Fri Mar 13 19:20:00 2015 quentin gasparotto
+** Last update Tue May 26 21:16:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_plan(t_system *sys, int color, double d, t_vector3 norm)
+int		add_plan(t_object *act_obj, double *mesh_prop)
 {
   t_plan	*obj_plan;
 
   if ((obj_plan = malloc(sizeof(*obj_plan))) == NULL)
     exit(my_strerror(MALLOC_ERR));
-  sys->obj_list->init = &init_plan_norm;
-  obj_plan->norm.x = norm.x;
-  obj_plan->norm.y = norm.y;
-  obj_plan->norm.z = norm.z;
-  obj_plan->d = d;
-  sys->obj_list->mesh.plan = obj_plan;
-  sys->obj_list->obj_color = color;
-  sys->obj_list->shape_resolver = &draw_plan;
-  sys->obj_list->free_mesh = &free_plan;
+  act_obj->init = &init_plan_norm;
+  obj_plan->d = mesh_prop[0];
+  obj_plan->norm.x = mesh_prop[1];
+  obj_plan->norm.y = mesh_prop[2];
+  obj_plan->norm.z = mesh_prop[3];
+  act_obj->mesh.plan = obj_plan;
+  act_obj->shape_resolver = &draw_plan;
+  act_obj->free_mesh = &free_plan;
   return (CLEAN);
 }
