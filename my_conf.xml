@@ -9,5 +9,5 @@
   <mesh type="tore">
     radius_in = 25
     radius_out = 40
-  <\mesh>
-<\object>
+  </mesh>
+</object>
