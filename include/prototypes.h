@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Wed May 27 12:28:40 2015 quentin gasparotto
+** Last update Wed May 27 14:50:03 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -194,6 +194,7 @@ int			get_spot_nb(t_system *sys);
 **	disp_color.c
 */
 
+t_object		*get_object(t_object *obj_list, t_streight *strgt);
 void			disp_color(t_system *sys, int x, int y);
 
 /*
