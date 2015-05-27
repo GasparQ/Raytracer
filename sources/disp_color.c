@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Wed May 27 14:50:38 2015 quentin gasparotto
+** Last update Wed May 27 21:53:13 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -17,7 +17,7 @@ void	init_streight(t_streight *strgt, double dist, int x, int y)
   strgt->dir.z = WDW_HEIGHT / 2.0 - (double)y;
 }
 
-t_object	*resolve_limits(t_object *touch_obj, t_streight *strgt)
+t_object	*resolve_limits(t_object *touch_obj, t_streight *strgt, t_object *obj_list)
 {
   t_vector3	isec_point;
   t_streight	new_ray;
@@ -51,7 +51,7 @@ t_object	*get_object(t_object *obj_list, t_streight *strgt)
     {
       if ((final_obj = bomb_ray(strgt, obj_list)) == NULL)
 	return (NULL);
-      final_obj = resolve_limits(final_obj, strgt);
+      final_obj = resolve_limits(final_obj, strgt, obj_list);
     }
   return (final_obj);
 }

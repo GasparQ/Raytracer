@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:52:32 2015 quentin gasparotto
-** Last update Wed May 27 11:38:21 2015 quentin gasparotto
+** Last update Wed May 27 22:00:37 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -29,6 +29,7 @@ double		draw_sphere(t_streight strgt, t_object *my_obj)
 	     pow(strgt.point.z, 2.0) - pow(my_obj->mesh.sphere->radius, 2.0));
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
+  my_obj->rev_norm = (k_tab[1] < F_ZERO) ? -1 : 1;
   return (k_tab[0]);
 }
 
@@ -68,6 +69,7 @@ double		draw_cylinder(t_streight strgt, t_object *my_obj)
 	     - pow(my_obj->mesh.cylinder->radius, 2.0));
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
+  my_obj->rev_norm = (k_tab[1] < F_ZERO) ? -1 : 1;
   return (k_tab[0]);
 }
 
@@ -90,6 +92,7 @@ double		draw_cone(t_streight strgt, t_object *my_obj)
 	     pow(strgt.point.z, 2) * pow(tan(my_obj->mesh.cone->phi), 2));
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
+  my_obj->rev_norm = (k_tab[1] < F_ZERO) ? -1 : 1;
   return (k_tab[0]);
 }
 
@@ -110,5 +113,6 @@ double		draw_paraboloid(t_streight strgt, t_object *my_obj)
 	     my_obj->mesh.paraboloid->cte * strgt.point.z);
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
+  my_obj->rev_norm = (k_tab[1] < F_ZERO) ? -1 : 1;
   return (k_tab[0]);
 }

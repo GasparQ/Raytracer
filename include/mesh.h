@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Wed May 27 13:56:53 2015 quentin gasparotto
+** Last update Wed May 27 20:53:33 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -107,6 +107,7 @@ typedef struct	s_mesh
 
 typedef struct		s_object
 {
+  int			rev_norm;
   t_vector3		origin;
   t_vector3		rotation;
   int			obj_color;
