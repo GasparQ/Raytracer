@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Fri Dec 26 15:02:58 2014 quentin gasparotto
-** Last update Tue May 26 17:35:30 2015 fernand veyrier
+** Last update Wed May 27 16:09:35 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -24,7 +24,7 @@ char	*get_line(char *save_char, int rank, char *char_read, int rank_read)
       while (char_read[len++] != '\0');
       if (rank_read > 0)
 	my_strncpy(char_read, &line[rank], rank_read);
-      my_strncpy(&(char_read[rank_read]), save_char, len - rank_read);
+      my_strncpy(&(char_read[rank_read + 1]), save_char, len - rank_read);
     }
   else
     my_strncpy(&save_char[rank + 1], save_char, 4096 - rank);

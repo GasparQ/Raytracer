@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Tue May 26 22:00:09 2015 fernand veyrier
+** Last update Wed May 27 15:51:26 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <regex.h>
+# include "minilibx_system.h"
+# include "prototypes.h"
 
 # define	LINE_LEN 4096
 
