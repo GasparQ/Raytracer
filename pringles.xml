@@ -1,0 +1,117 @@
+<scene>
+
+  <!--	Définition des spot sur la scène	-->
+
+  <spot>
+    <coord>
+      position = (0, 0, 10)
+    </coord>
+    <phong>
+      color = 0x00FFFFFF
+    </phong>
+  </spot>
+  <spot>
+    <coord>
+      position = (-500, 0, 500)
+    </coord>
+    <phong>
+      color = 0x00FFFFFF
+    </phong>
+  </spot>
+
+  <!--	Définition des objets de la scène	-->
+
+  <!--		Le Pringles			-->
+
+  <object>
+    <mesh type="hyperboloid">
+      a = 50
+      b = 50
+      c = 90
+      d = -1
+    </mesh>
+    <coord>
+      position = (0, 0, 75)
+      rotation = (90, 0, 45)
+    </coord>
+    <phong>
+      reflection = 0
+      opacity = 0
+      refraction = 0
+      brightness = 0
+      color = 0x00FF0000
+    </phong>
+    <limit>
+      <object>
+	<mesh type="plan">
+	  normal = (0, 0, 1)
+	  cte = 0
+	</mesh>
+	<coord>
+	  position = (0, 50, 0)
+	  rotation = (90, 0, 45)
+	</coord>
+	<phong>
+	  reflection = 0
+	  opacity = 0
+	  refraction = 0
+	  brightness = 0
+	  color = 0x00000000
+	</phong>
+      </object>
+      <object>
+	<mesh type="plan">
+	  normal = (0, 0, 1)
+	  cte = 0
+	</mesh>
+	<coord>
+	  position = (0, -50, 0)
+	  rotation = (90, 0, 45)
+	</coord>
+	<phong>
+	  reflection = 0
+	  opacity = 0
+	  refraction = 0
+	  brightness = 0
+	  color = 0x00000000
+	</phong>
+      </object>
+      <object>
+	<mesh type="sphere">
+	  radius = 50
+	</mesh>
+	<coord>
+	  position = (0, 0, 50)
+	  rotation = (0, 0, 0)
+	</coord>
+	<phong>
+	  reflection = 0
+	  opacity = 0
+	  refraction = 0
+	  brightness = 0
+	  color = 0x00000000
+	</phong>
+      </object>
+    </limit>
+  </object>
+
+  <!--		Le Plan				-->
+
+  <object>
+    <mesh type="plan">
+      normal = (0, 0, 1)
+      cte = 0
+    </mesh>
+    <coord>
+      position = (0, 0, 0)
+      rotation = (0, 0, 0)
+    </coord>
+    <phong>
+      reflection = 0
+      opacity = 0
+      refraction = 0
+      brightness = 0
+      color = 0x00FFFFFF
+    </phong>
+  </object>
+</scene>

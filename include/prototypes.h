@@ -1,15 +1,11 @@
 /*
-** minilibx_objects.h for rtv1 in /home/gaspar_q/rendu/Igraph/MUL_2014_rtv1/include
+** prototypes.h for ray_tracer header in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
 ** 
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
 ** 
-** Started on  Tue Feb  3 16:30:16 2015 quentin gasparotto
-<<<<<<< HEAD
-** Last update Tue May 26 22:23:48 2015 quentin gasparotto
-=======
-** Last update Fri Mar 20 20:22:42 2015 fernand veyrier
->>>>>>> e22ddf3bb52caa369bcf37e65011136642c6762e
+** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
+** Last update Wed May 27 12:28:40 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -67,6 +63,18 @@ enum			COLORS
   };
 
 /*
+**	draw_hyperboloid.c
+*/
+
+double			draw_hyperboloid(t_streight strgt, t_object *my_obj);
+
+/*
+**	add_hyperboloid.c
+*/
+
+int			add_hyperboloid(t_object *act_obj, double *mesh_prop);
+
+/*
 **	get_refracted_ray.c
 */
 
@@ -99,8 +107,7 @@ int			add_moebius(t_system *sys, double *prop, int color);
 **	add_tore.c
 */
 
-int			add_tore(t_system *sys, double ex_r,
-				 double int_r, int color);
+int			add_tore(t_object *act_obj, double *mesh_prop);
 
 /*
 **	tore.c
@@ -240,26 +247,25 @@ void			free_paraboloid(t_mesh obj_mesh);
 void			free_holed_cube(t_mesh obj_mesh);
 void			free_tore(t_mesh obj_mesh);
 void			free_moebius(t_mesh obj_mesh);
+void			free_hyperboloid(t_mesh obj_mesh);
 
 /*
 **	add_paraboloid.c
 */
 
-int			add_paraboloid(t_system *sys, double cte, int color);
+int			add_paraboloid(t_object *act_obj, double *mesh_param);
 
 /*
 **	add_cone.c
 */
 
-int			add_cone(t_system *sys, double phi,
-				 int color, t_vector3 limit[2]);
+int			add_cone(t_object *act_obj, double *mesh_prop);
 
 /*
 **	add_cylinder.c
 */
 
-int			add_cylinder(t_system *sys, double radius,
-				     int color, t_vector3 limit[2]);
+int			add_cylinder(t_object *act_obj, double *mesh_prop);
 
 /*
 **	add_holed_cube.c
@@ -333,6 +339,8 @@ void			init_tore_norm(t_vector3 *norm, t_vector3 isec_point,
 				       t_object *obj);
 void			init_moebius_norm(t_vector3 *norm, t_vector3 isec_point,
 					  t_object *obj);
+void			init_hyper_norm(t_vector3 *norm,
+					t_vector3 isec_point, t_object *obj);
 
 /*
 **	add_spot.c

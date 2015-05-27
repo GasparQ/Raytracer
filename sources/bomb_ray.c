@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Feb 13 19:41:05 2015 quentin gasparotto
-** Last update Sat Mar 14 19:32:47 2015 quentin gasparotto
+** Last update Wed May 27 10:12:36 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -22,13 +22,10 @@ t_object	*bomb_ray(t_streight *ray, t_object *obj_list)
   while (tmp != NULL)
     {
       k = tmp->shape_resolver(*ray, tmp);
-      if (k >= F_ZERO)
+      if (k >= F_ZERO && (k < ray->lambda || ray->lambda == -1.0))
 	{
-	  if (k < ray->lambda || ray->lambda == -1.0)
-	    {
-	      ray->lambda = k;
-	      final_obj = tmp;
-	    }
+	  ray->lambda = k;
+	  final_obj = tmp;
 	}
       tmp = tmp->next;
     }

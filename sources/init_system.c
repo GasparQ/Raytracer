@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Tue May 26 22:25:42 2015 quentin gasparotto
+** Last update Wed May 27 14:16:35 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -45,19 +45,34 @@ void		init_objects(t_system *sys)
   **	Ajout sphere
   */
 
-    add_object((t_vector3 [2]){get_vector3(0, 0, 100), ORIGIN},
-  	     (int [2]){sys->img.bpp / 8, BOLAS},
-  	     SIMPLE, &sys->obj_list);
-  add_sphere(sys->obj_list, (double [1]){100});
+  add_object((t_vector3 [2]){get_vector3(0, 0, 75), get_vector3(90, 0, 45)},
+	     (int [2]){sys->img.bpp / 8, RED},
+	     SIMPLE, &sys->obj_list);
+  add_hyperboloid(sys->obj_list, (double [4]){50, 50, 90, -1});
+  //add_paraboloid(sys->obj_list, (double [1]){20.0});
+  //add_cone(sys->obj_list, (double [1]){120});
+  //add_cylinder(sys->obj_list, (double [1]){10.0});
+    //add_tore(sys->obj_list, (double [2]){25, 50});
+  //add_sphere(sys->obj_list, (double [1]){100});
 
   /*
   **		Limite la sphere
   */
 
-  add_object((t_vector3 [2]){get_vector3(0, 0, 200), ORIGIN},
+  add_object((t_vector3 [2]){get_vector3(0, 50, 0), get_vector3(90, 0, 45)},
   	     (int [2]){sys->img.bpp / 8, BOLAS},
   	     SIMPLE, &(sys->obj_list->limit));
-  add_sphere(sys->obj_list->limit, (double [1]){100});
+  add_plan(sys->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0});
+  
+  add_object((t_vector3 [2]){get_vector3(0, -50, 0), get_vector3(90, 0, 45)},
+  	     (int [2]){sys->img.bpp / 8, BOLAS},
+  	     SIMPLE, &(sys->obj_list->limit));
+  add_plan(sys->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0});
+
+  add_object((t_vector3 [2]){get_vector3(0, 0, 50), ORIGIN},
+  	     (int [2]){sys->img.bpp / 8, BOLAS},
+  	     SIMPLE, &(sys->obj_list->limit));
+  add_sphere(sys->obj_list->limit, (double [1]){50});
 
   /*
   **	Ajout plan
@@ -121,6 +136,8 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-100.0, 500.0, 500.0), WHITE) == ERROR) */
   /*   return (ERROR); */
+  if (add_spot(sys, get_vector3(0.0, 0.0, 10.0), WHITE) == ERROR)
+    return (ERROR);
   if (add_spot(sys, get_vector3(-500.0, 0.0, 500.0), WHITE) == ERROR)
     return (ERROR);
   sys->spot_nb = get_spot_nb(sys);

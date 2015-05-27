@@ -5,22 +5,21 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Mar 11 17:24:16 2015 quentin gasparotto
-** Last update Fri Mar 13 19:19:53 2015 quentin gasparotto
+** Last update Wed May 27 11:29:35 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_paraboloid(t_system *sys, double cte, int color)
+int		add_paraboloid(t_object *act_obj, double *mesh_param)
 {
   t_paraboloid	*obj_para;
 
-  sys->obj_list->shape_resolver = &draw_paraboloid;
-  sys->obj_list->free_mesh = &free_paraboloid;
+  act_obj->shape_resolver = &draw_paraboloid;
+  act_obj->free_mesh = &free_paraboloid;
   if ((obj_para = malloc(sizeof(*obj_para))) == NULL)
     exit(my_strerror(MALLOC_ERR));
-  sys->obj_list->init = &init_paraboloid_norm;
-  obj_para->cte = cte;
-  sys->obj_list->mesh.paraboloid = obj_para;
-  sys->obj_list->obj_color = color;
+  act_obj->init = &init_paraboloid_norm;
+  obj_para->cte = mesh_param[0];
+  act_obj->mesh.paraboloid = obj_para;
   return (CLEAN);
 }

@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 ** 
 ** Started on  Fri Mar 20 20:14:08 2015 fernand veyrier
-** Last update Tue Mar 24 18:46:21 2015 quentin gasparotto
+** Last update Wed May 27 13:45:48 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -36,4 +36,11 @@ void	init_moebius_norm(t_vector3 *norm, t_vector3 isec_point, t_object *obj)
   (void)obj;
   (void)norm;
   (void)isec_point;
+}
+
+void	init_hyper_norm(t_vector3 *norm, t_vector3 isec_point, t_object *obj)
+{
+  norm->x = isec_point.x / obj->mesh.hyperboloid->a;
+  norm->y = isec_point.y / obj->mesh.hyperboloid->b;
+  norm->z = (-1.0) * isec_point.z / obj->mesh.hyperboloid->c;
 }

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:52:32 2015 quentin gasparotto
-** Last update Sat Mar 21 19:03:29 2015 quentin gasparotto
+** Last update Wed May 27 11:38:21 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -68,13 +68,7 @@ double		draw_cylinder(t_streight strgt, t_object *my_obj)
 	     - pow(my_obj->mesh.cylinder->radius, 2.0));
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
-  strgt.lambda = k_tab[0];
-  if (comp_limit(strgt, my_obj->mesh.cylinder->limit))
-    return (strgt.lambda);
-  strgt.lambda = k_tab[1];
-  if (comp_limit(strgt, my_obj->mesh.cylinder->limit))
-    return (strgt.lambda);
-  return (-1.0);
+  return (k_tab[0]);
 }
 
 double		draw_cone(t_streight strgt, t_object *my_obj)
@@ -96,13 +90,7 @@ double		draw_cone(t_streight strgt, t_object *my_obj)
 	     pow(strgt.point.z, 2) * pow(tan(my_obj->mesh.cone->phi), 2));
   resolve_polynoms(param, k_tab);
   sort_n_check(k_tab);
-  strgt.lambda = k_tab[0];
-  if (comp_limit(strgt, my_obj->mesh.cone->limit))
-    return (strgt.lambda);
-  strgt.lambda = k_tab[1];
-  if (comp_limit(strgt, my_obj->mesh.cone->limit))
-    return (strgt.lambda);
-  return (-1.0);
+  return (k_tab[0]);
 }
 
 double		draw_paraboloid(t_streight strgt, t_object *my_obj)
