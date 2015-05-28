@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Wed May 27 17:53:22 2015 fernand veyrier
+** Last update Thu May 28 14:03:14 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -41,6 +41,75 @@ int		check_extension(char *file)
   return (fd);
 }
 
+int		parse_obj(int level, t_system *sys, int line)
+{
+  if (level > 2)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
+  printf("Found obj\n", level);
+  return (1);
+}
+
+int		parse_obj_close(int level, t_system *sys, int line)
+{
+  level -= 1;
+  if (level != 0 && level != 1)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
+  printf("Found obj close\n");
+  return (-1);
+}
+
+int		parse_mesh(int level, t_system *sys, int line)
+{
+  if (level < 1)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
+  printf("Found mesh\n");
+  return (2);
+}
+
+int		parse_mesh_close(int level, t_system *sys, int line)
+{
+  if (level - 2 != 1 && level - 2 != 2)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
+  printf("Found mesh close\n");
+  return (-2);
+}
+
+int		parse_coord(int level, t_system *sys, int line)
+{
+  if (level < 1)
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line));
+  printf("Found coord\n");
+  return (3);
+}
+
+int		parse_coord_close(int level, t_system *sys, int line)
+{
+  if (level - 3 < 1)
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line));
+  printf("Found coord close\n");
+  return (-3);
+}
+
+int		parse_phong(int level, t_system *sys, int line)
+{
+  if (level < 1)
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line));
+  printf("Found phong\n");
+  return (4);
+}
+
+int		parse_phong_close(int level, t_system *sys, int line)
+{
+  if (level - 4 < 1)
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line));
+  printf("Found phong close\n");
+  return (-4);
+}
+
+/*
+** add_object(t_vector[2]{position, rotation}, int[2]{sys->img.bpp / 8, color}
+**            get_properties(brightness, opacity, reflexion, refraction), sys->objlist)
+*/
 int		follow_pattern(const int fd, regex_t *regex,
 			       regmatch_t reg_struct, t_system *sys)
 {
@@ -48,42 +117,29 @@ int		follow_pattern(const int fd, regex_t *regex,
   int		is_invalid;
   int		level;
   int		line;
+  int		(*func[10])();
+  int		i;
 
   level = 0;
   line = 2;
+  i = 0;
+  func[0] = parse_obj;
+  func[1] = parse_obj_close;
+  func[2] = parse_mesh;
+  func[3] = parse_mesh_close;
+  func[4] = parse_coord;
+  func[5] = parse_coord_close;
+  func[6] = parse_phong;
+  func[7] = parse_phong_close;
   while ((buffer = get_next_line(fd)) != NULL)
     {
       printf("[%s]\n", buffer);
-      if (!regexec(&regex[1], buffer, 0, &reg_struct, 0))
-	{
-	  level += 1;
-	  if (level > 2)
-	    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
-	  printf("Found obj\n", level);
-	}
-      else if (!regexec(&regex[3], buffer, 0, &reg_struct, 0))
-	{
-	  if (level != 1 && level != 2)
-	    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
-	  printf("Found mesh\n");
-	  level += 2;
-	}
-      else if (!regexec(&regex[4], buffer, 0, &reg_struct, 0))
-	{
-	  if (level - 2 != 1 && level - 2 != 2)
-	    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
-	  printf("Found mesh close\n");
-	  level -= 2;
-	}
-      else if (!regexec(&regex[2], buffer, 0, &reg_struct, 0))
-	{
-	  level -= 1;
-	  if (level != 0 && level != 1)
-	    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
-	  printf("Found obj close\n");
-	}
+      while (i < 8 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
+	++i;
+      if (i < 8)
+	level += func[i](level, sys, line);
       ++line;
-      //get_mesh_obj(regex, reg_struct)
+      i = 0;
     }
   if (level != 0)
     return (fprintf(stderr, "Corrupted XML file.\n"));
