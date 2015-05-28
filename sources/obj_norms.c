@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar  6 16:46:42 2015 quentin gasparotto
-** Last update Wed May 27 22:12:51 2015 quentin gasparotto
+** Last update Thu May 28 12:49:40 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -41,7 +41,8 @@ void	init_cone_norm(t_vector3 *cone_norm,
 {
   cone_norm->x = obj->rev_norm * isec_point.x;
   cone_norm->y = obj->rev_norm * isec_point.y;
-  cone_norm->z = obj->rev_norm * (-1.0) *  pow(tan(obj->mesh.cone->phi), 2) * isec_point.z;
+  cone_norm->z = obj->rev_norm * (-1.0) *
+    pow(tan(obj->mesh.cone->phi), 2) * isec_point.z;
 }
 
 void	init_paraboloid_norm(t_vector3 *paraboloid_norm,

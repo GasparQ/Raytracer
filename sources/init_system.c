@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Thu May 28 11:10:43 2015 quentin gasparotto
+** Last update Thu May 28 16:26:45 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -49,11 +49,15 @@ void		init_objects(t_system *sys)
   /* add_object((t_vector3 [2]){get_vector3(0, 0, 75), get_vector3(90, 0, 45)}, */
   /* 	     (int [2]){sys->img.bpp / 8, RED}, */
   /* 	     SIMPLE, &sys->obj_list); */
-  /* add_hyperboloid(sys->obj_list, (double [4]){50, 50, 90, -1}); */
+  /* add_hyperboloid(sys->obj_list, (double [5]){50, 50, 90, -1, 1}); */
+  add_object((t_vector3 [2]){get_vector3(0, 0, 10), get_vector3(45, 45, 0)},
+  	     (int [2]){sys->img.bpp / 8, RED},
+  	     SIMPLE, &sys->obj_list);
+  add_holed_cube(sys->obj_list, (double [2]){10.0, 42.8});
 
-  /* /\* */
-  /* **		Limite l'hyperboloide */
-  /* *\/ */
+  /*
+  **		Limite l'hyperboloide
+  */
 
   /* add_object((t_vector3 [2]){get_vector3(0, 0, 50), ORIGIN}, */
   /* 	     (int [2]){sys->img.bpp / 8, BOLAS}, */
@@ -69,15 +73,14 @@ void		init_objects(t_system *sys)
   	     SIMPLE, &sys->obj_list);
   add_plan(sys->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
 
-  /* add_object((t_vector3 [2]){get_vector3(0, 0, 1000), ORIGIN}, */
-  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
-  /* 	     get_properties(0, 0.5, 0.8, 1), &sys->obj_list); */
-  /* add_cone(sys->obj_list, (double [1]){180.0}); */
+  /* /\* add_object((t_vector3 [2]){get_vector3(0, 0, 1000), ORIGIN}, *\/ */
+  /* /\* 	     (int [2]){sys->img.bpp / 8, RED}, *\/ */
+  /* /\* 	     get_properties(0, 0.5, 0.8, 1), &sys->obj_list); *\/ */
+  /* /\* add_cone(sys->obj_list, (double [1]){180.0}); *\/ */
 
-  add_object((t_vector3 [2]){ORIGIN, ORIGIN},
-  	     (int [2]){sys->img.bpp / 8, RED},
-  	     SIMPLE, &sys->obj_list);
-  add_tore(sys->obj_list, (double [2]){25, 50});
+  /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
+  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
+  /* 	     get_properties(0, 0, 1, ), &sys->obj_list); */
   /* add_sphere(sys->obj_list, (double [1]){100}); */
 
   /* add_object((t_vector3 [2]){get_vector3(0, 50, 0), get_vector3(90, 0, 45)}, */
@@ -90,6 +93,7 @@ void		init_objects(t_system *sys)
   /* //add_cylinder(sys->obj_list, (double [1]){10.0}); */
   /* //add_tore(sys->obj_list, (double [2]){25, 50}); */
   /* //add_sphere(sys->obj_list, (double [1]){100}); */
+  //add_tore(sys->obj_list, (double [2]){25, 50});
 
   /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
   /* 	     (int [2]){sys->img.bpp / 8, BOLAS}, */
@@ -163,9 +167,9 @@ int	init_system(t_system *sys)
   if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL)
     return (my_strerror(MALLOC_ERR));
   init_load_img(sys, &sys->load);
-  sys->eye.pos.x = -500.0;
+  sys->eye.pos.x = -50.0;
   sys->eye.pos.y = 0.0;
-  sys->eye.pos.z = 250.0;
+  sys->eye.pos.z = 10.0;
   sys->eye.distance = 500;
   sys->eye.dir.x = 0.0;
   sys->eye.dir.y = 0.0;

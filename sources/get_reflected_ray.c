@@ -5,12 +5,13 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Mar 14 13:48:28 2015 quentin gasparotto
-** Last update Thu Mar 19 17:49:50 2015 quentin gasparotto
+** Last update Thu May 28 12:49:12 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-t_streight	get_reflected_ray(t_vector3 norm, t_vector3 incident_ray, t_vector3 point)
+t_streight	get_reflected_ray(t_vector3 norm, t_vector3 incident_ray,
+				  t_vector3 point)
 {
   t_streight	reflected_ray;
   double	scalaire;
