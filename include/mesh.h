@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Wed May 27 20:53:33 2015 quentin gasparotto
+** Last update Thu May 28 15:55:01 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -44,6 +44,7 @@ typedef struct	s_hyperboloid
   double	b;
   double	c;
   double	d;
+  double	c_factor;
 }		t_hyperboloid;
 
 typedef struct	s_moebius
@@ -90,6 +91,7 @@ typedef struct	s_cone
 typedef struct	s_holed_cube
 {
   double	cote;
+  double	hole_prop;
 }		t_holed_cube;
 
 typedef struct	s_mesh

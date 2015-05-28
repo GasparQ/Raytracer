@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Wed May 27 14:50:03 2015 quentin gasparotto
+** Last update Thu May 28 14:22:20 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -272,7 +272,8 @@ int			add_cylinder(t_object *act_obj, double *mesh_prop);
 **	add_holed_cube.c
 */
 
-int			add_holed_cube(t_system *sys, double size, int color);
+int			add_holed_cube(t_object *act_obj, double *mesh_prop);
+/* int			add_holed_cube(t_system *sys, double size, int color); */
 
 /*
 **	add_obj.c

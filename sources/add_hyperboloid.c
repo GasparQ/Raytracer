@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 11:45:18 2015 quentin gasparotto
-** Last update Wed May 27 13:56:21 2015 quentin gasparotto
+** Last update Thu May 28 13:43:08 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -24,6 +24,7 @@ int		add_hyperboloid(t_object *act_obj, double *mesh_prop)
   obj_hyper->b = mesh_prop[1];
   obj_hyper->c = mesh_prop[2];
   obj_hyper->d = mesh_prop[3];
+  obj_hyper->c_factor = mesh_prop[4];
   act_obj->mesh.hyperboloid = obj_hyper;
   return (CLEAN);
 }
