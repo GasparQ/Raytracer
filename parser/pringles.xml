@@ -44,7 +44,7 @@
     </phong>
     <limit>
       <object>
-	<mesh type="plan">
+	<mesh type="plane">
 	  normal = (0, 0, 1)
 	  cte = 0
 	</mesh>
@@ -61,7 +61,7 @@
 	</phong>
       </object>
       <object>
-	<mesh type="plan">
+	<mesh type="plane">
 	  normal = (0, 0, 1)
 	  cte = 0
 	</mesh>

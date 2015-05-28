@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Thu May 28 14:03:14 2015 fernand veyrier
+** Last update Thu May 28 18:08:28 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -43,8 +43,8 @@ int		check_extension(char *file)
 
 int		parse_obj(int level, t_system *sys, int line)
 {
-  if (level > 2)
-    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
+  if (level < 0)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
   printf("Found obj\n", level);
   return (1);
 }
@@ -52,8 +52,8 @@ int		parse_obj(int level, t_system *sys, int line)
 int		parse_obj_close(int level, t_system *sys, int line)
 {
   level -= 1;
-  if (level != 0 && level != 1)
-    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line));
+  if (level < 0)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
   printf("Found obj close\n");
   return (-1);
 }
@@ -61,15 +61,15 @@ int		parse_obj_close(int level, t_system *sys, int line)
 int		parse_mesh(int level, t_system *sys, int line)
 {
   if (level < 1)
-    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line) * -1);
   printf("Found mesh\n");
   return (2);
 }
 
 int		parse_mesh_close(int level, t_system *sys, int line)
 {
-  if (level - 2 != 1 && level - 2 != 2)
-    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line));
+  if (level - 2 < 1)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line) * -1);
   printf("Found mesh close\n");
   return (-2);
 }
@@ -77,7 +77,7 @@ int		parse_mesh_close(int level, t_system *sys, int line)
 int		parse_coord(int level, t_system *sys, int line)
 {
   if (level < 1)
-    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line));
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line) * -1);
   printf("Found coord\n");
   return (3);
 }
@@ -85,7 +85,7 @@ int		parse_coord(int level, t_system *sys, int line)
 int		parse_coord_close(int level, t_system *sys, int line)
 {
   if (level - 3 < 1)
-    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line));
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line) * -1);
   printf("Found coord close\n");
   return (-3);
 }
@@ -93,7 +93,7 @@ int		parse_coord_close(int level, t_system *sys, int line)
 int		parse_phong(int level, t_system *sys, int line)
 {
   if (level < 1)
-    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line));
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line) * -1);
   printf("Found phong\n");
   return (4);
 }
@@ -101,9 +101,25 @@ int		parse_phong(int level, t_system *sys, int line)
 int		parse_phong_close(int level, t_system *sys, int line)
 {
   if (level - 4 < 1)
-    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line));
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line) * -1);
   printf("Found phong close\n");
   return (-4);
+}
+
+int		parse_limit(int level, t_system *sys, int line)
+{
+  if (level < 1)
+    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", line) * -1);
+  printf("Found limit\n");
+  return (5);
+}
+
+int		parse_limit_close(int level, t_system *sys, int line)
+{
+  if (level - 5 < 1)
+    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", line) * -1);
+  printf("Found limit close\n");
+  return (-5);
 }
 
 /*
@@ -131,12 +147,14 @@ int		follow_pattern(const int fd, regex_t *regex,
   func[5] = parse_coord_close;
   func[6] = parse_phong;
   func[7] = parse_phong_close;
-  while ((buffer = get_next_line(fd)) != NULL)
+  func[8] = parse_limit;
+  func[9] = parse_limit_close;
+  while ((buffer = get_next_line(fd)) != NULL && level >= 0)
     {
       printf("[%s]\n", buffer);
-      while (i < 8 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
+      while (i < 10 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
 	++i;
-      if (i < 8)
+      if (i < 10)
 	level += func[i](level, sys, line);
       ++line;
       i = 0;
