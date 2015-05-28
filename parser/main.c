@@ -5,24 +5,28 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Thu May 28 18:08:28 2015 fernand veyrier
+** Last update Thu May 28 18:35:59 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
 
-#define HEADER	"^<\\?xml version[[:space:]]*=[[:space:]]*\"[[:digit:].]+\"\\?>$"
-#define OBJECT_OPEN	"[[:space:]]*<object>[[:space:]]*$"
-#define OBJECT_CLOSE	"[[:space:]]*</object>[[:space:]]*$"
-#define MESH_OPEN "[[:space:]]*<mesh[[:space:]]+type[[:space:]]*=\""
-#define MESH_OPEN_NEXT "(tore|sphere|cylinder|cone|plane|paraboloid"
-#define MESH_OPEN_LAST "|holedcube|hyperboloid)\"[[:space:]]*>[[:space:]]*$"
-#define MESH_CLOSE "[[:space:]]*</mesh>[[:space:]]*$"
-#define COORD_OPEN "[[:space:]]*<coord>[[:space:]]*$"
-#define COORD_CLOSE "[[:space:]]*</coord>[[:space:]]*$"
-#define PHONG_OPEN "[[:space:]]*<phong>[[:space:]]*$"
-#define PHONG_CLOSE "[[:space:]]*</phong>[[:space:]]*$"
-#define LIMIT_OPEN "[[:space:]]*<limit>[[:space:]]*$"
-#define LIMIT_CLOSE "[[:space:]]*</limit>[[:space:]]*$"
+# define HEADER		"^<\\?xml version[[:space:]]*=[[:space:]]*\"[[:digit:].]+\"\\?>$"
+# define OBJECT_OPEN	"[[:space:]]*<object>[[:space:]]*$"
+# define OBJECT_CLOSE	"[[:space:]]*</object>[[:space:]]*$"
+# define MESH_OPEN	"[[:space:]]*<mesh[[:space:]]+type[[:space:]]*=\""
+# define MESH_OPEN_NEXT	"(tore|sphere|cylinder|cone|plane|paraboloid"
+# define MESH_OPEN_LAST	"|holedcube|hyperboloid)\"[[:space:]]*>[[:space:]]*$"
+# define MESH_CLOSE	"[[:space:]]*</mesh>[[:space:]]*$"
+# define COORD_OPEN	"[[:space:]]*<coord>[[:space:]]*$"
+# define COORD_CLOSE	"[[:space:]]*</coord>[[:space:]]*$"
+# define PHONG_OPEN	"[[:space:]]*<phong>[[:space:]]*$"
+# define PHONG_CLOSE	"[[:space:]]*</phong>[[:space:]]*$"
+# define LIMIT_OPEN	"[[:space:]]*<limit>[[:space:]]*$"
+# define LIMIT_CLOSE	"[[:space:]]*</limit>[[:space:]]*$"
+# define SCENE		"[[:space:]]*<scene>[[:space:]]*$"
+# define SCENE_CLOSE	"[[:space:]]*</scene>[[:space:]]*$"
+# define SPOT		"[[:space:]]*<spot>[[:space:]]*$"
+# define SPOT_CLOSE	"[[:space:]]*</spot>[[:space:]]*$"
 
 int		check_extension(char *file)
 {
