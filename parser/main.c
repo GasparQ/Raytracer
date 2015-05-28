@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Thu May 28 18:35:59 2015 fernand veyrier
+** Last update Thu May 28 20:42:07 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -47,7 +47,7 @@ int		check_extension(char *file)
 
 int		parse_obj(int level, t_system *sys, int line)
 {
-  if (level < 0)
+  if (level < 1)
     return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
   printf("Found obj\n", level);
   return (1);
@@ -56,7 +56,7 @@ int		parse_obj(int level, t_system *sys, int line)
 int		parse_obj_close(int level, t_system *sys, int line)
 {
   level -= 1;
-  if (level < 0)
+  if (level < 1)
     return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
   printf("Found obj close\n");
   return (-1);
@@ -126,6 +126,56 @@ int		parse_limit_close(int level, t_system *sys, int line)
   return (-5);
 }
 
+int		parse_spot(int level, t_system *sys, int line)
+{
+  if (level < 1)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
+  printf("Found spot\n");
+  return (6);
+}
+
+int		parse_spot_close(int level, t_system *sys, int line)
+{
+  if (level - 6 < 1)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
+  printf("Found spot close\n");
+  return (-6);
+}
+
+int		parse_scene(int level, t_system *sys, int line)
+{
+  if (level != 0)
+    return (fprintf(stderr, "Invalid XML (scene) line %i.\n", line) * -1);
+  printf("Found scene\n");
+  return (1);
+}
+
+int		parse_scene_close(int level, t_system *sys, int line)
+{
+  if (level - 1 != 0)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
+  printf("Found scene close\n");
+  return (-1);
+}
+
+void		init_functions(int (**func)())
+{
+  func[0] = parse_obj;
+  func[1] = parse_obj_close;
+  func[2] = parse_mesh;
+  func[3] = parse_mesh_close;
+  func[4] = parse_coord;
+  func[5] = parse_coord_close;
+  func[6] = parse_phong;
+  func[7] = parse_phong_close;
+  func[8] = parse_limit;
+  func[9] = parse_limit_close;
+  func[10] = parse_spot;
+  func[11] = parse_spot_close;
+  func[12] = parse_scene;
+  func[13] = parse_scene_close;
+}
+
 /*
 ** add_object(t_vector[2]{position, rotation}, int[2]{sys->img.bpp / 8, color}
 **            get_properties(brightness, opacity, reflexion, refraction), sys->objlist)
@@ -137,41 +187,37 @@ int		follow_pattern(const int fd, regex_t *regex,
   int		is_invalid;
   int		level;
   int		line;
-  int		(*func[10])();
+  int		(*func[14])();
   int		i;
 
-  level = 0;
+  level = -1;
   line = 2;
   i = 0;
-  func[0] = parse_obj;
-  func[1] = parse_obj_close;
-  func[2] = parse_mesh;
-  func[3] = parse_mesh_close;
-  func[4] = parse_coord;
-  func[5] = parse_coord_close;
-  func[6] = parse_phong;
-  func[7] = parse_phong_close;
-  func[8] = parse_limit;
-  func[9] = parse_limit_close;
-  while ((buffer = get_next_line(fd)) != NULL && level >= 0)
+  init_functions(func);
+  while ((buffer = get_next_line(fd)) != NULL)
     {
-      printf("[%s]\n", buffer);
-      while (i < 10 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
+      printf("[%s] level = %i\n", buffer, level);
+      while (i < 14 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
 	++i;
-      if (i < 10)
-	level += func[i](level, sys, line);
+      if (i < 14)
+	{
+	  level = (line == 2) ? 0 : level;
+	  level += func[i](level, sys, line);
+	  if (level < 0)
+	    break;
+	}
       ++line;
       i = 0;
     }
   if (level != 0)
-    return (fprintf(stderr, "Corrupted XML file.\n"));
+    return (fprintf(stderr, "Corrupted XML file.\n") * -1);
   return (0);
 }
 
 int		get_objects(const int fd, t_system *sys)
 {
   int		is_invalid;
-  regex_t	regex[11];
+  regex_t	regex[15];
   regmatch_t	reg_struct;
   char		*buf;
   size_t	match;
@@ -181,14 +227,19 @@ int		get_objects(const int fd, t_system *sys)
   if (regcomp(&regex[0], HEADER, REG_EXTENDED)
       || regcomp(&regex[1], OBJECT_OPEN, REG_EXTENDED)
       || regcomp(&regex[2], OBJECT_CLOSE, REG_EXTENDED)
-      || regcomp(&regex[3], MESH_OPEN MESH_OPEN_NEXT MESH_OPEN_LAST, REG_EXTENDED)
+      || regcomp(&regex[3], MESH_OPEN MESH_OPEN_NEXT MESH_OPEN_LAST,
+		 REG_EXTENDED)
       || regcomp(&regex[4], MESH_CLOSE, REG_EXTENDED)
       || regcomp(&regex[5], COORD_OPEN, REG_EXTENDED)
       || regcomp(&regex[6], COORD_CLOSE, REG_EXTENDED)
       || regcomp(&regex[7], PHONG_OPEN, REG_EXTENDED)
       || regcomp(&regex[8], PHONG_CLOSE, REG_EXTENDED)
       || regcomp(&regex[9], LIMIT_OPEN, REG_EXTENDED)
-      || regcomp(&regex[10], LIMIT_CLOSE, REG_EXTENDED))
+      || regcomp(&regex[10], LIMIT_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[11], SPOT, REG_EXTENDED)
+      || regcomp(&regex[12], SPOT_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[13], SCENE, REG_EXTENDED)
+      || regcomp(&regex[14], SCENE_CLOSE, REG_EXTENDED))
     return (fprintf(stderr, "Regex error.\n"));
   is_invalid = regexec(&regex[0], buf, match, &reg_struct, 0);
   if (is_invalid)

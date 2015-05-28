@@ -99,7 +99,7 @@
   <!--		Le Plan				-->
 
   <object>
-    <mesh type="plan">
+    <mesh type="plane">
       normal = (0, 0, 1)
       cte = 0
     </mesh>
