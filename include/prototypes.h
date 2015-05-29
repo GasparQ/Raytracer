@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Fri May 29 17:57:24 2015 quentin gasparotto
+** Last update Fri May 29 23:17:39 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -108,9 +108,7 @@ double			draw_moebius(t_streight strgt, t_object *my_obj);
 **	add_moebius.c
 */
 
-double			*moebius_prop(double *prop, double radius,
-				      double nb_tors, double tors_angle);
-int			add_moebius(t_system *sys, double *prop, int color);
+int			add_moebius(t_object *act_obj, double *mesh_prop);
 
 /*
 **	add_tore.c

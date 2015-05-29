@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Fri May 29 22:37:07 2015 quentin gasparotto
+** Last update Fri May 29 23:01:14 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -66,9 +66,12 @@ void		init_objects(t_system *sys)
   /* 	     SIMPLE, &sys->scene_list->obj_list); */
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
-  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0});
-  add_phong(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0.5, 1.05, 0});
-  add_sphere(sys->scene_list->obj_list, (double [1]){100});
+  add_moebius(sys->scene_list->obj_list, (double [3]){0, 2, 0});
+
+  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED); */
+  /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0}); */
+  /* add_phong(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0.5, 1.05, 0}); */
+  /* add_sphere(sys->scene_list->obj_list, (double [1]){100}); */
 
   /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
   /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 0}); */
@@ -77,9 +80,9 @@ void		init_objects(t_system *sys)
   /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, -50, 0, 90, 0, 0}); */
   /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
-  add_object(&(sys->scene_list->obj_list), sys->scene_list->img->bpp / 8, YELLOW);
-  add_coord(sys->scene_list->obj_list, (double [6]){150, 0, 100, 90, 0, 0});
-  add_cylinder(sys->scene_list->obj_list, (double [1]){50.0});
+  /* add_object(&(sys->scene_list->obj_list), sys->scene_list->img->bpp / 8, YELLOW); */
+  /* add_coord(sys->scene_list->obj_list, (double [6]){150, 0, 100, 90, 0, 0}); */
+  /* add_cylinder(sys->scene_list->obj_list, (double [1]){50.0}); */
 
   /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
   /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 225}); */
