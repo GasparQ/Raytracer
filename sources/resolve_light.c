@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Fri May 29 18:01:25 2015 quentin gasparotto
+** Last update Fri May 29 22:03:20 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -29,12 +29,12 @@ double		resolve_shadow(t_vector3 isec_point,
   t_streight	new_ray;
   t_object	*touch;
   double	cos_a;
-
+  
   if ((cos_a = get_scal(norm, light_vec) /
        (vec_norm(norm) * vec_norm(light_vec))) < F_ZERO)
     return (F_ZERO);
   new_ray = get_streight(light_vec, isec_point);
-  if ((touch = bomb_ray(&new_ray, scene->obj_list)) != NULL)
+  if ((touch = get_object(scene->obj_list, &new_ray)) != NULL)
     {
       if (new_ray.lambda > F_ZERO && new_ray.lambda < 1.0)
 	return ((1 - touch->phong.opacity) * cos_a);
@@ -61,7 +61,7 @@ void		resolve_reflection(t_streight reflect_ray, t_object *act,
   t_object	*touch;
   t_vector3	isec_point;
 
-  if ((touch = bomb_ray(&reflect_ray, scene->obj_list)) != NULL)
+  if ((touch = get_object(scene->obj_list, &reflect_ray)) != NULL)
     {
       isec_point = get_isec_point(reflect_ray, touch);
       resolve_light(isec_point, touch, scene, reflect_ray);
@@ -105,7 +105,7 @@ void		resolve_light(t_vector3 isec_point,
 		       act_obj, scene);
   if (act_obj->phong.opacity > F_ZERO)
     resolve_transparency(get_refracted_ray(unit_vec(norm),
-					   strgt.dir, isec_point,
+					   unit_vec(strgt.dir), isec_point,
 					   act_obj->phong.middle_ind),
 			 act_obj, scene);
 }

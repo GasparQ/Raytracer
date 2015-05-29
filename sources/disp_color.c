@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Fri May 29 17:32:26 2015 quentin gasparotto
+** Last update Fri May 29 21:10:24 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -45,22 +45,26 @@ t_object	*resolve_limits(t_object *touch_obj, t_streight *strgt)
 t_object	*get_object(t_object *obj_list, t_streight *strgt)
 {
   t_object	*final_obj;
-  t_object	*cmp_obj;
   t_streight	cpy;
+  t_object	*tmp;
+  t_object	*same;
 
-  final_obj = NULL;
-  while (final_obj == NULL)
+  if ((final_obj = bomb_ray(strgt, obj_list)) == NULL)
+    return (NULL);
+  same = final_obj;
+  while ((final_obj = resolve_limits(final_obj, strgt)) == NULL)
     {
       cpy = *strgt;
       if ((final_obj = bomb_ray(strgt, obj_list)) == NULL)
 	return (NULL);
-      if (final_obj->limit != NULL &&
-      	  (cmp_obj = get_object(final_obj->limit, &cpy)) != NULL &&
-      	  cpy.lambda >= F_ZERO && cpy.lambda > strgt->lambda)
-      	{
-      	  return (cmp_obj);
-      	}
-      final_obj = resolve_limits(final_obj, strgt);
+      if (same->limit != NULL &&
+	  (tmp = get_object(same->limit, &cpy)) != NULL &&
+	  cpy.lambda >= F_ZERO && cpy.lambda < strgt->lambda)
+	{
+	  strgt->lambda = cpy.lambda;
+	  return (tmp);
+	}
+      same = final_obj;
     }
   return (final_obj);
 }

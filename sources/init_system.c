@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Fri May 29 17:58:03 2015 quentin gasparotto
+** Last update Fri May 29 22:37:07 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -26,35 +26,33 @@ void		init_objects(t_system *sys)
   sys->scene_list->obj_list = NULL;
 
 
-  /* /\* */
-  /* **	Ajout hyperboloide */
-  /* *\/ */
+  /*
+  **	Ajout hyperboloide
+  */
 
-  /* add_object((t_vector3 [2]){get_vector3(0, 0, 75), get_vector3(90, 0, 45)}, */
-  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
-  /* 	     SIMPLE, &sys->obj_list); */
-  /* add_hyperboloid(sys->obj_list, (double [5]){50, 50, 90, -1, 1}); */
-  /* add_object((t_vector3 [2]){get_vector3(0, 0, 10), get_vector3(45, 45, 0)}, */
-  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
-  /* 	     SIMPLE, &sys->obj_list); */
-  /* add_holed_cube(sys->obj_list, (double [2]){10.0, 42.8}); */
+  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, YELLOW); */
+
+  /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 10, 45, 45, 0}); */
+  /* add_holed_cube(sys->scene_list->obj_list, (double [2]){10.0, 42.8}); */
+
+  /* add_coord(sys->scene_list->obj_list, (double [6]){100, 0, 200, 90, 0, 0}); */
+  /* add_hyperboloid(sys->scene_list->obj_list, (double [5]){50, 50, 90, -1, -1}); */
 
   /*
   **		Limite l'hyperboloide
   */
 
-  /* add_object((t_vector3 [2]){get_vector3(0, 0, 50), ORIGIN}, */
-  /* 	     (int [2]){sys->img.bpp / 8, BOLAS}, */
-  /* 	     SIMPLE, &(sys->obj_list->limit)); */
-  /* add_sphere(sys->obj_list->limit, (double [1]){50}); */
+  /* add_object(&sys->scene_list->obj_list->limit, sys->scene_list->img->bpp / 8, YELLOW); */
+  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 30, 0, 90, 0, 0}); */
+
+  /* add_sphere(sys->scene_list->obj_list->limit, (double [1]){50}); */
+
+  /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
   /*
   **	Ajout plan
   */
 
-  /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
-  /* 	     (int [2]){sys->scene_list->img->bpp / 8, WHITE}, */
-  /* 	     SIMPLE, &sys->scene_list->obj_list); */
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
   add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
  
@@ -66,15 +64,26 @@ void		init_objects(t_system *sys)
   /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
   /* 	     (int [2]){sys->scene_list->img->bpp / 8, RED}, */
   /* 	     SIMPLE, &sys->scene_list->obj_list); */
+
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
+  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0});
+  add_phong(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0.5, 1.05, 0});
   add_sphere(sys->scene_list->obj_list, (double [1]){100});
 
-  /* add_object((t_vector3 [2]){get_vector3(0, 50, 0), get_vector3(90, 0, 225)}, */
-  /* 	     (int [2]){sys->scene_list->img->bpp / 8, BLUE}, */
-  /* 	     SIMPLE, &(sys->scene_list->obj_list->limit)); */
-  add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, BLUE);
-  add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 225});
-  add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0});
+  /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
+  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 0}); */
+  /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
+  /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
+  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, -50, 0, 90, 0, 0}); */
+  /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
+
+  add_object(&(sys->scene_list->obj_list), sys->scene_list->img->bpp / 8, YELLOW);
+  add_coord(sys->scene_list->obj_list, (double [6]){150, 0, 100, 90, 0, 0});
+  add_cylinder(sys->scene_list->obj_list, (double [1]){50.0});
+
+  /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
+  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 225}); */
+  /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
   /* //add_paraboloid(sys->obj_list, (double [1]){20.0}); */
   /* //add_cone(sys->obj_list, (double [1]){120}); */
@@ -138,7 +147,7 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-1000.0, 1000.0, 300.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys->scene_list, get_vector3(-200.0, 0.0, 200.0), WHITE) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-200.0, 0.0, 500.0), WHITE) == ERROR)
     return (ERROR);
   sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
@@ -151,8 +160,10 @@ int	init_system(t_system *sys)
   sys->scene_list = NULL;
   if (add_scene(&sys->scene_list, sys->mlx) == -1)
     return (-1);
-  if (add_eye(sys->scene_list, get_vector3(-500, 0, 250), ORIGIN, 500) == -1)
+  if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), ORIGIN, 500) == -1)
     return (-1);
+  /* if (add_eye(sys->scene_list, get_vector3(-100, 0, 10), ORIGIN, 500) == -1) */
+  /*   return (-1); */
   sys->scene_list->act_eye = sys->scene_list->eye;
   sys->scene_list->act_image = sys->scene_list->img;
   init_objects(sys);

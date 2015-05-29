@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Mar 24 19:12:25 2015 quentin gasparotto
-** Last update Fri May 29 18:02:42 2015 quentin gasparotto
+** Last update Fri May 29 19:46:49 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -29,7 +29,7 @@ void	resolve_transparency(t_streight refracted_ray, t_object *act,
   t_object	*touch;
   t_vector3	isec_point;
 
-  if ((touch = bomb_ray(&refracted_ray, scene->obj_list)) != NULL)
+  if ((touch = get_object(scene->obj_list, &refracted_ray)) != NULL)
     {
       isec_point = get_isec_point(refracted_ray, touch);
       resolve_light(isec_point, touch, scene, refracted_ray);
