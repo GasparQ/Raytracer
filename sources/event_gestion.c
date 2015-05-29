@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Fri Mar 13 15:55:54 2015 quentin gasparotto
+** Last update Fri May 29 17:22:06 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -15,10 +15,7 @@ int	key_gestion(int keycode, t_system *sys)
 {
   if (keycode == ESCAPE)
     {
-      free_my_list(sys->obj_list);
-      free_spot_list(sys->spot_list);
-      free(sys->color);
-      free(sys->average);
+      free_scene(sys->scene_list);
       exit(3);
     }
   return (CLEAN);
@@ -26,6 +23,7 @@ int	key_gestion(int keycode, t_system *sys)
 
 int	expose_gestion(t_system *sys)
 {
-  mlx_put_image_to_window(sys->mlx, sys->wdw, sys->img.img, 0, 0);
+  mlx_put_image_to_window(sys->mlx, sys->wdw,
+			  sys->scene_list->act_image->img, 0, 0);
   return (CLEAN);
 }

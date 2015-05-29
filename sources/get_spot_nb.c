@@ -5,17 +5,17 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar 13 14:08:35 2015 quentin gasparotto
-** Last update Fri Mar 13 14:18:45 2015 quentin gasparotto
+** Last update Fri May 29 11:53:53 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		get_spot_nb(t_system *sys)
+int		get_spot_nb(t_spot *spot_list)
 {
   t_spot	*tmp;
   int		i;
 
-  tmp = sys->spot_list;
+  tmp = spot_list;
   i = 0;
   while (tmp != NULL)
     {

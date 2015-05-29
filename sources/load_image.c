@@ -5,13 +5,13 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Tue May 26 10:32:54 2015 quentin gasparotto
+** Last update Fri May 29 16:33:27 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
-int	load_image(t_system *sys, t_vector2 pos, t_vector2 dim)
+int	load_image(t_scene *scene, t_vector2 pos, t_vector2 dim)
 {
   int	x;
   int	y;
@@ -22,15 +22,15 @@ int	load_image(t_system *sys, t_vector2 pos, t_vector2 dim)
       x = pos.x;
       while (x < WDW_WIDTH && x < pos.x + dim.x)
 	{
-	  disp_color(sys, x, y);
+	  disp_color(scene, x, y);
 	  x = x + 1;
 	}
       y = y + 1;
-      if (y % 200 == 0)
-      	mlx_put_image_to_window(sys->mlx, sys->wdw, sys->load.img,
-				WDW_WIDTH / 2 - 70 + 30 * (y / 200 - 1),
-				WDW_HEIGHT / 2 - 10);
+      /* if (y % 200 == 0) */
+      /* 	mlx_put_image_to_window(sys->mlx, sys->wdw, scene->load.img, */
+      /* 				WDW_WIDTH / 2 - 70 + 30 * (y / 200 - 1), */
+      /* 				WDW_HEIGHT / 2 - 10); */
     }
-  mlx_put_image_to_window(sys->mlx, sys->wdw, sys->img.img, 0, 0);
+  //mlx_put_image_to_window(sys->mlx, sys->wdw, sys->img.img, 0, 0);
   return (CLEAN);
 }

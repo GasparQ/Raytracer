@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Thu May 28 14:22:20 2015 quentin gasparotto
+** Last update Fri May 29 17:57:24 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -63,6 +63,15 @@ enum			COLORS
   };
 
 /*
+**	scene_gestion.c
+*/
+
+void			free_scene(t_scene *scene);
+int			add_scene(t_scene **scene, void *mlx);
+int			add_eye(t_scene *scene, t_vector3 position,
+				t_vector3 rotation, int distance);
+
+/*
 **	draw_hyperboloid.c
 */
 
@@ -87,7 +96,7 @@ t_streight		get_refracted_ray(t_vector3 norm,
 */
 
 void			resolve_transparency(t_streight refracted_ray,
-					     t_object *act, t_system *sys);
+					     t_object *act, t_scene *scene);
 
 /*
 **	draw_moebius.c
@@ -177,6 +186,8 @@ t_streight		get_reflected_ray(t_vector3 norm,
 
 double			*get_properties(double brightness, double opacity,
 					double reflect, double middle_ind);
+void			add_phong(t_object *obj, double *phong_prop);
+void			add_coord(t_object *obj, double *coord);
 
 /*
 **	get_limit.c
@@ -188,14 +199,14 @@ t_vector3		*get_limit(t_vector3 *limit, t_vector3 f, t_vector3 s);
 **	get_spot_nb.c
 */
 
-int			get_spot_nb(t_system *sys);
+int			get_spot_nb(t_spot *sys);
 
 /*
 **	disp_color.c
 */
 
 t_object		*get_object(t_object *obj_list, t_streight *strgt);
-void			disp_color(t_system *sys, int x, int y);
+void			disp_color(t_scene *scene, int x, int y);
 
 /*
 **	resolve_polynoms.c
@@ -213,7 +224,7 @@ t_vector3		get_isec_point(t_streight streight, t_object *my_obj);
 **	average.c
 */
 
-void			add_average(t_system *sys, t_spot *tmp,
+void			add_average(t_scene *scene, t_spot *tmp,
 				    double cos_a, t_object *act_obj);
 void			init_average(int *average, int end);
 void			average_to_color(int *average, unsigned char *color,
@@ -223,7 +234,7 @@ void			average_to_color(int *average, unsigned char *color,
 **      loading_screen.c
 */
 
-void			init_load_img(t_system *sys, t_image *load_img);
+void			init_load_img(t_scene *scene, t_image *load_img);
 
 /*
 **	cmp_limit.c
@@ -279,8 +290,7 @@ int			add_holed_cube(t_object *act_obj, double *mesh_prop);
 **	add_obj.c
 */
 
-void			add_object(t_vector3 *physics, int *colors,
-				   double *properties, t_object **obj_list);
+void			add_object(t_object **obj_list, int size, int color);
 
 /*
 **	get_vectors.c
@@ -310,7 +320,7 @@ double			vec_norm(t_vector3 vec);
 
 void			resolve_light(t_vector3 isec_point,
 				      t_object *act_object,
-				      t_system *sys, t_streight strgt);
+				      t_scene *scene, t_streight strgt);
 void			resolve_brightness(t_object *act_obj,
 					   t_spot *act_spot, int rank);
 
@@ -348,7 +358,7 @@ void			init_hyper_norm(t_vector3 *norm,
 **	add_spot.c
 */
 
-int			add_spot(t_system *sys, t_vector3 pos, int color);
+int			add_spot(t_scene *scene, t_vector3 pos, int color);
 
 /*
 **	translate.c
@@ -410,6 +420,7 @@ int			init_system(t_system *sys);
 **	list_fn.c
 */
 
+void			free_image_list(t_image *img_list);
 int			my_put_in_list(t_object **list, t_object data);
 void			free_my_list(t_object *list);
 void			free_spot_list(t_spot *list);
@@ -427,7 +438,7 @@ int			expose_gestion(t_system *sys);
 void			my_put_pixel_to_img(int x, int y, unsigned char *color,
 					    t_image *img);
 void			get_color(int color, unsigned char *color_tab,
-				  t_system *sys);
+				  t_scene *scene);
 
 /*
 **	error.c
@@ -439,7 +450,7 @@ int			my_strerror(char *error);
 **	load_image.c
 */
 
-int			load_image(t_system *sys, t_vector2 pos, t_vector2 dim);
+int			load_image(t_scene *scene, t_vector2 pos, t_vector2 dim);
 
 /*
 **	event_gestion.c

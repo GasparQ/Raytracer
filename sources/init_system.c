@@ -5,25 +5,11 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Thu May 28 16:26:45 2015 quentin gasparotto
+** Last update Fri May 29 17:58:03 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
-
-void	init_img(t_image *img, void *mlx, int wid, int hei)
-{
-  int	bpp;
-  int	endian;
-  int	width;
-
-  img->img = mlx_new_image(mlx, wid, hei);
-  img->dat = mlx_get_data_addr(img->img, &bpp, &width, &endian);
-  img->bpp = bpp;
-  img->edn = endian;
-  img->wdth = width;
-  img->hght = hei * wid * (bpp / 8) / img->wdth;
-}
 
 int	init_mlx(t_system *sys)
 {
@@ -32,14 +18,12 @@ int	init_mlx(t_system *sys)
   sys->wdw = mlx_new_window(sys->mlx, WDW_WIDTH, WDW_HEIGHT, "rtv1");
   if (sys->wdw == NULL)
     return (my_strerror(WDW_FAIL));
-  init_img(&(sys->img), sys->mlx, WDW_WIDTH, WDW_HEIGHT);
-  init_img(&(sys->load), sys->mlx, 20, 20);
   return (CLEAN);
 }
 
 void		init_objects(t_system *sys)
 {
-  sys->obj_list = NULL;
+  sys->scene_list->obj_list = NULL;
 
 
   /* /\* */
@@ -50,10 +34,10 @@ void		init_objects(t_system *sys)
   /* 	     (int [2]){sys->img.bpp / 8, RED}, */
   /* 	     SIMPLE, &sys->obj_list); */
   /* add_hyperboloid(sys->obj_list, (double [5]){50, 50, 90, -1, 1}); */
-  add_object((t_vector3 [2]){get_vector3(0, 0, 10), get_vector3(45, 45, 0)},
-  	     (int [2]){sys->img.bpp / 8, RED},
-  	     SIMPLE, &sys->obj_list);
-  add_holed_cube(sys->obj_list, (double [2]){10.0, 42.8});
+  /* add_object((t_vector3 [2]){get_vector3(0, 0, 10), get_vector3(45, 45, 0)}, */
+  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
+  /* 	     SIMPLE, &sys->obj_list); */
+  /* add_holed_cube(sys->obj_list, (double [2]){10.0, 42.8}); */
 
   /*
   **		Limite l'hyperboloide
@@ -68,25 +52,29 @@ void		init_objects(t_system *sys)
   **	Ajout plan
   */
 
-  add_object((t_vector3 [2]){ORIGIN, ORIGIN},
-  	     (int [2]){sys->img.bpp / 8, WHITE},
-  	     SIMPLE, &sys->obj_list);
-  add_plan(sys->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
-
+  /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
+  /* 	     (int [2]){sys->scene_list->img->bpp / 8, WHITE}, */
+  /* 	     SIMPLE, &sys->scene_list->obj_list); */
+  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
+  add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
+ 
   /* /\* add_object((t_vector3 [2]){get_vector3(0, 0, 1000), ORIGIN}, *\/ */
   /* /\* 	     (int [2]){sys->img.bpp / 8, RED}, *\/ */
   /* /\* 	     get_properties(0, 0.5, 0.8, 1), &sys->obj_list); *\/ */
   /* /\* add_cone(sys->obj_list, (double [1]){180.0}); *\/ */
 
   /* add_object((t_vector3 [2]){ORIGIN, ORIGIN}, */
-  /* 	     (int [2]){sys->img.bpp / 8, RED}, */
-  /* 	     get_properties(0, 0, 1, ), &sys->obj_list); */
-  /* add_sphere(sys->obj_list, (double [1]){100}); */
+  /* 	     (int [2]){sys->scene_list->img->bpp / 8, RED}, */
+  /* 	     SIMPLE, &sys->scene_list->obj_list); */
+  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
+  add_sphere(sys->scene_list->obj_list, (double [1]){100});
 
-  /* add_object((t_vector3 [2]){get_vector3(0, 50, 0), get_vector3(90, 0, 45)}, */
-  /* 	     (int [2]){sys->img.bpp / 8, BLUE}, */
-  /* 	     SIMPLE, &(sys->obj_list->limit)); */
-  /* add_plan(sys->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
+  /* add_object((t_vector3 [2]){get_vector3(0, 50, 0), get_vector3(90, 0, 225)}, */
+  /* 	     (int [2]){sys->scene_list->img->bpp / 8, BLUE}, */
+  /* 	     SIMPLE, &(sys->scene_list->obj_list->limit)); */
+  add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, BLUE);
+  add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 225});
+  add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0});
 
   /* //add_paraboloid(sys->obj_list, (double [1]){20.0}); */
   /* //add_cone(sys->obj_list, (double [1]){120}); */
@@ -131,7 +119,7 @@ void		init_objects(t_system *sys)
 
 int		init_spot(t_system *sys)
 {
-  sys->spot_list = NULL;
+  sys->scene_list->spot_list = NULL;
   /* if (add_spot(sys, get_vector3(-500.0, 0.0, 1000.0), WHITE) == ERROR) */
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-100.0, 100.0, 0.0), WHITE) == ERROR) */
@@ -150,9 +138,9 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-1000.0, 1000.0, 300.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys, get_vector3(-200.0, 0.0, 200.0), WHITE) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-200.0, 0.0, 200.0), WHITE) == ERROR)
     return (ERROR);
-  sys->spot_nb = get_spot_nb(sys);
+  sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
 }
 
@@ -160,20 +148,26 @@ int	init_system(t_system *sys)
 {
   if (init_mlx(sys) == ERROR)
     return (ERROR);
+  sys->scene_list = NULL;
+  if (add_scene(&sys->scene_list, sys->mlx) == -1)
+    return (-1);
+  if (add_eye(sys->scene_list, get_vector3(-500, 0, 250), ORIGIN, 500) == -1)
+    return (-1);
+  sys->scene_list->act_eye = sys->scene_list->eye;
+  sys->scene_list->act_image = sys->scene_list->img;
   init_objects(sys);
   init_spot(sys);
-  if ((sys->color = malloc(sys->img.bpp / 8)) == NULL)
-    return (my_strerror(MALLOC_ERR));
-  if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL)
-    return (my_strerror(MALLOC_ERR));
-  init_load_img(sys, &sys->load);
-  sys->eye.pos.x = -50.0;
-  sys->eye.pos.y = 0.0;
-  sys->eye.pos.z = 10.0;
-  sys->eye.distance = 500;
-  sys->eye.dir.x = 0.0;
-  sys->eye.dir.y = 0.0;
-  sys->eye.dir.z = 0.0;
-  get_color(BLACK, sys->color, sys);
+  /* if ((sys->color = malloc(sys->img.bpp / 8)) == NULL) */
+  /*   return (my_strerror(MALLOC_ERR)); */
+  /* if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL) */
+  /*   return (my_strerror(MALLOC_ERR)); */
+  /* init_load_img(sys, &sys->load); */
+  /* sys->eye.pos.x = -500.0; */
+  /* sys->eye.pos.y = 0.0; */
+  /* sys->eye.pos.z = 250.0; */
+  /* sys->eye.distance = 500; */
+  /* sys->eye.dir.x = 0.0; */
+  /* sys->eye.dir.y = 0.0; */
+  /* sys->eye.dir.z = 0.0; */
   return (CLEAN);
 }

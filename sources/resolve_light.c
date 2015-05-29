@@ -5,24 +5,24 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Tue May 26 22:28:02 2015 quentin gasparotto
+** Last update Fri May 29 18:01:25 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
 void	resolve_brightness(t_object *act_obj, t_spot *act_spot, int rank)
 {
-  if (act_obj->disp_color[rank] * (1 - act_obj->brightness) +
-      act_obj->brightness * act_spot->color[rank] > 255)
+  if (act_obj->disp_color[rank] * (1 - act_obj->phong.brightness) +
+      act_obj->phong.brightness * act_spot->color[rank] > 255)
     act_obj->disp_color[rank] = 255;
   else
     act_obj->disp_color[rank] =
-      act_obj->disp_color[rank] * (1 - act_obj->brightness) +
-      act_obj->brightness * act_spot->color[rank];
+      act_obj->disp_color[rank] * (1 - act_obj->phong.brightness) +
+      act_obj->phong.brightness * act_spot->color[rank];
 }
 
 double		resolve_shadow(t_vector3 isec_point,
-			       t_system *sys,
+			       t_scene *scene,
 			       t_vector3 light_vec,
 			       t_vector3 norm)
 {
@@ -34,10 +34,10 @@ double		resolve_shadow(t_vector3 isec_point,
        (vec_norm(norm) * vec_norm(light_vec))) < F_ZERO)
     return (F_ZERO);
   new_ray = get_streight(light_vec, isec_point);
-  if ((touch = bomb_ray(&new_ray, sys->obj_list)) != NULL)
+  if ((touch = bomb_ray(&new_ray, scene->obj_list)) != NULL)
     {
       if (new_ray.lambda > F_ZERO && new_ray.lambda < 1.0)
-	return ((1 - touch->opacity) * cos_a);
+	return ((1 - touch->phong.opacity) * cos_a);
     }
   return (cos_a);
 }
@@ -56,26 +56,26 @@ void	reflect_color(unsigned char *obj, unsigned char *ref,
 }
 
 void		resolve_reflection(t_streight reflect_ray, t_object *act,
-				   t_system *sys)
+				   t_scene *scene)
 {
   t_object	*touch;
   t_vector3	isec_point;
 
-  if ((touch = bomb_ray(&reflect_ray, sys->obj_list)) != NULL)
+  if ((touch = bomb_ray(&reflect_ray, scene->obj_list)) != NULL)
     {
       isec_point = get_isec_point(reflect_ray, touch);
-      resolve_light(isec_point, touch, sys, reflect_ray);
-      reflect_color(act->disp_color, touch->disp_color, act->reflect,
-		    sys->img.bpp / 8);
+      resolve_light(isec_point, touch, scene, reflect_ray);
+      reflect_color(act->disp_color, touch->disp_color, act->phong.reflect,
+		    scene->act_image->bpp / 8);
     }
   else
-    reflect_color(act->disp_color, sys->color, act->reflect,
-		  sys->img.bpp / 8);
+    reflect_color(act->disp_color, scene->act_image->color, act->phong.reflect,
+		  scene->act_image->bpp / 8);
 }
 
 void		resolve_light(t_vector3 isec_point,
 			      t_object *act_obj,
-			      t_system *sys,
+			      t_scene *scene,
 			      t_streight strgt)
 {
   t_vector3	norm;
@@ -87,25 +87,25 @@ void		resolve_light(t_vector3 isec_point,
   rotate_coord(&norm, act_obj->rotation);
   rotate_coord(&isec_point, act_obj->rotation);
   translate(&isec_point, act_obj->origin);
-  init_average(sys->average, sys->img.bpp / 8);
-  tmp = sys->spot_list;
+  init_average(scene->act_image->average, scene->act_image->bpp / 8);
+  tmp = scene->spot_list;
   while (tmp != NULL)
     {
-      get_color(act_obj->obj_color, act_obj->disp_color, sys);
+      get_color(act_obj->obj_color, act_obj->disp_color, scene);
       light_vec = get_vec_from_points(isec_point, tmp->origin);
-      cos_a = resolve_shadow(isec_point, sys, light_vec, norm);
-      add_average(sys, tmp, cos_a, act_obj);
+      cos_a = resolve_shadow(isec_point, scene, light_vec, norm);
+      add_average(scene, tmp, cos_a, act_obj);
       tmp = tmp->next;
     }
-  average_to_color(sys->average, act_obj->disp_color,
-		   sys->spot_nb, sys->img.bpp / 8);
-  if (act_obj->reflect > F_ZERO)
+  average_to_color(scene->act_image->average, act_obj->disp_color,
+		   scene->spot_nb, scene->act_image->bpp / 8);
+  if (act_obj->phong.reflect > F_ZERO)
     resolve_reflection(get_reflected_ray(unit_vec(norm),
 					 strgt.dir, isec_point),
-		       act_obj, sys);
-  if (act_obj->opacity > F_ZERO)
+		       act_obj, scene);
+  if (act_obj->phong.opacity > F_ZERO)
     resolve_transparency(get_refracted_ray(unit_vec(norm),
 					   strgt.dir, isec_point,
-					   act_obj->middle_ind),
-			 act_obj, sys);
+					   act_obj->phong.middle_ind),
+			 act_obj, scene);
 }

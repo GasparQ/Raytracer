@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Mar 14 13:09:31 2015 quentin gasparotto
-** Last update Tue Mar 24 19:34:01 2015 quentin gasparotto
+** Last update Fri May 29 17:57:21 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -23,4 +23,24 @@ double		*get_properties(double brightness,
   properties_tab[2] = reflect;
   properties_tab[3] = middle_ind;
   return (properties_tab);
+}
+
+void	add_phong(t_object *obj, double *phong_prop)
+{
+  obj->phong.brightness = phong_prop[0];
+  obj->phong.diffuse = phong_prop[1];
+  obj->phong.specular = phong_prop[2];
+  obj->phong.opacity = phong_prop[3];
+  obj->phong.middle_ind = phong_prop[4];
+  obj->phong.reflect = phong_prop[5];
+}
+
+void	add_coord(t_object *obj, double *coord)
+{
+  obj->origin.x = coord[0];
+  obj->origin.y = coord[1];
+  obj->origin.z = coord[2];
+  obj->rotation.x = coord[3];
+  obj->rotation.y = coord[4];
+  obj->rotation.z = coord[5];
 }

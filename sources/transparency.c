@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Mar 24 19:12:25 2015 quentin gasparotto
-** Last update Tue Mar 24 19:52:45 2015 quentin gasparotto
+** Last update Fri May 29 18:02:42 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -24,18 +24,19 @@ void	refract_color(unsigned char *obj, unsigned char *ref,
 }
 
 void	resolve_transparency(t_streight refracted_ray, t_object *act,
-			     t_system *sys)
+			     t_scene *scene)
 {
   t_object	*touch;
   t_vector3	isec_point;
 
-  if ((touch = bomb_ray(&refracted_ray, sys->obj_list)) != NULL)
+  if ((touch = bomb_ray(&refracted_ray, scene->obj_list)) != NULL)
     {
       isec_point = get_isec_point(refracted_ray, touch);
-      resolve_light(isec_point, touch, sys, refracted_ray);
-      refract_color(act->disp_color, touch->disp_color, act->opacity,
-		    sys->img.bpp / 8);
+      resolve_light(isec_point, touch, scene, refracted_ray);
+      refract_color(act->disp_color, touch->disp_color, act->phong.opacity,
+		    scene->act_image->bpp / 8);
     }
   else
-    refract_color(act->disp_color, sys->color, act->opacity, sys->img.bpp / 8);
+    refract_color(act->disp_color, scene->act_image->color,
+		  act->phong.opacity, scene->act_image->bpp / 8);
 }

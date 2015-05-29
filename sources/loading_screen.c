@@ -5,24 +5,24 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar  5 18:33:26 2015 quentin gasparotto
-** Last update Fri Mar  6 16:42:40 2015 quentin gasparotto
+** Last update Fri May 29 16:54:15 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void	init_load_img(t_system *sys, t_image *load_img)
+void	init_load_img(t_scene *scene, t_image *load_img)
 {
   int	x;
   int	y;
 
-  get_color(RED, sys->color, sys);
+  get_color(RED, scene->act_image->color, scene);
   y = 0;
   while (y < load_img->hght)
     {
       x = 0;
       while (x < load_img->wdth)
 	{
-	  my_put_pixel_to_img(x, y, sys->color, load_img);
+	  my_put_pixel_to_img(x, y, scene->act_image->color, load_img);
 	  x = x + 1;
 	}
       y = y + 1;

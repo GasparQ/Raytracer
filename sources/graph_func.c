@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:44:51 2015 quentin gasparotto
-** Last update Wed Mar 11 12:13:52 2015 quentin gasparotto
+** Last update Fri May 29 17:19:08 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -23,15 +23,15 @@ void	my_put_pixel_to_img(int x, int y, unsigned char *color, t_image *img)
     }
 }
 
-void	get_color(int color, unsigned char *color_tab, t_system *sys)
+void	get_color(int color, unsigned char *color_tab, t_scene *scene)
 {
   int	i;
 
-  color = mlx_get_color_value(sys->mlx, color);
+  color = mlx_get_color_value(scene->mlx, color);
   i = 0;
-  if (sys->img.edn == 0)
+  if (scene->act_image->edn == 0)
     {
-      while (i < sys->img.bpp / 8)
+      while (i < scene->act_image->bpp / 8)
 	{
 	  color_tab[i] = (color >> (i * 8)) % 256;
 	  i = i + 1;
@@ -39,9 +39,9 @@ void	get_color(int color, unsigned char *color_tab, t_system *sys)
     }
   else
     {
-      while (i < sys->img.bpp / 8)
+      while (i < scene->act_image->bpp / 8)
 	{
-	  color_tab[sys->img.bpp / 8 - i] = (color >> (i * 8)) % 256;
+	  color_tab[scene->act_image->bpp / 8 - i] = (color >> (i * 8)) % 256;
 	  i = i + 1;
 	}
     }

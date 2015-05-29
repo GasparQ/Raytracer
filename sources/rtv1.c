@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:31:47 2015 quentin gasparotto
-** Last update Tue May 26 11:07:12 2015 quentin gasparotto
+** Last update Fri May 29 17:05:40 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -19,8 +19,9 @@ int		main(int ac, char **av, char **env)
   (void)av;
   if (env[0] == NULL)
     return (my_strerror(ENV_FAIL));
-  init_system(&sys);
-  load_image(&sys, get_vector2(0,0), get_vector2(1920, 1080));
+  if (init_system(&sys) == -1)
+    return (my_strerror("Init fail\n"));
+  load_image(sys.scene_list, get_vector2(0,0), get_vector2(1920, 1080));
   mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
   mlx_expose_hook(sys.wdw, &expose_gestion, &sys);
   mlx_loop(sys.mlx);
