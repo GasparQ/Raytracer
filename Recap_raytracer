@@ -1,0 +1,56 @@
+
+
+							****************************
+							*			   *
+							*     Récapitulatif	   *
+							*     			   *
+							*	du Raytracer	   *
+							*	   		   *
+							****************************
+
+
+
+
+					Objets:
+						- Sphere
+						- Plan
+						- Cône
+						- Cylindre
+						- Paraboiloïde
+						- Hyperboloïde (1 nappe, 2 nappes, galet)
+						- Cube troué
+						- Tore
+						- Translation et Rotation
+					
+					Effets:
+						- Objets limités
+						- Lumière ponctuelle et colorée
+						- Brillance
+						- Réflection
+						- Réfraction
+						- Phong : Spéculaire, Ambiante, Diffuse
+
+					Add-ons:
+						- Multi scene
+						- Multi eye
+						- Multi object
+						- Multi spot
+
+					En cour:
+					   Gaspar:
+						- Ruban de moebius
+						- Coeur 3d
+						- Selle de singe
+						- Ombres sur transparence
+						- Textures procédurales + mapping
+						- Antialiasing
+						- Cell-shading
+
+					   Milcen/Combau:
+						- Multi-threading/coring
+
+					   Fernand:
+						- Parsing XML
+
+					   Barie/Empoci:
+						- Client et serveur pour application mobile

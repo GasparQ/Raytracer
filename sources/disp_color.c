@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Fri May 29 21:10:24 2015 quentin gasparotto
+** Last update Sat May 30 14:16:51 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -80,8 +80,9 @@ void	disp_color(t_scene *scene, int x, int y)
   final_obj = get_object(scene->obj_list, &strgt);
   if (final_obj != NULL)
     {
+      final_obj->effects = 0;
       resolve_light(get_isec_point(strgt, final_obj), final_obj, scene, strgt);
-      //get_color(final_obj->obj_color, final_obj->disp_color, sys);
+      //get_color(final_obj->obj_color, final_obj->disp_color, scene);
       my_put_pixel_to_img(x, y, final_obj->disp_color, scene->act_image);
     }
   else

@@ -3,3 +3,4 @@
 */*.o
 */*~
 rtracer
+parser/a.out

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Fri May 29 22:37:27 2015 quentin gasparotto
+** Last update Sat May 30 09:44:19 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -26,6 +26,8 @@ int	load_image(t_scene *scene, t_vector2 pos, t_vector2 dim)
 	  x = x + 1;
 	}
       y = y + 1;
+      if (y % 200 == 0)
+	printf("%d / %d\n", y, WDW_HEIGHT);
       /* if (y % 200 == 0) */
       /* 	mlx_put_image_to_window(sys->mlx, sys->wdw, scene->load.img, */
       /* 				WDW_WIDTH / 2 - 70 + 30 * (y / 200 - 1), */

@@ -5,12 +5,12 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 17:33:47 2015 quentin gasparotto
-** Last update Fri May 29 16:50:13 2015 quentin gasparotto
+** Last update Sat May 30 11:21:27 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_spot(t_scene *scene, t_vector3 pos, int color)
+int		add_spot(t_scene *scene, t_vector3 pos, int color, int i)
 {
   t_spot	*new_spot;
 
@@ -19,6 +19,7 @@ int		add_spot(t_scene *scene, t_vector3 pos, int color)
   if ((new_spot->color = malloc(scene->img->bpp / 8)) == NULL)
     exit(my_strerror(MALLOC_ERR));
   get_color(color, new_spot->color, scene);
+  new_spot->i = i;
   new_spot->origin.x = pos.x;
   new_spot->origin.y = pos.y;
   new_spot->origin.z = pos.z;

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Fri May 29 17:39:48 2015 quentin gasparotto
+** Last update Sat May 30 14:36:18 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -123,9 +123,11 @@ typedef struct		s_mesh
 
 typedef struct		s_phong
 {
-  double		brightness;
+  double		ambiant;
   double		diffuse;
   double		specular;
+  double		spe_rad;
+  double		brightness;
   double		opacity;
   double		middle_ind;
   double	        reflect;
@@ -133,6 +135,7 @@ typedef struct		s_phong
 
 typedef struct		s_object
 {
+  int			effects;
   int			rev_norm;
   t_vector3		origin;
   t_vector3		rotation;
@@ -151,6 +154,7 @@ typedef struct		s_spot
 {
   t_vector3		origin;
   unsigned char		*color;
+  int			i;
   struct s_spot		*next;
 }			t_spot;
 
