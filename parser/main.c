@@ -5,28 +5,10 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Thu May 28 20:42:07 2015 fernand veyrier
+** Last update Sat May 30 14:10:23 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
-
-# define HEADER		"^<\\?xml version[[:space:]]*=[[:space:]]*\"[[:digit:].]+\"\\?>$"
-# define OBJECT_OPEN	"[[:space:]]*<object>[[:space:]]*$"
-# define OBJECT_CLOSE	"[[:space:]]*</object>[[:space:]]*$"
-# define MESH_OPEN	"[[:space:]]*<mesh[[:space:]]+type[[:space:]]*=\""
-# define MESH_OPEN_NEXT	"(tore|sphere|cylinder|cone|plane|paraboloid"
-# define MESH_OPEN_LAST	"|holedcube|hyperboloid)\"[[:space:]]*>[[:space:]]*$"
-# define MESH_CLOSE	"[[:space:]]*</mesh>[[:space:]]*$"
-# define COORD_OPEN	"[[:space:]]*<coord>[[:space:]]*$"
-# define COORD_CLOSE	"[[:space:]]*</coord>[[:space:]]*$"
-# define PHONG_OPEN	"[[:space:]]*<phong>[[:space:]]*$"
-# define PHONG_CLOSE	"[[:space:]]*</phong>[[:space:]]*$"
-# define LIMIT_OPEN	"[[:space:]]*<limit>[[:space:]]*$"
-# define LIMIT_CLOSE	"[[:space:]]*</limit>[[:space:]]*$"
-# define SCENE		"[[:space:]]*<scene>[[:space:]]*$"
-# define SCENE_CLOSE	"[[:space:]]*</scene>[[:space:]]*$"
-# define SPOT		"[[:space:]]*<spot>[[:space:]]*$"
-# define SPOT_CLOSE	"[[:space:]]*</spot>[[:space:]]*$"
 
 int		check_extension(char *file)
 {
@@ -45,117 +27,209 @@ int		check_extension(char *file)
   return (fd);
 }
 
-int		parse_obj(int level, t_system *sys, int line)
+int		parse_obj(t_system *sys, t_parser *pars)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
-  printf("Found obj\n", level);
-  return (1);
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", pars->line) * -1);
+  printf("Found obj\n", pars->level);
+  return (11);
 }
 
-int		parse_obj_close(int level, t_system *sys, int line)
+int		parse_obj_close(t_system *sys, t_parser *pars)
 {
-  level -= 1;
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", line) * -1);
+  pars->level -= 11;
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (obj) line %i.\n", pars->line) * -1);
   printf("Found obj close\n");
-  return (-1);
+  return (-11);
 }
 
-int		parse_mesh(int level, t_system *sys, int line)
+int		parse_mesh(t_system *sys, t_parser *pars)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line) * -1);
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
   printf("Found mesh\n");
   return (2);
 }
 
-int		parse_mesh_close(int level, t_system *sys, int line)
+int		parse_mesh_close(t_system *sys, t_parser *pars)
 {
-  if (level - 2 < 1)
-    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", line) * -1);
+  if (pars->level - 2 < 1)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
   printf("Found mesh close\n");
   return (-2);
 }
 
-int		parse_coord(int level, t_system *sys, int line)
+int		parse_coord(t_system *sys, t_parser *pars)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line) * -1);
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", pars->line) * -1);
   printf("Found coord\n");
   return (3);
 }
 
-int		parse_coord_close(int level, t_system *sys, int line)
+int		parse_coord_close(t_system *sys, t_parser *pars)
 {
-  if (level - 3 < 1)
-    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", line) * -1);
+  if (pars->level - 3 < 1)
+    return (fprintf(stderr, "Invalid XML (coord) line %i.\n", pars->line) * -1);
   printf("Found coord close\n");
   return (-3);
 }
 
-int		parse_phong(int level, t_system *sys, int line)
+int		parse_phong(t_system *sys, t_parser *pars)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line) * -1);
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", pars->line) * -1);
   printf("Found phong\n");
   return (4);
 }
 
-int		parse_phong_close(int level, t_system *sys, int line)
+int		parse_phong_close(t_system *sys, t_parser *pars)
 {
-  if (level - 4 < 1)
-    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", line) * -1);
+  if (pars->level - 4 < 1)
+    return (fprintf(stderr, "Invalid XML (phong) line %i.\n", pars->line) * -1);
   printf("Found phong close\n");
   return (-4);
 }
 
-int		parse_limit(int level, t_system *sys, int line)
+int		parse_limit(t_system *sys, t_parser *pars)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", line) * -1);
+  if (pars->level < 1)
+    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", pars->line) * -1);
   printf("Found limit\n");
   return (5);
 }
 
-int		parse_limit_close(int level, t_system *sys, int line)
+int		parse_limit_close(t_system *sys, t_parser *pars)
 {
-  if (level - 5 < 1)
-    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", line) * -1);
+  if (pars->level - 5 < 1)
+    return (fprintf(stderr, "Invalid XML (limit) line %i.\n", pars->line) * -1);
   printf("Found limit close\n");
   return (-5);
 }
 
-int		parse_spot(int level, t_system *sys, int line)
+t_vector3	get_vector(char *buf)
 {
-  if (level < 1)
-    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
-  printf("Found spot\n");
-  return (6);
+  int		i;
+  int		j;
+  t_vector3	vec;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  while ((j = 0) == 0 && buf[i] && buf[i] != '(')
+    ++i;
+  while (buf[i] != ',')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  vec.x = atof(nbr);
+  j = 0;
+  ++i;
+  while (buf[i] != ',')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  vec.y = atof(nbr);
+  j = 0;
+  ++i;
+  while (buf[i] != ')')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  vec.z = atof(nbr);
+  return (vec);
 }
 
-int		parse_spot_close(int level, t_system *sys, int line)
+int		get_color_parser(char *buf)
 {
-  if (level - 6 < 1)
-    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
+  int		i;
+  int		j;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  j = 0;
+  while (buf[i] && buf[i] != 'x')
+    ++i;
+  ++i;
+  while (buf[i] && buf[i] != ' ' && buf[i] != '\n')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  return (my_getnbr_base(nbr, "0123456789ABCDEF"));
+}
+
+int		parse_spot(t_system *sys, t_parser *pars)
+{
+  t_vector3	pos;
+  int		color;
+
+  if (pars->level != 1)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", pars->line) * -1);
+  printf("Found spot\n");
+  pos.x = 0;
+  pos.y = 0;
+  pos.y = 0;
+  color = 0;
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[12], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+	pos = get_vector(pars->buf);
+      if (!regexec(&pars->regex[19], pars->buf, 0, &pars->reg_struct, 0))
+	color = get_color_parser(pars->buf);
+    }
+  //add_spot(sys->scene_list, pos, color);
+  return ((pars->buf == NULL) ? -30 : 0);
+}
+
+int		parse_spot_close(t_system *sys, t_parser *pars)
+{
+  if (pars->level - 6 != 1)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", pars->line) * -1);
   printf("Found spot close\n");
   return (-6);
 }
 
-int		parse_scene(int level, t_system *sys, int line)
+int		parse_scene(t_system *sys, t_parser *pars)
 {
-  if (level != 0)
-    return (fprintf(stderr, "Invalid XML (scene) line %i.\n", line) * -1);
+  if (pars->level != 0)
+    return (fprintf(stderr, "Invalid XML (scene) line %i.\n", pars->line) * -1);
   printf("Found scene\n");
+  //add_scene(&sys->scene_list, sys->mlx);
   return (1);
 }
 
-int		parse_scene_close(int level, t_system *sys, int line)
+int		parse_scene_close(t_system *sys, t_parser *pars)
 {
-  if (level - 1 != 0)
-    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", line) * -1);
+  if (pars->level - 1 != 0)
+    return (fprintf(stderr, "Invalid XML (spot) line %i.\n", pars->line) * -1);
   printf("Found scene close\n");
   return (-1);
+}
+
+int		parse_eye(t_system *sys, t_parser *pars)
+{
+  t_vector3	pos;
+  t_vector3	rot;
+  int		distance;
+
+  if (pars->level != 1)
+    return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[16], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+	pos = get_vector(pars->buf);
+      if (!regexec(&pars->regex[17], pars->buf, 0, &pars->reg_struct, 0))
+	rot = get_vector(pars->buf);
+    }
+  printf("Found eye pos\n");
+  //add_eye(sys->scene_list, pos, rot, distance);
+  return ((pars->buf == NULL) ? -30 : 0);
+}
+
+int		parse_eye_close(t_system *sys, t_parser *pars)
+{
+  if (pars->level - 10 != 1)
+    return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
+  printf("Found eye close\n");
+  return (-10);
 }
 
 void		init_functions(int (**func)())
@@ -174,56 +248,40 @@ void		init_functions(int (**func)())
   func[11] = parse_spot_close;
   func[12] = parse_scene;
   func[13] = parse_scene_close;
+  func[14] = parse_eye;
+  func[15] = parse_eye_close;
 }
 
-/*
-** add_object(t_vector[2]{position, rotation}, int[2]{sys->img.bpp / 8, color}
-**            get_properties(brightness, opacity, reflexion, refraction), sys->objlist)
-*/
-int		follow_pattern(const int fd, regex_t *regex,
-			       regmatch_t reg_struct, t_system *sys)
+int		follow_pattern(t_parser *pars, t_system *sys)
 {
-  char		*buffer;
   int		is_invalid;
-  int		level;
-  int		line;
-  int		(*func[14])();
+  int		(*func[16])();
   int		i;
 
-  level = -1;
-  line = 2;
   i = 0;
   init_functions(func);
-  while ((buffer = get_next_line(fd)) != NULL)
+  while ((pars->buf = get_next_line(pars->fd)) != NULL)
     {
-      printf("[%s] level = %i\n", buffer, level);
-      while (i < 14 && regexec(&regex[i + 1], buffer, 0, &reg_struct, 0))
+      while (i < 16 && regexec(&pars->regex[i + 1], pars->buf,
+			       0, &pars->reg_struct, 0))
 	++i;
-      if (i < 14)
+      if (i < 16)
 	{
-	  level = (line == 2) ? 0 : level;
-	  level += func[i](level, sys, line);
-	  if (level < 0)
+	  pars->level = (pars->line == 2) ? 0 : pars->level;
+	  pars->level += func[i](sys, pars);
+	  if (pars->level < 0)
 	    break;
 	}
-      ++line;
+      ++pars->line;
       i = 0;
     }
-  if (level != 0)
+  if (pars->level != 0)
     return (fprintf(stderr, "Corrupted XML file.\n") * -1);
   return (0);
 }
 
-int		get_objects(const int fd, t_system *sys)
+int		init_rules(regex_t *regex)
 {
-  int		is_invalid;
-  regex_t	regex[15];
-  regmatch_t	reg_struct;
-  char		*buf;
-  size_t	match;
-
-  buf = get_next_line(fd);
-  match = 0;
   if (regcomp(&regex[0], HEADER, REG_EXTENDED)
       || regcomp(&regex[1], OBJECT_OPEN, REG_EXTENDED)
       || regcomp(&regex[2], OBJECT_CLOSE, REG_EXTENDED)
@@ -239,24 +297,46 @@ int		get_objects(const int fd, t_system *sys)
       || regcomp(&regex[11], SPOT, REG_EXTENDED)
       || regcomp(&regex[12], SPOT_CLOSE, REG_EXTENDED)
       || regcomp(&regex[13], SCENE, REG_EXTENDED)
-      || regcomp(&regex[14], SCENE_CLOSE, REG_EXTENDED))
+      || regcomp(&regex[14], SCENE_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[15], EYE, REG_EXTENDED)
+      || regcomp(&regex[16], EYE_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[17], ROTATION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[18], POSITION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[19], COLOR_REG COLOR_NEXT, REG_EXTENDED))
     return (fprintf(stderr, "Regex error.\n"));
-  is_invalid = regexec(&regex[0], buf, match, &reg_struct, 0);
+  return (0);
+}
+
+int		get_objects(t_parser parser, t_system *sys)
+{
+  int		is_invalid;
+  regex_t	regex[17];
+  regmatch_t	reg_struct;
+  char		*buf;
+  size_t	match;
+
+  parser.buf = get_next_line(parser.fd);
+  parser.level = -1;
+  parser.line = 2;
+  match = 0;
+  if (init_rules(parser.regex) != 0)
+    return (-1);
+  is_invalid = regexec(&parser.regex[0], parser.buf,
+		       match, &parser.reg_struct, 0);
   if (is_invalid)
     return (fprintf(stderr, "Invalid XML header.\n"));
-  return (follow_pattern(fd, regex, reg_struct, sys));
+  return (follow_pattern(&parser, sys));
 }
 
 int		main(int ac, char **av)
 {
-  int		fd;
-  char		*buf;
+  t_parser	parser;
   t_system	*sys;
 
   if (ac < 2)
     return (-1);
-  if ((fd = check_extension(av[1])) == -1)
+  if ((parser.fd = check_extension(av[1])) == -1)
     return (-1);
-  get_objects(fd, sys);
+  get_objects(parser, sys);
   return (0);
 }
