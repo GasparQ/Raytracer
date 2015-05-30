@@ -4,26 +4,18 @@
   <!--	Définition des spot sur la scène	-->
 
   <spot>
-    <coord>
-      position = (0,0,10)
-      rotation = (0,0,0)
-    </coord>
-    <phong>
-      color = 0x00FFFFFF
-    </phong>
+    position = (0,0,10)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
   </spot>
   <spot>
-    <coord>
-      position = (-500,0,500)
-      rotation = (0, 0, 0)
-    </coord>
-    <phong>
-      color = 0x00FFFFFF
-    </phong>
+    position = (-500,0,500)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
   </spot>
   <eye>
-    position = (0, 0, 0)
-    rotation = (0, 0, 0)
+    position = (0,0,0)
+    rotation = (0,0,0)
     distance = 500
   </eye>
   <!--	Définition des objets de la scène	-->
@@ -38,8 +30,8 @@
       d = -1
     </mesh>
     <coord>
-      position = (0, 0, 75)
-      rotation = (90, 0, 45)
+      position = (0,0,75)
+      rotation = (90,0,45)
     </coord>
     <phong>
       reflection = 0

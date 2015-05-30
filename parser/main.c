@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sat May 30 13:49:34 2015 fernand veyrier
+** Last update Sat May 30 14:10:23 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -205,10 +205,23 @@ int		parse_scene_close(t_system *sys, t_parser *pars)
 
 int		parse_eye(t_system *sys, t_parser *pars)
 {
+  t_vector3	pos;
+  t_vector3	rot;
+  int		distance;
+
   if (pars->level != 1)
     return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
-  printf("Found eye\n");
-  return (10);
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[16], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+	pos = get_vector(pars->buf);
+      if (!regexec(&pars->regex[17], pars->buf, 0, &pars->reg_struct, 0))
+	rot = get_vector(pars->buf);
+    }
+  printf("Found eye pos\n");
+  //add_eye(sys->scene_list, pos, rot, distance);
+  return ((pars->buf == NULL) ? -30 : 0);
 }
 
 int		parse_eye_close(t_system *sys, t_parser *pars)
