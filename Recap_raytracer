@@ -28,6 +28,7 @@
 						- Brillance
 						- Réflection
 						- Réfraction
+						- Phong : Spéculaire, Ambiante, Diffuse
 
 					Add-ons:
 						- Multi scene
@@ -44,7 +45,6 @@
 						- Textures procédurales + mapping
 						- Antialiasing
 						- Cell-shading
-						- Phong : Spéculaire, Ambiante, Diffuse
 
 					   Milcen/Combau:
 						- Multi-threading/coring
