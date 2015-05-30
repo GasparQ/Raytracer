@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat May 30 17:56:39 2015 fernand veyrier
+** Last update Sat May 30 21:03:27 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -76,5 +76,33 @@ int		my_strncpy(char *src, char *dest, int n);
 int		init_buffer(char *buffer, int size);
 int		extract_line(char *buffer, char *line);
 int		search_for_char(char *buffer);
+int		check_neg(char *s);
+int		check_base(char *base, int n);
+int		my_getnbr_base(char *str, char *base);
+int		parse_coord(t_system *sys, t_parser *pars);
+int		parse_coord_close(t_system *sys, t_parser *pars);
+int		parse_eye(t_system *sys, t_parser *pars);
+int		parse_eye_close(t_system *sys, t_parser *pars);
+int		parse_limit(t_system *sys, t_parser *pars);
+int		parse_limit_close(t_system *sys, t_parser *pars);
+int		parse_scene(t_system *sys, t_parser *pars);
+int		parse_scene_close(t_system *sys, t_parser *pars);
+int		parse_mesh(t_system *sys, t_parser *pars);
+int		parse_mesh_close(t_system *sys, t_parser *pars);
+int		parse_obj(t_system *sys, t_parser *pars);
+int		parse_obj_close(t_system *sys, t_parser *pars);
+int		parse_phong(t_system *sys, t_parser *pars);
+int		parse_phong_close(t_system *sys, t_parser *pars);
+int		parse_spot(t_system *sys, t_parser *pars);
+int		parse_spot_close(t_system *sys, t_parser *pars);
+t_vector3	get_vector(char *buf);
+int		get_color_parser(char *buf);
+int		get_nbr_parser(char *buf);
+double		get_double_parser(char *buf);
+int		check_extension(char *file);
+void		init_functions(int (**func)());
+int		follow_pattern(t_parser *pars, t_system *sys);
+int		init_rules(regex_t *regex);
+int		get_objects(t_system *sys, char *file);
 
-#endif /* !GET_NEXT_LINE_H_  */
+#endif /* !GET_NXT_LINE_H_  */
