@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:00:16 2015 quentin gasparotto
-** Last update Sat May 30 14:01:23 2015 quentin gasparotto
+** Last update Sat May 30 14:39:29 2015 quentin gasparotto
 */
 
 #include "prototypes.h"
@@ -77,5 +77,6 @@ double		get_intensity(t_scene *scene, t_object *touch,
 				      touch->phong.spe_rad);
       tmp = tmp->next;
     }
-  return (touch->phong.diffuse * sums[0] + touch->phong.specular * sums[1]);
+  return (touch->phong.ambiant + touch->phong.diffuse * sums[0] +
+	  touch->phong.specular * sums[1]);
 }

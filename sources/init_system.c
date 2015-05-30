@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sat May 30 14:27:11 2015 quentin gasparotto
+** Last update Sat May 30 14:43:03 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -70,12 +70,12 @@ void		init_objects(t_system *sys)
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
   add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0});
-  add_phong(sys->scene_list->obj_list, (double [7]){0, 1, 0, 0, 0, 0, 0});
+  add_phong(sys->scene_list->obj_list, (double [8]){0.2, 1, 1, 200, 0, 0, 0, 0});
   add_sphere(sys->scene_list->obj_list, (double [1]){50});
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
   add_coord(sys->scene_list->obj_list, (double [6]){150, 100, 100, 0, 90, 0});
-  add_phong(sys->scene_list->obj_list, (double [7]){0, 1, 0, 0, 0.4, 1.02, 0.5});
+  add_phong(sys->scene_list->obj_list, (double [8]){0.2, 1, 1, 50, 0, 0.4, 1.02, 0.5});
   add_sphere(sys->scene_list->obj_list, (double [1]){100});
 
   /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED); */
@@ -165,8 +165,8 @@ int		init_spot(t_system *sys)
     return (ERROR);
   if (add_spot(sys->scene_list, get_vector3(-200.0, -500.0, 200.0), WHITE, 1) == ERROR)
     return (ERROR);
-  if (add_spot(sys->scene_list, get_vector3(-200.0, -550.0, 200.0), WHITE, 1) == ERROR)
-    return (ERROR);
+  /* if (add_spot(sys->scene_list, get_vector3(-200.0, -550.0, 200.0), WHITE, 1) == ERROR) */
+  /*   return (ERROR); */
   sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
 }
