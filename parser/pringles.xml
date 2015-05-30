@@ -5,7 +5,8 @@
 
   <spot>
     <coord>
-      position = (0, 0, 10)
+      position = (0,0,10)
+      rotation = (0,0,0)
     </coord>
     <phong>
       color = 0x00FFFFFF
@@ -13,13 +14,18 @@
   </spot>
   <spot>
     <coord>
-      position = (-500, 0, 500)
+      position = (-500,0,500)
+      rotation = (0, 0, 0)
     </coord>
     <phong>
       color = 0x00FFFFFF
     </phong>
   </spot>
-
+  <eye>
+    position = (0, 0, 0)
+    rotation = (0, 0, 0)
+    distance = 500
+  </eye>
   <!--	Définition des objets de la scène	-->
 
   <!--		Le Pringles			-->
