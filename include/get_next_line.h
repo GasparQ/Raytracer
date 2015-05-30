@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat May 30 14:33:56 2015 fernand veyrier
+** Last update Sat May 30 16:14:37 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -24,7 +24,8 @@
 
 # define LINE_LEN	4096
 # define HEADER		"^<\\?xml version[[:space:]]*=[[:space:]]*\"[[:digit:].]+\"\\?>$"
-# define OBJECT_OPEN	"[[:space:]]*<object>[[:space:]]*$"
+# define OBJECT_OPEN	"[[:space:]]*<object[[:space:]]+color=\"0x"
+# define OBJECT_NEXT	"[[:digit:]A-F]{,8}\">[[:space:]]*$"
 # define OBJECT_CLOSE	"[[:space:]]*</object>[[:space:]]*$"
 # define MESH_OPEN	"[[:space:]]*<mesh[[:space:]]+type[[:space:]]*=\""
 # define MESH_OPEN_NEXT	"(tore|sphere|cylinder|cone|plane|paraboloid"
@@ -44,7 +45,7 @@
 # define EYE_CLOSE	"[[:space:]]*</eye>[[:space:]]*$"
 # define POSITION	"[[:space:]]*position[[:space:]]*=[[:space:]]*"
 # define ROTATION	"[[:space:]]*rotation[[:space:]]*=[[:space:]]*"
-# define POS_NEXT	"\\([[:digit:].]+,[[:digit:].]+,[[:digit:].]+\\)[[:space:]]*$"
+# define POS_NEXT	"\\([[:digit:].-]+,[[:digit:].-]+,[[:digit:].-]+\\)[[:space:]]*$"
 # define COLOR_REG	"[[:space:]]*color[[:space:]]*=[[:space:]]*0x"
 # define COLOR_NEXT	"[[:digit:]A-F]{,8}[[:space:]]*$"
 # define DISTANCE_REG	"[[:space:]]*distance[[:space:]]*=[[:space:]]*"

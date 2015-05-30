@@ -46,12 +46,12 @@
     <limit>
       <object color="0x00000000">
 	<mesh type="plane">
-	  normal = (0, 0, 1)
+	  normal = (0,0,1)
 	  cte = 0
 	</mesh>
 	<coord>
-	  position = (0, 50, 0)
-	  rotation = (90, 0, 45)
+	  position = (0,50,0)
+	  rotation = (90,0,45)
 	</coord>
 	<phong>
 	  ambiant = 0.2
@@ -66,12 +66,12 @@
       </object>
       <object color="0x00000000">
 	<mesh type="plane">
-	  normal = (0, 0, 1)
+	  normal = (0,0,1)
 	  cte = 0
 	</mesh>
 	<coord>
-	  position = (0, -50, 0)
-	  rotation = (90, 0, 45)
+	  position = (0,-50,0)
+	  rotation = (90,0,45)
 	</coord>
 	<phong>
 	  ambiant = 0.2

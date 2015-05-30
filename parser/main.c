@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sat May 30 14:39:27 2015 fernand veyrier
+** Last update Sat May 30 16:29:47 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -27,18 +27,51 @@ int		check_extension(char *file)
   return (fd);
 }
 
+t_vector3	get_vector(char *buf)
+{
+  int		i;
+  int		j;
+  t_vector3	vec;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  while ((j = 0) == 0 && buf[i] && buf[i] != '(')
+    ++i;
+  while (buf[++i] != ',')
+    nbr[j++] = buf[i];
+  nbr[j] = 0;
+  vec.x = atof(nbr);
+  j = 0;
+  ++i;
+  while (buf[i] != ',')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  vec.y = atof(nbr);
+  j = 0;
+  ++i;
+  while (buf[i] != ')')
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  vec.z = atof(nbr);
+  return (vec);
+}
+
 int		parse_obj(t_system *sys, t_parser *pars)
 {
+  int		color;
+
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (obj) line %i.\n", pars->line) * -1);
-  printf("Found obj\n", pars->level);
+  color = get_color_parser(pars->buf);
+  printf("Found obj\n");
+  /* add_object(&sys->scene_list->obj_list, color, (sys->scene_list->img == NULL ? */
+  /* 					     4 : sys->scene_list->img->bpp / 8)); */
   return (11);
 }
 
 int		parse_obj_close(t_system *sys, t_parser *pars)
 {
-  pars->level -= 11;
-  if (pars->level < 1)
+  if (pars->level - 11 < 1)
     return (fprintf(stderr, "Invalid XML (obj) line %i.\n", pars->line) * -1);
   printf("Found obj close\n");
   return (-11);
@@ -46,7 +79,7 @@ int		parse_obj_close(t_system *sys, t_parser *pars)
 
 int		parse_mesh(t_system *sys, t_parser *pars)
 {
-  if (pars->level < 1)
+  if (pars->level < 2)
     return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
   printf("Found mesh\n");
   return (2);
@@ -54,7 +87,7 @@ int		parse_mesh(t_system *sys, t_parser *pars)
 
 int		parse_mesh_close(t_system *sys, t_parser *pars)
 {
-  if (pars->level - 2 < 1)
+  if (pars->level - 2 < 2)
     return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
   printf("Found mesh close\n");
   return (-2);
@@ -62,10 +95,29 @@ int		parse_mesh_close(t_system *sys, t_parser *pars)
 
 int		parse_coord(t_system *sys, t_parser *pars)
 {
+  t_vector3	pos;
+  t_vector3	rot;
+  double	coord[6];
+
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (coord) line %i.\n", pars->line) * -1);
   printf("Found coord\n");
-  return (3);
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[6], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+	pos = get_vector(pars->buf);
+      if (!regexec(&pars->regex[17], pars->buf, 0, &pars->reg_struct, 0))
+	rot = get_vector(pars->buf);
+    }
+  coord[0] = pos.x;
+  coord[1] = pos.y;
+  coord[2] = pos.z;
+  coord[3] = rot.x;
+  coord[4] = rot.y;
+  coord[5] = rot.z;
+  //add_coord(&sys->scene_list->obj_list, coord);
+  return ((pars->buf == NULL) ? -30 : 0);
 }
 
 int		parse_coord_close(t_system *sys, t_parser *pars)
@@ -81,6 +133,7 @@ int		parse_phong(t_system *sys, t_parser *pars)
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (phong) line %i.\n", pars->line) * -1);
   printf("Found phong\n");
+  add_phong();
   return (4);
 }
 
@@ -108,35 +161,6 @@ int		parse_limit_close(t_system *sys, t_parser *pars)
   return (-5);
 }
 
-t_vector3	get_vector(char *buf)
-{
-  int		i;
-  int		j;
-  t_vector3	vec;
-  char		nbr[BUFSIZ];
-
-  i = 0;
-  while ((j = 0) == 0 && buf[i] && buf[i] != '(')
-    ++i;
-  while (buf[i] != ',')
-    nbr[j++] = buf[i++];
-  nbr[j] = 0;
-  vec.x = atof(nbr);
-  j = 0;
-  ++i;
-  while (buf[i] != ',')
-    nbr[j++] = buf[i++];
-  nbr[j] = 0;
-  vec.y = atof(nbr);
-  j = 0;
-  ++i;
-  while (buf[i] != ')')
-    nbr[j++] = buf[i++];
-  nbr[j] = 0;
-  vec.z = atof(nbr);
-  return (vec);
-}
-
 int		get_color_parser(char *buf)
 {
   int		i;
@@ -148,7 +172,8 @@ int		get_color_parser(char *buf)
   while (buf[i] && buf[i] != 'x')
     ++i;
   ++i;
-  while (buf[i] && buf[i] != ' ' && buf[i] != '\n')
+  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9')
+		    || (buf[i] >= 'A' && buf[i] <= 'F')))
     nbr[j++] = buf[i++];
   nbr[j] = 0;
   return (my_getnbr_base(nbr, "0123456789ABCDEF"));
@@ -162,9 +187,9 @@ int		get_nbr_parser(char *buf)
 
   i = 0;
   j = 0;
-  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9'))
+  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9') && buf[i] != '-')
     ++i;
-  while (buf[i] && (buf[i] >= '0' && buf[i] <= '9'))
+  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9') || buf[i] == '-'))
     nbr[j++] = buf[i++];
   nbr[j] = 0;
   return (my_getnbr_base(nbr, "0123456789"));
@@ -301,7 +326,7 @@ int		follow_pattern(t_parser *pars, t_system *sys)
 int		init_rules(regex_t *regex)
 {
   if (regcomp(&regex[0], HEADER, REG_EXTENDED)
-      || regcomp(&regex[1], OBJECT_OPEN, REG_EXTENDED)
+      || regcomp(&regex[1], OBJECT_OPEN OBJECT_NEXT, REG_EXTENDED)
       || regcomp(&regex[2], OBJECT_CLOSE, REG_EXTENDED)
       || regcomp(&regex[3], MESH_OPEN MESH_OPEN_NEXT MESH_OPEN_LAST,
 		 REG_EXTENDED)
