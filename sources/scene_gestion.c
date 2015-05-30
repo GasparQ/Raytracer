@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Sat May 30 11:24:03 2015 quentin gasparotto
+** Last update Sat May 30 15:38:05 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -47,7 +47,7 @@ int		add_image(t_scene *scene)
 }
 
 int	add_eye(t_scene *scene, t_vector3 position,
-		t_vector3 rotation, int distance)
+		t_vector3 rotation, double distance)
 {
   t_eye	*elem;
 

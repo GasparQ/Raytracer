@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sat May 30 14:36:18 2015 quentin gasparotto
+** Last update Sat May 30 15:38:45 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -41,7 +41,7 @@ typedef struct		s_eye
 {
   t_vector3		pos;
   t_vector3		dir;
-  int			distance;
+  double		distance;
   struct s_eye		*next;
 }			t_eye;
 

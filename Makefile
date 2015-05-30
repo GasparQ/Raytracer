@@ -5,16 +5,16 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sat May 30 14:02:15 2015 quentin gasparotto
+## Last update Sat May 30 21:42:45 2015 quentin gasparotto
 ##
 
 CC=	gcc -g
 
 RM=	rm -f
 
-NAME=	rtracer
+NAME=	rt
 
-SRCS=	./sources/rtv1.c \
+SRCS=	./sources/rtracer.c \
 	./sources/error.c \
 	./sources/graph_func.c \
 	./sources/list_fn.c \
@@ -73,6 +73,7 @@ SRCS=	./sources/rtv1.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
+	./sources/loading_time.c \
 
 OBJS=	$(SRCS:.c=.o)
 

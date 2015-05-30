@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sat May 30 14:25:10 2015 quentin gasparotto
+** Last update Sat May 30 21:41:46 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -68,6 +68,12 @@ enum			COLORS
   };
 
 /*
+**	loading_time.c
+*/
+
+void			loading_time(t_system *sys);
+
+/*
 **	intensity_gestion.c
 */
 
@@ -83,7 +89,7 @@ void			apply_phong(t_object *touch, double intensity,
 void			free_scene(t_scene *scene);
 int			add_scene(t_scene **scene, void *mlx);
 int			add_eye(t_scene *scene, t_vector3 position,
-				t_vector3 rotation, int distance);
+				t_vector3 rotation, double distance);
 
 /*
 **	draw_hyperboloid.c
