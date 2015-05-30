@@ -29,6 +29,7 @@
 						- Réflection
 						- Réfraction
 						- Phong : Spéculaire, Ambiante, Diffuse
+						- Ombres (reduites avec transparence)
 
 					Add-ons:
 						- Multi scene
@@ -41,7 +42,6 @@
 						- Ruban de moebius
 						- Coeur 3d
 						- Selle de singe
-						- Ombres sur transparence
 						- Textures procédurales + mapping
 						- Antialiasing
 						- Cell-shading

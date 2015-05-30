@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:44:51 2015 quentin gasparotto
-** Last update Fri May 29 17:19:08 2015 quentin gasparotto
+** Last update Sat May 30 14:59:56 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -20,6 +20,20 @@ void	my_put_pixel_to_img(int x, int y, unsigned char *color, t_image *img)
     {
       img->dat[x * img->bpp / 8 + y * img->wdth + i] = color[i];
       i = i + 1;
+    }
+}
+
+void	get_pix_color(int x, int y, t_image image, char *color)
+{
+  int	rank;
+  int	i;
+
+  rank = x * image.bpp + y * image.wdth;
+  i = 0;
+  while (i < image.bpp)
+    {
+      color[i] = image.dat[rank + i];
+      ++i;
     }
 }
 
