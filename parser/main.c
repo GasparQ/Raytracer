@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sat May 30 14:10:23 2015 fernand veyrier
+** Last update Sat May 30 14:39:27 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -154,6 +154,22 @@ int		get_color_parser(char *buf)
   return (my_getnbr_base(nbr, "0123456789ABCDEF"));
 }
 
+int		get_nbr_parser(char *buf)
+{
+  int		i;
+  int		j;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  j = 0;
+  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9'))
+    ++i;
+  while (buf[i] && (buf[i] >= '0' && buf[i] <= '9'))
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  return (my_getnbr_base(nbr, "0123456789"));
+}
+
 int		parse_spot(t_system *sys, t_parser *pars)
 {
   t_vector3	pos;
@@ -211,6 +227,7 @@ int		parse_eye(t_system *sys, t_parser *pars)
 
   if (pars->level != 1)
     return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
+  printf("Found eye\n");
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[16], pars->buf, 0, &pars->reg_struct, 0))
     {
@@ -218,8 +235,9 @@ int		parse_eye(t_system *sys, t_parser *pars)
 	pos = get_vector(pars->buf);
       if (!regexec(&pars->regex[17], pars->buf, 0, &pars->reg_struct, 0))
 	rot = get_vector(pars->buf);
+      if (!regexec(&pars->regex[20], pars->buf, 0, &pars->reg_struct, 0))
+	distance = get_nbr_parser(pars->buf);
     }
-  printf("Found eye pos\n");
   //add_eye(sys->scene_list, pos, rot, distance);
   return ((pars->buf == NULL) ? -30 : 0);
 }
@@ -302,7 +320,8 @@ int		init_rules(regex_t *regex)
       || regcomp(&regex[16], EYE_CLOSE, REG_EXTENDED)
       || regcomp(&regex[17], ROTATION POS_NEXT, REG_EXTENDED)
       || regcomp(&regex[18], POSITION POS_NEXT, REG_EXTENDED)
-      || regcomp(&regex[19], COLOR_REG COLOR_NEXT, REG_EXTENDED))
+      || regcomp(&regex[19], COLOR_REG COLOR_NEXT, REG_EXTENDED)
+      || regcomp(&regex[20], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED))
     return (fprintf(stderr, "Regex error.\n"));
   return (0);
 }
@@ -310,9 +329,6 @@ int		init_rules(regex_t *regex)
 int		get_objects(t_parser parser, t_system *sys)
 {
   int		is_invalid;
-  regex_t	regex[17];
-  regmatch_t	reg_struct;
-  char		*buf;
   size_t	match;
 
   parser.buf = get_next_line(parser.fd);

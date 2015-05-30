@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat May 30 13:02:07 2015 fernand veyrier
+** Last update Sat May 30 14:33:56 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -47,10 +47,12 @@
 # define POS_NEXT	"\\([[:digit:].]+,[[:digit:].]+,[[:digit:].]+\\)[[:space:]]*$"
 # define COLOR_REG	"[[:space:]]*color[[:space:]]*=[[:space:]]*0x"
 # define COLOR_NEXT	"[[:digit:]A-F]{,8}[[:space:]]*$"
+# define DISTANCE_REG	"[[:space:]]*distance[[:space:]]*=[[:space:]]*"
+# define DISTANCE_NEXT	"[[:digit:].]+[[:space:]]*$"
 
 typedef struct	s_parser
 {
-  regex_t	regex[20];
+  regex_t	regex[30];
   regmatch_t	reg_struct;
   char		*buf;
   int		fd;
