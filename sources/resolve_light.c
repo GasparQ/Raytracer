@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Fri May 29 22:03:20 2015 quentin gasparotto
+** Last update Sat May 30 14:28:34 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -29,7 +29,7 @@ double		resolve_shadow(t_vector3 isec_point,
   t_streight	new_ray;
   t_object	*touch;
   double	cos_a;
-  
+
   if ((cos_a = get_scal(norm, light_vec) /
        (vec_norm(norm) * vec_norm(light_vec))) < F_ZERO)
     return (F_ZERO);
@@ -79,33 +79,28 @@ void		resolve_light(t_vector3 isec_point,
 			      t_streight strgt)
 {
   t_vector3	norm;
-  t_vector3	light_vec;
-  double	cos_a;
-  t_spot	*tmp;
+  double	intensity;
+  t_vector3	use_vectors[3];
 
   act_obj->init(&norm, isec_point, act_obj);
   rotate_coord(&norm, act_obj->rotation);
   rotate_coord(&isec_point, act_obj->rotation);
   translate(&isec_point, act_obj->origin);
-  init_average(scene->act_image->average, scene->act_image->bpp / 8);
-  tmp = scene->spot_list;
-  while (tmp != NULL)
+  use_vectors[0] = norm;
+  use_vectors[1] = isec_point;
+  use_vectors[2] = strgt.dir;
+  intensity = get_intensity(scene, act_obj, use_vectors);
+  apply_phong(act_obj, intensity, scene);
+  if (act_obj->phong.reflect > F_ZERO && act_obj->effects < 5)
     {
-      get_color(act_obj->obj_color, act_obj->disp_color, scene);
-      light_vec = get_vec_from_points(isec_point, tmp->origin);
-      cos_a = resolve_shadow(isec_point, scene, light_vec, norm);
-      add_average(scene, tmp, cos_a, act_obj);
-      tmp = tmp->next;
+      ++act_obj->effects;
+      resolve_reflection(REFLECT(strgt.dir), act_obj, scene);
     }
-  average_to_color(scene->act_image->average, act_obj->disp_color,
-		   scene->spot_nb, scene->act_image->bpp / 8);
-  if (act_obj->phong.reflect > F_ZERO)
-    resolve_reflection(get_reflected_ray(unit_vec(norm),
-					 strgt.dir, isec_point),
-		       act_obj, scene);
-  if (act_obj->phong.opacity > F_ZERO)
-    resolve_transparency(get_refracted_ray(unit_vec(norm),
-					   unit_vec(strgt.dir), isec_point,
-					   act_obj->phong.middle_ind),
-			 act_obj, scene);
+  if (act_obj->phong.opacity > F_ZERO && act_obj->effects < 5)
+    {
+      ++act_obj->effects;
+      resolve_transparency(REFRACT(strgt.dir, act_obj->phong.middle_ind),
+			   act_obj, scene);
+    }
+  act_obj->effects -= (act_obj->effects == 5 ? 1 : 0);
 }

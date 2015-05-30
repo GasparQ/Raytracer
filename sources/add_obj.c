@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Fri May 29 18:02:12 2015 quentin gasparotto
+** Last update Sat May 30 11:59:54 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -19,7 +19,7 @@ void		add_object(t_object **obj_list, int size, int color)
   new_obj.obj_color = color;
   new_obj.origin = ORIGIN;
   new_obj.rotation = ORIGIN;
-  add_phong(&new_obj, (double [6]){0, 0, 0, 0, 0, 0});
+  add_phong(&new_obj, (double [7]){0, 1, 0, 0, 0, 0, 0});
   new_obj.limit = NULL;
   my_put_in_list(obj_list, new_obj);
 }

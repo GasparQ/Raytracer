@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Fri May 29 23:17:39 2015 quentin gasparotto
+** Last update Sat May 30 14:25:10 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -43,6 +43,11 @@
 # define ORIGIN		get_vector3(0, 0, 0)
 # define SIMPLE		get_properties(0, 0, 0, 0)
 
+# define UNIT(v)	unit_vec((v))
+
+# define REFLECT(v)	get_reflected_ray(UNIT(norm), (v), isec_point)
+# define REFRACT(v, i)	get_refracted_ray(UNIT(norm), UNIT(v), isec_point, (i))
+
 enum			COLORS
   {
 			BLACK = 0x00000000,
@@ -61,6 +66,15 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	intensity_gestion.c
+*/
+
+double			get_intensity(t_scene *scene, t_object *touch,
+				      t_vector3 *use_vectors);
+void			apply_phong(t_object *touch, double intensity,
+				    t_scene *scene);
 
 /*
 **	scene_gestion.c
@@ -356,7 +370,7 @@ void			init_hyper_norm(t_vector3 *norm,
 **	add_spot.c
 */
 
-int			add_spot(t_scene *scene, t_vector3 pos, int color);
+int			add_spot(t_scene *scene, t_vector3 pos, int color, int i);
 
 /*
 **	translate.c

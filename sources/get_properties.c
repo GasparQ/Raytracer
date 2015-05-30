@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Mar 14 13:09:31 2015 quentin gasparotto
-** Last update Fri May 29 17:57:21 2015 quentin gasparotto
+** Last update Sat May 30 11:23:40 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -30,9 +30,10 @@ void	add_phong(t_object *obj, double *phong_prop)
   obj->phong.brightness = phong_prop[0];
   obj->phong.diffuse = phong_prop[1];
   obj->phong.specular = phong_prop[2];
-  obj->phong.opacity = phong_prop[3];
-  obj->phong.middle_ind = phong_prop[4];
-  obj->phong.reflect = phong_prop[5];
+  obj->phong.spe_rad = phong_prop[3];
+  obj->phong.opacity = phong_prop[4];
+  obj->phong.middle_ind = phong_prop[5];
+  obj->phong.reflect = phong_prop[6];
 }
 
 void	add_coord(t_object *obj, double *coord)

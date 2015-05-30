@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Fri May 29 23:01:14 2015 quentin gasparotto
+** Last update Sat May 30 14:27:11 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -43,7 +43,7 @@ void		init_objects(t_system *sys)
   */
 
   /* add_object(&sys->scene_list->obj_list->limit, sys->scene_list->img->bpp / 8, YELLOW); */
-  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 30, 0, 90, 0, 0}); */
+  /* add_coord(sys->scene_list->obj_list->limit, (double [6]){100, 0, 200, 90, 0, 0}); */
 
   /* add_sphere(sys->scene_list->obj_list->limit, (double [1]){50}); */
 
@@ -65,23 +65,34 @@ void		init_objects(t_system *sys)
   /* 	     (int [2]){sys->scene_list->img->bpp / 8, RED}, */
   /* 	     SIMPLE, &sys->scene_list->obj_list); */
 
+  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED); */
+  /* add_moebius(sys->scene_list->obj_list, (double [3]){0, 2, 0}); */
+
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
-  add_moebius(sys->scene_list->obj_list, (double [3]){0, 2, 0});
+  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0});
+  add_phong(sys->scene_list->obj_list, (double [7]){0, 1, 0, 0, 0, 0, 0});
+  add_sphere(sys->scene_list->obj_list, (double [1]){50});
+
+  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
+  add_coord(sys->scene_list->obj_list, (double [6]){150, 100, 100, 0, 90, 0});
+  add_phong(sys->scene_list->obj_list, (double [7]){0, 1, 0, 0, 0.4, 1.02, 0.5});
+  add_sphere(sys->scene_list->obj_list, (double [1]){100});
 
   /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED); */
   /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 90, 0}); */
-  /* add_phong(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0.5, 1.05, 0}); */
-  /* add_sphere(sys->scene_list->obj_list, (double [1]){100}); */
+  /* add_phong(sys->scene_list->obj_list, (double [7]){0, 0, 0, 0, 0.5, 1.5, 0}); */
+  /* add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
   /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
   /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, 50, 0, 90, 0, 0}); */
   /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
+
   /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
   /* add_coord(sys->scene_list->obj_list->limit, (double [6]){0, -50, 0, 90, 0, 0}); */
   /* add_plan(sys->scene_list->obj_list->limit, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
   /* add_object(&(sys->scene_list->obj_list), sys->scene_list->img->bpp / 8, YELLOW); */
-  /* add_coord(sys->scene_list->obj_list, (double [6]){150, 0, 100, 90, 0, 0}); */
+  /* add_coord(sys->scene_list->obj_list, (double [6]){60, 0, 100, 90, 0, 0}); */
   /* add_cylinder(sys->scene_list->obj_list, (double [1]){50.0}); */
 
   /* add_object(&(sys->scene_list->obj_list->limit), sys->scene_list->img->bpp / 8, RED); */
@@ -150,7 +161,11 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys, get_vector3(-1000.0, 1000.0, 300.0), WHITE) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys->scene_list, get_vector3(-200.0, 0.0, 500.0), WHITE) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-200.0, 500.0, 200.0), WHITE, 1) == ERROR)
+    return (ERROR);
+  if (add_spot(sys->scene_list, get_vector3(-200.0, -500.0, 200.0), WHITE, 1) == ERROR)
+    return (ERROR);
+  if (add_spot(sys->scene_list, get_vector3(-200.0, -550.0, 200.0), WHITE, 1) == ERROR)
     return (ERROR);
   sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
@@ -166,6 +181,8 @@ int	init_system(t_system *sys)
   if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), ORIGIN, 500) == -1)
     return (-1);
   /* if (add_eye(sys->scene_list, get_vector3(-100, 0, 10), ORIGIN, 500) == -1) */
+  /*   return (-1); */
+  /* if (add_eye(sys->scene_list, get_vector3(-5, 0, 5), ORIGIN, 500) == -1) */
   /*   return (-1); */
   sys->scene_list->act_eye = sys->scene_list->eye;
   sys->scene_list->act_image = sys->scene_list->img;

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Mar 24 19:23:00 2015 quentin gasparotto
-** Last update Fri May 29 22:36:46 2015 quentin gasparotto
+** Last update Sat May 30 11:08:30 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -20,7 +20,7 @@ t_streight	get_refracted_ray(t_vector3 norm, t_vector3 incident_ray,
   scalaire = get_scal(norm, incident_ray);
   if (scalaire < 0)
     scalaire = -scalaire;
-  coeff = (i == 0) ? coeff : 1 / coeff;
+  coeff = (i == 0 || coeff == 0) ? coeff : 1 / coeff;
   i = (i + 1) % 2;
   refracted_ray.dir.x =
     coeff * incident_ray.x +

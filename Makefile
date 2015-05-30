@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Fri May 29 16:56:56 2015 quentin gasparotto
+## Last update Sat May 30 14:02:15 2015 quentin gasparotto
 ##
 
 CC=	gcc -g
@@ -72,6 +72,7 @@ SRCS=	./sources/rtv1.c \
 	./sources/add_hyperboloid.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
+	./sources/intensity_gestion.c \
 
 OBJS=	$(SRCS:.c=.o)
 
