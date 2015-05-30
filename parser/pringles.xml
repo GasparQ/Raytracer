@@ -22,7 +22,7 @@
 
   <!--		Le Pringles			-->
 
-  <object>
+  <object color="0x00FF0000">
     <mesh type="hyperboloid">
       a = 50
       b = 50
@@ -34,14 +34,17 @@
       rotation = (90,0,45)
     </coord>
     <phong>
-      reflection = 0
+      ambiant = 0.2
+      diffuse = 1
+      specular = 0
+      spe_radius = 0
+      brightness = 0
       opacity = 0
       refraction = 0
-      brightness = 0
-      color = 0x00FF0000
+      reflection = 0
     </phong>
     <limit>
-      <object>
+      <object color="0x00000000">
 	<mesh type="plane">
 	  normal = (0, 0, 1)
 	  cte = 0
@@ -51,14 +54,17 @@
 	  rotation = (90, 0, 45)
 	</coord>
 	<phong>
-	  reflection = 0
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
 	  opacity = 0
 	  refraction = 0
-	  brightness = 0
-	  color = 0x00000000
+	  reflection = 0
 	</phong>
       </object>
-      <object>
+      <object color="0x00000000">
 	<mesh type="plane">
 	  normal = (0, 0, 1)
 	  cte = 0
@@ -68,14 +74,17 @@
 	  rotation = (90, 0, 45)
 	</coord>
 	<phong>
-	  reflection = 0
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
 	  opacity = 0
 	  refraction = 0
-	  brightness = 0
-	  color = 0x00000000
+	  reflection = 0
 	</phong>
       </object>
-      <object>
+      <object color="0x00000000">
 	<mesh type="sphere">
 	  radius = 50
 	</mesh>
@@ -84,11 +93,14 @@
 	  rotation = (0, 0, 0)
 	</coord>
 	<phong>
-	  reflection = 0
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
 	  opacity = 0
 	  refraction = 0
-	  brightness = 0
-	  color = 0x00000000
+	  reflection = 0
 	</phong>
       </object>
     </limit>
@@ -96,7 +108,7 @@
 
   <!--		Le Plan				-->
 
-  <object>
+  <object color="0x00FFFFFF">
     <mesh type="plane">
       normal = (0, 0, 1)
       cte = 0
@@ -106,11 +118,14 @@
       rotation = (0, 0, 0)
     </coord>
     <phong>
-      reflection = 0
+      ambiant = 0.2
+      diffuse = 1
+      specular = 0
+      spe_radius = 0
+      brightness = 0
       opacity = 0
       refraction = 0
-      brightness = 0
-      color = 0x00FFFFFF
+      reflection = 0
     </phong>
   </object>
 </scene>
