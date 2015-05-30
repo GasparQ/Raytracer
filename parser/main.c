@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sat May 30 16:29:47 2015 fernand veyrier
+** Last update Sat May 30 20:25:56 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -54,6 +54,57 @@ t_vector3	get_vector(char *buf)
   nbr[j] = 0;
   vec.z = atof(nbr);
   return (vec);
+}
+
+int		get_color_parser(char *buf)
+{
+  int		i;
+  int		j;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  j = 0;
+  while (buf[i] && buf[i] != 'x')
+    ++i;
+  ++i;
+  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9')
+		    || (buf[i] >= 'A' && buf[i] <= 'F')))
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  return (my_getnbr_base(nbr, "0123456789ABCDEF"));
+}
+
+int		get_nbr_parser(char *buf)
+{
+  int		i;
+  int		j;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  j = 0;
+  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9') && buf[i] != '-')
+    ++i;
+  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9') || buf[i] == '-'))
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  return (atoi(nbr));
+}
+
+double		get_double_parser(char *buf)
+{
+  int		i;
+  int		j;
+  char		nbr[BUFSIZ];
+
+  i = 0;
+  j = 0;
+  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9') && buf[i] != '-')
+    ++i;
+  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9')
+		    || buf[i] == '-' || buf[i] == '.'))
+    nbr[j++] = buf[i++];
+  nbr[j] = 0;
+  return (atof(nbr));
 }
 
 int		parse_obj(t_system *sys, t_parser *pars)
@@ -130,11 +181,38 @@ int		parse_coord_close(t_system *sys, t_parser *pars)
 
 int		parse_phong(t_system *sys, t_parser *pars)
 {
+  double	params[10];
+  regex_t	regex[8];
+  char		nbr[BUFSIZ];
+  int		i;
+
+  i = 0;
+  while (i < 10)
+    params[i++] = 0;
+  i = 0;
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (phong) line %i.\n", pars->line) * -1);
   printf("Found phong\n");
-  add_phong();
-  return (4);
+  if (regcomp(&regex[0], AMB_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[1], DIF_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[2], SPEC_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[3], SPEC_RAD_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[4], BRIGHT_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[5], OPAC_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[6], REFRAC_REG NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[7], REFLEC_REG NBR_REG, REG_EXTENDED))
+    return (fprintf(stderr, "Error in regex\n") * -1);
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[8], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      while (i < 8 && regexec(&regex[i], pars->buf, 0, &pars->reg_struct, 0))
+	++i;
+      if (i < 8)
+	params[i] = get_double_parser(pars->buf);
+      i = 0;
+    }
+  //add_phong(sys->scene_list->obj_list, params);
+  return ((pars->buf == NULL) ? -30 : 0);
 }
 
 int		parse_phong_close(t_system *sys, t_parser *pars)
@@ -159,40 +237,6 @@ int		parse_limit_close(t_system *sys, t_parser *pars)
     return (fprintf(stderr, "Invalid XML (limit) line %i.\n", pars->line) * -1);
   printf("Found limit close\n");
   return (-5);
-}
-
-int		get_color_parser(char *buf)
-{
-  int		i;
-  int		j;
-  char		nbr[BUFSIZ];
-
-  i = 0;
-  j = 0;
-  while (buf[i] && buf[i] != 'x')
-    ++i;
-  ++i;
-  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9')
-		    || (buf[i] >= 'A' && buf[i] <= 'F')))
-    nbr[j++] = buf[i++];
-  nbr[j] = 0;
-  return (my_getnbr_base(nbr, "0123456789ABCDEF"));
-}
-
-int		get_nbr_parser(char *buf)
-{
-  int		i;
-  int		j;
-  char		nbr[BUFSIZ];
-
-  i = 0;
-  j = 0;
-  while (buf[i] && !(buf[i] >= '0' && buf[i] <= '9') && buf[i] != '-')
-    ++i;
-  while (buf[i] && ((buf[i] >= '0' && buf[i] <= '9') || buf[i] == '-'))
-    nbr[j++] = buf[i++];
-  nbr[j] = 0;
-  return (my_getnbr_base(nbr, "0123456789"));
 }
 
 int		parse_spot(t_system *sys, t_parser *pars)
