@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Sun May 31 13:37:48 2015 fernand veyrier
+** Last update Sun May 31 14:29:29 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -26,7 +26,7 @@ int		mesh_sphere(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
     }
-  //add_sphere(sys->scene_list->obj_list, &radius);
+  return (add_sphere(sys->scene_list->obj_list, &radius));
 }
 
 int		mesh_plane(t_system *sys, t_parser *pars)
@@ -55,8 +55,8 @@ int		mesh_plane(t_system *sys, t_parser *pars)
   params[0] = normal.x;
   params[1] = normal.y;
   params[2] = normal.z;
-  //add_plane(sys->scene_list->obj_list, params);
   printf("Add mesh plane\n");
+  return (add_plan(sys->scene_list->obj_list, params));
 }
 
 int		mesh_tore(t_system *sys, t_parser *pars)
@@ -80,7 +80,7 @@ int		mesh_tore(t_system *sys, t_parser *pars)
 	params[1] = get_double_parser(pars->buf);
     }
   printf("Add mesh tore\n");
-  //add_tore(sys->scene_list->obj_list, params);
+  return (add_tore(sys->scene_list->obj_list, params));
 }
 
 int		mesh_holedcube(t_system *sys, t_parser *pars)
@@ -104,7 +104,7 @@ int		mesh_holedcube(t_system *sys, t_parser *pars)
 	params[1] = get_double_parser(pars->buf);
     }
   printf("Add mesh holedcube\n");
-  //add_holed_cube(sys->scene_list->obj_list, params);
+  return (add_holed_cube(sys->scene_list->obj_list, params));
 }
 
 int		mesh_cone(t_system *sys, t_parser *pars)
@@ -122,8 +122,8 @@ int		mesh_cone(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	phi = get_double_parser(pars->buf);
     }
-  //add_cone(sys->scene_list->obj_list, &phi);
   printf("Add mesh cone\n");
+  return (add_cone(sys->scene_list->obj_list, &phi));
 }
 
 int		mesh_cylinder(t_system *sys, t_parser *pars)
@@ -141,8 +141,8 @@ int		mesh_cylinder(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
     }
-  //add_cylinder(sys->scene_list->obj_list, &radius);
   printf("Add mesh cylinder\n");
+  return (add_cylinder(sys->scene_list->obj_list, &radius));
 }
 
 int		mesh_paraboloid(t_system *sys, t_parser *pars)
@@ -160,8 +160,8 @@ int		mesh_paraboloid(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
     }
-  //add_paraboloid(sys->scene_list->obj_list, &radius);
   printf("Add mesh paraboloid\n");
+  return (add_paraboloid(sys->scene_list->obj_list, &radius));
 }
 
 int		mesh_hyperboloid(t_system *sys, t_parser *pars)
@@ -192,7 +192,7 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
 	params[i] = get_double_parser(pars->buf);
     }
   printf("Add mesh hyperboloid\n");
-  //add_hyperboloid(sys->scene_list->obj_list, params);
+  return (add_hyperboloid(sys->scene_list->obj_list, params));
 }
 
 int		parse_mesh(t_system *sys, t_parser *pars)
@@ -235,11 +235,12 @@ int		parse_mesh(t_system *sys, t_parser *pars)
   while (i < 8 && strncmp(shape_list[i], shape, strlen(shape_list[i]) - 1))
     ++i;
   if (i < 8)
-    func[i](sys, pars);
+    if (func[i](sys, pars) != CLEAN)
+      return (-30);
   return ((pars->buf == NULL) ? -30 : 0);
 }
 
-int		parse_mesh_close(t_system *sys, t_parser *pars)
+int		parse_mesh_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 2 < 2)
     return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);

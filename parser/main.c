@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sun May 31 13:55:28 2015 fernand veyrier
+** Last update Sun May 31 14:34:06 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -49,7 +49,6 @@ void		init_functions(int (**func)())
 
 int		follow_pattern(t_parser *pars, t_system *sys)
 {
-  int		is_invalid;
   int		(*func[16])();
   int		i;
 
