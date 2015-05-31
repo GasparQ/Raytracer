@@ -5,12 +5,12 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 17:33:47 2015 quentin gasparotto
-** Last update Sat May 30 11:21:27 2015 quentin gasparotto
+** Last update Sun May 31 20:13:24 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_spot(t_scene *scene, t_vector3 pos, int color, int i)
+int		add_spot(t_scene *scene, t_vector3 pos, int color, double i)
 {
   t_spot	*new_spot;
 

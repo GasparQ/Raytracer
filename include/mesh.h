@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sun May 31 18:04:35 2015 quentin gasparotto
+** Last update Sun May 31 20:13:34 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -141,7 +141,7 @@ typedef struct		s_spot
 {
   t_vector3		origin;
   unsigned char		*color;
-  int			i;
+  double		i;
   struct s_spot		*next;
 }			t_spot;
 

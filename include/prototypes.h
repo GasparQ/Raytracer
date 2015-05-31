@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun May 31 18:44:48 2015 quentin gasparotto
+** Last update Sun May 31 20:23:28 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -68,6 +68,12 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	get_object.c
+*/
+
+t_object		*get_object(t_object *obj_list, t_streight *strgt);
 
 /*
 **	antialiasing.c
@@ -235,11 +241,12 @@ int			get_spot_nb(t_spot *sys);
 **	disp_color.c
 */
 
+void			cell_shade_method(void *scene, t_vector2 pos,
+					  t_streight strgt);
 void		        antialias_method(void *scene, t_vector2 pos,
 					 t_streight strgt);
 void			basic_method(void *scene, t_vector2 pos,
 				     t_streight strgt);
-t_object		*get_object(t_object *obj_list, t_streight *strgt);
 void			disp_color(t_scene *scene, int x, int y);
 
 /*
@@ -392,7 +399,7 @@ void			init_hyper_norm(t_vector3 *norm,
 **	add_spot.c
 */
 
-int			add_spot(t_scene *scene, t_vector3 pos, int color, int i);
+int			add_spot(t_scene *scene, t_vector3 pos, int color, double i);
 
 /*
 **	translate.c

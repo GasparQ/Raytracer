@@ -5,41 +5,27 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Sat May 30 14:28:34 2015 quentin gasparotto
+** Last update Sun May 31 20:35:54 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void	resolve_brightness(t_object *act_obj, t_spot *act_spot, int rank)
+void	resolve_brightness(t_object *act_obj, t_spot *act_spot, int limit)
 {
-  if (act_obj->disp_color[rank] * (1 - act_obj->phong.brightness) +
-      act_obj->phong.brightness * act_spot->color[rank] > 255)
-    act_obj->disp_color[rank] = 255;
-  else
-    act_obj->disp_color[rank] =
-      act_obj->disp_color[rank] * (1 - act_obj->phong.brightness) +
-      act_obj->phong.brightness * act_spot->color[rank];
-}
+  int	i;
 
-double		resolve_shadow(t_vector3 isec_point,
-			       t_scene *scene,
-			       t_vector3 light_vec,
-			       t_vector3 norm)
-{
-  t_streight	new_ray;
-  t_object	*touch;
-  double	cos_a;
-
-  if ((cos_a = get_scal(norm, light_vec) /
-       (vec_norm(norm) * vec_norm(light_vec))) < F_ZERO)
-    return (F_ZERO);
-  new_ray = get_streight(light_vec, isec_point);
-  if ((touch = get_object(scene->obj_list, &new_ray)) != NULL)
+  i = 0;
+  while (i < limit)
     {
-      if (new_ray.lambda > F_ZERO && new_ray.lambda < 1.0)
-	return ((1 - touch->phong.opacity) * cos_a);
+      if (act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
+	  act_obj->phong.brightness * act_spot->color[i] > 0xFF)
+	act_obj->disp_color[i] = 0xFF;
+      else
+	act_obj->disp_color[i] =
+	  act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
+	  act_obj->phong.brightness * act_spot->color[i];
+      ++i;
     }
-  return (cos_a);
 }
 
 void	reflect_color(unsigned char *obj, unsigned char *ref,
@@ -90,6 +76,8 @@ void		resolve_light(t_vector3 isec_point,
   use_vectors[1] = isec_point;
   use_vectors[2] = strgt.dir;
   intensity = get_intensity(scene, act_obj, use_vectors);
+  if (scene->act_image->render_method == &cell_shade_method)
+    intensity = (1.5 * (int)((10.0 * intensity) / 1.5)) / 10.0;
   apply_phong(act_obj, intensity, scene);
   if (act_obj->phong.reflect > F_ZERO && act_obj->effects < 5)
     {

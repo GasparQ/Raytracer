@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sun May 31 16:18:14 2015 quentin gasparotto
+## Last update Sun May 31 20:23:51 2015 quentin gasparotto
 ##
 
 CC=	gcc -g
@@ -75,6 +75,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/intensity_gestion.c \
 	./sources/loading_time.c \
 	./sources/antialiasing.c \
+	./sources/get_object.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

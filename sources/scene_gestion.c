@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Sun May 31 18:02:16 2015 quentin gasparotto
+** Last update Sun May 31 20:28:53 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -33,7 +33,9 @@ int		init_img(t_image *img, t_vector2 dim, t_scene *scene, int render)
   scene->act_image = save;
   if ((img->average = malloc(sizeof(int) * (bpp / 8))) == NULL)
     return (-1);
-  img->render_method = (render == 0) ? &basic_method : &antialias_method;
+  img->render_method =
+    (render == 0) ? &basic_method :
+    ((render == 1) ? &antialias_method : &cell_shade_method);
   return (0);
 }
 

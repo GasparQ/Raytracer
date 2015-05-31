@@ -31,6 +31,7 @@
 						- Phong : Spéculaire, Ambiante, Diffuse
 						- Ombres (reduites avec transparence)
 						- Antialiasing
+						- Cell-shading
 
 					Add-ons:
 						- Multi scene
@@ -44,7 +45,7 @@
 						- Coeur 3d
 						- Selle de singe
 						- Textures procédurales + mapping
-						- Cell-shading
+						- Retravailler la brillance (boucle d'intensité avec synthèse des couleurs de spot)
 
 					   Milcen/Combau:
 						- Multi-threading/coring
