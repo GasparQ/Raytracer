@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Sun May 31 14:29:29 2015 fernand veyrier
+** Last update Sun May 31 22:43:02 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -166,12 +166,12 @@ int		mesh_paraboloid(t_system *sys, t_parser *pars)
 
 int		mesh_hyperboloid(t_system *sys, t_parser *pars)
 {
-  double	params[4];
+  double	params[5];
   int		i;
-  regex_t	regex[4];
+  regex_t	regex[5];
 
   i = 0;
-  while (i < 4)
+  while (i < 5)
     params[i++] = 0;
   if (regcomp(&regex[0], "[[:space:]]*a[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
@@ -180,15 +180,17 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
       || regcomp(&regex[2], "[[:space:]]*c[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
       ||regcomp(&regex[3], "[[:space:]]*d[[:space:]]*\
+=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
+      ||regcomp(&regex[4], "[[:space:]]*c_factor[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
     {
       i = 0;
-      while (i < 4 && regexec(&regex[i], pars->buf, 0, &pars->reg_struct, 0))
+      while (i < 5 && regexec(&regex[i], pars->buf, 0, &pars->reg_struct, 0))
 	++i;
-      if (i < 4)
+      if (i < 5)
 	params[i] = get_double_parser(pars->buf);
     }
   printf("Add mesh hyperboloid\n");

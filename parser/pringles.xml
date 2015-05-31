@@ -3,6 +3,11 @@
 
   <!--	Définition des spot sur la scène	-->
 
+  <eye>
+    position = (0,0,0)
+    rotation = (0,0,0)
+    distance = 500
+  </eye>
   <spot>
     position = (0,0,10)
     rotation = (0,0,0)
@@ -15,11 +20,6 @@
     color = 0x00FFFFFF
     intensity = 1
   </spot>
-  <eye>
-    position = (0,0,0)
-    rotation = (0,0,0)
-    distance = 500
-  </eye>
   <!--	Définition des objets de la scène	-->
 
   <!--		Le Pringles			-->
