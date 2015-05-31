@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Sun May 31 01:26:55 2015 fernand veyrier
+** Last update Sun May 31 11:57:14 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -31,12 +31,56 @@ int		mesh_sphere(t_system *sys, t_parser *pars)
 
 int		mesh_plane(t_system *sys, t_parser *pars)
 {
+  double	params[4];
+  t_vector3	normal;
+  int		i;
+  regex_t	regex[2];
+
+  i = 0;
+  while (i < 4)
+    params[i++] = 0;
+  if (regcomp(&regex[0], "[[:space:]]*normal[[:space:]]*\
+=[[:space:]]" POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[1], "[[:space:]]*cst[[:space:]]*\
+=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))
+    return (fprintf(stderr, "Regex error\n"));
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
+	normal = get_vector(pars->buf);
+      if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
+	params[3] = get_double_parser(pars->buf);
+    }
+  params[0] = normal.x;
+  params[1] = normal.y;
+  params[2] = normal.z;
+  //add_plane(sys->scene_list->obj_list, params);
   printf("Add mesh plane\n");
 }
 
 int		mesh_tore(t_system *sys, t_parser *pars)
 {
+  double	params[2];
+  regex_t	regex[2];
+
+  params[0] = 0;
+  params[1] = 0;
+  if (regcomp(&regex[1], "[[:space:]]*radius_in[[:space:]]*\
+=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
+      || regcomp(&regex[1], "[[:space:]]*radius_out[[:space:]]*\
+=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))
+    return (fprintf(stderr, "Regex error\n"));
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
+	params[0] = get_double_parser(pars->buf);
+      if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
+	params[1] = get_double_parser(pars->buf);
+    }
   printf("Add mesh tore\n");
+  //add_tore(sys->scene_list->obj_list, params);
 }
 
 int		mesh_holedcube(t_system *sys, t_parser *pars)
