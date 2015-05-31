@@ -5,24 +5,11 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sat May 30 15:38:45 2015 quentin gasparotto
+** Last update Sun May 31 18:04:35 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
 # define MESH_H_
-
-typedef struct		s_image
-{
-  void			*img;
-  char			*dat;
-  int			bpp;
-  int			wdth;
-  int			hght;
-  int			edn;
-  int			*average;
-  unsigned char		*color;
-  struct s_image	*next;
-}			t_image;
 
 typedef struct		s_vector2
 {
@@ -157,6 +144,20 @@ typedef struct		s_spot
   int			i;
   struct s_spot		*next;
 }			t_spot;
+
+typedef struct		s_image
+{
+  void			*img;
+  char			*dat;
+  int			bpp;
+  int			wdth;
+  int			hght;
+  int			edn;
+  int			*average;
+  unsigned char		*color;
+  void			(*render_method)(void *, t_vector2, t_streight);
+  struct s_image	*next;
+}			t_image;
 
 typedef struct		s_scene
 {

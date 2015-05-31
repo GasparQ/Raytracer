@@ -30,6 +30,7 @@
 						- Réfraction
 						- Phong : Spéculaire, Ambiante, Diffuse
 						- Ombres (reduites avec transparence)
+						- Antialiasing
 
 					Add-ons:
 						- Multi scene
@@ -43,7 +44,6 @@
 						- Coeur 3d
 						- Selle de singe
 						- Textures procédurales + mapping
-						- Antialiasing
 						- Cell-shading
 
 					   Milcen/Combau:

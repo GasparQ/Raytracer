@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sat May 30 21:41:46 2015 quentin gasparotto
+** Last update Sun May 31 18:05:33 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -68,6 +68,15 @@ enum			COLORS
   };
 
 /*
+**	antialiasing.c
+*/
+
+void			choose_color(t_image *act_image, t_image *copy,
+				     t_vector2 pos, int tell);
+void			add_color_to_avg(unsigned char *color, int *average, int limit);
+int			antialiasing(t_image *act_image, t_scene *scene);
+
+/*
 **	loading_time.c
 */
 
@@ -86,10 +95,11 @@ void			apply_phong(t_object *touch, double intensity,
 **	scene_gestion.c
 */
 
+int			init_img(t_image *img, t_vector2 dim, t_scene *scene, int render);
 void			free_scene(t_scene *scene);
 int			add_scene(t_scene **scene, void *mlx);
 int			add_eye(t_scene *scene, t_vector3 position,
-				t_vector3 rotation, double distance);
+				t_vector3 rotation, double *prop);
 
 /*
 **	draw_hyperboloid.c
@@ -223,6 +233,10 @@ int			get_spot_nb(t_spot *sys);
 **	disp_color.c
 */
 
+void		        antialias_method(void *scene, t_vector2 pos,
+					 t_streight strgt);
+void			basic_method(void *scene, t_vector2 pos,
+				     t_streight strgt);
 t_object		*get_object(t_object *obj_list, t_streight *strgt);
 void			disp_color(t_scene *scene, int x, int y);
 
@@ -453,6 +467,8 @@ int			expose_gestion(t_system *sys);
 **	graph_func.c
 */
 
+void			copy_img(t_image src, t_image *dest);
+void			get_pix_color(int x, int y, t_image image, unsigned char *color);
 void			my_put_pixel_to_img(int x, int y, unsigned char *color,
 					    t_image *img);
 void			get_color(int color, unsigned char *color_tab,

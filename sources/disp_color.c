@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Sat May 30 14:16:51 2015 quentin gasparotto
+** Last update Sun May 31 18:15:14 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -69,24 +69,65 @@ t_object	*get_object(t_object *obj_list, t_streight *strgt)
   return (final_obj);
 }
 
-void	disp_color(t_scene *scene, int x, int y)
+void	        antialias_method(void *send_scene, t_vector2 pos,
+				 t_streight strgt)
 {
+  int		i;
   t_object	*final_obj;
-  t_streight	strgt;
+  t_scene	*scene;
 
-  init_streight(&strgt, scene->act_eye->distance, x, y);
-  rotate_coord(&(strgt.dir), scene->act_eye->dir);
-  strgt = get_streight(strgt.dir, scene->act_eye->pos);
+  scene = (t_scene *)send_scene;
+  init_average(scene->act_image->average, scene->act_image->bpp / 8);
+  i = -1;
+  while (++i < 9)
+    {
+      strgt.dir.y += (i % 3) * 0.25;
+      strgt.dir.z += (i / 3) * 0.25;
+      final_obj = get_object(scene->obj_list, &strgt);
+      if (final_obj != NULL)
+	{
+	  final_obj->effects = 0;
+	  resolve_light(get_isec_point(strgt, final_obj), final_obj, scene, strgt);
+	  //get_color(final_obj->obj_color, final_obj->disp_color, scene);
+	  add_color_to_avg(final_obj->disp_color, scene->act_image->average,
+			   scene->act_image->bpp / 8);
+	}
+      else
+	add_color_to_avg(scene->act_image->color, scene->act_image->average,
+			 scene->act_image->bpp / 8);
+    }
+  choose_color(scene->act_image, scene->act_image, pos, 1);
+}
+
+void		basic_method(void *send_scene, t_vector2 pos, t_streight strgt)
+{
+  t_scene	*scene;
+  t_object	*final_obj;
+
+  scene = (t_scene *)send_scene;
+  strgt.dir.y += 0.25;
+  strgt.dir.z += 0.25;
   final_obj = get_object(scene->obj_list, &strgt);
   if (final_obj != NULL)
     {
       final_obj->effects = 0;
       resolve_light(get_isec_point(strgt, final_obj), final_obj, scene, strgt);
-      //get_color(final_obj->obj_color, final_obj->disp_color, scene);
-      my_put_pixel_to_img(x, y, final_obj->disp_color, scene->act_image);
+      my_put_pixel_to_img((int)pos.x, (int)pos.y,
+			  final_obj->disp_color, scene->act_image);
     }
   else
-    {
-      my_put_pixel_to_img(x, y, scene->act_image->color, scene->act_image);
-    }
+    my_put_pixel_to_img((int)pos.x, (int)pos.y,
+			scene->act_image->color, scene->act_image);
+}
+
+void	disp_color(t_scene *scene, int x, int y)
+{
+  t_streight	strgt;
+
+  init_streight(&strgt, scene->act_eye->distance, x, y);
+  rotate_coord(&(strgt.dir), scene->act_eye->dir);
+  strgt = get_streight(strgt.dir, scene->act_eye->pos);
+  strgt.dir.y -= 0.25;
+  strgt.dir.z -= 0.25;
+  scene->act_image->render_method(scene, get_vector2(x, y), strgt);
 }

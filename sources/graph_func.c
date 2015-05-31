@@ -5,11 +5,23 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:44:51 2015 quentin gasparotto
-** Last update Sat May 30 14:59:56 2015 quentin gasparotto
+** Last update Sun May 31 17:42:47 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
+
+void	copy_img(t_image src, t_image *dest)
+{
+  int	rank;
+
+  rank = 0;
+  while (rank < WDW_WIDTH * WDW_HEIGHT * src.bpp / 8)
+    {
+      dest->dat[rank] = src.dat[rank];
+      ++rank;
+    }
+}
 
 void	my_put_pixel_to_img(int x, int y, unsigned char *color, t_image *img)
 {
@@ -23,14 +35,14 @@ void	my_put_pixel_to_img(int x, int y, unsigned char *color, t_image *img)
     }
 }
 
-void	get_pix_color(int x, int y, t_image image, char *color)
+void	get_pix_color(int x, int y, t_image image, unsigned char *color)
 {
   int	rank;
   int	i;
 
-  rank = x * image.bpp + y * image.wdth;
+  rank = x * image.bpp / 8 + y * image.wdth;
   i = 0;
-  while (i < image.bpp)
+  while (i < image.bpp / 8)
     {
       color[i] = image.dat[rank + i];
       ++i;

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sat May 30 20:47:07 2015 quentin gasparotto
+** Last update Sun May 31 18:02:44 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -178,7 +178,7 @@ int	init_system(t_system *sys)
   sys->scene_list = NULL;
   if (add_scene(&sys->scene_list, sys->mlx) == -1)
     return (-1);
-  if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), ORIGIN, 500) == -1)
+  if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), ORIGIN, (double [2]){500, 1}) == -1)
     return (-1);
   /* if (add_eye(sys->scene_list, get_vector3(-100, 0, 10), ORIGIN, 500) == -1) */
   /*   return (-1); */
