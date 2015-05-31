@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun May 31 18:05:33 2015 quentin gasparotto
+** Last update Sun May 31 18:44:48 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -16,6 +16,8 @@
 # include		<mlx.h>
 # include		"/usr/include/X11/X.h"
 # include		"minilibx_system.h"
+# include		"mesh.h"
+# include		"get_next_line.h"
 
 # define CLEAN		0
 # define ERROR          -1
@@ -446,7 +448,7 @@ double			draw_holed_cube(t_streight strgt, t_object *my_obj);
 **	init_system.c
 */
 
-int			init_system(t_system *sys);
+int			init_system(t_system *sys, char *file);
 
 /*
 **	list_fn.c

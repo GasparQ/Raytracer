@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun May 31 18:02:44 2015 quentin gasparotto
+** Last update Sun May 31 18:53:00 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -171,7 +171,7 @@ int		init_spot(t_system *sys)
   return (CLEAN);
 }
 
-int	init_system(t_system *sys)
+int	init_system(t_system *sys, char *file)
 {
   if (init_mlx(sys) == ERROR)
     return (ERROR);
@@ -186,7 +186,10 @@ int	init_system(t_system *sys)
   /*   return (-1); */
   sys->scene_list->act_eye = sys->scene_list->eye;
   sys->scene_list->act_image = sys->scene_list->img;
-  init_objects(sys);
+  if (file == NULL)
+    init_objects(sys);
+  else if (get_objects(sys, file) != 0)
+    return (-1);
   init_spot(sys);
   /* if ((sys->color = malloc(sys->img.bpp / 8)) == NULL) */
   /*   return (my_strerror(MALLOC_ERR)); */

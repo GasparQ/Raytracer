@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:37:02 2015 fernand veyrier
-** Last update Sun May 31 13:50:32 2015 fernand veyrier
+** Last update Sun May 31 18:41:02 2015 quentin gasparotto
 */
 
 #include "get_next_line.h"
@@ -29,7 +29,7 @@ int		parse_eye(t_system *sys, t_parser *pars)
       if (!regexec(&pars->regex[20], pars->buf, 0, &pars->reg_struct, 0))
 	distance = get_nbr_parser(pars->buf);
     }
-  add_eye(sys->scene_list, pos, rot, distance);
+  add_eye(sys->scene_list, pos, rot, (double [2]){distance, 0});
   return ((pars->buf == NULL) ? -30 : 0);
 }
 

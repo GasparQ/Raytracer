@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:31:47 2015 quentin gasparotto
-** Last update Sat May 30 21:47:01 2015 quentin gasparotto
+** Last update Sun May 31 18:43:58 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -19,7 +19,7 @@ int		main(int ac, char **av, char **env)
   (void)av;
   if (env[0] == NULL)
     return (my_strerror(ENV_FAIL));
-  if (init_system(&sys) == -1)
+  if (init_system(&sys, av[1]) == -1)
     return (my_strerror("Init fail\n"));
   loading_time(&sys);
   sys.scene_list->act_image = sys.scene_list->img;
