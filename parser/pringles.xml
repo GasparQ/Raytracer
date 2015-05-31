@@ -7,11 +7,13 @@
     position = (0,0,10)
     rotation = (0,0,0)
     color = 0x00FFFFFF
+    intensity = 1
   </spot>
   <spot>
     position = (-500,0,500)
     rotation = (0,0,0)
     color = 0x00FFFFFF
+    intensity = 1
   </spot>
   <eye>
     position = (0,0,0)

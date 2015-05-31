@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat May 30 21:03:27 2015 fernand veyrier
+** Last update Sun May 31 13:55:21 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -49,8 +49,8 @@
 # define COLOR_REG	"[[:space:]]*color[[:space:]]*=[[:space:]]*0x"
 # define COLOR_NEXT	"[[:digit:]A-F]{,8}[[:space:]]*$"
 # define DISTANCE_REG	"[[:space:]]*distance[[:space:]]*=[[:space:]]*"
-# define DISTANCE_NEXT	"[[:digit:].]+[[:space:]]*$"
-# define NBR_REG	"[[:digit:].]+[[:space:]]*$"
+# define DISTANCE_NEXT	"[[:digit:].-]+[[:space:]]*$"
+# define NBR_REG	"[[:digit:].-]+[[:space:]]*$"
 # define AMB_REG	"[[:space:]]*ambiant[[:space:]]*=[[:space:]]*"
 # define DIF_REG	"[[:space:]]*diffuse[[:space:]]*=[[:space:]]*"
 # define SPEC_REG	"[[:space:]]*specular[[:space:]]*=[[:space:]]*"
@@ -59,6 +59,8 @@
 # define OPAC_REG	"[[:space:]]*opacity[[:space:]]*=[[:space:]]*"
 # define REFRAC_REG	"[[:space:]]*refraction[[:space:]]*=[[:space:]]*"
 # define REFLEC_REG	"[[:space:]]*reflection[[:space:]]*=[[:space:]]*"
+# define INTENSITY	"[[:space:]]*intensity[[:space:]]*=[[:space:]]*"
+# define UNUSED		__attribute__((unused))
 
 typedef struct	s_parser
 {

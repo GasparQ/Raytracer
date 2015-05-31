@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:42:10 2015 fernand veyrier
-** Last update Sat May 30 20:42:32 2015 fernand veyrier
+** Last update Sun May 31 13:56:45 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -18,7 +18,7 @@ int		parse_limit(t_system *sys, t_parser *pars)
   return (5);
 }
 
-int		parse_limit_close(t_system *sys, t_parser *pars)
+int		parse_limit_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 5 < 1)
     return (fprintf(stderr, "Invalid XML (limit) line %i.\n", pars->line) * -1);
@@ -31,11 +31,11 @@ int		parse_scene(t_system *sys, t_parser *pars)
   if (pars->level != 0)
     return (fprintf(stderr, "Invalid XML (scene) line %i.\n", pars->line) * -1);
   printf("Found scene\n");
-  //add_scene(&sys->scene_list, sys->mlx);
+  add_scene(&sys->scene_list, sys->mlx);
   return (1);
 }
 
-int		parse_scene_close(t_system *sys, t_parser *pars)
+int		parse_scene_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 1 != 0)
     return (fprintf(stderr, "Invalid XML (spot) line %i.\n", pars->line) * -1);
