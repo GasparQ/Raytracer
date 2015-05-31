@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sat May 30 21:02:28 2015 fernand veyrier
+** Last update Sun May 31 13:45:33 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -124,12 +124,12 @@ int		get_objects(t_system *sys, char *file)
   return (follow_pattern(&parser, sys));
 }
 
-int		main(int ac, char **av)
-{
-  t_system	*sys;
+/* int		main(int ac, char **av) */
+/* { */
+/*   t_system	*sys; */
 
-  if (ac < 2)
-    return (-1);
-  get_objects(sys, av[1]);
-  return (0);
-}
+/*   if (ac < 2) */
+/*     return (-1); */
+/*   get_objects(sys, av[1]); */
+/*   return (0); */
+/* } */

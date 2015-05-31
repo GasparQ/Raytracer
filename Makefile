@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Sat May 30 21:42:45 2015 quentin gasparotto
+## Last update Sun May 31 13:44:03 2015 fernand veyrier
 ##
 
 CC=	gcc -g
@@ -74,6 +74,18 @@ SRCS=	./sources/rtracer.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
 	./sources/loading_time.c \
+	./parser/parse_mesh.c 		\
+	./parser/parse_coord.c 		\
+	./parser/parse_phong.c 		\
+	./parser/parse_obj.c 		\
+	./parser/parse_limit_scene.c 	\
+	./parser/main.c 		\
+	./parser/getters.c 		\
+	./parser/get_next_line.c 	\
+	./parser/parse_eye.c 		\
+	./parser/parse_spot.c 		\
+	./parser/my_getnbr_base.c 	\
+	./parser/char_function.c 	\
 
 OBJS=	$(SRCS:.c=.o)
 
