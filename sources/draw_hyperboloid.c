@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 11:36:14 2015 quentin gasparotto
-** Last update Thu May 28 16:40:57 2015 quentin gasparotto
+** Last update Mon Jun  1 13:25:27 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -24,9 +24,9 @@ double		draw_hyperboloid(t_streight strgt, t_object *my_obj)
 	      my_obj->mesh.hyperboloid->c_factor *
 	      pow(strgt.dir.z, 2.0) / pow(my_obj->mesh.hyperboloid->c, 2.0));
   param[1] = 2.0 *
-    strgt.point.x * strgt.dir.x / pow(my_obj->mesh.hyperboloid->a, 2.0) +
-    strgt.point.y * strgt.dir.y / pow(my_obj->mesh.hyperboloid->b, 2.0) +
-    my_obj->mesh.hyperboloid->c_factor * strgt.point.z * strgt.dir.z /
+    (strgt.point.x * strgt.dir.x) / pow(my_obj->mesh.hyperboloid->a, 2.0) +
+    (strgt.point.y * strgt.dir.y) / pow(my_obj->mesh.hyperboloid->b, 2.0) +
+    my_obj->mesh.hyperboloid->c_factor * (strgt.point.z * strgt.dir.z) /
     pow(my_obj->mesh.hyperboloid->c, 2.0);
   param[2] =
     (pow(strgt.point.x, 2.0) / pow(my_obj->mesh.hyperboloid->a, 2.0) +

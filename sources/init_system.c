@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun May 31 23:04:36 2015 quentin gasparotto
+** Last update Mon Jun  1 15:15:06 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -34,9 +34,9 @@ void		init_objects(t_system *sys)
 
   /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 10, 45, 45, 0}); */
   /* add_holed_cube(sys->scene_list->obj_list, (double [2]){10.0, 42.8}); */
-
-  /* add_coord(sys->scene_list->obj_list, (double [6]){100, 0, 200, 90, 0, 0}); */
-  /* add_hyperboloid(sys->scene_list->obj_list, (double [5]){50, 50, 90, -1, -1}); */
+  
+  /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0, 0, 0}); */
+  /* add_hyperboloid(sys->scene_list->obj_list, (double [5]){20, 20, 90, -1, -1}); */
 
   /*
   **		Limite l'hyperboloide
@@ -55,7 +55,7 @@ void		init_objects(t_system *sys)
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
   add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
- 
+
   /* /\* add_object((t_vector3 [2]){get_vector3(0, 0, 1000), ORIGIN}, *\/ */
   /* /\* 	     (int [2]){sys->img.bpp / 8, RED}, *\/ */
   /* /\* 	     get_properties(0, 0.5, 0.8, 1), &sys->obj_list); *\/ */
@@ -69,7 +69,7 @@ void		init_objects(t_system *sys)
   /* add_moebius(sys->scene_list->obj_list, (double [3]){0, 2, 0}); */
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, 0x00FF2222/* RED */);
-  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 0, 0});
+  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 150, 0, 0, 0});
   add_phong(sys->scene_list->obj_list, (double [8]){0.2, 1, 1, 400, 0, 0, 0, 0});
   add_sphere(sys->scene_list->obj_list, (double [1]){100});
 
@@ -163,8 +163,10 @@ int		init_spot(t_system *sys)
   /*   return (ERROR); */
   /* if (add_spot(sys->scene_list, get_vector3(-200.0, 500.0, 200.0), WHITE, 1) == ERROR) */
   /*   return (ERROR); */
-  if (add_spot(sys->scene_list, get_vector3(-200.0, -200.0, 250.0), WHITE, 0.6) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-200.0, -200.0, 500.0), WHITE, 0.6) == ERROR)
     return (ERROR);
+  /* if (add_spot(sys->scene_list, get_vector3(-200.0, 200.0, 250.0), WHITE, 0.6) == ERROR) */
+  /*   return (ERROR); */
   /* if (add_spot(sys->scene_list, get_vector3(200.0, 200.0, 250.0), WHITE, 0.5) == ERROR) */
   /*   return (ERROR); */
   /* if (add_spot(sys->scene_list, get_vector3(200.0, -200.0, 250.0), WHITE, 0.5) == ERROR) */
@@ -179,12 +181,12 @@ int	init_system(t_system *sys, char *file)
 {
   if (init_mlx(sys) == ERROR)
     return (ERROR);
+  sys->scene_list = NULL;
   if (file == NULL)
     {
-      sys->scene_list = NULL;
       if (add_scene(&sys->scene_list, sys->mlx) == -1)
 	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), ORIGIN, (double [2]){500, 1}) == -1)
+      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150), ORIGIN, (double [2]){500, 1}) == -1)
 	return (-1);
       /* if (add_eye(sys->scene_list, get_vector3(-100, 0, 10), ORIGIN, 500) == -1) */
       /*   return (-1); */
@@ -193,10 +195,10 @@ int	init_system(t_system *sys, char *file)
       sys->scene_list->act_eye = sys->scene_list->eye;
       sys->scene_list->act_image = sys->scene_list->img;
       init_objects(sys);
+      init_spot(sys);
     }
   else if (get_objects(sys, file) != 0)
     return (-1);
-  init_spot(sys);
   /* if ((sys->color = malloc(sys->img.bpp / 8)) == NULL) */
   /*   return (my_strerror(MALLOC_ERR)); */
   /* if ((sys->average = malloc(sizeof(int) * sys->img.bpp / 8)) == NULL) */

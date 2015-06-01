@@ -30,6 +30,7 @@
       b = 50
       c = 90
       d = -1
+      c_factor = -1
     </mesh>
     <coord>
       position = (0,0,75)

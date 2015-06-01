@@ -2,7 +2,7 @@
 <scene>
 
   <eye>
-    position = (0,0,100)
+    position = (-500,0,100)
     rotation = (0,0,0)
     distance = 500
   </eye>

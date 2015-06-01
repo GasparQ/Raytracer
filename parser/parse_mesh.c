@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Sun May 31 22:43:02 2015 fernand veyrier
+** Last update Mon Jun  1 15:16:12 2015 quentin gasparotto
 */
 
 #include "get_next_line.h"
@@ -50,11 +50,11 @@ int		mesh_plane(t_system *sys, t_parser *pars)
       if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
 	normal = get_vector(pars->buf);
       if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
-	params[3] = get_double_parser(pars->buf);
+	params[0] = get_double_parser(pars->buf);
     }
-  params[0] = normal.x;
-  params[1] = normal.y;
-  params[2] = normal.z;
+  params[1] = normal.x;
+  params[2] = normal.y;
+  params[3] = normal.z;
   printf("Add mesh plane\n");
   return (add_plan(sys->scene_list->obj_list, params));
 }
