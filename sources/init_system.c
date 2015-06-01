@@ -1,11 +1,11 @@
 /*
 ** init_system.c for system initialisation in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtv1
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Mon Jun  1 17:17:37 2015 quentin gasparotto
+** Last update Mon Jun  1 18:28:12 2015 adrien milcent
 */
 
 #include "../include/minilibx_system.h"
@@ -34,7 +34,7 @@ void		init_objects(t_system *sys)
 
   /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 10, 45, 45, 0}); */
   /* add_holed_cube(sys->scene_list->obj_list, (double [2]){10.0, 42.8}); */
-  
+
   /* add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 0, 0, 0, 0}); */
   /* add_hyperboloid(sys->scene_list->obj_list, (double [5]){20, 20, 90, -1, -1}); */
 
@@ -190,7 +190,7 @@ int	init_system(t_system *sys, char *file)
     {
       if (add_scene(&sys->scene_list, sys->mlx) == -1)
 	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150), ORIGIN, (double [2]){500, 1}) == -1)
+      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150), ORIGIN, (double [2]){500, 2}) == -1)
 	return (-1);
       /* if (add_eye(sys->scene_list, get_vector3(-100, 0, 10), ORIGIN, 500) == -1) */
       /*   return (-1); */

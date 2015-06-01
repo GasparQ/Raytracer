@@ -5,10 +5,10 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Mon Jun  1 16:32:26 2015 quentin gasparotto
+## Last update Mon Jun  1 18:20:48 2015 adrien milcent
 ##
 
-CC=	gcc -g
+CC=	gcc -g -fopenmp
 
 RM=	rm -f
 
@@ -77,6 +77,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/antialiasing.c \
 	./sources/get_object.c \
 	./sources/effects.c \
+	./sources/duplicate_objects.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\
