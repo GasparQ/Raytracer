@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Sun May 31 20:13:34 2015 quentin gasparotto
+** Last update Mon Jun  1 21:21:01 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -156,6 +156,7 @@ typedef struct		s_image
   int			*average;
   unsigned char		*color;
   void			(*render_method)(void *, t_vector2, t_streight);
+  struct s_image	*prev;
   struct s_image	*next;
 }			t_image;
 
@@ -169,6 +170,7 @@ typedef struct		s_scene
   t_image		*img;
   t_image		*act_image;
   void			*mlx;
+  struct s_scene	*prev;
   struct s_scene	*next;
 }			t_scene;
 

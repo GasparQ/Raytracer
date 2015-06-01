@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Mon Jun  1 18:20:48 2015 adrien milcent
+## Last update Mon Jun  1 21:58:17 2015 quentin gasparotto
 ##
 
 CC=	gcc -g -fopenmp
@@ -42,7 +42,6 @@ SRCS=	./sources/rtracer.c \
 	./sources/cmp_limit.c \
 	./sources/loading_screen.c \
 	./sources/obj_norms.c \
-	./sources/average.c \
 	./sources/get_isec_point.c \
 	./sources/add_paraboloid.c \
 	./sources/resolve_polynoms.c \
@@ -65,8 +64,6 @@ SRCS=	./sources/rtracer.c \
 	./sources/tab_cpy.c \
 	./sources/add_tore.c \
 	./sources/tore.c \
-	./sources/draw_moebius.c \
-	./sources/add_moebius.c \
 	./sources/get_refracted_ray.c \
 	./sources/transparency.c \
 	./sources/add_hyperboloid.c \
@@ -78,6 +75,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/get_object.c \
 	./sources/effects.c \
 	./sources/duplicate_objects.c \
+	./sources/make_action.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

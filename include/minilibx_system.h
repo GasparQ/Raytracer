@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:05:05 2015 quentin gasparotto
-** Last update Fri May 29 17:23:24 2015 quentin gasparotto
+** Last update Mon Jun  1 21:13:46 2015 quentin gasparotto
 */
 
 #ifndef MINILIBX_SYS_H_
@@ -18,6 +18,7 @@ typedef struct	s_system
   void		*mlx;
   void		*wdw;
   t_scene	*scene_list;
+  t_scene	*act_scene;
 }		t_system;
 
 #endif /* !MINILIBX_SYS_H_ */

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Mon Jun  1 18:12:47 2015 quentin gasparotto
+** Last update Mon Jun  1 23:06:38 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -72,6 +72,16 @@ enum			COLORS
   };
 
 /*
+**	make_action.c
+*/
+
+void			prev_img(t_system *sys);
+void			next_img(t_system *sys);
+void			prev_scene(t_system *sys);
+void			next_scene(t_system *sys);
+void			exit_ray_tracer(t_system *sys);
+
+/*
 **	duplicate_objects.c
 */
 
@@ -119,6 +129,8 @@ void			loading_time(t_system *sys);
 **	intensity_gestion.c
 */
 
+void			light_solver(t_vector3 *use_vectors, t_scene *scene,
+				     t_object *act_obj);
 double			get_intensity(t_scene *scene, t_object *touch,
 				      t_vector3 *use_vectors);
 void			apply_phong(t_object *touch, double intensity,
@@ -388,7 +400,7 @@ void			resolve_light(t_vector3 isec_point,
 				      t_object *act_object,
 				      t_scene *scene, t_streight strgt);
 void			resolve_brightness(t_object *act_obj,
-					   t_spot *act_spot, int rank);
+					   t_scene *scene, int rank);
 
 /*
 **	obj_norms.c

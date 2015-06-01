@@ -5,10 +5,22 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Jun  1 15:57:22 2015 quentin gasparotto
-** Last update Mon Jun  1 17:18:15 2015 quentin gasparotto
+** Last update Mon Jun  1 21:58:59 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
+
+void	init_average(int *average, int end)
+{
+  int	rank;
+
+  rank = 0;
+  while (rank < end)
+    {
+      average[rank] = 0;
+      rank = rank + 1;
+    }
+}
 
 void	resolve_cell_shading(t_image *act_image, t_image *nice_img,
 			     t_vector2 pos)

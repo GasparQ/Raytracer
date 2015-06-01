@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Mar 24 19:23:00 2015 quentin gasparotto
-** Last update Sat May 30 11:08:30 2015 quentin gasparotto
+** Last update Mon Jun  1 21:32:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -24,13 +24,16 @@ t_streight	get_refracted_ray(t_vector3 norm, t_vector3 incident_ray,
   i = (i + 1) % 2;
   refracted_ray.dir.x =
     coeff * incident_ray.x +
-    (coeff * scalaire - sqrt(1 + coeff * coeff * (scalaire * scalaire - 1))) * norm.x;
+    (coeff * scalaire - sqrt(1 + coeff * coeff *
+			     (scalaire * scalaire - 1))) * norm.x;
   refracted_ray.dir.y =
     coeff * incident_ray.y +
-    (coeff * scalaire - sqrt(1 + coeff * coeff * (scalaire * scalaire - 1))) * norm.y;
+    (coeff * scalaire - sqrt(1 + coeff * coeff *
+			     (scalaire * scalaire - 1))) * norm.y;
   refracted_ray.dir.z =
     coeff * incident_ray.z +
-    (coeff * scalaire - sqrt(1 + coeff * coeff * (scalaire * scalaire - 1))) * norm.z;
+    (coeff * scalaire - sqrt(1 + coeff * coeff *
+			     (scalaire * scalaire - 1))) * norm.z;
   refracted_ray.point = point;
   return (refracted_ray);
 }

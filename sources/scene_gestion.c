@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Sun May 31 23:04:24 2015 quentin gasparotto
+** Last update Mon Jun  1 21:24:40 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -49,7 +49,10 @@ int		add_image(t_scene *scene, int render)
     return (-1);
   scene->act_image = elem;
   elem->next = scene->img;
+  if (scene->img != NULL)
+    scene->img->prev = elem;
   scene->img = elem;
+  elem->prev = NULL;
   return (0);
 }
 
@@ -83,6 +86,9 @@ int		add_scene(t_scene **scene, void *mlx)
   elem->img = NULL;
   elem->mlx = mlx;
   elem->next = *scene;
+  elem->prev = NULL;
+  if (*scene != NULL)
+    (*scene)->prev = elem;
   *scene = elem;
   return (0);
 }

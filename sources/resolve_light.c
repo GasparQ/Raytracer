@@ -5,26 +5,35 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Mon Jun  1 13:36:18 2015 quentin gasparotto
+** Last update Mon Jun  1 23:06:19 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void	resolve_brightness(t_object *act_obj, t_spot *act_spot, int limit)
+void		resolve_brightness(t_object *act_obj, t_scene *scene, int limit)
 {
-  int	i;
+  int		i;
+  t_spot	*tmp;
 
-  i = 0;
-  while (i < limit)
+  tmp = scene->spot_list;
+  while (tmp != NULL)
     {
-      if (act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
-	  act_obj->phong.brightness * act_spot->color[i] > 0xFF)
-	act_obj->disp_color[i] = 0xFF;
-      else
-	act_obj->disp_color[i] =
-	  act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
-	  act_obj->phong.brightness * act_spot->color[i];
-      ++i;
+      i = 0;
+      while (i < limit)
+	{
+	  if (act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
+	      act_obj->phong.brightness * tmp->color[i] > 0xFF)
+	    act_obj->disp_color[i] = 0xFF;
+	  else if (act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
+		   act_obj->phong.brightness * tmp->color[i] < 0x00)
+	    act_obj->disp_color[i] = 0x00;
+	  else
+	    act_obj->disp_color[i] =
+	      act_obj->disp_color[i] * (1 - act_obj->phong.brightness) +
+	      act_obj->phong.brightness * tmp->color[i];
+	  ++i;
+	}
+      tmp = tmp->next;
     }
 }
 
@@ -65,7 +74,6 @@ void		resolve_light(t_vector3 isec_point,
 			      t_streight strgt)
 {
   t_vector3	norm;
-  double	intensity;
   t_vector3	use_vectors[3];
 
   act_obj->init(&norm, isec_point, act_obj);
@@ -75,10 +83,7 @@ void		resolve_light(t_vector3 isec_point,
   use_vectors[0] = norm;
   use_vectors[1] = isec_point;
   use_vectors[2] = strgt.dir;
-  intensity = get_intensity(scene, act_obj, use_vectors);
-  if (scene->act_image->render_method == &cell_shade_method)
-    intensity = (1.5 * (int)((10.0 * intensity) / 1.5)) / 10.0;
-  apply_phong(act_obj, intensity, scene);
+  light_solver(use_vectors, scene, act_obj);
   if (act_obj->phong.reflect > F_ZERO && act_obj->effects < 5)
     {
       ++act_obj->effects;
