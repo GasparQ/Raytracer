@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sun May 31 13:55:21 2015 fernand veyrier
+** Last update Mon Jun  1 17:55:43 2015 quentin gasparotto
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -66,6 +66,7 @@ typedef struct	s_parser
 {
   regex_t	regex[30];
   regmatch_t	reg_struct;
+  t_object	*act_list;
   char		*buf;
   int		fd;
   int		level;

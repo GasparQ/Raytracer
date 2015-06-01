@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Sun May 31 22:15:29 2015 fernand veyrier
+** Last update Mon Jun  1 18:01:11 2015 quentin gasparotto
 */
 
 #include "get_next_line.h"
@@ -63,6 +63,8 @@ int		follow_pattern(t_parser *pars, t_system *sys)
 	{
 	  pars->level = (pars->line == 2) ? 0 : pars->level;
 	  pars->level += func[i](sys, pars);
+	  /* if (parse->level == -5) */
+	  /*   return (0); */
 	  if (pars->level < 0)
 	    break;
 	}

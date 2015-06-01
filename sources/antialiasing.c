@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:45:47 2015 quentin gasparotto
-** Last update Mon Jun  1 13:41:15 2015 quentin gasparotto
+** Last update Mon Jun  1 17:14:47 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -18,7 +18,7 @@ int	cmp_colors(unsigned char *color1, unsigned char *color2,
   i = 0;
   while (i < bpp)
     {
-      if (color1[i] + limit < color2[i] || color1[i] > color2[i] + limit)
+      if (ABS(color1[i] - color2[i]) >= limit)
 	return (1);
       ++i;
     }
@@ -83,7 +83,7 @@ void	resolve_antialiased_color(t_image *act_image, t_image *nice_img,
 			   act_image->bpp / 8);
 	  if (i != 4 &&
 	      cmp_colors(nice_img->color, act_image->color,
-			 act_image->bpp / 8, 1))
+			 act_image->bpp / 8, 150))
 	    tell = 1;
 	}
       ++i;
@@ -91,7 +91,8 @@ void	resolve_antialiased_color(t_image *act_image, t_image *nice_img,
   choose_color(act_image, nice_img, pos, tell);
 }
 
-int		antialiasing(t_image *act_image, t_scene *scene)
+int	        resolve_effects(t_image *act_image, t_scene *scene,
+				void (*effect)(t_image *, t_image *, t_vector2))
 {
   t_image       nice_img;
   t_vector2	pos;
@@ -106,7 +107,7 @@ int		antialiasing(t_image *act_image, t_scene *scene)
 	{
 	  init_average(act_image->average, act_image->bpp / 8);
 	  get_pix_color(pos.x, pos.y, *act_image, nice_img.color);
-	  resolve_antialiased_color(act_image, &nice_img, pos);
+	  effect(act_image, &nice_img, pos);
 	  ++pos.x;
 	}
       ++pos.y;

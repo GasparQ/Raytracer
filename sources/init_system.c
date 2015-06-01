@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Mon Jun  1 15:15:06 2015 quentin gasparotto
+** Last update Mon Jun  1 17:17:37 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -55,6 +55,10 @@ void		init_objects(t_system *sys)
 
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
   add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
+
+  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE); */
+  /* add_coord(sys->scene_list->obj_list, (double [6]){200, 0, 0, 0, -90, 0}); */
+  /* add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0}); */
 
   /* /\* add_object((t_vector3 [2]){get_vector3(0, 0, 1000), ORIGIN}, *\/ */
   /* /\* 	     (int [2]){sys->img.bpp / 8, RED}, *\/ */

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun May 31 20:23:28 2015 quentin gasparotto
+** Last update Mon Jun  1 18:12:47 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -45,6 +45,8 @@
 # define ORIGIN		get_vector3(0, 0, 0)
 # define SIMPLE		get_properties(0, 0, 0, 0)
 
+# define ABS(i)		((i) < 0) ? -(i) : (i)
+
 # define UNIT(v)	unit_vec((v))
 
 # define REFLECT(v)	get_reflected_ray(UNIT(norm), (v), isec_point)
@@ -70,6 +72,20 @@ enum			COLORS
   };
 
 /*
+**	duplicate_objects.c
+*/
+
+t_object		*duplicate_obj(t_object *obj_list, int bpp);
+
+/*
+**	effects.c
+*/
+
+void			resolve_cell_shading(t_image *act_image,
+					     t_image *nice_img,
+					     t_vector2 pos);
+
+/*
 **	get_object.c
 */
 
@@ -79,10 +95,19 @@ t_object		*get_object(t_object *obj_list, t_streight *strgt);
 **	antialiasing.c
 */
 
+int			cmp_colors(unsigned char *color1, unsigned char *color2,
+				   int bpp, int limit);
 void			choose_color(t_image *act_image, t_image *copy,
 				     t_vector2 pos, int tell);
-void			add_color_to_avg(unsigned char *color, int *average, int limit);
-int			antialiasing(t_image *act_image, t_scene *scene);
+void			add_color_to_avg(unsigned char *color, int *average,
+					 int limit);
+void			resolve_antialiased_color(t_image *act_image,
+						  t_image *nice_img,
+						  t_vector2 pos);
+int		        resolve_effects(t_image *act_image, t_scene *scene,
+					void (*effect)(t_image *,
+						       t_image *,
+						       t_vector2));
 
 /*
 **	loading_time.c
