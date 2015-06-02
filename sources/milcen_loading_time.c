@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Tue Jun  2 14:49:14 2015 adrien milcent
+** Last update Tue Jun  2 17:15:44 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -15,40 +15,32 @@
 void		loading_time(t_system *sys)
 {
   t_scene	*scene;
-  int   i = 0;
   int   nb_t = 0;
-  int   threadid = 0;
+  int	nb = 0;
 
-  #pragma omp parallel private(threadid)
-  {
-    #pragma omp master
-    {
-      nb_t = omp_get_num_threads();
-      printf("Nombre de core dispo: %d\n", nb_t);
-    }
-    #pragma omp barrier
-    threadid = omp_get_thread_num();
-    #pragma omp critical
-    {
-      printf("Thread %d is ready\n", threadid);
-    }
-  }
-  printf("C'est partit !\n");
-  #pragma omp parallel private(scene)
+  #pragma omp parallel private(nb)
   {
    scene = sys->scene_list;
+   nb = 0;
+   #pragma omp master
+    {
+      nb_t = omp_get_num_threads();
+      printf("Nombre de thread dispo: %d\n", nb_t);
+    }
    while (scene != NULL)
     {
       scene->act_image = scene->img;
       scene->act_eye = scene->eye;
       while (scene->act_image != NULL)
 	{
-	  if (omp_get_thread_num() == 0)
+          nb = omp_get_thread_num();
+	  if (nb == 0)
 	    {
+	      scene->obj_list = duplicate_obj(scene->obj_list, scene->act_image->bpp);
 	      load_image(scene, get_vector2(0, 0),
 			 get_vector2(960, 540));
 	    }
-	  else if (omp_get_thread_num() == 1)
+	  else if (nb == 1)
 	    {
 	      scene->obj_list = duplicate_obj(scene->obj_list, scene->act_image->bpp);
 	      load_image(scene, get_vector2(0, 540),
@@ -83,6 +75,7 @@ void		loading_time(t_system *sys)
 	  }
          #pragma omp barrier
 	}
+      #pragma omp barrier
       #pragma omp master
 	{
           if (scene != NULL)
@@ -90,6 +83,7 @@ void		loading_time(t_system *sys)
 	}
       #pragma omp barrier
     }
+   #pragma omp barrier
   }
   printf("LEL\n");
 }
