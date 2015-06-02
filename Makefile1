@@ -5,11 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-<<<<<<< HEAD:my_make
-## Last update Tue Jun  2 12:44:58 2015 quentin gasparotto
-=======
-## Last update Tue Jun  2 14:08:57 2015 adrien milcent
->>>>>>> a44bf26645ff07d0063b4cbce336a2bf0cf8767f:Makefile
+## Last update Mon Jun  1 21:58:17 2015 quentin gasparotto
 ##
 
 CC=	gcc -g -fopenmp
@@ -74,13 +70,12 @@ SRCS=	./sources/rtracer.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
-	./sources/milcen_loading_time.c \
+	./sources/loading_time.c \
 	./sources/antialiasing.c \
 	./sources/get_object.c \
 	./sources/effects.c \
 	./sources/duplicate_objects.c \
 	./sources/make_action.c \
-	./sources/strgt_inc.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

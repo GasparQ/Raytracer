@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+/*
+** loading_time.c for function for the load of each eyes in each scenes in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
+**
+** Made by quentin gasparotto
+** Login   <gaspar_q@epitech.net>
+**
+** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
+** Last update Tue Jun  2 14:09:36 2015 adrien milcent
+*/
+
+>>>>>>> a44bf26645ff07d0063b4cbce336a2bf0cf8767f
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
