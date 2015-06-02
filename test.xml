@@ -2,8 +2,13 @@
 <scene>
 
   <eye>
-    position = (-500,0,100)
+    position = (-30,0,50)
     rotation = (0,0,0)
+    distance = 500
+  </eye>
+  <eye>
+    position = (-30,100,50)
+    rotation = (0,0,-45)
     distance = 500
   </eye>
   <spot>
@@ -24,6 +29,27 @@
     <mesh type="sphere">
       radius = 50
     </mesh>
+    <coord>
+      position = (200,0,50)
+      rotation = (0,0,0)
+    </coord>
+  </object>
+
+  <object color="0x0000FF00">
+    <mesh type="holedcube">
+      cote = 10
+      hole = 42.8
+    </mesh>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
     <coord>
       position = (0,0,50)
       rotation = (0,0,0)

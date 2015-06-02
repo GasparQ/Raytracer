@@ -5,19 +5,19 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Jun  1 18:02:09 2015 quentin gasparotto
-** Last update Mon Jun  1 21:26:28 2015 quentin gasparotto
+** Last update Tue Jun  2 14:49:32 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_end_obj(t_object **obj_list, t_object obj, int bpp)
+int		add_end_obj(t_object **obj_list, t_object *obj, int bpp)
 {
   t_object	*elem;
   t_object	*tmp;
 
   if ((elem = malloc(sizeof(*elem))) == NULL)
     return (-1);
-  *elem = obj;
+  *elem = *obj;
   elem->next = NULL;
   if ((elem->disp_color = malloc(bpp / 8)) == NULL)
     return (-1);
@@ -40,7 +40,7 @@ t_object	*duplicate_obj(t_object *obj_list, int bpp)
   new = NULL;
   while (obj_list != NULL)
     {
-      if (add_end_obj(&new, *obj_list, bpp) == -1)
+      if (add_end_obj(&new, obj_list, bpp) == -1)
 	return (NULL);
       obj_list = obj_list->next;
     }

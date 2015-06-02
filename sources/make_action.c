@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Jun  1 21:12:02 2015 quentin gasparotto
-** Last update Mon Jun  1 21:34:23 2015 quentin gasparotto
+** Last update Tue Jun  2 14:24:03 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -19,13 +19,19 @@ void	exit_ray_tracer(t_system *sys)
 void	next_scene(t_system *sys)
 {
   if (sys->act_scene->next != NULL)
-    sys->act_scene = sys->act_scene->next;
+    {
+      sys->act_scene = sys->act_scene->next;
+      sys->act_scene->act_image = sys->act_scene->img;
+    }
 }
 
 void	prev_scene(t_system *sys)
 {
   if (sys->act_scene->prev != NULL)
-    sys->act_scene = sys->act_scene->prev;
+    {
+      sys->act_scene = sys->act_scene->prev;
+      sys->act_scene->act_image = sys->act_scene->img;
+    }
 }
 
 void	next_img(t_system *sys)

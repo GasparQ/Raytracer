@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Mon Jun  1 15:16:12 2015 quentin gasparotto
+** Last update Tue Jun  2 09:53:55 2015 quentin gasparotto
 */
 
 #include "get_next_line.h"
@@ -66,7 +66,7 @@ int		mesh_tore(t_system *sys, t_parser *pars)
 
   params[0] = 0;
   params[1] = 0;
-  if (regcomp(&regex[1], "[[:space:]]*radius_in[[:space:]]*\
+  if (regcomp(&regex[0], "[[:space:]]*radius_in[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
       || regcomp(&regex[1], "[[:space:]]*radius_out[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))
@@ -74,9 +74,9 @@ int		mesh_tore(t_system *sys, t_parser *pars)
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
     {
-      if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
-	params[0] = get_double_parser(pars->buf);
       if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
+	params[0] = get_double_parser(pars->buf);
+      if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
 	params[1] = get_double_parser(pars->buf);
     }
   printf("Add mesh tore\n");
@@ -90,7 +90,7 @@ int		mesh_holedcube(t_system *sys, t_parser *pars)
 
   params[0] = 0;
   params[1] = 0;
-  if (regcomp(&regex[1], "[[:space:]]*cote[[:space:]]*\
+  if (regcomp(&regex[0], "[[:space:]]*cote[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
       || regcomp(&regex[1], "[[:space:]]*hole[[:space:]]*\
 =[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))

@@ -5,17 +5,10 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Mon Jun  1 23:02:49 2015 quentin gasparotto
+** Last update Tue Jun  2 12:45:10 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
-
-void	init_streight(t_streight *strgt, double dist, int x, int y)
-{
-  strgt->dir.x = dist;
-  strgt->dir.y = WDW_WIDTH / 2.0 - (double)x;
-  strgt->dir.z = WDW_HEIGHT / 2.0 - (double)y;
-}
 
 void		cell_shade_method(void *send_scene, t_vector2 pos,
 				  t_streight strgt)
@@ -29,14 +22,15 @@ void	        antialias_method(void *send_scene, t_vector2 pos,
   int		i;
   t_object	*final_obj;
   t_scene	*scene;
+  t_vector3	save_point;
 
+  save_point = strgt.point;
   scene = (t_scene *)send_scene;
   init_average(scene->act_image->average, scene->act_image->bpp / 8);
   i = -1;
   while (++i < 9)
     {
-      strgt.dir.y += (i % 3) * 0.25;
-      strgt.dir.z += (i / 3) * 0.25;
+      increment_strgt(&strgt, save_point, i);
       final_obj = get_object(scene->obj_list, &strgt);
       if (final_obj != NULL)
 	{

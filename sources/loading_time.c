@@ -1,13 +1,3 @@
-/*
-** loading_time.c for function for the load of each eyes in each scenes in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-**
-** Made by quentin gasparotto
-** Login   <gaspar_q@epitech.net>
-**
-** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Mon Jun  1 22:42:10 2015 quentin gasparotto
-*/
-
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
@@ -16,6 +6,7 @@ void		loading_time(t_system *sys)
   t_scene	*scene;
 
   scene = sys->scene_list;
+  duplicate_obj(sys->scene_list->obj_list, sys->scene_list->img->bpp);
   while (scene != NULL)
     {
       scene->act_image = scene->img;

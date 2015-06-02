@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Mon Jun  1 23:06:38 2015 quentin gasparotto
+** Last update Tue Jun  2 12:44:36 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -70,6 +70,15 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	strgt_inc.c
+*/
+
+void			increment_strgt(t_streight *strgt,
+					t_vector3 save, int i);
+void			init_streight(t_streight *strgt, double dist,
+				      int x, int y);
 
 /*
 **	make_action.c
