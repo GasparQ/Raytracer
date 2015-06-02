@@ -5,12 +5,12 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Jun  2 14:55:17 2015 quentin gasparotto
-** Last update Tue Jun  2 15:55:09 2015 quentin gasparotto
+** Last update Tue Jun  2 17:23:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void	write_integer(int fd, int value)
+void	write_integer(int fd, unsigned int value)
 {
   char	value_buff[4];
 
@@ -51,10 +51,26 @@ int	get_file()
 int	export_bmp(t_image *exp_img)
 {
   int	fd;
+  char	tu;
 
   if ((fd = get_file()) == -1)
     return (-1);
   write(fd, "BM", 2);
+  write_integer(fd, 200); /* file size */
+  write_integer(fd, 0);
+  write_integer(fd, 0); /* offset */
+  write(fd, "28", 2); /* header size */
+  write_integer(fd, WDW_WIDTH);
+  write_integer(fd, WDW_HEIGHT);
+  write(fd, "\x0\x1", 2);
+  write_integer(fd, exp_img->bpp);
+  write_integer(fd, 0); /* mode de compression */
+  write_integer(fd, WDW_WIDTH * WDW_HEIGHT * exp_img->bpp / 8);
+  write_integer(fd, WDW_WIDTH);
+  write_integer(fd, WDW_HEIGHT);
+  write_integer(fd, 4228250625);
+  write_integer(fd, 0);
+  write(fd, exp_img, WDW_WIDTH * WDW_HEIGHT * exp_img->bpp / 8);
   close(fd);
   return (0);
 }
