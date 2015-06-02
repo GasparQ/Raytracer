@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Tue Jun  2 17:35:11 2015 quentin gasparotto
+** Last update Tue Jun  2 17:40:17 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -18,13 +18,13 @@ void	init_action(int *keycode_act, void (*act[5])(t_system *))
   keycode_act[2] = LEFT;
   keycode_act[3] = RIGHT;
   keycode_act[4] = ESCAPE;
-  keycode_act[5] = 115
+  keycode_act[5] = 115;
   act[0] = &next_scene;
   act[1] = &prev_scene;
   act[2] = &next_img;
   act[3] = &prev_img;
   act[4] = &exit_ray_tracer;
-  act[5] = ;
+  //act[5] = ;
 }
 
 int	key_gestion(int keycode, t_system *sys)
