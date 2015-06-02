@@ -1,12 +1,3 @@
-##
-## Makefile for raytracer makefile in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-## 
-## Made by quentin gasparotto
-## Login   <gaspar_q@epitech.net>
-## 
-## Started on  Tue Jun  2 14:52:53 2015 quentin gasparotto
-## Last update Tue Jun  2 14:53:23 2015 quentin gasparotto
-##
 
 CC=	gcc -g -fopenmp
 
@@ -70,7 +61,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
-	./sources/milcen_loading_time.c \
+	./sources/loading_time.c \
 	./sources/antialiasing.c \
 	./sources/get_object.c \
 	./sources/effects.c \

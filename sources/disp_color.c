@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Tue Jun  2 12:45:10 2015 quentin gasparotto
+** Last update Tue Jun  2 15:03:19 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -67,7 +67,7 @@ void		basic_method(void *send_scene, t_vector2 pos, t_streight strgt)
 			scene->act_image->color, scene->act_image);
 }
 
-void	disp_color(t_scene *scene, int x, int y)
+void		disp_color(t_scene *scene, int x, int y)
 {
   t_streight	strgt;
 
