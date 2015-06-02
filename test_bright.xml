@@ -16,6 +16,7 @@
   <object color="0x00FFFFFF">
     <coord>
       position = (0,0,100)
+      rotation = (0,0,0)
     </coord>
     <mesh type="sphere">
       radius = 100
@@ -31,4 +32,16 @@
       reflection = 0
     </phong>
   </object>
+
+  <object color="0x00FFFFFF">
+    <coord>
+      position = (200,0,0)
+      rotation = (0,0,0)
+    </coord>
+    <mesh type="plane">
+      normal = (-1,0,0)
+      cte = 0
+    </mesh>
+  </object>
+
 </scene>

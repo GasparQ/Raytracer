@@ -5,31 +5,19 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Jun  2 14:55:17 2015 quentin gasparotto
-** Last update Tue Jun  2 20:00:56 2015 quentin gasparotto
+** Last update Tue Jun  2 22:58:44 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void		write_integer(int fd, unsigned int value/* , int mode */)
+void		write_integer(int fd, unsigned int value)
 {
   unsigned char	value_buff[4];
-  int		i;
 
-  /* if (mode == 1) */
-  /*   { */
-      /* printf("%d %x\n", value, value); */
   value_buff[3] = (int)(value / pow(256, 3)) % 256;
   value_buff[2] = (int)(value / pow(256, 2)) % 256;
   value_buff[1] = (int)(value / 256) % 256;
   value_buff[0] = value % 256;
-    /* } */
-  /* else */
-  /*   { */
-  /*     value_buff[0] = (int)(value / pow(255, 3)) % 255; */
-  /*     value_buff[1] = (int)(value / pow(255, 2)) % 255; */
-  /*     value_buff[2] = (int)(value / 255) % 255; */
-  /*     value_buff[3] = value % 255; */
-  /*   } */
   write(fd, value_buff, 4);
 }
 
@@ -60,29 +48,46 @@ int	get_file()
   return (fd);
 }
 
-int	write_img(t_image *exp_img, int fd)
+void	write_color(t_image *exp_img, int x, int y, int fd)
+{
+  int	i;
+
+  if (exp_img->edn == 1)
+    {
+      i = 3;
+      while (i > 0)
+	{
+	  write(fd, &exp_img->dat[(WDW_HEIGHT - y) * exp_img->wdth +
+				  x * 4 + i], 1);
+	  --i;
+	}
+    }
+  else
+    {
+      i = 0;
+      while (i < 3)
+	{
+	  write(fd, &exp_img->dat[(WDW_HEIGHT - y) * exp_img->wdth +
+				  x * 4 + i], 1);
+	  ++i;
+	}
+    }
+}
+
+void	write_img(t_image *exp_img, int fd)
 {
   int	y;
   int	x;
-  int	i;
-  int	wr;
 
   y = 0;
   while (y < WDW_HEIGHT)
     {
-      wr = 0;
       x = 0;
-      while (x < WDW_WIDTH * 4)
+      while (x < WDW_WIDTH)
 	{
-	  if (x % 4 != ((exp_img->edn == 1) ? 0 : 3))
-	    {
-	      write(fd, &exp_img->dat[y * exp_img->hght + x * exp_img->wdth], 1);
-	      ++wr;
-	    }
+	  write_color(exp_img, x, y, fd);
 	  ++x;
 	}
-      //printf("%d\n", wr);
-      //write(fd, "\x0\x0\x0", 3);
       ++y;
     }
 }
@@ -90,38 +95,27 @@ int	write_img(t_image *exp_img, int fd)
 int	export_bmp(t_image *exp_img)
 {
   int	fd;
-  unsigned char	tu;
-  unsigned char	bp[2];
 
+  if (exp_img->bpp != 32)
+    return (0);
   if ((fd = get_file()) == -1)
     return (-1);
-
   write(fd, "BM", 2);
-  write_integer(fd, 2 + 4 + 4 + 4 + 2 + 4 + 4 + 2 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + WDW_WIDTH * WDW_HEIGHT * 3/* exp_img->bpp / 8 *//* , 0 */); /* file size */
-  write_integer(fd, 0/* , 0 */); /* réserver pour rien */
-  write_integer(fd, 54/* , 1 */); /* offset */
-
-  write(fd, "(\x0\x0\x0", 4); /* header size */
-  write_integer(fd, WDW_WIDTH/* , 0 */); /* width */
-  write_integer(fd, WDW_HEIGHT/* , 0 */); /* height */
-  write(fd, "\x1\x0", 2); /* img head size */
+  write_integer(fd, 54 + WDW_WIDTH * WDW_HEIGHT * 3);
+  write_integer(fd, 0);
+  write_integer(fd, 54);
+  write(fd, "(\x0\x0\x0", 4);
+  write_integer(fd, WDW_WIDTH);
+  write_integer(fd, WDW_HEIGHT);
+  write(fd, "\x1\x0", 2);
   write(fd, "\x18\x0", 2);
-  /* bp[0] = (24/\* exp_img->bpp *\/ / 255) % 255; */
-  /* bp[1] = 24/\* exp_img->bpp *\/ % 255; */
-  /* write(fd, bp, 2); /\* bpp *\/ */
-  write_integer(fd, 0/* , 0 */); /* mode de compression */
-  write_integer(fd, WDW_WIDTH * WDW_HEIGHT * 3/* exp_img->bpp / 8 *//* , 0 */); /* img size */
-  write_integer(fd, 0/* , 0 */);
-  write_integer(fd, 0/* , 0 */);
-  write_integer(fd, 0/* , 0 */);
-  write_integer(fd, 0/* , 0 */);
+  write_integer(fd, 0);
+  write_integer(fd, WDW_WIDTH * WDW_HEIGHT * 3);
+  write_integer(fd, 0);
+  write_integer(fd, 0);
+  write_integer(fd, 0);
+  write_integer(fd, 0);
   write_img(exp_img, fd);
-  //write(fd, exp_img, WDW_WIDTH * WDW_HEIGHT * exp_img->bpp / 8);
   close(fd);
   return (0);
 }
-
-/* int	main() */
-/* { */
-/*   export_bmp(NULL); */
-/* } */
