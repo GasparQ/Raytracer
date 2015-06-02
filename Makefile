@@ -1,15 +1,11 @@
 ##
-## Makefile for rtv1 makefile in /home/gaspar_q/rendu/Igraph/MUL_2014_rtv1
+## Makefile for raytracer makefile in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
 ## 
 ## Made by quentin gasparotto
 ## Login   <gaspar_q@epitech.net>
 ## 
-## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-<<<<<<< HEAD:my_make
-## Last update Tue Jun  2 12:44:58 2015 quentin gasparotto
-=======
-## Last update Tue Jun  2 14:08:57 2015 adrien milcent
->>>>>>> a44bf26645ff07d0063b4cbce336a2bf0cf8767f:Makefile
+## Started on  Tue Jun  2 14:52:53 2015 quentin gasparotto
+## Last update Tue Jun  2 14:53:23 2015 quentin gasparotto
 ##
 
 CC=	gcc -g -fopenmp

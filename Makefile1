@@ -1,12 +1,3 @@
-##
-## Makefile for rtv1 makefile in /home/gaspar_q/rendu/Igraph/MUL_2014_rtv1
-## 
-## Made by quentin gasparotto
-## Login   <gaspar_q@epitech.net>
-## 
-## Started on  Tue Feb  3 16:08:16 2015 quentin gasparotto
-## Last update Mon Jun  1 21:58:17 2015 quentin gasparotto
-##
 
 CC=	gcc -g -fopenmp
 
@@ -76,6 +67,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/effects.c \
 	./sources/duplicate_objects.c \
 	./sources/make_action.c \
+	./sources/strgt_inc.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\
