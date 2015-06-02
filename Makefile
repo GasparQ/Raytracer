@@ -67,7 +67,9 @@ SRCS=	./sources/rtracer.c \
 	./sources/effects.c \
 	./sources/duplicate_objects.c \
 	./sources/make_action.c \
+	./sources/make_action_next.c \
 	./sources/strgt_inc.c \
+	./sources/export_bmp.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:00:16 2015 quentin gasparotto
-** Last update Mon Jun  1 23:06:32 2015 quentin gasparotto
+** Last update Tue Jun  2 18:48:47 2015 quentin gasparotto
 */
 
 #include "prototypes.h"
@@ -50,7 +50,6 @@ void	apply_phong(t_object *touch, double intensity, t_scene *scene)
 {
   int	rank;
 
-  get_color(touch->obj_color, touch->disp_color, scene);
   rank = 0;
   while (rank < scene->act_image->bpp / 8)
     {
@@ -75,6 +74,7 @@ double		get_intensity(t_scene *scene, t_object *touch,
 
   sums[0] = 0;
   sums[1] = 0;
+  get_color(touch->obj_color, touch->disp_color, scene);
   tmp = scene->spot_list;
   while (tmp != NULL)
     {
@@ -87,6 +87,7 @@ double		get_intensity(t_scene *scene, t_object *touch,
 			      use_vectors[1]);
       sums[1] += intensity * pow(get_vec_cos(ref.dir, use_vectors[2]),
 				 touch->phong.spe_rad);
+      resolve_brightness(touch, scene, scene->act_image->bpp / 8);
       tmp = tmp->next;
     }
   return (touch->phong.ambiant + touch->phong.diffuse * sums[0] +

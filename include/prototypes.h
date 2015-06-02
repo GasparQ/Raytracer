@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Tue Jun  2 12:44:36 2015 quentin gasparotto
+** Last update Tue Jun  2 17:56:43 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -72,6 +72,12 @@ enum			COLORS
   };
 
 /*
+**	export_bmp.c
+*/
+
+int			export_bmp(t_image *exp_img);
+
+/*
 **	strgt_inc.c
 */
 
@@ -79,6 +85,12 @@ void			increment_strgt(t_streight *strgt,
 					t_vector3 save, int i);
 void			init_streight(t_streight *strgt, double dist,
 				      int x, int y);
+
+/*
+**	make_action_next.c
+*/
+
+void			save_file(t_system *sys);
 
 /*
 **	make_action.c

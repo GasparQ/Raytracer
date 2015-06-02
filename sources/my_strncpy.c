@@ -5,12 +5,12 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Mar 21 11:09:34 2015 quentin gasparotto
-** Last update Sat Mar 21 11:15:55 2015 quentin gasparotto
+** Last update Tue Jun  2 18:04:40 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void	my_strncpy(char *src, char *dest, int n)
+int	my_strncpy(char *src, char *dest, int n)
 {
   int	rank;
 
@@ -20,4 +20,5 @@ void	my_strncpy(char *src, char *dest, int n)
       dest[rank] = src[rank];
       rank = rank + 1;
     }
+  return (0);
 }
