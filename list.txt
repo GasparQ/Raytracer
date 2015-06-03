@@ -1,2 +1,3 @@
-img_1.bmp
-img_2.bmp
+img_4.bmp
+img_5.bmp
+img_6.bmp

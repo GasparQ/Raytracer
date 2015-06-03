@@ -2,9 +2,10 @@
   $ftp_server = "ftp.jean-barriere.fr";
   $user = "jean-barriere.fr";
   $pass = "i57Zc15Fm9";
-  $path = "/raytracer/";
-  $list = "list.txt";
-  $link = "http://raytracer.jean-barriere.fr/";
+  $path = "/raytracer/img";
+  $pathlist = "/raytracer";
+  $list = "../list.txt";
+  $link = "http://raytracer.jean-barriere.fr/img/";
   $out = ".tmp_list.txt";
 
   $id = ftp_connect($ftp_server, "21") or die("Impossible de se connecter au serveur $ftp_server");
@@ -26,6 +27,7 @@
 	}
       }
       fclose($fd);
+      ftp_chdir($id, $pathlist);
       if (ftp_put($id, "list.txt", $out, FTP_BINARY)) {
         echo "list.txt uploaded with success\n";
       } else {
