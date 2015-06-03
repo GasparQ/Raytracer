@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Sat May 30 15:11:32 2015 quentin gasparotto
+** Last update Wed Jun  3 11:02:46 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -21,5 +21,7 @@ void		add_object(t_object **obj_list, int size, int color)
   new_obj.rotation = ORIGIN;
   add_phong(&new_obj, (double [8]){0.2, 1, 0, 0, 0, 0, 0, 0});
   new_obj.limit = NULL;
+  new_obj.apply_texture = NULL;
+  new_obj.texture = NULL;
   my_put_in_list(obj_list, new_obj);
 }

@@ -70,6 +70,9 @@ SRCS=	./sources/rtracer.c \
 	./sources/make_action_next.c \
 	./sources/strgt_inc.c \
 	./sources/export_bmp.c \
+	./sources/load_texture.c \
+	./sources/add_texture.c \
+	./sources/obj_texture.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

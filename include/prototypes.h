@@ -5,12 +5,13 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Tue Jun  2 17:56:43 2015 quentin gasparotto
+** Last update Wed Jun  3 11:37:15 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
 # define SYS_LIBX_H_
 
+# include		<sys/types.h>
 # include		<stdlib.h>
 # include		<math.h>
 # include		<mlx.h>
@@ -70,6 +71,26 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	add_texture.c
+*/
+
+int			add_texture(t_object *obj, char *filename, void *mlx);
+
+/*
+**	obj_texture.c
+*/
+
+void			text_to_sphere(t_vector3 isec_point, t_object *touch,
+				       void *scene);
+
+/*
+**	load_texture.c
+*/
+
+int			load_texture(t_image *text, char *filename, void *mlx);
+size_t			strlcpy(char *dst, char *src, size_t dstsize);
 
 /*
 **	export_bmp.c

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Mon Jun  1 23:06:19 2015 quentin gasparotto
+** Last update Wed Jun  3 11:33:22 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -76,6 +76,7 @@ void		resolve_light(t_vector3 isec_point,
   t_vector3	norm;
   t_vector3	use_vectors[3];
 
+  act_obj->apply_texture(isec_point, act_obj, scene);
   act_obj->init(&norm, isec_point, act_obj);
   rotate_coord(&norm, act_obj->rotation);
   rotate_coord(&isec_point, act_obj->rotation);

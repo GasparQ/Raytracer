@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Feb 13 19:13:11 2015 quentin gasparotto
-** Last update Tue May 26 21:52:42 2015 quentin gasparotto
+** Last update Wed Jun  3 11:26:32 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -21,5 +21,6 @@ int		add_sphere(t_object *act_obj, double *mesh_prop)
   act_obj->init = &init_sphere_norm;
   obj_sphere->radius = *mesh_prop;
   act_obj->mesh.sphere = obj_sphere;
+  act_obj->apply_texture = &text_to_sphere;
   return (CLEAN);
 }

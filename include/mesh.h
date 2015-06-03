@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Mon Jun  1 21:21:01 2015 quentin gasparotto
+** Last update Wed Jun  3 11:36:59 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -120,31 +120,6 @@ typedef struct		s_phong
   double	        reflect;
 }			t_phong;
 
-typedef struct		s_object
-{
-  int			effects;
-  int			rev_norm;
-  t_vector3		origin;
-  t_vector3		rotation;
-  int			obj_color;
-  unsigned char		*disp_color;
-  t_phong		phong;
-  t_mesh		mesh;
-  double		(*shape_resolver)(t_streight, struct s_object *);
-  void			(*free_mesh)(t_mesh);
-  void			(*init)(t_vector3 *, t_vector3, struct s_object *);
-  struct s_object	*limit;
-  struct s_object	*next;
-}			t_object;
-
-typedef struct		s_spot
-{
-  t_vector3		origin;
-  unsigned char		*color;
-  double		i;
-  struct s_spot		*next;
-}			t_spot;
-
 typedef struct		s_image
 {
   void			*img;
@@ -159,6 +134,33 @@ typedef struct		s_image
   struct s_image	*prev;
   struct s_image	*next;
 }			t_image;
+
+typedef struct		s_object
+{
+  int			effects;
+  int			rev_norm;
+  t_vector3		origin;
+  t_vector3		rotation;
+  int			obj_color;
+  unsigned char		*disp_color;
+  t_phong		phong;
+  t_mesh		mesh;
+  t_image		*texture;
+  void			(*apply_texture)(t_vector3, struct s_object *, void *);
+  double		(*shape_resolver)(t_streight, struct s_object *);
+  void			(*free_mesh)(t_mesh);
+  void			(*init)(t_vector3 *, t_vector3, struct s_object *);
+  struct s_object	*limit;
+  struct s_object	*next;
+}			t_object;
+
+typedef struct		s_spot
+{
+  t_vector3		origin;
+  unsigned char		*color;
+  double		i;
+  struct s_spot		*next;
+}			t_spot;
 
 typedef struct		s_scene
 {

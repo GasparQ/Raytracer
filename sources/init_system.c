@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Mon Jun  1 22:54:12 2015 quentin gasparotto
+** Last update Wed Jun  3 13:10:13 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -43,15 +43,24 @@ void		init_objects(t_system *sys)
   add_sphere(sys->scene_list->obj_list, (double [1]){75});
 }
 
+void	test_texture(t_system *sys)
+{
+  sys->scene_list->obj_list = NULL;
+  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
+  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 0, 45, 45, 90});
+  add_sphere(sys->scene_list->obj_list, (double [1]){100});
+  add_texture(sys->scene_list->obj_list, "sun_max.xpm", sys->scene_list->mlx);
+}
+
 int		init_spot(t_system *sys)
 {
   sys->scene_list->spot_list = NULL;
-  if (add_spot(sys->scene_list, get_vector3(-200.0, -200.0, 500.0),
-	       WHITE, 0.6) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-200.0, -200.0, 200.0),
+	       WHITE, 1) == ERROR)
     return (ERROR);
-  if (add_spot(sys->scene_list, get_vector3(-200.0, 200.0, 500.0),
-	       BLUE, 0.1) == ERROR)
-    return (ERROR);
+  /* if (add_spot(sys->scene_list, get_vector3(200.0, -200.0, -200.0), */
+  /* 	       WHITE, 1) == ERROR) */
+  /*   return (ERROR); */
   sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
 }
@@ -65,18 +74,19 @@ int	init_system(t_system *sys, char *file)
     {
       if (add_scene(&sys->scene_list, sys->mlx) == -1)
 	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-		  ORIGIN, (double [2]){500, 0}) == -1)
-	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-		  ORIGIN, (double [2]){500, 1}) == -1)
-	return (-1);
+      /* if (add_eye(sys->scene_list, get_vector3(-600, 0, 150), */
+      /* 		  ORIGIN, (double [2]){500, 0}) == -1) */
+      /* 	return (-1); */
+      /* if (add_eye(sys->scene_list, get_vector3(-600, 0, 150), */
+      /* 		  ORIGIN, (double [2]){500, 1}) == -1) */
+      /* 	return (-1); */
       if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
 		  ORIGIN, (double [2]){500, 2}) == -1)
 	return (-1);
       sys->scene_list->act_eye = sys->scene_list->eye;
       sys->scene_list->act_image = sys->scene_list->img;
-      init_objects(sys);
+      /* init_objects(sys); */
+      test_texture(sys);
       init_spot(sys);
     }
   else if (get_objects(sys, file) != 0)
