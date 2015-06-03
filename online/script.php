@@ -11,8 +11,15 @@
   $id = ftp_connect($ftp_server, "21") or die("Impossible de se connecter au serveur $ftp_server");
   if (ftp_login($id, $user, $pass))
     {
-      ftp_chdir($id, $path);
       ftp_pasv($id, true);
+      $filelist = ftp_nlist($id, $path);
+      foreach($filelist as $file) {
+        if (strcmp($file, ".") != 0 && strcmp($file, "..") != 0)
+          ftp_delete($id, $path . "/" . $file);
+      }
+      ftp_rmdir($id, $path);
+      ftp_mkdir($id, $path);
+      ftp_chdir($id, $path);
       $fd = fopen('list.txt', 'r');
       $fdout = fopen($out, 'w');
       while (!feof($fd)) {
