@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Wed Jun  3 18:12:41 2015 quentin gasparotto
+** Last update Wed Jun  3 18:25:33 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -37,9 +37,9 @@ int	key_gestion(int keycode, t_system *sys)
 
   init_action(keycode_action, act);
   i = 0;
-  while (i < 6 && keycode_action[i] != keycode)
+  while (i < 7 && keycode_action[i] != keycode)
     ++i;
-  if (i < 6)
+  if (i < 7)
     act[i](sys);
   if (i < 4)
     mlx_put_image_to_window(sys->mlx, sys->wdw,
