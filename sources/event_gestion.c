@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Tue Jun  2 17:51:51 2015 quentin gasparotto
+** Last update Wed Jun  3 14:41:40 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -34,7 +34,6 @@ int	key_gestion(int keycode, t_system *sys)
   int	i;
 
   init_action(keycode_action, act);
-  printf("%d\n", keycode);
   i = 0;
   while (i < 6 && keycode_action[i] != keycode)
     ++i;
