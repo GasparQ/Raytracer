@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:06 2015 quentin gasparotto
-** Last update Wed May 27 10:35:53 2015 quentin gasparotto
+** Last update Wed Jun  3 16:32:04 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -21,5 +21,6 @@ int		add_cylinder(t_object *act_obj, double *mesh_prop)
   act_obj->init = &init_cylinder_norm;
   obj_cylinder->radius = mesh_prop[0];
   act_obj->mesh.cylinder = obj_cylinder;
+  act_obj->apply_texture = &text_to_cylinder;
   return (CLEAN);
 }

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Wed Jun  3 11:37:15 2015 quentin gasparotto
+** Last update Wed Jun  3 17:04:12 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -82,8 +82,14 @@ int			add_texture(t_object *obj, char *filename, void *mlx);
 **	obj_texture.c
 */
 
-void			text_to_sphere(t_vector3 isec_point, t_object *touch,
-				       void *scene);
+void			text_to_cone(t_vector3 isec_point, t_vector3 norm,
+				     t_object *touch, void *send_scene);
+void			text_to_cylinder(t_vector3 isec_point, t_vector3 norm,
+					 t_object *touch, void *send_scene);
+void			text_to_plane(t_vector3 isec_point, t_vector3 norm,
+				      t_object *touch, void *send_scene);
+void			text_to_sphere(t_vector3 isec_point, t_vector3 norm,
+				       t_object *touch, void *scene);
 
 /*
 **	load_texture.c
@@ -416,6 +422,7 @@ void			add_object(t_object **obj_list, int size, int color);
 **	get_vectors.c
 */
 
+t_vector3		get_positive_point(t_vector3 point);
 t_vector3		get_vec_from_points(t_vector3 a_point,
 					    t_vector3 b_point);
 t_vector3		get_vector3(double x, double y, double z);

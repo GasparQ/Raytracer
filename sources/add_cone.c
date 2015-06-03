@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:51:50 2015 quentin gasparotto
-** Last update Wed May 27 10:50:03 2015 quentin gasparotto
+** Last update Wed Jun  3 17:03:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -21,5 +21,6 @@ int		add_cone(t_object *act_obj, double *mesh_prop)
   act_obj->init = &init_cone_norm;
   obj_cone->phi = mesh_prop[0];
   act_obj->mesh.cone = obj_cone;
+  act_obj->apply_texture = &text_to_cone;
   return (CLEAN);
 }

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Mar  6 16:46:42 2015 quentin gasparotto
-** Last update Thu May 28 12:49:40 2015 quentin gasparotto
+** Last update Wed Jun  3 15:24:55 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -23,9 +23,9 @@ void	init_plan_norm(t_vector3 *plan_norm,
 {
   (void)isec_point;
   (void)obj;
-  plan_norm->x = 0.0;
-  plan_norm->y = 0.0;
-  plan_norm->z = 100.0;
+  plan_norm->x = obj->mesh.plan->norm.x;
+  plan_norm->y = obj->mesh.plan->norm.y;
+  plan_norm->z = obj->mesh.plan->norm.z;
 }
 
 void	init_cylinder_norm(t_vector3 *cylinder_norm,
