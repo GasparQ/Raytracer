@@ -5,12 +5,14 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Wed Jun  3 17:04:12 2015 quentin gasparotto
+** Last update Wed Jun  3 18:12:57 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
 # define SYS_LIBX_H_
 
+# include		<sys/wait.h>
+# include		<unistd.h>
 # include		<sys/types.h>
 # include		<stdlib.h>
 # include		<math.h>
@@ -28,6 +30,10 @@
 # define MLX_FAIL	"Minilib X loading fail\n"
 # define WDW_FAIL	"Window loading fail\n"
 # define ENV_FAIL	"No environment\n"
+
+#define ERR_OPEN	"Error: cannot open() file\n"
+#define ERR_MLOC	"Error: cannot perform malloc\n"
+#define USAGE		"usage : ./wr_file FILE LINE APPEND ? (0:TRUC 1:APPEND)\n"
 
 # define F_ZERO		0.00001
 
@@ -71,6 +77,13 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	file.c
+*/
+
+int			write_file(char *file, char *name);
+int			put_to_server();
 
 /*
 **	add_texture.c
@@ -117,6 +130,7 @@ void			init_streight(t_streight *strgt, double dist,
 **	make_action_next.c
 */
 
+void			send_to_server(t_system *sys);
 void			save_file(t_system *sys);
 
 /*

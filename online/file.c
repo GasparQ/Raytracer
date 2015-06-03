@@ -5,26 +5,10 @@
 ** Login   <barrie_j@epitech.net>
 **
 ** Started on  Wed Jun  3 17:00:54 2015 Jean BARRIERE
-** Last update Wed Jun  3 17:59:23 2015 Jean BARRIERE
+** Last update Wed Jun  3 18:10:43 2015 quentin gasparotto
 */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-
-
-
-#define ERR_OPEN	"Error: cannot open() file\n"
-#define ERR_MLOC	"Error: cannot perform malloc\n"
-#define USAGE		"usage : ./wr_file FILE LINE APPEND ? (0:TRUC 1:APPEND)\n"
-
-
-
-
-
+#include "../include/prototypes.h"
 
 int	put_msg(int out, char *str, int ret)
 {
@@ -39,12 +23,6 @@ void	*put_msg_ptr(int out, char *str, void *ret)
     return (NULL);
   return (ret);
 }
-
-
-
-
-
-
 
 char	*add_endl(char *str, int free_str)
 {
@@ -68,35 +46,34 @@ char	*add_endl(char *str, int free_str)
   return (ret);
 }
 
-/* CALL write_file for each bmp image */
-
 /*
 ** WRITE FILE -> FILE = 'list.txt'
 **            -> NAME = 'img.bmp'
 **            -> APPEND = 0 SI TRUNC ET 1 SI APPEND
 */
-
-int	write_file(char *file, char *name, int append)
+int	write_file(char *file, char *name)
 {
   int	fd;
   int	flags;
 
-  name = add_endl(name, 0);
-  flags = O_CREAT | O_RDWR | (append == 0 ? O_TRUNC : O_APPEND);
-  if ((fd = open(file, flags, 0666)) == -1)
-    return (put_msg(2, ERR_OPEN, 0));
-  if (write(fd, name, my_strlen(name)) <= 0)
-    return (put_msg(2, ERR_OPEN, 0));
+  if (name != NULL)
+    {
+      name = add_endl(name, 0);
+      flags = O_CREAT | O_RDWR | O_APPEND;
+      if ((fd = open(file, flags, 0666)) == -1)
+	return (put_msg(2, ERR_OPEN, 0));
+      if (write(fd, name, my_strlen(name)) <= 0)
+	return (put_msg(2, ERR_OPEN, 0));
+    }
+  else
+    {
+      flags = O_CREAT | O_RDWR | O_TRUNC;
+      if ((fd = open(file, flags, 0666)) == -1)
+	return (put_msg(2, ERR_OPEN, 0));
+    }
+  close(fd);
   return (1);
 }
-
-
-
-
-
-
-/* CALL put_to_server() to upload list.txt and its bmp to server */
-
 
 int	put_to_server()
 {
@@ -107,7 +84,7 @@ int	put_to_server()
     return (0);
   if (spid == 0)
     {
-      if (execlp("/bin/php", "php", "script.php", 0) == -1)
+      if (execlp("/bin/php", "php", "./online/script.php", NULL) == -1)
 	return (0);
     }
   else

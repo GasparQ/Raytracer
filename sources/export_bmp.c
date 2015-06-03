@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Jun  2 14:55:17 2015 quentin gasparotto
-** Last update Tue Jun  2 22:58:44 2015 quentin gasparotto
+** Last update Wed Jun  3 18:06:44 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -43,6 +43,8 @@ int	get_file()
       ++i;
     }
   if ((fd = open(filename, O_WRONLY | O_CREAT, 0644)) == -1)
+    return (-1);
+  if (write_file("list.txt", filename) == 0)
     return (-1);
   free(filename);
   return (fd);

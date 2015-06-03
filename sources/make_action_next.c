@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Jun  2 17:27:10 2015 quentin gasparotto
-** Last update Tue Jun  2 17:55:59 2015 quentin gasparotto
+** Last update Wed Jun  3 18:12:54 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -16,4 +16,10 @@ void	save_file(t_system *sys)
     {
       fprintf(stderr, "Export fail\n");
     }
+}
+
+void	send_to_server(t_system *sys)
+{
+  if (put_to_server() == 0)
+    fprintf(stderr, "Online Problem\n");
 }

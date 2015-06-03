@@ -85,6 +85,7 @@ SRCS=	./sources/rtracer.c \
 	./parser/parse_spot.c 		\
 	./parser/my_getnbr_base.c 	\
 	./parser/char_function.c 	\
+	./online/file.c			\
 
 OBJS=	$(SRCS:.c=.o)
 

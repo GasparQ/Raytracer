@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:31:47 2015 quentin gasparotto
-** Last update Mon Jun  1 21:28:17 2015 quentin gasparotto
+** Last update Wed Jun  3 18:07:33 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -22,6 +22,7 @@ int		main(int ac, char **av, char **env)
   if (init_system(&sys, av[1]) == -1)
     return (my_strerror("Init fail\n"));
   loading_time(&sys);
+  write_file("list.txt", NULL);
   sys.act_scene = sys.scene_list;
   sys.act_scene->act_image = sys.act_scene->img;
   mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
