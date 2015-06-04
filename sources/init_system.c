@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Thu Jun  4 20:17:29 2015 quentin gasparotto
+** Last update Thu Jun  4 23:13:19 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -50,7 +50,11 @@ void	test_texture(t_system *sys)
   add_coord(sys->scene_list->obj_list, (double [6]){-100, 0, 150, 0, 0, 45});
   add_sphere(sys->scene_list->obj_list, (double [1]){150});
   add_texture(sys->scene_list->obj_list, "earth.xpm", sys->scene_list);
-  add_bump(sys->scene_list->obj_list, "oth.xpm", sys->scene_list);
+  add_bump(sys->scene_list->obj_list, "rug.xpm", sys->scene_list);
+  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
+  add_plan(sys->scene_list->obj_list, (double [4]){0, 0, 0, 1});
+  add_texture(sys->scene_list->obj_list, "damier.xpm", sys->scene_list);
+  add_bump(sys->scene_list->obj_list, "heightmap.xpm", sys->scene_list);
 }
 
 int		init_spot(t_system *sys)
@@ -72,6 +76,9 @@ int	init_system(t_system *sys, char *file)
     {
       if (add_scene(&sys->scene_list, sys->mlx) == -1)
 	return (-1);
+      if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
+      		  ORIGIN, (double [2]){500, 0}) == -1)
+      	return (-1);
       if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
       		  ORIGIN, (double [2]){500, 2}) == -1)
       	return (-1);

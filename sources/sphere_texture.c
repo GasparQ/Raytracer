@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 19:28:21 2015 quentin gasparotto
-** Last update Thu Jun  4 20:12:39 2015 quentin gasparotto
+** Last update Thu Jun  4 22:48:58 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -48,6 +48,7 @@ void		sphere_bump(t_vector3 isec_point, t_object *touch,
   t_vector2	text_pos;
   int		x_grad;
   int		y_grad;
+  int		z_grad;
   int		more[4];
 
   text_pos = sphere_map(isec_point, touch->bump);
@@ -61,9 +62,11 @@ void		sphere_bump(t_vector3 isec_point, t_object *touch,
 	    get_bump_height(more[1], text_pos.y, touch->bump));
   y_grad = (get_bump_height(text_pos.x, more[2], touch->bump) -
 	    get_bump_height(text_pos.x, more[3], touch->bump));
+  z_grad = (get_bump_height(more[0], more[2], touch->bump) -
+	    get_bump_height(more[1], more[3], touch->bump));
   norm->x = norm->x + text_pos.x * x_grad;
   norm->y = norm->y + text_pos.y * y_grad;
-  norm->z = norm->z;
+  norm->z = norm->z + z_grad;
 }
 
 void		sphere_proced(t_vector3 isec_point, t_object *touch)
