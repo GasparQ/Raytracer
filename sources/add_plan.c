@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Feb 13 19:18:39 2015 quentin gasparotto
-** Last update Wed Jun  3 15:51:26 2015 quentin gasparotto
+** Last update Thu Jun  4 20:08:02 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -25,5 +25,6 @@ int		add_plan(t_object *act_obj, double *mesh_prop)
   act_obj->shape_resolver = &draw_plan;
   act_obj->free_mesh = &free_plan;
   act_obj->apply_texture = &text_to_plane;
+  act_obj->apply_bump = &plane_bump;
   return (CLEAN);
 }

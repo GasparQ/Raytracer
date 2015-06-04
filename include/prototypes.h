@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Wed Jun  3 18:12:57 2015 quentin gasparotto
+** Last update Thu Jun  4 20:14:34 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -79,6 +79,30 @@ enum			COLORS
   };
 
 /*
+**	plan_texture.c
+*/
+
+t_vector2		plane_mapping(t_vector3 isec_point, t_image *texture);
+void			plane_bump(t_vector3 isec_point, t_object *touch,
+				   t_vector3 *norm);
+
+/*
+**	perlin.c
+*/
+
+double			noise(t_vector3 point);
+
+/*
+**	sphere_texture.c
+*/
+
+double			get_bump_height(int x, int y, t_image *texture);
+void			sphere_bump(t_vector3 isec_point, t_object *touch,
+				    t_vector3 *norm);
+t_vector2		sphere_map(t_vector3 isec_point, t_image *texture);
+void			sphere_proced(t_vector3 isec_point, t_object *touch);
+
+/*
 **	file.c
 */
 
@@ -89,12 +113,19 @@ int			put_to_server();
 **	add_texture.c
 */
 
-int			add_texture(t_object *obj, char *filename, void *mlx);
+int			add_proced(t_object *obj, char *filename,
+				   t_scene *scene, int *color);
+int			add_bump(t_object *obj, char *filename,
+				 t_scene *scene);
+int			add_texture(t_object *obj, char *filename,
+				    t_scene *scene);
 
 /*
-**	obj_texture.c
+**	obj_texture_next.c
 */
 
+void			basic_color(t_vector3 isec_point, t_vector3 norm,
+				    t_object *touch, void *send_scene);
 void			text_to_cone(t_vector3 isec_point, t_vector3 norm,
 				     t_object *touch, void *send_scene);
 void			text_to_cylinder(t_vector3 isec_point, t_vector3 norm,

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:00:16 2015 quentin gasparotto
-** Last update Wed Jun  3 11:42:16 2015 quentin gasparotto
+** Last update Wed Jun  3 18:46:37 2015 quentin gasparotto
 */
 
 #include "prototypes.h"
@@ -74,7 +74,6 @@ double		get_intensity(t_scene *scene, t_object *touch,
 
   sums[0] = 0;
   sums[1] = 0;
-  //get_color(touch->obj_color, touch->disp_color, scene);
   tmp = scene->spot_list;
   while (tmp != NULL)
     {

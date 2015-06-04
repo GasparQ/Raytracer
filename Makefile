@@ -73,6 +73,10 @@ SRCS=	./sources/rtracer.c \
 	./sources/load_texture.c \
 	./sources/add_texture.c \
 	./sources/obj_texture.c \
+	./sources/obj_texture_next.c \
+	./sources/sphere_texture.c \
+	./sources/perlin.c \
+	./sources/plan_texture.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

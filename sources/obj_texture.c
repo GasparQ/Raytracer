@@ -5,12 +5,18 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 11:10:13 2015 quentin gasparotto
-** Last update Wed Jun  3 17:15:49 2015 quentin gasparotto
+** Last update Thu Jun  4 20:13:33 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void		text_to_plane(t_vector3 isec_point, t_vector3 norm,
+void		basic_color(UNUSED t_vector3 isec_point, UNUSED t_vector3 norm,
+			    t_object *touch, void *send_scene)
+{
+  get_color(touch->obj_color, touch->disp_color, (t_scene *)send_scene);
+}
+
+void		text_to_plane(t_vector3 isec_point, UNUSED t_vector3 norm,
 			      t_object *touch, void *send_scene)
 {
   t_scene	*scene;
@@ -19,10 +25,7 @@ void		text_to_plane(t_vector3 isec_point, t_vector3 norm,
   scene = (t_scene *)send_scene;
   if (touch->texture != NULL)
     {
-      text_pos.x = (int)(isec_point.x) % (int)(touch->texture->wdth / 4);
-      text_pos.x = (text_pos.x < 0) ? -text_pos.x : text_pos.x;
-      text_pos.y = (int)(isec_point.y) % (int)touch->texture->hght;
-      text_pos.y = (text_pos.y < 0) ? -text_pos.y : text_pos.y;
+      text_pos = plane_mapping(isec_point, touch->texture);
       get_pix_color((int)text_pos.x, (int)text_pos.y,
 		    *touch->texture, touch->disp_color);
     }
@@ -30,7 +33,7 @@ void		text_to_plane(t_vector3 isec_point, t_vector3 norm,
     get_color(touch->obj_color, touch->disp_color, scene);
 }
 
-void		text_to_cylinder(t_vector3 isec_point, t_vector3 norm,
+void		text_to_cylinder(t_vector3 isec_point, UNUSED t_vector3 norm,
 				 t_object *touch, void *send_scene)
 {
   t_vector2	text_pos;
@@ -57,7 +60,7 @@ void		text_to_cylinder(t_vector3 isec_point, t_vector3 norm,
     get_color(touch->obj_color, touch->disp_color, scene);
 }
 
-void		text_to_cone(t_vector3 isec_point, t_vector3 norm,
+void		text_to_cone(t_vector3 isec_point, UNUSED t_vector3 norm,
 			     t_object *touch, void *send_scene)
 {
   t_vector2	text_pos;
@@ -84,7 +87,7 @@ void		text_to_cone(t_vector3 isec_point, t_vector3 norm,
     get_color(touch->obj_color, touch->disp_color, scene);
 }
 
-void		text_to_sphere(t_vector3 isec_point, t_vector3 norm,
+void		text_to_sphere(t_vector3 isec_point, UNUSED t_vector3 norm,
 			       t_object *touch, void *send_scene)
 {
   t_vector2	text_pos;
@@ -93,16 +96,13 @@ void		text_to_sphere(t_vector3 isec_point, t_vector3 norm,
   scene = (t_scene *)send_scene;
   if (touch->texture != NULL)
     {
-      isec_point = unit_vec(isec_point);
-      text_pos.x = atan2(isec_point.y, isec_point.x);
-      if (text_pos.x < 0)
-	text_pos.x += (2 * M_PI);
-      text_pos.x /= (2 * M_PI);
-      text_pos.y = acos(isec_point.z) / M_PI;
-      text_pos.x *= touch->texture->wdth / 4;
-      text_pos.y *= touch->texture->hght;
+      text_pos = sphere_map(isec_point, touch->texture);
       get_pix_color((int)text_pos.x, (int)text_pos.y,
 		    *touch->texture, touch->disp_color);
+    }
+  else if (touch->proced != NULL)
+    {
+      sphere_proced(isec_point, touch);
     }
   else
     get_color(touch->obj_color, touch->disp_color, scene);

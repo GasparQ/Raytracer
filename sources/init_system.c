@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Wed Jun  3 17:29:42 2015 quentin gasparotto
+** Last update Thu Jun  4 20:17:29 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -15,7 +15,7 @@ int	init_mlx(t_system *sys)
 {
   if ((sys->mlx = mlx_init()) == NULL)
     return (my_strerror(MLX_FAIL));
-  sys->wdw = mlx_new_window(sys->mlx, WDW_WIDTH, WDW_HEIGHT, "rtv1");
+  sys->wdw = mlx_new_window(sys->mlx, WDW_WIDTH, WDW_HEIGHT, "rtracer");
   if (sys->wdw == NULL)
     return (my_strerror(WDW_FAIL));
   return (CLEAN);
@@ -47,36 +47,17 @@ void	test_texture(t_system *sys)
 {
   sys->scene_list->obj_list = NULL;
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
-  add_coord(sys->scene_list->obj_list, (double [6]){0, 0, 100, 0, 0, 45});
-  add_sphere(sys->scene_list->obj_list, (double [1]){100});
-  add_texture(sys->scene_list->obj_list, "sun_max.xpm", sys->scene_list->mlx);
-  add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
-  add_plan(sys->scene_list->obj_list, (double [4]){0.0, 0.0, 0.0, 1.0});
-  add_texture(sys->scene_list->obj_list, "damier.xpm", sys->scene_list->mlx);
-  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE); */
-  /* add_coord(sys->scene_list->obj_list, (double [6]){0, 100, 0, 0, 0, 0}); */
-  /* add_cylinder(sys->scene_list->obj_list, (double [1]){50.0}); */
-  /* add_texture(sys->scene_list->obj_list, "damier.xpm", sys->scene_list->mlx); */
-  /* add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE); */
-  /* add_coord(sys->scene_list->obj_list, (double [6]){0, -100, 100, 0, 0, 0}); */
-  /* add_cone(sys->scene_list->obj_list, (double [1]){120.0}); */
-  /* add_texture(sys->scene_list->obj_list, "damier.xpm", sys->scene_list->mlx); */
+  add_coord(sys->scene_list->obj_list, (double [6]){-100, 0, 150, 0, 0, 45});
+  add_sphere(sys->scene_list->obj_list, (double [1]){150});
+  add_texture(sys->scene_list->obj_list, "earth.xpm", sys->scene_list);
+  add_bump(sys->scene_list->obj_list, "oth.xpm", sys->scene_list);
 }
 
 int		init_spot(t_system *sys)
 {
   sys->scene_list->spot_list = NULL;
-  if (add_spot(sys->scene_list, get_vector3(0.0, 200.0, 150.0),
-	       WHITE, 1) == ERROR)
-    return (ERROR);
-  if (add_spot(sys->scene_list, get_vector3(-200.0, 0.0, 150.0),
-  	       WHITE, 1) == ERROR)
-    return (ERROR);
-  if (add_spot(sys->scene_list, get_vector3(0.0, -200.0, 150.0),
-	       WHITE, 1) == ERROR)
-    return (ERROR);
-  if (add_spot(sys->scene_list, get_vector3(200.0, 0.0, 150.0),
-	       WHITE, 1) == ERROR)
+  if (add_spot(sys->scene_list, get_vector3(-500.0, 0.0, 500.0),
+	       WHITE, 2.5) == ERROR)
     return (ERROR);
   sys->scene_list->spot_nb = get_spot_nb(sys->scene_list->spot_list);
   return (CLEAN);
@@ -91,20 +72,8 @@ int	init_system(t_system *sys, char *file)
     {
       if (add_scene(&sys->scene_list, sys->mlx) == -1)
 	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-      		  get_vector3(0, 0, -20), (double [2]){500, 2}) == -1)
-      	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-      		  get_vector3(0, 0, -10), (double [2]){500, 2}) == -1)
-      	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
+      if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
       		  ORIGIN, (double [2]){500, 2}) == -1)
-      	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-      		  get_vector3(0, 0, 10), (double [2]){500, 2}) == -1)
-      	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-600, 0, 150),
-      		  get_vector3(0, 0, 20), (double [2]){500, 2}) == -1)
       	return (-1);
       sys->scene_list->act_eye = sys->scene_list->eye;
       sys->scene_list->act_image = sys->scene_list->img;

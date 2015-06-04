@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Wed Jun  3 11:02:46 2015 quentin gasparotto
+** Last update Wed Jun  3 19:46:42 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -16,6 +16,10 @@ void		add_object(t_object **obj_list, int size, int color)
 
   if (size > 0 && (new_obj.disp_color = malloc(size)) == NULL)
     exit(my_strerror(MALLOC_ERR));
+  if (size > 0 && (new_obj.color1 = malloc(size)) == NULL)
+    exit(my_strerror(MALLOC_ERR));
+  if (size > 0 && (new_obj.color2 = malloc(size)) == NULL)
+    exit(my_strerror(MALLOC_ERR));
   new_obj.obj_color = color;
   new_obj.origin = ORIGIN;
   new_obj.rotation = ORIGIN;
@@ -23,5 +27,8 @@ void		add_object(t_object **obj_list, int size, int color)
   new_obj.limit = NULL;
   new_obj.apply_texture = NULL;
   new_obj.texture = NULL;
+  new_obj.proced = NULL;
+  new_obj.bump = NULL;
+  new_obj.apply_texture = &basic_color;
   my_put_in_list(obj_list, new_obj);
 }
