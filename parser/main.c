@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Mon Jun  1 18:01:11 2015 quentin gasparotto
+** Last update Fri Jun  5 14:49:57 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -100,7 +100,8 @@ int		init_rules(regex_t *regex)
       || regcomp(&regex[18], POSITION POS_NEXT, REG_EXTENDED)
       || regcomp(&regex[19], COLOR_REG COLOR_NEXT, REG_EXTENDED)
       || regcomp(&regex[20], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
-      || regcomp(&regex[21], INTENSITY NBR_REG, REG_EXTENDED))
+      || regcomp(&regex[21], INTENSITY NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[22], RENDER_METHOD, REG_EXTENDED))
     return (fprintf(stderr, "Regex error.\n"));
   return (0);
 }
