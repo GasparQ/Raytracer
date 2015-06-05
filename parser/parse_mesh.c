@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Fri Jun  5 18:48:09 2015 fernand veyrier
+** Last update Fri Jun  5 21:52:28 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -19,7 +19,6 @@ int		mesh_sphere(t_system *sys, t_parser *pars)
   if (regcomp(&regex, "[[:space:]]*radius[[:space:]]*\
 =[[:space:]]*[[:digit:].]+[[:space:]]*$", REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
-  printf("Add mesh sphere\n");
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
     {
@@ -55,7 +54,6 @@ int		mesh_plane(t_system *sys, t_parser *pars)
   params[1] = normal.x;
   params[2] = normal.y;
   params[3] = normal.z;
-  printf("Add mesh plane\n");
   return (add_plan(sys->scene_list->obj_list, params));
 }
 
@@ -79,7 +77,6 @@ int		mesh_tore(t_system *sys, t_parser *pars)
       if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
 	params[1] = get_double_parser(pars->buf);
     }
-  printf("Add mesh tore\n");
   return (add_tore(sys->scene_list->obj_list, params));
 }
 
@@ -103,7 +100,6 @@ int		mesh_holedcube(t_system *sys, t_parser *pars)
       if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
 	params[1] = get_double_parser(pars->buf);
     }
-  printf("Add mesh holedcube\n");
   return (add_holed_cube(sys->scene_list->obj_list, params));
 }
 
@@ -122,7 +118,6 @@ int		mesh_cone(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	phi = get_double_parser(pars->buf);
     }
-  printf("Add mesh cone\n");
   return (add_cone(sys->scene_list->obj_list, &phi));
 }
 
@@ -141,7 +136,6 @@ int		mesh_cylinder(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
     }
-  printf("Add mesh cylinder\n");
   return (add_cylinder(sys->scene_list->obj_list, &radius));
 }
 
@@ -160,7 +154,6 @@ int		mesh_paraboloid(t_system *sys, t_parser *pars)
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
     }
-  printf("Add mesh paraboloid\n");
   return (add_paraboloid(sys->scene_list->obj_list, &radius));
 }
 
@@ -173,16 +166,12 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
   i = 0;
   while (i < 5)
     params[i++] = 0;
-  if (regcomp(&regex[0], "[[:space:]]*a[[:space:]]*\
-=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
-      || regcomp(&regex[1], "[[:space:]]*b[[:space:]]*\
-=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
-      || regcomp(&regex[2], "[[:space:]]*c[[:space:]]*\
-=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
-      ||regcomp(&regex[3], "[[:space:]]*d[[:space:]]*\
-=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED)
-      ||regcomp(&regex[4], "[[:space:]]*c_factor[[:space:]]*\
-=[[:space:]]*[[:digit:].-]+[[:space:]]*$", REG_EXTENDED))
+  if (regcomp(&regex[0], "[[:space:]]*a[[:space:]]*" NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[1], "[[:space:]]*b[[:space:]]*" NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[2], "[[:space:]]*c[[:space:]]*" NBR_REG, REG_EXTENDED)
+      ||regcomp(&regex[3], "[[:space:]]*d[[:space:]]*" NBR_REG, REG_EXTENDED)
+      ||regcomp(&regex[4], "[[:space:]]*c_factor[[:space:]]*"
+		NBR_REG, REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))
@@ -193,20 +182,11 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
       if (i < 5)
 	params[i] = get_double_parser(pars->buf);
     }
-  printf("Add mesh hyperboloid\n");
   return (add_hyperboloid(sys->scene_list->obj_list, params));
 }
 
-int		parse_mesh(t_system *sys, t_parser *pars)
+void		parse_mesh_init(char **shape_list, int (**func)())
 {
-  int		i;
-  int		j;
-  char		shape[BUFSIZ];
-  char		*shape_list[9];
-  int		(*func[8])();
-
-  i = 0;
-  j = 0;
   shape_list[0] = "sphere";
   shape_list[1] = "plane";
   shape_list[2] = "holedcube";
@@ -223,9 +203,21 @@ int		parse_mesh(t_system *sys, t_parser *pars)
   func[5] = mesh_cylinder;
   func[6] = mesh_paraboloid;
   func[7] = mesh_hyperboloid;
+}
+
+int		parse_mesh(t_system *sys, t_parser *pars)
+{
+  int		i;
+  int		j;
+  char		shape[BUFSIZ];
+  char		*shape_list[9];
+  int		(*func[8])();
+
+  i = 0;
+  j = 0;
+  parse_mesh_init(shape_list, func);
   if (pars->level < 2)
     return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
-  printf("Found mesh\n");
   while (pars->buf[i] && pars->buf[i] != '"')
     ++i;
   ++i;
@@ -245,6 +237,5 @@ int		parse_mesh_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 2 < 2)
     return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
-  printf("Found mesh close\n");
   return (-2);
 }

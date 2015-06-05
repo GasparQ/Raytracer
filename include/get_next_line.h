@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Fri Jun  5 15:41:19 2015 fernand veyrier
+** Last update Fri Jun  5 21:32:06 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -107,7 +107,7 @@ int		get_color_parser(char *buf);
 int		get_nbr_parser(char *buf);
 double		get_double_parser(char *buf);
 int		check_extension(char *file);
-void		init_functions(int (**func)());
+int		init_functions(int (**func)());
 int		follow_pattern(t_parser *pars, t_system *sys);
 int		init_rules(regex_t *regex);
 int		get_objects(t_system *sys, char *file);

@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Fri Jun  5 15:32:58 2015 fernand veyrier
-** Last update Fri Jun  5 18:18:34 2015 fernand veyrier
+** Last update Fri Jun  5 21:48:03 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -85,9 +85,7 @@ int		parse_texture_procedural(t_system *sys, t_parser *pars)
   if (regcomp(&regex[2], "[[:space:]]*color_two[[:space:]]*=[[:space:]]*\
 0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
-  color[0] = 0;
-  color[1] = 0;
-  file[0] = 0;
+  file[color[color[0] = 1] = 0] = 0;
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
     {
@@ -101,25 +99,30 @@ int		parse_texture_procedural(t_system *sys, t_parser *pars)
   return (add_proced(sys->scene_list->obj_list, file, sys->scene_list, color));
 }
 
-int		parse_texture(t_system *sys, t_parser *pars)
+void		parse_texture_init(char **type_list, int (**func)())
 {
-  char		type[BUFSIZ];
-  char		*type_list[3];
-  int		(*func[8])();
-  int		i;
-  int		j;
-
-  i = 0;
-  j = 0;
   type_list[0] = "map";
   type_list[1] = "bump";
   type_list[2] = "procedural";
   func[0] = parse_texture_map;
   func[1] = parse_texture_bump;
   func[2] = parse_texture_procedural;
+}
+
+int		parse_texture(t_system *sys, t_parser *pars)
+{
+  char		type[BUFSIZ];
+  char		*type_list[3];
+  int		(*func[3])();
+  int		i;
+  int		j;
+
+  i = 0;
+  j = 0;
+  parse_texture_init(type_list, func);
   if (pars->level < 2)
-    return (fprintf(stderr, "Invalid XML (texture) line %i.\n", pars->line) * -1);
-  printf("Found texture\n");
+    return (fprintf(stderr, "Invalid XML (texture) line %i.\n",
+		    pars->line) * -1);
   while (pars->buf[i] && pars->buf[i] != '"')
     ++i;
   ++i;
@@ -138,7 +141,7 @@ int		parse_texture(t_system *sys, t_parser *pars)
 int		parse_texture_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 12 < 1)
-    return (fprintf(stderr, "Invalid XML (texture) line %i.\n", pars->line) * -1);
-  printf("Found texture close\n");
+    return (fprintf(stderr, "Invalid XML (texture) line %i.\n",
+		    pars->line) * -1);
   return (-12);
 }

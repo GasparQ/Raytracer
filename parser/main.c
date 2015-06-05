@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Fri Jun  5 18:59:20 2015 fernand veyrier
+** Last update Fri Jun  5 21:31:35 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -27,7 +27,7 @@ int		check_extension(char *file)
   return (fd);
 }
 
-void		init_functions(int (**func)())
+int		init_functions(int (**func)())
 {
   func[0] = parse_obj;
   func[1] = parse_obj_close;
@@ -47,6 +47,7 @@ void		init_functions(int (**func)())
   func[15] = parse_eye_close;
   func[16] = parse_texture;
   func[17] = parse_texture_close;
+  return (0);
 }
 
 int		follow_pattern(t_parser *pars, t_system *sys)
@@ -55,11 +56,9 @@ int		follow_pattern(t_parser *pars, t_system *sys)
   int		i;
   int		ret;
 
-  i = 0;
-  init_functions(func);
+  i = init_functions(func);
   while ((pars->buf = get_next_line(pars->fd)) != NULL)
     {
-      printf("%s\n", pars->buf);
       while (i < 18 && regexec(&pars->regex[i + 1], pars->buf,
 			       0, &pars->reg_struct, 0))
 	++i;
@@ -76,8 +75,21 @@ int		follow_pattern(t_parser *pars, t_system *sys)
       ++pars->line;
       i = 0;
     }
-  if (pars->level != 0)
-    return (fprintf(stderr, "Corrupted XML file.\n") * -1);
+  return ((pars->level != 0) ?
+	  fprintf(stderr, "Corrupted XML file.\n") * -1 : 0);
+}
+
+int		init_rules_next(regex_t *regex)
+{
+  if (regcomp(&regex[17], TEXTURE_REG TEXTURE_NEXT, REG_EXTENDED)
+      || regcomp(&regex[18], TEXTURE_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[19], ROTATION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[20], POSITION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[21], COLOR_REG COLOR_NEXT, REG_EXTENDED)
+      || regcomp(&regex[22], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
+      || regcomp(&regex[23], INTENSITY NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[24], RENDER_METHOD, REG_EXTENDED))
+    return (-1);
   return (0);
 }
 
@@ -100,15 +112,9 @@ int		init_rules(regex_t *regex)
       || regcomp(&regex[13], SCENE, REG_EXTENDED)
       || regcomp(&regex[14], SCENE_CLOSE, REG_EXTENDED)
       || regcomp(&regex[15], EYE, REG_EXTENDED)
-      || regcomp(&regex[16], EYE_CLOSE, REG_EXTENDED)
-      || regcomp(&regex[17], TEXTURE_REG TEXTURE_NEXT, REG_EXTENDED)
-      || regcomp(&regex[18], TEXTURE_CLOSE, REG_EXTENDED)
-      || regcomp(&regex[19], ROTATION POS_NEXT, REG_EXTENDED)
-      || regcomp(&regex[20], POSITION POS_NEXT, REG_EXTENDED)
-      || regcomp(&regex[21], COLOR_REG COLOR_NEXT, REG_EXTENDED)
-      || regcomp(&regex[22], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
-      || regcomp(&regex[23], INTENSITY NBR_REG, REG_EXTENDED)
-      || regcomp(&regex[24], RENDER_METHOD, REG_EXTENDED))
+      || regcomp(&regex[16], EYE_CLOSE, REG_EXTENDED))
+    return (fprintf(stderr, "Regex error.\n"));
+  if (init_rules_next(regex) == -1)
     return (fprintf(stderr, "Regex error.\n"));
   return (0);
 }
@@ -133,13 +139,3 @@ int		get_objects(t_system *sys, char *file)
     return (fprintf(stderr, "Invalid XML header.\n"));
   return (follow_pattern(&parser, sys));
 }
-
-/* int		main(int ac, char **av) */
-/* { */
-/*   t_system	*sys; */
-
-/*   if (ac < 2) */
-/*     return (-1); */
-/*   get_objects(sys, av[1]); */
-/*   return (0); */
-/* } */
