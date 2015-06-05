@@ -1,12 +1,15 @@
 <?php
+  date_default_timezone_set('Europe/Paris');
   $ftp_server = "ftp.jean-barriere.fr";
   $user = "jean-barriere.fr";
   $pass = "i57Zc15Fm9";
   $path = "/raytracer/img";
+  $oldpath = "/raytracer/old";
   $pathlist = "/raytracer";
   $list = "../list.txt";
   $link = "http://raytracer.jean-barriere.fr/img/";
   $out = ".tmp_list.txt";
+  $date = date('YmdHis');
 
   $id = ftp_connect($ftp_server, "21") or die("Impossible de se connecter au serveur $ftp_server");
   if (ftp_login($id, $user, $pass))
@@ -15,10 +18,8 @@
       $filelist = ftp_nlist($id, $path);
       foreach($filelist as $file) {
         if (strcmp($file, ".") != 0 && strcmp($file, "..") != 0)
-          ftp_delete($id, $path . "/" . $file);
+	  ftp_rename($id, $path . "/" . $file, $oldpath . "/" . $date . '-' . $file);
       }
-      ftp_rmdir($id, $path);
-      ftp_mkdir($id, $path);
       ftp_chdir($id, $path);
       $fd = fopen('list.txt', 'r');
       $fdout = fopen($out, 'w');
