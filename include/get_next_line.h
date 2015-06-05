@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Fri Jun  5 14:41:51 2015 fernand veyrier
+** Last update Fri Jun  5 15:17:16 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -61,6 +61,9 @@
 # define REFLEC_REG	"[[:space:]]*reflection[[:space:]]*=[[:space:]]*"
 # define INTENSITY	"[[:space:]]*intensity[[:space:]]*=[[:space:]]*"
 # define RENDER_METHOD	"[[:space:]]*render_method[[:space:]]*=[[:space:]]*"
+# define TEXTURE_REG	"[[:space:]]*<texture[[:space:]]+type[[:space:]]*=\""
+# define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
+# define TEXTURE_CLOSE	"[[:space:]]*</texture>[[:space]]$*"
 # define UNUSED		__attribute__((unused))
 
 typedef struct	s_parser
