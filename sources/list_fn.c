@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:42:07 2015 quentin gasparotto
-** Last update Thu Jun  4 10:20:29 2015 quentin gasparotto
+** Last update Fri Jun  5 14:10:37 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -67,6 +67,10 @@ void		free_image_list(t_image *img_list)
 {
   t_image	*tmp;
 
+  if (img_list->prev != img_list)
+    img_list->prev->next = NULL;
+  else
+    img_list->next = NULL;
   while (img_list != NULL)
     {
       tmp = img_list->next;

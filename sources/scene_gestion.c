@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Mon Jun  1 21:24:40 2015 quentin gasparotto
+** Last update Fri Jun  5 14:08:11 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -48,11 +48,19 @@ int		add_image(t_scene *scene, int render)
   if (init_img(elem, get_vector2(WDW_WIDTH, WDW_HEIGHT), scene, render) == -1)
     return (-1);
   scene->act_image = elem;
-  elem->next = scene->img;
   if (scene->img != NULL)
-    scene->img->prev = elem;
+    {
+      elem->next = scene->img;
+      elem->prev = scene->img->prev;
+      elem->prev->next = elem;
+      scene->img->prev = elem;
+    }
+  else
+    {
+      elem->prev = elem;
+      elem->next = elem;
+    }
   scene->img = elem;
-  elem->prev = NULL;
   return (0);
 }
 
@@ -86,9 +94,17 @@ int		add_scene(t_scene **scene, void *mlx)
   elem->img = NULL;
   elem->mlx = mlx;
   elem->next = *scene;
-  elem->prev = NULL;
   if (*scene != NULL)
-    (*scene)->prev = elem;
+    {
+      elem->prev = (*scene)->prev;
+      elem->prev->next = elem;
+      (*scene)->prev = elem;
+    }
+  else
+    {
+      elem->prev = elem;
+      elem->next = elem;
+    }
   *scene = elem;
   return (0);
 }
@@ -97,6 +113,10 @@ void		free_scene(t_scene *scene)
 {
   t_scene	*tmp;
 
+  if (scene->prev != scene)
+    scene->prev->next = NULL;
+  else
+    scene->next = NULL;
   while (scene != NULL)
     {
       tmp = scene->next;
