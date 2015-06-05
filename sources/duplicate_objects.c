@@ -5,12 +5,36 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Jun  1 18:02:09 2015 quentin gasparotto
-** Last update Tue Jun  2 16:03:29 2015 adrien milcent
+** Last update Fri Jun  5 14:56:10 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int		add_end_obj(t_object **obj_list, t_object *obj, int bpp)
+int	check_texture(t_object *obj, t_object *elem, int bpp, t_scene *scene)
+{
+  if (obj->texture != NULL)
+    {
+      if ((elem->texture->color = malloc(bpp / 8)) == NULL)
+	return (-1);
+      get_color(0, elem->texture->color, scene);
+    }
+  if (obj->proced != NULL)
+    {
+      if ((elem->proced->color = malloc(bpp / 8)) == NULL)
+	return (-1);
+      get_color(0, elem->texture->color, scene);
+      if ((elem->color1 = malloc(bpp / 8)) == NULL)
+	return (-1);
+      if ((elem->color2 = malloc(bpp / 8)) == NULL)
+	return (-1);
+      copy_color(obj->color1, elem->color1, bpp);
+      copy_color(obj->color2, elem->color2, bpp);
+    }
+  return (0);
+}
+
+int		add_end_obj(t_object **obj_list, t_object *obj,
+			    int bpp, t_scene *scene)
 {
   t_object	*elem;
   t_object	*tmp;
@@ -20,6 +44,8 @@ int		add_end_obj(t_object **obj_list, t_object *obj, int bpp)
   *elem = *obj;
   elem->next = NULL;
   if ((elem->disp_color = malloc(bpp / 8)) == NULL)
+    return (-1);
+  if (check_texture(obj, elem, bpp, scene) == -1)
     return (-1);
   if (*obj_list != NULL)
     {
@@ -33,14 +59,14 @@ int		add_end_obj(t_object **obj_list, t_object *obj, int bpp)
   return (0);
 }
 
-t_object	*duplicate_obj(t_object *obj_list, int bpp)
+t_object	*duplicate_obj(t_object *obj_list, int bpp, t_scene *scene)
 {
   t_object	*new;
 
   new = NULL;
   while (obj_list != NULL)
     {
-      if (add_end_obj(&new, obj_list, bpp) == -1)
+      if (add_end_obj(&new, obj_list, bpp, scene) == -1)
 	return (NULL);
       obj_list = obj_list->next;
     }
