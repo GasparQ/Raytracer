@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Wed Jun  3 18:25:33 2015 quentin gasparotto
+** Last update Fri Jun  5 15:22:30 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -43,7 +43,7 @@ int	key_gestion(int keycode, t_system *sys)
     act[i](sys);
   if (i < 4)
     mlx_put_image_to_window(sys->mlx, sys->wdw,
-			    sys->scene_list->act_image->img, 0, 0);
+			    sys->act_scene->act_image->img, 0, 0);
   return (CLEAN);
 }
 
