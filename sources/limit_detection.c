@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Jun  5 17:18:55 2015 quentin gasparotto
-** Last update Fri Jun  5 18:24:46 2015 quentin gasparotto
+** Last update Fri Jun  5 20:35:43 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -49,6 +49,29 @@ double		get_gradient(t_scene *scene, int x, int y)
      scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[1]]) / 3;
   /* sqrt(grad_x * grad_x + grad_y * grad_y) */
   return (atan2(grad_y, grad_x));
+}
+
+int		check_border(t_image *image, int x, int y)
+{
+  int		i;
+  double	ref;
+
+  ref = image->i_tab[y * image->wdth / 4 + x];
+  x -= 1;
+  y -= 1;
+  i = 0;
+  while (i < 9)
+    {
+      if (x + i % 3 < image->wdth / 4 && x + i % 3 >= 0 &&
+	  y + i / 3 < image->hght && y + i / 3 >= 0 &&
+	  fabs(image->i_tab[(y + i / 3) * image->wdth / 4 + x + i % 3] - ref) > 0.15)
+	{
+	  //printf("%f\n", fabs(image->i_tab[(y + i / 3) * image->wdth / 4 + x + i % 3] - ref));
+	  return (1);
+	}
+      ++i;
+    }
+  return (0);
 }
 
 int	get_border(t_scene *scene)

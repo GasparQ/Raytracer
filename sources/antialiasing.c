@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:45:47 2015 quentin gasparotto
-** Last update Mon Jun  1 22:51:27 2015 quentin gasparotto
+** Last update Fri Jun  5 20:07:43 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -81,9 +81,9 @@ void	resolve_antialiased_color(t_image *act_image, t_image *nice_img,
 			*act_image, act_image->color);
 	  add_color_to_avg(act_image->color, act_image->average,
 			   act_image->bpp / 8);
-	  if (i != 4 &&
-	      cmp_colors(nice_img->color, act_image->color,
-			 act_image->bpp / 8, 150))
+	  if (i != 4 && check_border(act_image, (int)pos.x, (int)pos.y))
+	      /* cmp_colors(nice_img->color, act_image->color, */
+	      /* 		 act_image->bpp / 8, 150))*/
 	    tell = 1;
 	}
       ++i;
