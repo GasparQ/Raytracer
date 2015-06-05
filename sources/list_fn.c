@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:42:07 2015 quentin gasparotto
-** Last update Fri Jun  5 14:10:37 2015 quentin gasparotto
+** Last update Fri Jun  5 14:17:04 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -27,6 +27,7 @@ int		my_put_in_list(t_object **list, t_object data)
   elem->proced = data.proced;
   elem->color1 = data.color1;
   elem->color2 = data.color2;
+  elem->apply_texture = data.apply_texture;
   elem->bump = data.bump;
   elem->next = *list;
   *list = elem;

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 25 10:03:48 2015 quentin gasparotto
-** Last update Wed Jun  3 19:46:42 2015 quentin gasparotto
+** Last update Fri Jun  5 14:14:23 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -29,6 +29,8 @@ void		add_object(t_object **obj_list, int size, int color)
   new_obj.texture = NULL;
   new_obj.proced = NULL;
   new_obj.bump = NULL;
+  new_obj.color1 = NULL;
+  new_obj.color2 = NULL;
   new_obj.apply_texture = &basic_color;
   my_put_in_list(obj_list, new_obj);
 }
