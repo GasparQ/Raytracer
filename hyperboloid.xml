@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<scene>
+  <eye>
+    position = (-300,0,100)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 2
+  </eye>
+  <spot>
+    position = (-300,0,0)
+    rotation = (0,0,0)
+    color = 0xFFFFFF
+    intensity = 1
+  </spot>
+  
+  <object color="0xFF0000">
+    <mesh type="hyperboloid">
+      a = 30
+      b = 30
+      c = 90
+      d = -1
+      c_factor = -1
+    </mesh>
+  </object>
+
+</scene>

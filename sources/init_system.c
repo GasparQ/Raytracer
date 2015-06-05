@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Fri Jun  5 15:27:08 2015 quentin gasparotto
+** Last update Fri Jun  5 17:50:43 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -79,15 +79,15 @@ int	init_system(t_system *sys, char *file)
       if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
       		  ORIGIN, (double [2]){500, 2}) == -1)
       	return (-1);
-      test_texture(sys);
-      init_spot(sys);
-      if (add_scene(&sys->scene_list, sys->mlx) == -1)
-	return (-1);
-      if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
-      		  ORIGIN, (double [2]){500, 2}) == -1)
-      	return (-1);
       init_objects(sys);
       init_spot(sys);
+      /* if (add_scene(&sys->scene_list, sys->mlx) == -1) */
+      /* 	return (-1); */
+      /* if (add_eye(sys->scene_list, get_vector3(-500, 0, 150), */
+      /* 		  ORIGIN, (double [2]){500, 2}) == -1) */
+      /* 	return (-1); */
+      //test_texture(sys);
+      /* init_spot(sys); */
       sys->scene_list->act_eye = sys->scene_list->eye;
       sys->scene_list->act_image = sys->scene_list->img;
     }

@@ -78,6 +78,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/perlin.c \
 	./sources/plan_texture.c \
 	./sources/bumpping.c \
+	./sources/limit_detection.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\

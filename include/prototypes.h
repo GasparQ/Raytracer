@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Fri Jun  5 14:50:34 2015 quentin gasparotto
+** Last update Fri Jun  5 17:55:24 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -77,6 +77,12 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	limit_detection.c
+*/
+
+int			get_border(t_scene *scene);
 
 /*
 **	bumpping.c

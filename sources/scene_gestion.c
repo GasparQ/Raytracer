@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Fri Jun  5 15:15:46 2015 quentin gasparotto
+** Last update Fri Jun  5 18:01:09 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -25,6 +25,8 @@ int		init_img(t_image *img, t_vector2 dim, t_scene *scene, int render)
   img->wdth = width;
   img->hght = dim.x * dim.y * (bpp / 8) / img->wdth;
   img->next = NULL;
+  if ((img->i_tab = malloc(sizeof(double) * img->wdth / 4 * img->hght)) == NULL)
+    return (-1);
   if ((img->color = malloc(bpp / 8)) == NULL)
     return (-1);
   save = scene->act_image;

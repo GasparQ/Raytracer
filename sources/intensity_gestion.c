@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:00:16 2015 quentin gasparotto
-** Last update Wed Jun  3 18:46:37 2015 quentin gasparotto
+** Last update Fri Jun  5 18:00:08 2015 quentin gasparotto
 */
 
 #include "prototypes.h"
@@ -20,6 +20,7 @@ void		light_solver(t_vector3 *use_vectors, t_scene *scene,
     intensity = (1.5 * (int)((10.0 * intensity) / 1.5)) / 10.0;
   apply_phong(act_obj, intensity, scene);
   resolve_brightness(act_obj, scene, scene->act_image->bpp / 8);
+  scene->act_intensity = intensity;
 }
 
 double		get_spot_intensity(t_spot *act_spot, t_object *obj_list,
