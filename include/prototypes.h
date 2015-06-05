@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Fri Jun  5 09:52:08 2015 quentin gasparotto
+** Last update Fri Jun  5 14:50:34 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -187,7 +187,7 @@ void			exit_ray_tracer(t_system *sys);
 **	duplicate_objects.c
 */
 
-t_object		*duplicate_obj(t_object *obj_list, int bpp);
+t_object		*duplicate_obj(t_object *obj_list, int bpp, t_scene *scene);
 
 /*
 **	effects.c
@@ -616,6 +616,7 @@ int			expose_gestion(t_system *sys);
 **	graph_func.c
 */
 
+void			copy_color(unsigned char *src, unsigned char *dest, int bpp);
 void			copy_img(t_image src, t_image *dest);
 void			get_pix_color(int x, int y, t_image image, unsigned char *color);
 void			my_put_pixel_to_img(int x, int y, unsigned char *color,

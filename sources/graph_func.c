@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:44:51 2015 quentin gasparotto
-** Last update Fri Jun  5 09:45:46 2015 quentin gasparotto
+** Last update Fri Jun  5 14:50:29 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -32,6 +32,18 @@ void	my_put_pixel_to_img(int x, int y, unsigned char *color, t_image *img)
     {
       img->dat[x * img->bpp / 8 + y * img->wdth + i] = color[i];
       i = i + 1;
+    }
+}
+
+void	copy_color(unsigned char *src, unsigned char *dest, int bpp)
+{
+  int	i;
+
+  i = 0;
+  while (i < bpp / 8)
+    {
+      dest[i] = src[i];
+      ++i;
     }
 }
 
