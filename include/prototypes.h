@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Fri Jun  5 17:55:24 2015 quentin gasparotto
+** Last update Fri Jun  5 20:08:26 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -82,6 +82,7 @@ enum			COLORS
 **	limit_detection.c
 */
 
+int			check_border(t_image *image, int x, int y);
 int			get_border(t_scene *scene);
 
 /*

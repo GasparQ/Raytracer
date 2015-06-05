@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Jun  1 15:57:22 2015 quentin gasparotto
-** Last update Mon Jun  1 21:58:59 2015 quentin gasparotto
+** Last update Fri Jun  5 20:39:41 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -37,8 +37,7 @@ void	resolve_cell_shading(t_image *act_image, t_image *nice_img,
 	    {
 	      get_pix_color(pos.x - 2 + i % 5, pos.y - 2 + i / 5,
 			    *act_image, act_image->color);
-	      if (!cmp_colors(nice_img->color, act_image->color,
-			      act_image->bpp / 8, 5))
+	      if (check_border(act_image, (int)pos.x, (int)pos.y) == 0)
 		{
 		  my_put_pixel_to_img((int)pos.x, (int)pos.y,
 		  		      nice_img->color, nice_img);
