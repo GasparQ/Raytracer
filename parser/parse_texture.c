@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Fri Jun  5 15:32:58 2015 fernand veyrier
-** Last update Fri Jun  5 18:09:39 2015 fernand veyrier
+** Last update Fri Jun  5 18:18:34 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -131,7 +131,7 @@ int		parse_texture(t_system *sys, t_parser *pars)
     ++i;
   if (i < 3)
     if (func[i](sys, pars) != CLEAN)
-      return (-30);
+      return (fprintf(stderr, "Invalid data (texture file valid ?)\n") * -1);
   return (pars->buf == NULL ? -30 : 0);
 }
 

@@ -36,8 +36,8 @@
       c_factor = -1
     </mesh>
     <!-- textures can be map, bump or procedural -->
-    <texture type="procedural">
-      file = "mabit.xpm"
+    <texture type="map">
+      file = "images/earth.xpm"
 
       <!-- Que pour les bumped-->
       bump = 0

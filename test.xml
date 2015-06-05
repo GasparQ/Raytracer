@@ -35,6 +35,16 @@
       position = (200,0,50)
       rotation = (0,0,0)
     </coord>
+    <texture type="map">
+      file = "images/earth.xpm"
+
+      <!-- Que pour les bumped-->
+      bump = 0
+
+      <!-- Que pour les procedurales-->
+      color_one = 0x00000000
+      color_two = 0x00000000
+    </texture>
   </object>
 
   <object color="0x0000FF00">
