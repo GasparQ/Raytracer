@@ -36,7 +36,7 @@
       c_factor = -1
     </mesh>
     <!-- textures can be map, bump or procedural -->
-    <texture type="map, bump, procedural">
+    <texture type="bump">
       file = "mabit.xpm"
 
       <!-- Que pour les bumped-->

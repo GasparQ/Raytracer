@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Tue Jun  2 09:53:55 2015 quentin gasparotto
+** Last update Fri Jun  5 16:56:21 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -215,7 +215,6 @@ int		parse_mesh(t_system *sys, t_parser *pars)
   shape_list[5] = "cylinder";
   shape_list[6] = "paraboloid";
   shape_list[7] = "hyperboloid";
-  shape_list[8] = 0;
   func[0] = mesh_sphere;
   func[1] = mesh_plane;
   func[2] = mesh_holedcube;
@@ -230,7 +229,7 @@ int		parse_mesh(t_system *sys, t_parser *pars)
   while (pars->buf[i] && pars->buf[i] != '"')
     ++i;
   ++i;
-  while (i < BUFSIZ && pars->buf[i] && pars->buf[i] != '"')
+  while (i < BUFSIZ - 1 && pars->buf[i] && pars->buf[i] != '"')
     shape[j++] = pars->buf[i++];
   shape[j] = 0;
   i = 0;

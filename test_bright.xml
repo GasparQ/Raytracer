@@ -5,6 +5,19 @@
     position = (-200,0,100)
     rotation = (0,0,0)
     distance = 500
+    render_method = 2
+  </eye>
+  <eye>
+    position = (-200,0,105)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 2
+  </eye>
+  <eye>
+    position = (-200,0,110)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 2
   </eye>
 
   <spot>
