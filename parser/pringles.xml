@@ -7,6 +7,9 @@
     position = (0,0,0)
     rotation = (0,0,0)
     distance = 500
+
+    <!-- méthodes de rendu : 0 = AA; 1 = CellShading; 2 : default-->
+    render_method = 1
   </eye>
   <spot>
     position = (0,0,10)
@@ -15,7 +18,7 @@
     intensity = 1
   </spot>
   <spot>
-    position = (-500,0,500)
+    position = (-500,0,0)
     rotation = (0,0,0)
     color = 0x00FFFFFF
     intensity = 1
@@ -32,6 +35,16 @@
       d = -1
       c_factor = -1
     </mesh>
+    <texture type="map, bump, procedural">
+      file = "mabit.xpm"
+
+      <!-- Que pour les bumped-->
+      bump = 0
+
+      <!-- Que pour les procedurales-->
+      color_one = 0x00000000
+      color_two = 0x00000000
+    </texture>
     <coord>
       position = (0,0,75)
       rotation = (90,0,45)

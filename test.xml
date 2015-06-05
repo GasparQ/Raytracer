@@ -5,11 +5,13 @@
     position = (-30,0,50)
     rotation = (0,0,0)
     distance = 500
+    render_method = 1
   </eye>
   <eye>
     position = (-30,100,50)
     rotation = (0,0,-45)
     distance = 500
+    render_method = 0
   </eye>
   <spot>
     position = (-200,0,500)
