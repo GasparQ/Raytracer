@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Fri Jun  5 15:32:58 2015 fernand veyrier
-** Last update Fri Jun  5 17:53:18 2015 fernand veyrier
+** Last update Fri Jun  5 18:09:39 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -72,10 +72,33 @@ int		parse_texture_bump(t_system *sys, t_parser *pars)
 
 int		parse_texture_procedural(t_system *sys, t_parser *pars)
 {
-  int		colors[2];
+  int		color[2];
+  char		file[BUFSIZ];
+  regex_t	regex[3];
 
-  printf("parsing procedural\n");
-  //return (add_proced(sys->scene_list->obj_list, file, sys->scene_list, colors));
+  if (regcomp(&regex[0], "[[:space:]]*file[[:space:]]*=[[:space:]]*\".*\"\
+[[:space:]]*$", REG_EXTENDED))
+    return (fprintf(stderr, "Regex error\n"));
+  if (regcomp(&regex[1], "[[:space:]]*color_one[[:space:]]*=[[:space:]]*\
+0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED))
+    return (fprintf(stderr, "Regex error\n"));
+  if (regcomp(&regex[2], "[[:space:]]*color_two[[:space:]]*=[[:space:]]*\
+0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED))
+    return (fprintf(stderr, "Regex error\n"));
+  color[0] = 0;
+  color[1] = 0;
+  file[0] = 0;
+  while ((pars->buf = get_next_line(pars->fd))
+	 && regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+    {
+      if (!regexec(&regex[0], pars->buf, 0, &pars->reg_struct, 0))
+	get_name(pars, file);
+      if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
+	color[0] = get_color_parser(pars->buf);
+      if (!regexec(&regex[2], pars->buf, 0, &pars->reg_struct, 0))
+	color[1] = get_color_parser(pars->buf);
+    }
+  return (add_proced(sys->scene_list->obj_list, file, sys->scene_list, color));
 }
 
 int		parse_texture(t_system *sys, t_parser *pars)
