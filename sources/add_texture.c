@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 11:06:10 2015 quentin gasparotto
-** Last update Fri Jun  5 14:36:06 2015 quentin gasparotto
+** Last update Fri Jun  5 18:15:02 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -14,6 +14,7 @@ int	add_texture(t_object *obj, char *filename, t_scene *scene)
 {
   if (filename != NULL)
     {
+      printf("%s\n", filename);
       if ((obj->texture = malloc(sizeof(*obj->texture))) == NULL)
 	return (-1);
       if (load_texture(obj->texture, filename, scene->mlx) == -1)
