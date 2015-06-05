@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:43:10 2015 fernand veyrier
-** Last update Fri Jun  5 15:29:42 2015 fernand veyrier
+** Last update Fri Jun  5 18:49:34 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -19,6 +19,8 @@ int		parse_coord(t_system *sys, t_parser *pars)
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (coord) line %i.\n", pars->line) * -1);
   printf("Found coord\n");
+  pos = (t_vector3){0, 0, 0};
+  rot = (t_vector3){0, 0, 0};
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[6], pars->buf, 0, &pars->reg_struct, 0))
     {

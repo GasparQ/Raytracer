@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Fri Jun  5 16:20:29 2015 fernand veyrier
+** Last update Fri Jun  5 18:59:20 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -53,20 +53,23 @@ int		follow_pattern(t_parser *pars, t_system *sys)
 {
   int		(*func[18])();
   int		i;
+  int		ret;
 
   i = 0;
   init_functions(func);
   while ((pars->buf = get_next_line(pars->fd)) != NULL)
     {
+      printf("%s\n", pars->buf);
       while (i < 18 && regexec(&pars->regex[i + 1], pars->buf,
 			       0, &pars->reg_struct, 0))
 	++i;
       if (i < 18)
 	{
 	  pars->level = (pars->line == 2) ? 0 : pars->level;
-	  pars->level += func[i](sys, pars);
-	  /* if (parse->level == -5) */
-	  /*   return (0); */
+	  ret = func[i](sys, pars);
+	  pars->level += ret;
+	  if (ret == -5 && pars->level > 0)
+	    return (0);
 	  if (pars->level < 0)
 	    break;
 	}

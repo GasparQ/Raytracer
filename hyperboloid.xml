@@ -1,26 +1,63 @@
 <?xml version="1.0"?>
 <scene>
   <eye>
-    position = (-300,0,100)
+    position = (-500,0,150)
     rotation = (0,0,0)
     distance = 500
     render_method = 2
   </eye>
   <spot>
-    position = (-300,0,0)
+    position = (-500,0,500)
     rotation = (0,0,0)
-    color = 0xFFFFFF
+    color = 0xFF0F0FFF
     intensity = 1
   </spot>
-  
-  <object color="0xFF0000">
-    <mesh type="hyperboloid">
-      a = 30
-      b = 30
-      c = 90
-      d = -1
-      c_factor = -1
+  <spot>
+    position = (-100,0,200)
+    rotation = (0,0,0)
+    color = 0xFF0F0FFF
+    intensity = 1
+  </spot>
+  <object color="0x00448811">
+    <coord>
+      position = (0,0,0)
+    </coord>
+    <mesh type="plane">
+      normal = (0,0,1)
     </mesh>
+  </object>
+  <object color="0xFFFF0000">
+    <mesh type="sphere">
+      radius = 100
+    </mesh>
+    <phong>
+      brightness = 0.9
+      reflection = 0.5
+    </phong>
+    <coord>
+      position = (0,0,150)
+    </coord>
+    <limit>
+      <object color="0xFF00FF00">
+	<mesh type="sphere">
+	  radius = 50
+	</mesh>
+	<coord>
+	  position = (-75,-75,175)
+	</coord>
+	<limit>	
+	  <object color="0xFF0FFF00">
+	    <mesh type="plane">
+	      normal = (-1,0,0)
+	      cte = 0
+	    </mesh>
+	    <coord>
+	      position = (20,0,0)
+	    </coord>
+	    </object>
+	</limit>
+      </object>
+      </limit>
   </object>
 
 </scene>

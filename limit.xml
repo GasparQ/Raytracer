@@ -7,7 +7,7 @@
     render_method = 2
   </eye>
   <spot>
-    position = (-200, -200, 200)
+    position = (-200,-200,200)
   </spot>
 
   <object color="0xFF0000">
@@ -20,7 +20,7 @@
 	  radius = 25
 	</mesh>
 	<coord>
-	  position = (-75,-75,75)
+	  position = (-50,-50,50)
 	</coord>
       </object>
     </limit>

@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Fri Jun  5 16:56:21 2015 fernand veyrier
+** Last update Fri Jun  5 18:48:09 2015 fernand veyrier
 */
 
 #include "get_next_line.h"

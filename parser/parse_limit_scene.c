@@ -5,16 +5,23 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:42:10 2015 fernand veyrier
-** Last update Mon Jun  1 22:33:33 2015 quentin gasparotto
+** Last update Fri Jun  5 19:01:38 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
 
 int		parse_limit(UNUSED t_system *sys, t_parser *pars)
 {
+  t_object	*save;
+
   if (pars->level < 1)
     return (fprintf(stderr, "Invalid XML (limit) line %i.\n", pars->line) * -1);
   printf("Found limit\n");
+  save = sys->scene_list->obj_list;
+  sys->scene_list->obj_list = sys->scene_list->obj_list->limit;
+  follow_pattern(pars, sys);
+  save->limit = sys->scene_list->obj_list;
+  sys->scene_list->obj_list = save;
   return (5);
 }
 

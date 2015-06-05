@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:40:54 2015 fernand veyrier
-** Last update Fri Jun  5 15:32:02 2015 fernand veyrier
+** Last update Fri Jun  5 18:57:55 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -22,11 +22,9 @@ int		parse_spot(t_system *sys, t_parser *pars)
     return (fprintf(stderr, "You need to add an eye before adding spots \
 (line %i).\n", pars->line) * -1);
   printf("Found spot\n");
-  pos.x = 0;
-  pos.y = 0;
-  pos.y = 0;
+  pos = (t_vector3){0, 0, 0};
   color = 0;
-  intensity = 0;
+  intensity = 1;
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[12], pars->buf, 0, &pars->reg_struct, 0))
     {
