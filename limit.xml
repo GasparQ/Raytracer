@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<scene>
+  <eye>
+    position = (-300,0,150)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 2
+  </eye>
+  <spot>
+    position = (-200, -200, 200)
+  </spot>
+
+  <object color="0xFF0000">
+    <mesh type="sphere">
+      radius = 100
+    </mesh>
+    <limit>
+      <object color="0xFF00">
+	<mesh type="sphere">
+	  radius = 25
+	</mesh>
+	<coord>
+	  position = (-75,-75,75)
+	</coord>
+      </object>
+    </limit>
+  </object>
+</scene>

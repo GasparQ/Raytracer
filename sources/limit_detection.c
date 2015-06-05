@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Jun  5 17:18:55 2015 quentin gasparotto
-** Last update Fri Jun  5 18:23:59 2015 quentin gasparotto
+** Last update Fri Jun  5 18:24:46 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -62,10 +62,10 @@ int	get_border(t_scene *scene)
       x = 0;
       while (x < scene->act_image->wdth / 4)
 	{
-	  //printf("%f ", get_gradient(scene, x, y));
+	  printf("%f ", get_gradient(scene, x, y));
 	  ++x;
 	}
-      //printf("\n");
+      printf("\n");
       ++y;
     }
   return (0);

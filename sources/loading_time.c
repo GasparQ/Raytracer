@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Fri Jun  5 17:50:07 2015 quentin gasparotto
+** Last update Fri Jun  5 18:43:11 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -24,7 +24,7 @@ void    launch_scene(t_system *sys, t_scene *scene)
 			&resolve_antialiased_color);
       else if (scene->act_image->render_method == &cell_shade_method)
 	resolve_effects(scene->act_image, scene, &resolve_cell_shading);
-      get_border(scene);
+      //get_border(scene);
       mlx_put_image_to_window(sys->mlx, sys->wdw,
 			      scene->act_image->img, 0, 0);
       scene->act_eye = scene->act_eye->next;
