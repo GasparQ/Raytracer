@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 11:06:10 2015 quentin gasparotto
-** Last update Thu Jun  4 20:11:01 2015 quentin gasparotto
+** Last update Fri Jun  5 10:05:36 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -24,7 +24,7 @@ int	add_texture(t_object *obj, char *filename, t_scene *scene)
   return (0);
 }
 
-int	add_bump(t_object *obj, char *filename, t_scene *scene)
+int	add_bump(t_object *obj, char *filename, t_scene *scene, int mode)
 {
   if (filename != NULL)
     {
@@ -34,6 +34,7 @@ int	add_bump(t_object *obj, char *filename, t_scene *scene)
 	return (-1);
       if ((obj->bump->color = malloc(obj->bump->bpp / 8)) == NULL)
 	return (-1);
+      obj->which_bump = (mode == 0) ? &height_map_bump : &bump_map_bump;
     }
   return (0);
 }

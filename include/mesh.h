@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Thu Jun  4 18:24:56 2015 quentin gasparotto
+** Last update Fri Jun  5 10:15:07 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -152,6 +152,7 @@ typedef struct		s_object
   t_image		*bump;
   void			(*apply_texture)(t_vector3, t_vector3, struct s_object *, void *);
   void			(*apply_bump)(t_vector3, struct s_object *, t_vector3 *);
+  void			(*which_bump)(t_vector2, t_image *, t_vector3 *);
   double		(*shape_resolver)(t_streight, struct s_object *);
   void			(*free_mesh)(t_mesh);
   void			(*init)(t_vector3 *, t_vector3, struct s_object *);

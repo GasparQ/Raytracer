@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Thu Jun  4 20:14:34 2015 quentin gasparotto
+** Last update Fri Jun  5 09:52:08 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -79,6 +79,15 @@ enum			COLORS
   };
 
 /*
+**	bumpping.c
+*/
+
+void			height_map_bump(t_vector2 text_pos, t_image *bump,
+					t_vector3 *norm);
+void			bump_map_bump(t_vector2 text_pos, t_image *bump,
+				      t_vector3 *norm);
+
+/*
 **	plan_texture.c
 */
 
@@ -116,7 +125,7 @@ int			put_to_server();
 int			add_proced(t_object *obj, char *filename,
 				   t_scene *scene, int *color);
 int			add_bump(t_object *obj, char *filename,
-				 t_scene *scene);
+				 t_scene *scene, int mode);
 int			add_texture(t_object *obj, char *filename,
 				    t_scene *scene);
 

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:44:51 2015 quentin gasparotto
-** Last update Sun May 31 17:42:47 2015 quentin gasparotto
+** Last update Fri Jun  5 09:45:46 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -41,11 +41,11 @@ void	get_pix_color(int x, int y, t_image image, unsigned char *color)
   int	i;
 
   rank = x * image.bpp / 8 + y * image.wdth;
-  i = 0;
-  while (i < image.bpp / 8)
+  i = (image.edn == 0) ? 0 : image.bpp / 8 - 1;
+  while (i < image.bpp / 8 && i >= 0)
     {
       color[i] = image.dat[rank + i];
-      ++i;
+      i += (image.edn == 0) ? 1 : -1;
     }
 }
 
