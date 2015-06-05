@@ -1,0 +1,67 @@
+/*
+** rtv1.c for rtv1 main function in /home/gaspar_q/rendu/Igraph/MUL_2014_rtv1/sources
+** 
+** Made by quentin gasparotto
+** Login   <gaspar_q@epitech.net>
+** 
+** Started on  Tue Feb  3 16:31:47 2015 quentin gasparotto
+** Last update Wed Jun  3 18:07:33 2015 quentin gasparotto
+*/
+
+#include "../include/minilibx_system.h"
+#include "../include/prototypes.h"
+
+void		copy_list(t_scene *scene, t_copy *new, t_scene *tmp)
+{
+  t_scene	*tmp_scene;
+  t_spot	*tmp_spot;
+  int		i;
+
+  tmp_scene = NULL;
+  tmp = scene->next;
+  while (tmp != scene)
+    {
+      tmp_scene = malloc(sizeof(t_scene *) * 100);
+      tmp_spot = tmp->spot_list;
+      while (tmp_spot != NULL)
+	{
+	  i = 0;
+	  tmp_scene->spot_list->color = malloc(my_strlen(tmp_spot->color) * sizeof(char *));
+	  while (tmp_spot[i] != 0)
+	    {
+	      tmp_scene->spot_list->color[i] = tmp_spot->color[i];
+	      i++;
+	    }
+	  tmp_scene->spot_list->color[i] = 0;
+	  tmp_scene->spot_list->i = tmp_spot->i;
+	  tmp_scene->spot_list->origin->x = tmp_spot->origin->x;
+	  tmp_scene->spot_list->origin->y = tmp_spot->origin->y;
+	  tmp_scene->spot_list->origin->z = tmp_spot->origin->z;
+	}
+      tmp_scene->prev = new;
+      tmp_scene->next = new->next;
+      new->next->prev = tmp_scene;
+      tmp->next = tmp_scene;
+      tmp = tmp->next;
+    }
+}
+
+int		main(int ac, char **av, char **env)
+{
+  t_system	sys;
+
+  (void)ac;
+  (void)av;
+  if (env[0] == NULL)
+    return (my_strerror(ENV_FAIL));
+  if (init_system(&sys, av[1]) == -1)
+    return (my_strerror("Init fail\n"));
+  loading_time(&sys);
+  write_file("list.txt", NULL);
+  sys.act_scene = sys.scene_list;
+  sys.act_scene->act_image = sys.act_scene->img;
+  mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
+  mlx_expose_hook(sys.wdw, &expose_gestion, &sys);
+  mlx_loop(sys.mlx);
+  return (CLEAN);
+}

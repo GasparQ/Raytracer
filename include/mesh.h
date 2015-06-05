@@ -1,11 +1,11 @@
 /*
 ** mesh.h for mesh in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtv1
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Fri Jun  5 10:15:07 2015 quentin gasparotto
+** Last update Fri Jun  5 14:14:35 2015 Alban Combaud
 */
 
 #ifndef MESH_H_
@@ -123,13 +123,13 @@ typedef struct		s_phong
 typedef struct		s_image
 {
   void			*img;
-  char			*dat;
+  char			*dat; /* pas malloc */
   int			bpp;
   int			wdth;
   int			hght;
   int			edn;
-  int			*average;
-  unsigned char		*color;
+  int			*average; /* oui malloc */
+  unsigned char		*color; /* dans le doute */
   void			(*render_method)(void *, t_vector2, t_streight);
   struct s_image	*prev;
   struct s_image	*next;
@@ -172,11 +172,11 @@ typedef struct		s_scene
 {
   t_spot		*spot_list;
   int			spot_nb;
-  t_object		*obj_list;
+  t_object		*obj_list; /* duplicate_object */
   t_eye			*eye;
-  t_eye			*act_eye;
+  t_eye			*act_eye; /* je men fou */
   t_image		*img;
-  t_image		*act_image;
+  t_image		*act_image; /* pareil */
   void			*mlx;
   struct s_scene	*prev;
   struct s_scene	*next;
