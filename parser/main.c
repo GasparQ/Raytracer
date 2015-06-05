@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Tue May 26 17:05:55 2015 fernand veyrier
-** Last update Fri Jun  5 15:21:35 2015 fernand veyrier
+** Last update Fri Jun  5 15:40:10 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -45,6 +45,8 @@ void		init_functions(int (**func)())
   func[13] = parse_scene_close;
   func[14] = parse_eye;
   func[15] = parse_eye_close;
+  func[16] = parse_texture;
+  func[17] = parse_texture_close;
 }
 
 int		follow_pattern(t_parser *pars, t_system *sys)
@@ -56,10 +58,10 @@ int		follow_pattern(t_parser *pars, t_system *sys)
   init_functions(func);
   while ((pars->buf = get_next_line(pars->fd)) != NULL)
     {
-      while (i < 16 && regexec(&pars->regex[i + 1], pars->buf,
+      while (i < 18 && regexec(&pars->regex[i + 1], pars->buf,
 			       0, &pars->reg_struct, 0))
 	++i;
-      if (i < 16)
+      if (i < 18)
 	{
 	  pars->level = (pars->line == 2) ? 0 : pars->level;
 	  pars->level += func[i](sys, pars);
@@ -96,14 +98,14 @@ int		init_rules(regex_t *regex)
       || regcomp(&regex[14], SCENE_CLOSE, REG_EXTENDED)
       || regcomp(&regex[15], EYE, REG_EXTENDED)
       || regcomp(&regex[16], EYE_CLOSE, REG_EXTENDED)
-      || regcomp(&regex[17], ROTATION POS_NEXT, REG_EXTENDED)
-      || regcomp(&regex[18], POSITION POS_NEXT, REG_EXTENDED)
-      || regcomp(&regex[19], COLOR_REG COLOR_NEXT, REG_EXTENDED)
-      || regcomp(&regex[20], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
-      || regcomp(&regex[21], INTENSITY NBR_REG, REG_EXTENDED)
-      || regcomp(&regex[22], RENDER_METHOD, REG_EXTENDED)
-      || regcomp(&regex[23], TEXTURE_REG TEXTURE_NEXT, REG_EXTENDED)
-      || regcomp(&regex[24], TEXTURE_CLOSE, REG_EXTENDED))
+      || regcomp(&regex[17], TEXTURE_REG TEXTURE_NEXT, REG_EXTENDED)
+      || regcomp(&regex[18], TEXTURE_CLOSE, REG_EXTENDED)
+      || regcomp(&regex[19], ROTATION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[20], POSITION POS_NEXT, REG_EXTENDED)
+      || regcomp(&regex[21], COLOR_REG COLOR_NEXT, REG_EXTENDED)
+      || regcomp(&regex[22], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
+      || regcomp(&regex[23], INTENSITY NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[24], RENDER_METHOD, REG_EXTENDED))
     return (fprintf(stderr, "Regex error.\n"));
   return (0);
 }

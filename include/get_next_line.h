@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Fri Jun  5 15:17:16 2015 fernand veyrier
+** Last update Fri Jun  5 15:41:19 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -63,7 +63,7 @@
 # define RENDER_METHOD	"[[:space:]]*render_method[[:space:]]*=[[:space:]]*"
 # define TEXTURE_REG	"[[:space:]]*<texture[[:space:]]+type[[:space:]]*=\""
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
-# define TEXTURE_CLOSE	"[[:space:]]*</texture>[[:space]]$*"
+# define TEXTURE_CLOSE	"[[:space:]]*</texture>[[:space:]]*$"
 # define UNUSED		__attribute__((unused))
 
 typedef struct	s_parser
@@ -111,5 +111,7 @@ void		init_functions(int (**func)());
 int		follow_pattern(t_parser *pars, t_system *sys);
 int		init_rules(regex_t *regex);
 int		get_objects(t_system *sys, char *file);
+int		parse_texture(t_system *sys, t_parser *pars);
+int		parse_texture_close(t_system *sys, t_parser *pars);
 
 #endif /* !GET_NXT_LINE_H_  */

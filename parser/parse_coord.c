@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:43:10 2015 fernand veyrier
-** Last update Sun May 31 14:30:28 2015 fernand veyrier
+** Last update Fri Jun  5 15:29:42 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -22,9 +22,9 @@ int		parse_coord(t_system *sys, t_parser *pars)
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[6], pars->buf, 0, &pars->reg_struct, 0))
     {
-      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+      if (!regexec(&pars->regex[20], pars->buf, 0, &pars->reg_struct, 0))
 	pos = get_vector(pars->buf);
-      if (!regexec(&pars->regex[17], pars->buf, 0, &pars->reg_struct, 0))
+      if (!regexec(&pars->regex[19], pars->buf, 0, &pars->reg_struct, 0))
 	rot = get_vector(pars->buf);
     }
   coord[0] = pos.x;

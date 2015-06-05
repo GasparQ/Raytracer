@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:40:54 2015 fernand veyrier
-** Last update Sun May 31 22:36:11 2015 fernand veyrier
+** Last update Fri Jun  5 15:32:02 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -30,11 +30,11 @@ int		parse_spot(t_system *sys, t_parser *pars)
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[12], pars->buf, 0, &pars->reg_struct, 0))
     {
-      if (!regexec(&pars->regex[18], pars->buf, 0, &pars->reg_struct, 0))
+      if (!regexec(&pars->regex[20], pars->buf, 0, &pars->reg_struct, 0))
 	pos = get_vector(pars->buf);
-      if (!regexec(&pars->regex[19], pars->buf, 0, &pars->reg_struct, 0))
-	color = get_color_parser(pars->buf);
       if (!regexec(&pars->regex[21], pars->buf, 0, &pars->reg_struct, 0))
+	color = get_color_parser(pars->buf);
+      if (!regexec(&pars->regex[23], pars->buf, 0, &pars->reg_struct, 0))
       	intensity = get_nbr_parser(pars->buf);
     }
   add_spot(sys->scene_list, pos, color, intensity);
