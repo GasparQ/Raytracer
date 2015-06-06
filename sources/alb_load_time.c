@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 12:09:11 2015 Alban Combaud
+** Last update Sat Jun  6 13:15:39 2015 Alban Combaud
 */
 
 #include <omp.h>
@@ -145,6 +145,7 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
     {
       copy = init_scene();
       copy_list(scene, copy, NULL);
+      copy = copy->next;
       copy->act_eye = scene->act_eye;
       copy->act_image = scene->act_image;
       nb = omp_get_thread_num();
