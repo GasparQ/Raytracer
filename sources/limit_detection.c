@@ -5,17 +5,17 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Jun  5 17:18:55 2015 quentin gasparotto
-** Last update Fri Jun  5 20:35:43 2015 quentin gasparotto
+** Last update Sat Jun  6 17:37:01 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-int	get_color_value(t_image *img, int x, int y)
+unsigned int	get_color_value(t_image *img, int x, int y)
 {
-  int	color;
-  int	rank;
-  int	i;
-  int	val_pow;
+  unsigned int	color;
+  int		rank;
+  int		i;
+  int		val_pow;
 
   color = 0;
   rank = y * img->wdth + x * img->bpp / 8;
@@ -23,7 +23,7 @@ int	get_color_value(t_image *img, int x, int y)
   while (i < img->bpp / 8)
     {
       val_pow = (img->edn == 0) ? i : img->bpp / 8 - i;
-      color += img->dat[rank + i] * pow(128, val_pow);
+      color += img->dat[rank + i] * pow(2, 8 * val_pow);
       ++i;
     }
   return (color);
@@ -47,8 +47,7 @@ double		get_gradient(t_scene *scene, int x, int y)
     (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[0]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[0]] +
      2 * (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + x] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + x]) +
      scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[1]]) / 3;
-  /* sqrt(grad_x * grad_x + grad_y * grad_y) */
-  return (atan2(grad_y, grad_x));
+  return (grad_y + grad_x);
 }
 
 int		check_border(t_image *image, int x, int y)

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Thu Mar 12 11:48:17 2015 quentin gasparotto
-** Last update Fri Jun  5 17:52:03 2015 quentin gasparotto
+** Last update Sat Jun  6 14:37:06 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -40,11 +40,11 @@ void	        antialias_method(void *send_scene, t_vector2 pos,
 	  final_obj->effects = 0;
 	  resolve_light(get_isec_point(strgt, final_obj), final_obj, scene, strgt);
 	  add_color_to_avg(final_obj->disp_color, scene->act_image->average,
-			   scene->act_image->bpp / 8);
+			   scene->act_image->bpp / 8, 1);
 	}
       else
 	add_color_to_avg(scene->act_image->color, scene->act_image->average,
-			 scene->act_image->bpp / 8);
+			 scene->act_image->bpp / 8, 1);
       final_intensity += scene->act_intensity;
     }
   scene->act_image->i_tab[(int)pos.y * scene->act_image->wdth / 4 + (int)pos.x] = final_intensity / 9;

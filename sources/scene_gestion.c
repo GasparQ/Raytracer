@@ -5,11 +5,16 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Fri Jun  5 18:01:09 2015 quentin gasparotto
+** Last update Sat Jun  6 19:25:39 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
+
+static void (*filters[4])(t_image *, t_vector2, void *) = {&get_coeff,
+							   &sepia,
+							   &black_n_white,
+							   &revert};
 
 int		init_img(t_image *img, t_vector2 dim, t_scene *scene, int render)
 {
@@ -80,6 +85,16 @@ int	add_eye(t_scene *scene, t_vector3 position,
   scene->eye = elem;
   if (add_image(scene, (int)prop[1]) == -1)
     return (-1);
+  elem->convolution[0] = prop[2];
+  elem->convolution[1] = prop[3];
+  elem->convolution[2] = prop[4];
+  elem->convolution[3] = prop[5];
+  elem->convolution[4] = prop[6];
+  elem->convolution[5] = prop[7];
+  elem->convolution[6] = prop[8];
+  elem->convolution[7] = prop[9];
+  elem->convolution[8] = prop[10];
+  elem->filter_meth = filters[(prop[11] < 4) ? (int)prop[11] : 0];
   return (0);
 }
 

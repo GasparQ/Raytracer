@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<scene>
+  <eye>
+    position = (-100,0,0)
+    distance = 500
+    render_method = 2
+  </eye>
+
+  <spot>
+    position = (-300,0,0)
+    intensity = 1
+  </spot>
+
+  <object color="0x00FFFF00">
+    <coord>
+      position = (0,0,0)
+    </coord>
+    <mesh type="hyperboloid">
+      a = 30
+      b = 30
+      c = 90
+      d = -1
+      c_factor = -1
+    </mesh>
+    <limit>
+      <object color="0x00FF0000">
+	<mesh type="cylinder">
+	  radius = 2
+	</mesh>
+	<coord>
+	  position = (0,0,0)
+	  rotation = (0,90,45)
+	</coord>
+      </object>
+    </limit>
+  </object>
+
+</scene>

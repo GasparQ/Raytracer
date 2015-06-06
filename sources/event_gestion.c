@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Fri Jun  5 15:22:30 2015 quentin gasparotto
+** Last update Sat Jun  6 09:16:57 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -18,8 +18,9 @@ void	init_action(int *keycode_act, void (*act[5])(t_system *))
   keycode_act[2] = LEFT;
   keycode_act[3] = RIGHT;
   keycode_act[4] = ESCAPE;
-  keycode_act[5] = 115;
+  keycode_act[5] = 's';
   keycode_act[6] = RETURN;
+  keycode_act[7] = 'a';
   act[0] = &next_scene;
   act[1] = &prev_scene;
   act[2] = &next_img;
@@ -27,19 +28,20 @@ void	init_action(int *keycode_act, void (*act[5])(t_system *))
   act[4] = &exit_ray_tracer;
   act[5] = &save_file;
   act[6] = &send_to_server;
+  act[7] = &save_and_send;
 }
 
 int	key_gestion(int keycode, t_system *sys)
 {
-  int	keycode_action[7];
-  void	(*act[7])(t_system *);
+  int	keycode_action[8];
+  void	(*act[8])(t_system *);
   int	i;
 
   init_action(keycode_action, act);
   i = 0;
-  while (i < 7 && keycode_action[i] != keycode)
+  while (i < 8 && keycode_action[i] != keycode)
     ++i;
-  if (i < 7)
+  if (i < 8)
     act[i](sys);
   if (i < 4)
     mlx_put_image_to_window(sys->mlx, sys->wdw,

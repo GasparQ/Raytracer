@@ -1,11 +1,11 @@
 /*
 ** prototypes.h for ray_tracer header in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-**
+** 
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-**
+** 
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sat Jun  6 17:33:03 2015 Alban Combaud
+** Last update Sat Jun  6 19:25:51 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -53,6 +53,7 @@
 # define SIMPLE		get_properties(0, 0, 0, 0)
 
 # define ABS(i)		((i) < 0) ? -(i) : (i)
+# define MIN(i1, i2)	((i1) < (i2)) ? (i1) : (i2)
 
 # define UNIT(v)	unit_vec((v))
 
@@ -79,9 +80,35 @@ enum			COLORS
   };
 
 /*
+**	filter.c
+*/
+
+void		        revert(t_image *img, t_vector2 pos, void *send_scene);
+void			sepia(t_image *img, t_vector2 pos, void *send_scene);
+void			black_n_white(t_image *img, t_vector2 pos,
+				      void *send_scene);
+
+/*
+**	convo_filter.c
+*/
+
+void			apply_filter(t_image *img, t_scene *scene);
+void			get_coeff(t_image *img, t_vector2 pos,
+				  void *scene);
+
+/*
+**	cylinder_texture.c
+*/
+
+void			cylinder_bump(t_vector3 isec_point, t_object *touch,
+				      t_vector3 *norm);
+t_vector2		cylinder_map(t_vector3 isec_point, t_image *texture);
+
+/*
 **	limit_detection.c
 */
 
+unsigned int		get_color_value(t_image *img, int x, int y);
 int			check_border(t_image *image, int x, int y);
 int			get_border(t_scene *scene);
 
@@ -177,6 +204,7 @@ void			init_streight(t_streight *strgt, double dist,
 **	make_action_next.c
 */
 
+void			save_and_send(t_system *sys);
 void			send_to_server(t_system *sys);
 void			save_file(t_system *sys);
 
@@ -219,7 +247,7 @@ int			cmp_colors(unsigned char *color1, unsigned char *color2,
 void			choose_color(t_image *act_image, t_image *copy,
 				     t_vector2 pos, int tell);
 void			add_color_to_avg(unsigned char *color, int *average,
-					 int limit);
+					 int limit, int fact);
 void			resolve_antialiased_color(t_image *act_image,
 						  t_image *nice_img,
 						  t_vector2 pos);
@@ -657,20 +685,5 @@ int			key_gestion(int keycode, t_system *sys);
 int			my_strlen(char *str);
 void			my_puterrchar(char c);
 void			my_put_error(char *str);
-
-/*
-**	multithread_copy.c
-*/
-
-int			fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i);
-int			fill_eye(t_scene *tmp_scene, t_scene *tmp);
-int			my_strlen_unsigned(unsigned char *str);
-
-/*
-**	fill_new_list.c
-*/
-
-t_scene			*init_scene(void);
-int			copy_list(t_scene *scene, t_scene *new, t_scene *tmp);
 
 #endif /* !SYS_LIBX_H_ */

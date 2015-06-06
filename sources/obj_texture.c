@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 11:10:13 2015 quentin gasparotto
-** Last update Thu Jun  4 20:13:33 2015 quentin gasparotto
+** Last update Sat Jun  6 19:15:02 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -42,17 +42,7 @@ void		text_to_cylinder(t_vector3 isec_point, UNUSED t_vector3 norm,
   scene = (t_scene *)send_scene;
   if (touch->texture != NULL)
     {
-      text_pos.x = acos(isec_point.x / touch->mesh.cylinder->radius) /
-	(2 * M_PI);
-      text_pos.x = (int)(text_pos.x * (touch->texture->wdth / 4)) %
-	(int)(touch->texture->wdth / 4);
-      if (text_pos.x < 0)
-	text_pos.x = -text_pos.x;
-      text_pos.y = isec_point.z / 100;
-      text_pos.y = (int)(text_pos.y * touch->texture->hght) %
-	(int)touch->texture->hght;
-      if (text_pos.y < 0)
-	text_pos.y = -text_pos.y;
+      text_pos = cylinder_map(isec_point, touch->texture);
       get_pix_color((int)text_pos.x, (int)text_pos.y,
 		    *touch->texture, touch->disp_color);
     }

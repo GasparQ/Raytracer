@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Feb 11 16:03:34 2015 quentin gasparotto
-** Last update Fri Jun  5 18:02:23 2015 quentin gasparotto
+** Last update Sat Jun  6 19:00:05 2015 quentin gasparotto
 */
 
 #ifndef MESH_H_
@@ -23,14 +23,6 @@ typedef struct		s_vector3
   double		y;
   double		z;
 }			t_vector3;
-
-typedef struct		s_eye
-{
-  t_vector3		pos;
-  t_vector3		dir;
-  double		distance;
-  struct s_eye		*next;
-}			t_eye;
 
 typedef struct		s_streight
 {
@@ -135,6 +127,16 @@ typedef struct		s_image
   struct s_image	*prev;
   struct s_image	*next;
 }			t_image;
+
+typedef struct		s_eye
+{
+  t_vector3		pos;
+  t_vector3		dir;
+  double		distance;
+  double		convolution[9];
+  void			(*filter_meth)(t_image *, t_vector2, void *);
+  struct s_eye		*next;
+}			t_eye;
 
 typedef struct		s_object
 {

@@ -13,11 +13,9 @@ SRCS=	./sources/rtracer.c \
 	./sources/load_image.c \
 	./sources/my_puterrchar.c \
 	./sources/my_put_error.c \
-	./sources/fill_new_list.c \
 	./sources/my_strlen.c \
 	./sources/init_system.c \
 	./sources/objects.c \
-	./sources/multithread_copy.c \
 	./sources/add_sphere.c \
 	./sources/add_plan.c \
 	./sources/add_spot.c \
@@ -63,7 +61,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
-	./sources/loading_time.c \
+	./sources/alb_load_time.c \
 	./sources/antialiasing.c \
 	./sources/get_object.c \
 	./sources/effects.c \
@@ -81,6 +79,11 @@ SRCS=	./sources/rtracer.c \
 	./sources/plan_texture.c \
 	./sources/bumpping.c \
 	./sources/limit_detection.c \
+	./sources/cylinder_texture.c \
+	./sources/filter.c \
+	./sources/convo_filter.c \
+	./sources/fill_new_list.c \
+	./sources/multithread_copy.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_mesh_next.c	\
 	./parser/parse_coord.c 		\

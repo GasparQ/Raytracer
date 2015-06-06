@@ -5,7 +5,7 @@
 ** Login   <barrie_j@epitech.net>
 **
 ** Started on  Wed Jun  3 17:00:54 2015 Jean BARRIERE
-** Last update Wed Jun  3 18:10:43 2015 quentin gasparotto
+** Last update Sat Jun  6 12:21:43 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -78,20 +78,19 @@ int	write_file(char *file, char *name)
 int	put_to_server()
 {
   int	spid;
-  int	wpid;
+  int	status;
 
   if ((spid = fork()) == -1)
     return (0);
   if (spid == 0)
     {
-      if (execlp("/bin/php", "php", "./online/script.php", NULL) == -1)
-	return (0);
+      execlp("/bin/php", "php", "./online/script.php", NULL);
+      exit(1);
     }
   else
     {
-      wpid = 0;
-      waitpid(spid, &wpid, WSTOPPED);
-      return (1);
+      wait(&status);
+      return (WIFEXITED(status));
     }
   return (0);
 }

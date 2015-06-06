@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 19:28:21 2015 quentin gasparotto
-** Last update Fri Jun  5 20:02:27 2015 quentin gasparotto
+** Last update Sat Jun  6 10:37:04 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -48,7 +48,7 @@ void		sphere_bump(t_vector3 isec_point, t_object *touch,
   t_vector2	text_pos;
 
   text_pos = sphere_map(isec_point, touch->bump);
-  height_map_bump(text_pos, touch->bump, norm);
+  touch->which_bump(text_pos, touch->bump, norm);
 }
 
 void		sphere_proced(t_vector3 isec_point, t_object *touch)

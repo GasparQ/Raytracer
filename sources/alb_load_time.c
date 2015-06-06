@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 19:10:17 2015 adrien milcent
+** Last update Sat Jun  6 19:29:00 2015 quentin gasparotto
 */
 
 #include <omp.h>
@@ -80,6 +80,7 @@ void		launch_scene(t_system *sys, t_scene *scene, int nb, int nb_t)
                           &resolve_antialiased_color);
         else if (scene->act_image->render_method == &cell_shade_method)
           resolve_effects(scene->act_image, scene, &resolve_cell_shading);
+	apply_filter(scene->act_image, scene);
         mlx_put_image_to_window(sys->mlx, sys->wdw,
                                 scene->act_image->img, 0, 0);
 	if (scene->act_eye != NULL && scene->act_image != NULL)

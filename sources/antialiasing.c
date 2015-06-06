@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat May 30 14:45:47 2015 quentin gasparotto
-** Last update Fri Jun  5 20:07:43 2015 quentin gasparotto
+** Last update Sat Jun  6 13:34:27 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -25,14 +25,14 @@ int	cmp_colors(unsigned char *color1, unsigned char *color2,
   return (0);
 }
 
-void	add_color_to_avg(unsigned char *color, int *average, int limit)
+void	add_color_to_avg(unsigned char *color, int *average, int limit, int fact)
 {
   int	i;
 
   i = 0;
   while (i < limit)
     {
-      average[i] += color[i];
+      average[i] += color[i] * fact;
       ++i;
     }
 }
@@ -80,10 +80,8 @@ void	resolve_antialiased_color(t_image *act_image, t_image *nice_img,
 	  get_pix_color(pos.x - 1 + i % 3, pos.y - 1 + i / 3,
 			*act_image, act_image->color);
 	  add_color_to_avg(act_image->color, act_image->average,
-			   act_image->bpp / 8);
+			   act_image->bpp / 8, 1);
 	  if (i != 4 && check_border(act_image, (int)pos.x, (int)pos.y))
-	      /* cmp_colors(nice_img->color, act_image->color, */
-	      /* 		 act_image->bpp / 8, 150))*/
 	    tell = 1;
 	}
       ++i;
