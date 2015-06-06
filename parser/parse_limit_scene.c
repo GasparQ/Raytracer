@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:42:10 2015 fernand veyrier
-** Last update Sat Jun  6 11:07:49 2015 fernand veyrier
+** Last update Sat Jun  6 11:20:20 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -48,4 +48,11 @@ int		parse_scene_close(UNUSED t_system *sys, t_parser *pars)
     return (fprintf(stderr, "Invalid XML (spot) line %i.\n",
 		    pars->line) * -1);
   return (-1);
+}
+
+int		parse_mesh_close(UNUSED t_system *sys, t_parser *pars)
+{
+  if (pars->level - 2 < 2)
+    return (fprintf(stderr, "Invalid XML (mesh) line %i.\n", pars->line) * -1);
+  return (-2);
 }

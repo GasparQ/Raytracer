@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat Jun  6 11:01:05 2015 fernand veyrier
+** Last update Sat Jun  6 11:40:46 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -23,7 +23,8 @@
 # include "prototypes.h"
 
 # define LINE_LEN	4096
-# define HEADER		"^<\\?xml version[[:space:]]*=[[:space:]]*\"[[:digit:].]+\"\\?>$"
+# define HEADER_NEXT	"\"[[:digit:].]+\"\\?>$"
+# define HEADER		"^<\\?xml version[[:space:]]*=[[:space:]]*" HEADER_NEXT
 # define OBJECT_OPEN	"[[:space:]]*<object[[:space:]]+color=\"0x"
 # define OBJECT_NEXT	"[[:digit:]A-F]{,8}\">[[:space:]]*$"
 # define OBJECT_CLOSE	"[[:space:]]*</object>[[:space:]]*$"
@@ -45,7 +46,8 @@
 # define EYE_CLOSE	"[[:space:]]*</eye>[[:space:]]*$"
 # define POSITION	"[[:space:]]*position[[:space:]]*=[[:space:]]*"
 # define ROTATION	"[[:space:]]*rotation[[:space:]]*=[[:space:]]*"
-# define POS_NEXT	"\\([[:digit:].-]+,[[:digit:].-]+,[[:digit:].-]+\\)[[:space:]]*$"
+# define POS_END	",[[:digit:].-]+\\)[[:space:]]*$"
+# define POS_NEXT	"\\([[:digit:].-]+,[[:digit:].-]+" POS_END
 # define COLOR_REG	"[[:space:]]*color[[:space:]]*=[[:space:]]*0x"
 # define COLOR_NEXT	"[[:digit:]A-F]{,8}[[:space:]]*$"
 # define DISTANCE_REG	"[[:space:]]*distance[[:space:]]*=[[:space:]]*"
@@ -65,6 +67,8 @@
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
 # define TEXTURE_CLOSE	"[[:space:]]*</texture>[[:space:]]*$"
 # define HYPER_PARAM(a)	"[[:space:]]*"a"[[:space:]]*=[[:space:]]*"
+# define ERR_NEXT	pars->line) * -1
+# define ERR_PARSER(s)	fprintf(stderr, "Invalid XML ("s") line %i\n", ERR_NEXT
 # define UNUSED		__attribute__((unused))
 
 typedef struct	s_parser
@@ -114,5 +118,13 @@ int		init_rules(regex_t *regex);
 int		get_objects(t_system *sys, char *file);
 int		parse_texture(t_system *sys, t_parser *pars);
 int		parse_texture_close(t_system *sys, t_parser *pars);
+int		mesh_sphere(t_system *sys, t_parser *pars);
+int		mesh_plane(t_system *sys, t_parser *pars);
+int		mesh_tore(t_system *sys, t_parser *pars);
+int		mesh_holedcube(t_system *sys, t_parser *pars);
+int		mesh_cone(t_system *sys, t_parser *pars);
+void		get_name(t_parser *pars, char *file);
+int		parse_texture_map(t_system *sys, t_parser *pars);
+int		parse_texture_bump(t_system *sys, t_parser *pars);
 
 #endif /* !GET_NXT_LINE_H_  */

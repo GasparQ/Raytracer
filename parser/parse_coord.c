@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:43:10 2015 fernand veyrier
-** Last update Fri Jun  5 21:33:36 2015 fernand veyrier
+** Last update Sat Jun  6 11:33:12 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -17,8 +17,7 @@ int		parse_coord(t_system *sys, t_parser *pars)
   double	coord[6];
 
   if (pars->level < 1)
-    return (fprintf(stderr, "Invalid XML (coord) line %i.\n",
-		    pars->line) * -1);
+    return (ERR_PARSER("coord"));
   pos = (t_vector3){0, 0, 0};
   rot = (t_vector3){0, 0, 0};
   while ((pars->buf = get_next_line(pars->fd))
@@ -36,7 +35,7 @@ int		parse_coord(t_system *sys, t_parser *pars)
   coord[4] = rot.y;
   coord[5] = rot.z;
   add_coord(sys->scene_list->obj_list, coord);
-  return ((pars->buf == NULL) ? -30 : 0);
+  return ((pars->buf == NULL) ? ERR_PARSER("coord") : 0);
 }
 
 int		parse_coord_close(UNUSED t_system *sys, t_parser *pars)

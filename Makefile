@@ -80,6 +80,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/bumpping.c \
 	./sources/limit_detection.c \
 	./parser/parse_mesh.c 		\
+	./parser/parse_mesh_next.c	\
 	./parser/parse_coord.c 		\
 	./parser/parse_phong.c 		\
 	./parser/parse_obj.c 		\
@@ -92,6 +93,8 @@ SRCS=	./sources/rtracer.c \
 	./parser/my_getnbr_base.c 	\
 	./parser/char_function.c 	\
 	./parser/parse_texture.c	\
+	./parser/parse_texture_next.c	\
+	./parser/init.c			\
 	./online/file.c			\
 
 OBJS=	$(SRCS:.c=.o)
