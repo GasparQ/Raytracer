@@ -1,11 +1,11 @@
 /*
 ** prototypes.h for ray_tracer header in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sat Jun  6 19:25:51 2015 quentin gasparotto
+** Last update Sat Jun  6 20:21:18 2015 adrien milcent
 */
 
 #ifndef SYS_LIBX_H_
@@ -685,5 +685,25 @@ int			key_gestion(int keycode, t_system *sys);
 int			my_strlen(char *str);
 void			my_puterrchar(char c);
 void			my_put_error(char *str);
+
+/*
+**	multithread_copy.c
+*/
+
+int		my_strlen_unsigned(unsigned char *str);
+int		struct_spot(t_spot *tmp, t_spot *tmp_spot, int i);
+int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i);
+void		struct_eye(t_eye *tmp2, t_eye *tmp_eye);
+int		fill_eye(t_scene *tmp_scene, t_scene *tmp);
+
+/*
+**	fill_new_list.c
+*/
+
+t_scene		*init_scene(void);
+int		struct_img(t_image *tmp, t_image *tmp_image, int i);
+int		fill_img(t_scene *tmp_scene, t_image *tmp_image, int i);
+int		fill_new_list(t_scene *new, t_scene *tmp, t_scene *tmp_scene);
+int		copy_list(t_scene *scene, t_scene *new, t_scene *tmp);
 
 #endif /* !SYS_LIBX_H_ */

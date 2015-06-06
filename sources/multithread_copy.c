@@ -5,7 +5,7 @@
 ** Login   <combau_a@epitech.net>
 **
 ** Started on  Sat Jun  6 17:22:20 2015 Alban Combaud
-** Last update Sat Jun  6 17:25:34 2015 Alban Combaud
+** Last update Sat Jun  6 20:20:20 2015 adrien milcent
 */
 
 #include "../include/minilibx_system.h"
@@ -57,12 +57,20 @@ int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i)
 
 void		struct_eye(t_eye *tmp2, t_eye *tmp_eye)
 {
+  int		i;
+
+  i = 0;
   tmp2->pos.x = tmp_eye->pos.x;
   tmp2->pos.y = tmp_eye->pos.y;
   tmp2->pos.z = tmp_eye->pos.z;
   tmp2->dir.x = tmp_eye->dir.x;
   tmp2->dir.y = tmp_eye->dir.y;
   tmp2->dir.z = tmp_eye->dir.z;
+  while (i < 9)
+    {
+      tmp2->convolution[i] = tmp_eye->convolution[i];
+      ++i;
+    }
   tmp2->distance = tmp_eye->distance;
 }
 

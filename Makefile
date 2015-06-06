@@ -61,7 +61,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/draw_hyperboloid.c \
 	./sources/scene_gestion.c \
 	./sources/intensity_gestion.c \
-	./sources/loading_time.c \
+	./sources/alb_load_time.c \
 	./sources/antialiasing.c \
 	./sources/get_object.c \
 	./sources/effects.c \
