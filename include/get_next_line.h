@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat Jun  6 15:15:33 2015 fernand veyrier
+** Last update Sat Jun  6 23:23:06 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -49,7 +49,7 @@
 # define POS_END	",[[:digit:].-]+\\)[[:space:]]*$"
 # define POS_NEXT	"\\([[:digit:].-]+,[[:digit:].-]+" POS_END
 # define COLOR_REG	"^[[:space:]]*color[[:space:]]*=[[:space:]]*0x"
-# define COLOR_NEXT	"[[:digit:]A-F]{,8}[[:space:]]*$"
+# define COLOR_NEXT	"[[:digit:]A-F]{1,8}[[:space:]]*$"
 # define DISTANCE_REG	"^[[:space:]]*distance[[:space:]]*=[[:space:]]*"
 # define DISTANCE_NEXT	"[[:digit:].-]+[[:space:]]*$"
 # define NBR_REG	"[[:digit:].-]+[[:space:]]*$"
@@ -67,6 +67,9 @@
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
 # define TEXTURE_CLOSE	"^[[:space:]]*</texture>[[:space:]]*$"
 # define HYPER_PARAM(a)	"^[[:space:]]*"a"[[:space:]]*=[[:space:]]*"
+# define MATRIX_NEXT	"[:space:]]*\\[([[:digit:].]+[,]?){9,9}\\][[:space:]]*$"
+# define MATRIX		"^[[:space:]]*filter[[:space:]]*=[" MATRIX_NEXT
+# define FILTER_MODE	"^[[:space:]]*filter_mode[[:space:]]*=[[:space:]]*"
 # define ERR_NEXT	pars->line) * -1
 # define ERR_PARSER(s)	fprintf(stderr, "Invalid XML ("s") line %i\n", ERR_NEXT
 # define UNUSED		__attribute__((unused))

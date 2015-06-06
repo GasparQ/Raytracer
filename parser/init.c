@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat Jun  6 11:44:17 2015 fernand veyrier
-** Last update Sat Jun  6 11:44:51 2015 fernand veyrier
+** Last update Sat Jun  6 23:20:48 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -19,7 +19,9 @@ int		init_rules_next(regex_t *regex)
       || regcomp(&regex[21], COLOR_REG COLOR_NEXT, REG_EXTENDED)
       || regcomp(&regex[22], DISTANCE_REG DISTANCE_NEXT, REG_EXTENDED)
       || regcomp(&regex[23], INTENSITY NBR_REG, REG_EXTENDED)
-      || regcomp(&regex[24], RENDER_METHOD, REG_EXTENDED))
+      || regcomp(&regex[24], RENDER_METHOD, REG_EXTENDED)
+      || regcomp(&regex[25], MATRIX, REG_EXTENDED)
+      || regcomp(&regex[26], FILTER_MODE NBR_REG, REG_EXTENDED))
     return (-1);
   return (0);
 }
