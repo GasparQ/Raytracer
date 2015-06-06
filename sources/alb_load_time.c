@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 13:15:39 2015 Alban Combaud
+** Last update Sat Jun  6 15:58:19 2015 Alban Combaud
 */
 
 #include <omp.h>
@@ -35,25 +35,48 @@ int             my_strlen_unsigned(unsigned char *str)
 
 int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i)
 {
+  t_spot	*tmp;
+
+  i = 0;
+  if ((tmp_scene->spot_list = malloc(sizeof(t_spot *) * 100)) == NULL)
+    return (-1);
+  if ((tmp_scene->spot_list->color =
+       malloc(100 + my_strlen_unsigned(tmp_spot->color) * sizeof(char)))
+      == NULL)
+    return (-1);
+  while (tmp_spot->color[i] != 0)
+    {
+      tmp_scene->spot_list->color[i] = tmp_spot->color[i];
+      i++;
+    }
+  tmp_scene->spot_list->color[i] = 0;
+  tmp_scene->spot_list->i = tmp_spot->i;
+  tmp_scene->spot_list->origin.x = tmp_spot->origin.x;
+  tmp_scene->spot_list->origin.y = tmp_spot->origin.y;
+  tmp_scene->spot_list->origin.z = tmp_spot->origin.z;
+  tmp_scene->spot_list->next = NULL;
+  tmp_spot = tmp_spot->next;
   while (tmp_spot != NULL)
     {
       i = 0;
-      if ((tmp_scene->spot_list = malloc(sizeof(t_spot *) * 100)) == NULL)
+      if ((tmp = malloc(sizeof(t_spot *) * 100)) == NULL)
 	return (-1);
-      if ((tmp_scene->spot_list->color =
+      if ((tmp->color =
 	   malloc(100 + my_strlen_unsigned(tmp_spot->color) * sizeof(char)))
-	  == NULL)
+      == NULL)
 	return (-1);
       while (tmp_spot->color[i] != 0)
 	{
-	  tmp_scene->spot_list->color[i] = tmp_spot->color[i];
+	  tmp->color[i] = tmp_spot->color[i];
 	  i++;
 	}
-      tmp_scene->spot_list->color[i] = 0;
-      tmp_scene->spot_list->i = tmp_spot->i;
-      tmp_scene->spot_list->origin.x = tmp_spot->origin.x;
-      tmp_scene->spot_list->origin.y = tmp_spot->origin.y;
-      tmp_scene->spot_list->origin.z = tmp_spot->origin.z;
+      tmp->color[i] = 0;
+      tmp->i = tmp_spot->i;
+      tmp->origin.x = tmp_spot->origin.x;
+      tmp->origin.y = tmp_spot->origin.y;
+      tmp->origin.z = tmp_spot->origin.z;
+      tmp->next = tmp_scene->spot_list;
+      tmp_scene->spot_list = tmp;
       tmp_spot = tmp_spot->next;
     }
   return (0);
@@ -61,19 +84,45 @@ int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i)
 
 int		fill_eye(t_scene *tmp_scene, t_scene *tmp)
 {
+  t_eye		*tmp2;
+
   if ((tmp_scene->eye = malloc(sizeof(t_eye *) * 100)) == NULL)
     return (-1);
-  tmp_scene->eye->pos.x = tmp->eye->pos.x;
-  tmp_scene->eye->pos.y = tmp->eye->pos.y;
-  tmp_scene->eye->pos.z = tmp->eye->pos.z;
-  tmp_scene->eye->dir.x = tmp->eye->dir.x;
-  tmp_scene->eye->dir.y = tmp->eye->dir.y;
-  tmp_scene->eye->dir.z = tmp->eye->dir.z;
+  if (tmp->eye != NULL)
+    {
+      tmp_scene->eye->pos.x = tmp->eye->pos.x;
+      tmp_scene->eye->pos.y = tmp->eye->pos.y;
+      tmp_scene->eye->pos.z = tmp->eye->pos.z;
+      tmp_scene->eye->dir.x = tmp->eye->dir.x;
+      tmp_scene->eye->dir.y = tmp->eye->dir.y;
+      tmp_scene->eye->dir.z = tmp->eye->dir.z;
+      tmp_scene->eye->distance = tmp->eye->distance;
+      tmp_scene->eye->next = NULL;
+      tmp->eye = tmp->eye->next;
+      while (tmp->eye != NULL)
+	{
+	  if ((tmp2 = malloc(sizeof(t_eye *) * 100)) == NULL)
+	    return (-1);
+	  tmp2->pos.x = tmp->eye->pos.x;
+	  tmp2->pos.y = tmp->eye->pos.y;
+	  tmp2->pos.z = tmp->eye->pos.z;
+	  tmp2->dir.x = tmp->eye->dir.x;
+	  tmp2->dir.y = tmp->eye->dir.y;
+	  tmp2->dir.z = tmp->eye->dir.z;
+	  tmp2->distance = tmp->eye->distance;
+	  tmp2->next = tmp_scene->eye;
+	  tmp_scene->eye = tmp2;
+	  tmp->eye = tmp->eye->next;
+	}
+    }
   return (0);
 }
 
 int		fill_img(t_scene *tmp_scene, t_image *tmp_image, int i)
 {
+  t_image	*tmp;
+  t_image	*save;
+
   if ((tmp_scene->img = malloc(sizeof(t_image *) * 100)) == NULL)
     return (-1);
   tmp_scene->img->img = tmp_image->img;
@@ -82,6 +131,7 @@ int		fill_img(t_scene *tmp_scene, t_image *tmp_image, int i)
   tmp_scene->img->wdth = tmp_image->wdth;
   tmp_scene->img->hght = tmp_image->hght;
   tmp_scene->img->edn = tmp_image->edn;
+  tmp_scene->img->i_tab = tmp_image->i_tab;
   if ((tmp_scene->img->average = malloc(sizeof(int *) * (tmp_image->bpp / 8)))
       == NULL)
     return (-1);
@@ -95,6 +145,41 @@ int		fill_img(t_scene *tmp_scene, t_image *tmp_image, int i)
       i++;
     }
   tmp_scene->img->color[i] = 0;
+  tmp_scene->img->render_method = tmp_image->render_method;
+  tmp_scene->img->next = tmp_scene->img;
+  tmp_scene->img->prev = tmp_scene->img;
+  save = tmp_image->next;
+  while (save != tmp_image)
+    {
+      if ((tmp = malloc(sizeof(t_image *) * 100)) == NULL)
+	return (-1);
+      tmp->i_tab = tmp_image->i_tab;
+      tmp->img = tmp_image->img;
+      tmp->dat = tmp_image->dat;
+      tmp->bpp = tmp_image->bpp;
+      tmp->wdth = tmp_image->wdth;
+      tmp->hght = tmp_image->hght;
+      tmp->edn = tmp_image->edn;
+      if ((tmp->average = malloc(sizeof(int *) * (tmp_image->bpp / 8)))
+	  == NULL)
+	return (-1);
+      if ((tmp->color =
+	   malloc(2 * (my_strlen_unsigned(tmp_image->color) + 100))) == NULL)
+	return (-1);
+      i = 0;
+      while (tmp_image->color[i] != 0)
+	{
+	  tmp->color[i] = tmp_image->color[i];
+	  i++;
+	}
+      tmp->color[i] = 0;
+      tmp_scene->img->render_method = tmp_image->render_method;
+      tmp->prev = tmp_scene->img;
+      tmp->next = tmp_scene->img->next;
+      tmp_scene->img->next->prev = tmp;
+      tmp_scene->img->next = tmp;
+      save = save->next;
+    }
   return (0);
 }
 
@@ -141,13 +226,14 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
 
   scene->act_image = scene->img;
   scene->act_eye = scene->eye;
+  scene = sys->scene_list;
+  copy = init_scene();
+  copy_list(scene, copy, NULL);
+  copy = copy->next;
+  copy->act_image = copy->img;
+  copy->act_eye = copy->eye;
   while (scene->act_eye != NULL)
     {
-      copy = init_scene();
-      copy_list(scene, copy, NULL);
-      copy = copy->next;
-      copy->act_eye = scene->act_eye;
-      copy->act_image = scene->act_image;
       nb = omp_get_thread_num();
       if (nb == 0)
 	{
@@ -196,20 +282,20 @@ void            loading_time(t_system *sys)
    int		nb_t;
   int		nb;
 
-  scene = sys->scene_list;
-  #pragma omp parallel private(nb)
+#pragma omp parallel private(nb)
   {
    nb = 0;
-   scene = sys->scene_list->next;
    launch_scene(sys, sys->scene_list, nb);
-   #pragma omp master
+#pragma omp master
     {
       nb_t = omp_get_num_threads();
       printf("Nombre de thread dispo: %d\n", nb_t);
     }
+   scene = sys->scene_list->next;
     //duplicate_obj(sys->scene_list->obj_list, sys->scene_list->img->bpp);
     while (scene != sys->scene_list)
       {
+  printf("pass2\n");
   launch_scene(sys, scene, nb);
        #pragma omp barrier
        #pragma omp master
