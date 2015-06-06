@@ -5,49 +5,73 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 17:30:41 2015 Alban Combaud
+** Last update Sat Jun  6 19:10:17 2015 adrien milcent
 */
 
 #include <omp.h>
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
-void    launch_scene(t_system *sys, t_scene *scene, int nb)
+void	check_max(int *x, int *y, int max)
+{
+  if (*x <= max && *y <= max)
+    {
+      if (*x == max)
+	{
+	  ++(*y);
+	  *x = 0;
+	}
+      else
+	++(*x);
+    }
+}
+
+void	load_my_image(int nb, int nb_t, t_scene *copy)
+{
+  int	width;
+  int	height;
+  int	max;
+  int	x;
+  int	y;
+  int	i;
+
+  i = 0;
+  x = 0;
+  y = 0;
+  max = (nb_t / 2) - 1;
+  while (i != nb && i < nb_t)
+    {
+      check_max(&x, &y, max);
+      ++i;
+    }
+  width = x * (WDW_WIDTH / (nb_t / 2));
+  height = y * (WDW_HEIGHT / (nb_t / 2));
+  load_image(copy, get_vector2(width, height),
+	     get_vector2(WDW_WIDTH / (nb_t / 2), WDW_HEIGHT / (nb_t / 2)));
+}
+
+void	copy_scene(t_scene **copy, t_scene **scene)
+{
+  (*scene)->act_image = (*scene)->img;
+  (*scene)->act_eye = (*scene)->eye;
+  (*copy) = init_scene();
+  copy_list(*scene, *copy, NULL);
+  (*copy) = (*copy)->next;
+  (*copy)->act_image = (*copy)->img;
+  (*copy)->act_eye = (*copy)->eye;
+  (*scene)->act_image = (*scene)->img;
+  (*scene)->act_eye = (*scene)->eye;
+}
+
+void		launch_scene(t_system *sys, t_scene *scene, int nb, int nb_t)
 {
   t_scene	*copy;
 
-  scene->act_image = scene->img;
-  scene->act_eye = scene->eye;
-  copy = init_scene();
-  copy_list(scene, copy, NULL);
-  copy = copy->next;
-  copy->act_image = copy->img;
-  copy->act_eye = copy->eye;
-  scene->act_image = scene->img;
-  scene->act_eye = scene->eye;
+  copy_scene(&copy, &scene);
   while (scene->act_eye != NULL)
     {
       nb = omp_get_thread_num();
-      if (nb == 0)
-	{
-	  load_image(copy, get_vector2(0, 0),
-		     get_vector2(960, 540));
-	}
-      else if (nb == 1)
-	{
-	  load_image(copy, get_vector2(0, 540),
-		     get_vector2(960, 540));
-	}
-      else if (nb == 2)
-	{
-	  load_image(copy, get_vector2(960, 0),
-		     get_vector2(960, 540));
-	}
-      else if (nb == 3)
-	{
-	  load_image(copy, get_vector2(960, 540),
-		     get_vector2(960, 540));
-	}
+      load_my_image(nb, nb_t, copy);
       #pragma omp barrier
       #pragma omp master
       {
@@ -56,7 +80,6 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
                           &resolve_antialiased_color);
         else if (scene->act_image->render_method == &cell_shade_method)
           resolve_effects(scene->act_image, scene, &resolve_cell_shading);
-        //get_border(scene);
         mlx_put_image_to_window(sys->mlx, sys->wdw,
                                 scene->act_image->img, 0, 0);
 	if (scene->act_eye != NULL && scene->act_image != NULL)
@@ -69,33 +92,28 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
     }
 }
 
-void            loading_time(t_system *sys)
+void		loading_time(t_system *sys)
 {
-  t_scene       *scene;
-   int		nb_t;
+  t_scene	*scene;
+  int		nb_t;
   int		nb;
 
-#pragma omp parallel private(nb)
+  #pragma omp parallel private(nb)
   {
    nb = 0;
-   launch_scene(sys, sys->scene_list, nb);
-#pragma omp master
-    {
-      nb_t = omp_get_num_threads();
-      printf("Nombre de thread dispo: %d\n", nb_t);
-    }
+   nb_t = omp_get_num_threads();
+   launch_scene(sys, sys->scene_list, nb, nb_t);
    scene = sys->scene_list->next;
-    //duplicate_obj(sys->scene_list->obj_list, sys->scene_list->img->bpp);
-    while (scene != sys->scene_list)
-      {
-  launch_scene(sys, scene, nb);
+   while (scene != sys->scene_list)
+     {
+       launch_scene(sys, scene, nb, nb_t);
        #pragma omp barrier
        #pragma omp master
- 	 {
-	   if (scene != NULL)
-	     scene = scene->next;
-	 }
-       #pragma omp barrier
+       {
+	 if (scene != NULL)
+	   scene = scene->next;
+       }
+      #pragma omp barrier
      }
   }
 }
