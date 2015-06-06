@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 11:24:58 2015 adrien milcent
+** Last update Sat Jun  6 11:54:32 2015 Alban Combaud
 */
 
 #include <omp.h>
@@ -41,7 +41,8 @@ int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i)
       if ((tmp_scene->spot_list = malloc(sizeof(t_spot *) * 100)) == NULL)
 	return (-1);
       if ((tmp_scene->spot_list->color =
-	   malloc(my_strlen_unsigned(tmp_spot->color) * sizeof(char))) == NULL)
+	   malloc(100 + my_strlen_unsigned(tmp_spot->color) * sizeof(char)))
+	  == NULL)
 	return (-1);
       while (tmp_spot->color[i] != 0)
 	{
@@ -140,34 +141,28 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
 
   scene->act_image = scene->img;
   scene->act_eye = scene->eye;
+  copy = init_scene();
+  copy_list(scene, copy, NULL);
   while (scene->act_eye != NULL)
     {
       nb = omp_get_thread_num();
       if (nb == 0)
 	{
-	  copy = init_scene();
-	  copy_list(scene, copy, NULL);
 	  load_image(copy, get_vector2(0, 0),
 		     get_vector2(960, 540));
 	}
       else if (nb == 1)
 	{
-	  copy = init_scene();
-	  copy_list(scene, copy, NULL);
 	  load_image(copy, get_vector2(0, 540),
 		     get_vector2(960, 540));
 	}
       else if (nb == 2)
 	{
-	  copy = init_scene();
-	  copy_list(scene, copy, NULL);
 	  load_image(copy, get_vector2(960, 0),
 		     get_vector2(960, 540));
 	}
       else if (nb == 3)
 	{
-	  copy = init_scene();
-	  copy_list(scene, copy, NULL);
 	  load_image(copy, get_vector2(960, 540),
 		     get_vector2(960, 540));
 	}
@@ -195,9 +190,10 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
 void            loading_time(t_system *sys)
 {
   t_scene       *scene;
-  int		nb_t;
+   int		nb_t;
   int		nb;
 
+  scene = sys->scene_list;
   #pragma omp parallel private(nb)
   {
    nb = 0;
@@ -208,10 +204,10 @@ void            loading_time(t_system *sys)
       nb_t = omp_get_num_threads();
       printf("Nombre de thread dispo: %d\n", nb_t);
     }
-   //duplicate_obj(sys->scene_list->obj_list, sys->scene_list->img->bpp);
-   while (scene != sys->scene_list)
-     {
-       launch_scene(sys, scene, nb);
+    //duplicate_obj(sys->scene_list->obj_list, sys->scene_list->img->bpp);
+    while (scene != sys->scene_list)
+      {
+  launch_scene(sys, scene, nb);
        #pragma omp barrier
        #pragma omp master
  	 {
@@ -221,7 +217,4 @@ void            loading_time(t_system *sys)
        #pragma omp barrier
      }
   }
-  scene = sys->scene_list;
-/*  copy = init_scene();
-    copy_list(scene, copy, NULL);*/
 }
