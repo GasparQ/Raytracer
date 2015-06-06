@@ -6,9 +6,9 @@
     rotation = (0,0,0)
     distance = 500
     render_method = 2
-    filter = [0,1,2,0,1.777,2,3,5.9999,0]
+    filter = [0,0,0,0,1,0,0,0,0]
     <!-- 0 : traitement d'image ; 1 : filtre graphique ; 2 : black & white ; 3 : revert-->
-    filter_mode = 19
+    filter_mode = 2
   </eye>
   <eye>
     position = (-30,100,50)
