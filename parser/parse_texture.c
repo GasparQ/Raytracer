@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Fri Jun  5 15:32:58 2015 fernand veyrier
-** Last update Sat Jun  6 11:24:11 2015 fernand veyrier
+** Last update Sat Jun  6 14:23:40 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -17,12 +17,10 @@ int		parse_texture_procedural(t_system *sys, t_parser *pars)
   regex_t	regex[3];
 
   if (regcomp(&regex[0], "[[:space:]]*file[[:space:]]*=[[:space:]]*\".*\"\
-[[:space:]]*$", REG_EXTENDED))
-    return (fprintf(stderr, "Regex error\n"));
-  if (regcomp(&regex[1], "[[:space:]]*color_one[[:space:]]*=[[:space:]]*\
-0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED))
-    return (fprintf(stderr, "Regex error\n"));
-  if (regcomp(&regex[2], "[[:space:]]*color_two[[:space:]]*=[[:space:]]*\
+[[:space:]]*$", REG_EXTENDED)
+      || regcomp(&regex[1], "[[:space:]]*color_one[[:space:]]*=[[:space:]]*\
+0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED)
+      || regcomp(&regex[2], "[[:space:]]*color_two[[:space:]]*=[[:space:]]*\
 0x[[:digit:]A-F]{,8}[[:space:]]*$", REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
   file[color[color[0] = 1] = 0] = 0;
@@ -35,6 +33,7 @@ int		parse_texture_procedural(t_system *sys, t_parser *pars)
 	color[0] = get_color_parser(pars->buf);
       if (!regexec(&regex[2], pars->buf, 0, &pars->reg_struct, 0))
 	color[1] = get_color_parser(pars->buf);
+      ++pars->line;
     }
   return (add_proced(sys->scene_list->obj_list, file, sys->scene_list, color));
 }
@@ -75,7 +74,7 @@ int		parse_texture(t_system *sys, t_parser *pars)
   if (i < 3)
     if (func[i](sys, pars) != CLEAN)
       return (fprintf(stderr, "Invalid data (texture file valid ?)\n") * -1);
-  return (pars->buf == NULL ? -30 : 0);
+  return (pars->buf == NULL ? ERR_PARSER("texture") : 0);
 }
 
 int		parse_texture_close(UNUSED t_system *sys, t_parser *pars)

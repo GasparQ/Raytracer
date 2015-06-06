@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:37:02 2015 fernand veyrier
-** Last update Sat Jun  6 11:07:12 2015 fernand veyrier
+** Last update Sat Jun  6 14:16:07 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -33,9 +33,10 @@ int		parse_eye(t_system *sys, t_parser *pars)
 	dist_render[0] = get_double_parser(pars->buf);
       if (!regexec(&pars->regex[24], pars->buf, 0, &pars->reg_struct, 0))
 	dist_render[1] = get_double_parser(pars->buf);
+      ++pars->line;
     }
   add_eye(sys->scene_list, pos, rot, dist_render);
-  return ((pars->buf == NULL) ? -30 : 0);
+  return ((pars->buf == NULL) ? ERR_PARSER("eye") : 0);
 }
 
 int		parse_eye_close(UNUSED t_system *sys, t_parser *pars)

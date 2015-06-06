@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:39:37 2015 fernand veyrier
-** Last update Fri Jun  5 21:46:13 2015 fernand veyrier
+** Last update Sat Jun  6 14:19:11 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -35,8 +35,7 @@ int		parse_phong(t_system *sys, t_parser *pars)
     params[i++] = 0;
   i = 0;
   if (pars->level < 1)
-    return (fprintf(stderr, "Invalid XML (phong) line %i.\n",
-		    pars->line) * -1);
+    return (ERR_PARSER("phong"));
   if (parse_phong_init(regex) != 0)
     return (fprintf(stderr, "Error in regex\n") * -1);
   while ((pars->buf = get_next_line(pars->fd))
@@ -47,9 +46,10 @@ int		parse_phong(t_system *sys, t_parser *pars)
       if (i < 8)
 	params[i] = get_double_parser(pars->buf);
       i = 0;
+      ++pars->line;
     }
   add_phong(sys->scene_list->obj_list, params);
-  return ((pars->buf == NULL) ? -30 : 0);
+  return ((pars->buf == NULL) ? ERR_PARSER("phong") : 0);
 }
 
 int		parse_phong_close(UNUSED t_system *sys, t_parser *pars)

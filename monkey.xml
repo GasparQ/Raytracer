@@ -1,30 +1,15 @@
 <?xml version="1.0"?>
-<coord>
 <scene>
-
   <eye>
-    position = (-30,100,50)
-    rotation = (0,0,-45)
-    distance = 500
-    render_method = 2
   </eye>
   <spot>
-    position = (-200,0,500)
-    rotation = (0,0,0)
-    color = 0x00FFFFFF
-    intensity = 1
   <eye>
-    position = (-30,0,50)
-    rotation = (0,0,0)
-  </spot>
-    distance = 500
-    render_method = 2
   </eye>
-
+  </spot>
   <object color="0x00FFFFFF">
-    <mesh type="plane">
-      normal = (0,0,1)
-      cte = 0
+    <mesh type="planeee">
     </mesh>
+    <phong>
+    </phong>
   </object>
 </scene>

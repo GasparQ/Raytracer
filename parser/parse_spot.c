@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:40:54 2015 fernand veyrier
-** Last update Sat Jun  6 11:06:56 2015 fernand veyrier
+** Last update Sat Jun  6 14:20:03 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -33,9 +33,10 @@ int		parse_spot(t_system *sys, t_parser *pars)
 	color = get_color_parser(pars->buf);
       if (!regexec(&pars->regex[23], pars->buf, 0, &pars->reg_struct, 0))
       	intensity = get_nbr_parser(pars->buf);
+      ++pars->line;
     }
   add_spot(sys->scene_list, pos, color, intensity);
-  return ((pars->buf == NULL) ? -30 : 0);
+  return ((pars->buf == NULL) ? ERR_PARSER("spot") : 0);
 }
 
 int		parse_spot_close(UNUSED t_system *sys, t_parser *pars)

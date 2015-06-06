@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Sat Jun  6 11:20:17 2015 fernand veyrier
+** Last update Sat Jun  6 14:31:10 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -24,6 +24,7 @@ int		mesh_cylinder(t_system *sys, t_parser *pars)
     {
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
+      ++pars->line;
     }
   return (add_cylinder(sys->scene_list->obj_list, &radius));
 }
@@ -42,6 +43,7 @@ int		mesh_paraboloid(t_system *sys, t_parser *pars)
     {
       if (!regexec(&regex, pars->buf, 0, &pars->reg_struct, 0))
 	radius = get_double_parser(pars->buf);
+      ++pars->line;
     }
   return (add_paraboloid(sys->scene_list->obj_list, &radius));
 }
@@ -70,6 +72,7 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
 	++i;
       if (i < 5)
 	params[i] = get_double_parser(pars->buf);
+      ++pars->line;
     }
   return (add_hyperboloid(sys->scene_list->obj_list, params));
 }
@@ -119,5 +122,5 @@ int		parse_mesh(t_system *sys, t_parser *pars)
   if (i < 8)
     if (func[i](sys, pars) != CLEAN)
       return (-30);
-  return ((pars->buf == NULL) ? -30 : 0);
+  return ((pars->buf == NULL) ? ERR_PARSER("mesh") : 0);
 }

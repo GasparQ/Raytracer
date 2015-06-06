@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat Jun  6 11:23:17 2015 fernand veyrier
-** Last update Sat Jun  6 11:23:56 2015 fernand veyrier
+** Last update Sat Jun  6 14:26:08 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -41,6 +41,7 @@ int		parse_texture_map(t_system *sys, t_parser *pars)
 	{
 	  get_name(pars, file);
 	}
+      ++pars->line;
     }
   return (add_texture(sys->scene_list->obj_list, file, sys->scene_list));
 }
@@ -66,6 +67,7 @@ int		parse_texture_bump(t_system *sys, t_parser *pars)
 	get_name(pars, file);
       if (!regexec(&regex[1], pars->buf, 0, &pars->reg_struct, 0))
 	mode = get_nbr_parser(pars->buf);
+      ++pars->line;
     }
   return (add_bump(sys->scene_list->obj_list, file, sys->scene_list, mode));
 }

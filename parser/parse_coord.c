@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:43:10 2015 fernand veyrier
-** Last update Sat Jun  6 11:33:12 2015 fernand veyrier
+** Last update Sat Jun  6 14:30:26 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -27,6 +27,7 @@ int		parse_coord(t_system *sys, t_parser *pars)
 	pos = get_vector(pars->buf);
       if (!regexec(&pars->regex[19], pars->buf, 0, &pars->reg_struct, 0))
 	rot = get_vector(pars->buf);
+      ++pars->line;
     }
   coord[0] = pos.x;
   coord[1] = pos.y;
@@ -43,6 +44,5 @@ int		parse_coord_close(UNUSED t_system *sys, t_parser *pars)
   if (pars->level - 3 < 1)
     return (fprintf(stderr, "Invalid XML (coord) line %i.\n",
 		    pars->line) * -1);
-  printf("Found coord close\n");
   return (-3);
 }
