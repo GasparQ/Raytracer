@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Fri Jun  5 17:26:08 2015 Alban Combaud
+** Last update Sat Jun  6 11:06:26 2015 Alban Combaud
 */
 
 #include "../include/minilibx_system.h"
@@ -106,6 +106,7 @@ int		fill_new_list(t_scene *new, t_scene *tmp, t_scene *tmp_scene)
     return (-1);
   if (fill_img(tmp_scene, tmp->img, 0) == -1)
     return (-1);
+  tmp_scene->mlx = tmp->mlx;
   tmp_scene->prev = new;
   tmp_scene->next = new->next;
   new->next->prev = tmp_scene;
@@ -139,22 +140,23 @@ void    launch_scene(t_system *sys, t_scene *scene)
   while (scene->act_eye != NULL)
     {
       load_image(scene, get_vector2(0, 0),
-		 get_vector2(WDW_WIDTH, WDW_HEIGHT));
+                 get_vector2(WDW_WIDTH, WDW_HEIGHT));
       if (scene->act_image->render_method == &antialias_method)
-	resolve_effects(scene->act_image, scene,
-			&resolve_antialiased_color);
+        resolve_effects(scene->act_image, scene,
+                        &resolve_antialiased_color);
       else if (scene->act_image->render_method == &cell_shade_method)
-	resolve_effects(scene->act_image, scene, &resolve_cell_shading);
+        resolve_effects(scene->act_image, scene, &resolve_cell_shading);
+      //get_border(scene);
       mlx_put_image_to_window(sys->mlx, sys->wdw,
-			      scene->act_image->img, 0, 0);
+                              scene->act_image->img, 0, 0);
       scene->act_eye = scene->act_eye->next;
       scene->act_image = scene->act_image->next;
     }
 }
 
-void		loading_time(t_system *sys)
+void            loading_time(t_system *sys)
 {
-  t_scene	*scene;
+  t_scene       *scene;
   t_scene	*copy;
 
   scene = sys->scene_list->next;
