@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 15:58:19 2015 Alban Combaud
+** Last update Sat Jun  6 16:41:51 2015 Alban Combaud
 */
 
 #include <omp.h>
@@ -85,6 +85,7 @@ int		fill_spot(t_spot *tmp_spot, t_scene *tmp_scene, int i)
 int		fill_eye(t_scene *tmp_scene, t_scene *tmp)
 {
   t_eye		*tmp2;
+  t_eye		*tmp_eye;
 
   if ((tmp_scene->eye = malloc(sizeof(t_eye *) * 100)) == NULL)
     return (-1);
@@ -98,21 +99,21 @@ int		fill_eye(t_scene *tmp_scene, t_scene *tmp)
       tmp_scene->eye->dir.z = tmp->eye->dir.z;
       tmp_scene->eye->distance = tmp->eye->distance;
       tmp_scene->eye->next = NULL;
-      tmp->eye = tmp->eye->next;
-      while (tmp->eye != NULL)
+      tmp_eye = tmp->eye->next;
+      while (tmp_eye != NULL)
 	{
 	  if ((tmp2 = malloc(sizeof(t_eye *) * 100)) == NULL)
 	    return (-1);
-	  tmp2->pos.x = tmp->eye->pos.x;
-	  tmp2->pos.y = tmp->eye->pos.y;
-	  tmp2->pos.z = tmp->eye->pos.z;
-	  tmp2->dir.x = tmp->eye->dir.x;
-	  tmp2->dir.y = tmp->eye->dir.y;
-	  tmp2->dir.z = tmp->eye->dir.z;
-	  tmp2->distance = tmp->eye->distance;
+	  tmp2->pos.x = tmp_eye->pos.x;
+	  tmp2->pos.y = tmp_eye->pos.y;
+	  tmp2->pos.z = tmp_eye->pos.z;
+	  tmp2->dir.x = tmp_eye->dir.x;
+	  tmp2->dir.y = tmp_eye->dir.y;
+	  tmp2->dir.z = tmp_eye->dir.z;
+	  tmp2->distance = tmp_eye->distance;
 	  tmp2->next = tmp_scene->eye;
 	  tmp_scene->eye = tmp2;
-	  tmp->eye = tmp->eye->next;
+	  tmp_eye = tmp_eye->next;
 	}
     }
   return (0);
@@ -226,15 +227,18 @@ void    launch_scene(t_system *sys, t_scene *scene, int nb)
 
   scene->act_image = scene->img;
   scene->act_eye = scene->eye;
-  scene = sys->scene_list;
   copy = init_scene();
   copy_list(scene, copy, NULL);
   copy = copy->next;
   copy->act_image = copy->img;
   copy->act_eye = copy->eye;
+  scene->act_image = scene->img;
+  scene->act_eye = scene->eye;
   while (scene->act_eye != NULL)
     {
       nb = omp_get_thread_num();
+      printf("nb = %d\n", nb);
+      printf("a\n");
       if (nb == 0)
 	{
 	  load_image(copy, get_vector2(0, 0),
