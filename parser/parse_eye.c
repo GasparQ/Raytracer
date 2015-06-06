@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:37:02 2015 fernand veyrier
-** Last update Fri Jun  5 15:30:26 2015 fernand veyrier
+** Last update Sat Jun  6 11:07:12 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -22,7 +22,6 @@ int		parse_eye(t_system *sys, t_parser *pars)
   rot = (t_vector3){0, 0, 0};
   if (pars->level != 1)
     return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
-  printf("Found eye pos\n");
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[16], pars->buf, 0, &pars->reg_struct, 0))
     {
@@ -43,6 +42,5 @@ int		parse_eye_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 10 != 1)
     return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
-  printf("Found eye close\n");
   return (-10);
 }

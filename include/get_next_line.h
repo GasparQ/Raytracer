@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Fri Jun  5 21:32:06 2015 fernand veyrier
+** Last update Sat Jun  6 11:01:05 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -64,6 +64,7 @@
 # define TEXTURE_REG	"[[:space:]]*<texture[[:space:]]+type[[:space:]]*=\""
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
 # define TEXTURE_CLOSE	"[[:space:]]*</texture>[[:space:]]*$"
+# define HYPER_PARAM(a)	"[[:space:]]*"a"[[:space:]]*=[[:space:]]*"
 # define UNUSED		__attribute__((unused))
 
 typedef struct	s_parser
