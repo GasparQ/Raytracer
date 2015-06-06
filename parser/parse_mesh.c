@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:46:43 2015 fernand veyrier
-** Last update Fri Jun  5 21:52:28 2015 fernand veyrier
+** Last update Sat Jun  6 11:04:32 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -166,12 +166,12 @@ int		mesh_hyperboloid(t_system *sys, t_parser *pars)
   i = 0;
   while (i < 5)
     params[i++] = 0;
-  if (regcomp(&regex[0], "[[:space:]]*a[[:space:]]*" NBR_REG, REG_EXTENDED)
-      || regcomp(&regex[1], "[[:space:]]*b[[:space:]]*" NBR_REG, REG_EXTENDED)
-      || regcomp(&regex[2], "[[:space:]]*c[[:space:]]*" NBR_REG, REG_EXTENDED)
-      ||regcomp(&regex[3], "[[:space:]]*d[[:space:]]*" NBR_REG, REG_EXTENDED)
-      ||regcomp(&regex[4], "[[:space:]]*c_factor[[:space:]]*"
-		NBR_REG, REG_EXTENDED))
+  if (regcomp(&regex[0], HYPER_PARAM("a") NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[1], HYPER_PARAM("b") NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[2], HYPER_PARAM("c") NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[3], HYPER_PARAM("d") NBR_REG, REG_EXTENDED)
+      || regcomp(&regex[4], HYPER_PARAM("c_factor")
+		 NBR_REG, REG_EXTENDED))
     return (fprintf(stderr, "Regex error\n"));
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[4], pars->buf, 0, &pars->reg_struct, 0))

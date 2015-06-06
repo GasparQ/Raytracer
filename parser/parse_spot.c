@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:40:54 2015 fernand veyrier
-** Last update Fri Jun  5 18:57:55 2015 fernand veyrier
+** Last update Sat Jun  6 11:06:56 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -21,7 +21,6 @@ int		parse_spot(t_system *sys, t_parser *pars)
   if (sys->scene_list->img == NULL)
     return (fprintf(stderr, "You need to add an eye before adding spots \
 (line %i).\n", pars->line) * -1);
-  printf("Found spot\n");
   pos = (t_vector3){0, 0, 0};
   color = 0;
   intensity = 1;
@@ -43,6 +42,5 @@ int		parse_spot_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 6 != 1)
     return (fprintf(stderr, "Invalid XML (spot) line %i.\n", pars->line) * -1);
-  printf("Found spot close\n");
   return (-6);
 }
