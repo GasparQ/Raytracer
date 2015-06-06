@@ -1,13 +1,9 @@
 <?xml version="1.0"?>
 <scene>
-  <eye>
+<eye>
   </eye>
-  <spot>
-  <eye>
-  </eye>
-  </spot>
   <object color="0x00FFFFFF">
-    <mesh type="planeee">
+    <mesh type="plane">
     </mesh>
     <phong>
     </phong>
