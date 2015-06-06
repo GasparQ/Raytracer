@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Mon Jun  1 21:34:02 2015 quentin gasparotto
+** Last update Sat Jun  6 20:38:49 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -26,8 +26,8 @@ int	load_image(t_scene *scene, t_vector2 pos, t_vector2 dim)
 	  x = x + 1;
 	}
       y = y + 1;
-      if (y % 200 == 0)
-	printf("%d / %d\n", y, WDW_HEIGHT);
+      if (y % (WDW_HEIGHT / 5) == 0)
+	printf("%d %%\n", y * 100 / WDW_HEIGHT);
     }
   return (CLEAN);
 }
