@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:37:02 2015 fernand veyrier
-** Last update Sat Jun  6 23:27:34 2015 fernand veyrier
+** Last update Sun Jun  7 00:51:20 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -17,16 +17,18 @@ void		parse_matrix(char *buf, double *matrix)
   int		k;
   char		nbr[BUFSIZ];
 
-  i = -1;
+  i = 0;
   j = 0;
   k = 2;
-  while (buf[++i])
+  while (buf[i])
     {
       while (j < BUFSIZ - 1 && buf[i] && buf[i] != ',')
 	nbr[j++] = buf[i++];
       nbr[j] = 0;
       matrix[k++] = atof(nbr);
       j = 0;
+      if (buf[i] && buf[i + 1])
+	++i;
     }
 }
 

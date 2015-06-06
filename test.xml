@@ -8,13 +8,15 @@
     render_method = 2
     filter = [0,0,0,0,1,0,0,0,0]
     <!-- 0 : traitement d'image ; 1 : filtre graphique ; 2 : black & white ; 3 : revert-->
-    filter_mode = 2
+    filter_mode = 3
   </eye>
   <eye>
     position = (-30,100,50)
     rotation = (0,0,-45)
     distance = 500
     render_method = 2
+    filter = [0,0,0,0,1,0,0,0,0]
+    filter_mode = 2
   </eye>
   <spot>
     position = (-200,0,500)
@@ -23,7 +25,7 @@
     intensity = 1
   </spot>
 
-  <object color="0x00FFFFFF">
+  <object color="0x00112233">
     <mesh type="plane">
       normal = (0,0,1)
       cte = 0
@@ -38,7 +40,7 @@
       position = (200,0,50)
       rotation = (0,0,0)
     </coord>
-    <texture type="map">
+    <texture type="procedural">
       file = "images/earth.xpm"
 
       <!-- Que pour les bumped-->

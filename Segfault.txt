@@ -1,0 +1,57 @@
+==3552== Memcheck, a memory error detector
+==3552== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==3552== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==3552== Command: ./rt test.xml
+==3552== 
+texture get
+data get
+==3552== Thread 2:
+==3552== Invalid read of size 8
+==3552==    at 0x40BFEF: check_texture (duplicate_objects.c:25)
+==3552==    by 0x40C180: add_end_obj (duplicate_objects.c:48)
+==3552==    by 0x40C21B: duplicate_obj (duplicate_objects.c:69)
+==3552==    by 0x40FEBE: fill_new_list (fill_new_list.c:82)
+==3552==    by 0x40FFAB: copy_list (fill_new_list.c:102)
+==3552==    by 0x40ADA5: copy_scene (alb_load_time.c:58)
+==3552==    by 0x40AE3A: launch_scene (alb_load_time.c:70)
+==3552==    by 0x40B013: loading_time._omp_fn.0 (alb_load_time.c:106)
+==3552==    by 0x568DF7A: ??? (in /usr/lib64/libgomp.so.1.0.0)
+==3552==    by 0x589C0DA: start_thread (in /lib64/libpthread-2.18.so)
+==3552==    by 0x5B9958C: clone (in /lib64/libc-2.18.so)
+==3552==  Address 0x30 is not stack'd, malloc'd or (recently) free'd
+==3552== 
+==3552== 
+==3552== Process terminating with default action of signal 11 (SIGSEGV)
+==3552==  Access not within mapped region at address 0x30
+==3552==    at 0x40BFEF: check_texture (duplicate_objects.c:25)
+==3552==    by 0x40C180: add_end_obj (duplicate_objects.c:48)
+==3552==    by 0x40C21B: duplicate_obj (duplicate_objects.c:69)
+==3552==    by 0x40FEBE: fill_new_list (fill_new_list.c:82)
+==3552==    by 0x40FFAB: copy_list (fill_new_list.c:102)
+==3552==    by 0x40ADA5: copy_scene (alb_load_time.c:58)
+==3552==    by 0x40AE3A: launch_scene (alb_load_time.c:70)
+==3552==    by 0x40B013: loading_time._omp_fn.0 (alb_load_time.c:106)
+==3552==    by 0x568DF7A: ??? (in /usr/lib64/libgomp.so.1.0.0)
+==3552==    by 0x589C0DA: start_thread (in /lib64/libpthread-2.18.so)
+==3552==    by 0x5B9958C: clone (in /lib64/libc-2.18.so)
+==3552==  If you believe this happened as a result of a stack
+==3552==  overflow in your program's main thread (unlikely but
+==3552==  possible), you can try to increase the size of the
+==3552==  main thread stack using the --main-stacksize= flag.
+==3552==  The main thread stack size used in this run was 8388608.
+==3552== 
+==3552== HEAP SUMMARY:
+==3552==     in use at exit: 34,725,289 bytes in 6,938 blocks
+==3552==   total heap usage: 115,881 allocs, 108,943 frees, 38,341,571 bytes allocated
+==3552== 
+==3552== LEAK SUMMARY:
+==3552==    definitely lost: 22,134 bytes in 169 blocks
+==3552==    indirectly lost: 1,461,564 bytes in 6,661 blocks
+==3552==      possibly lost: 864 bytes in 3 blocks
+==3552==    still reachable: 33,240,727 bytes in 105 blocks
+==3552==         suppressed: 0 bytes in 0 blocks
+==3552== Rerun with --leak-check=full to see details of leaked memory
+==3552== 
+==3552== For counts of detected and suppressed errors, rerun with: -v
+==3552== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 3 from 3)
+Killed
