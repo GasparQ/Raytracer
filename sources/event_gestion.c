@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Tue Feb  3 17:19:37 2015 quentin gasparotto
-** Last update Sat Jun  6 09:16:57 2015 quentin gasparotto
+** Last update Sat Jun  6 20:12:57 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -51,7 +51,8 @@ int	key_gestion(int keycode, t_system *sys)
 
 int	expose_gestion(t_system *sys)
 {
-  mlx_put_image_to_window(sys->mlx, sys->wdw,
-			  sys->act_scene->act_image->img, 0, 0);
+  if (sys->act_scene->act_image != NULL)
+    mlx_put_image_to_window(sys->mlx, sys->wdw,
+			    sys->act_scene->act_image->img, 0, 0);
   return (CLEAN);
 }
