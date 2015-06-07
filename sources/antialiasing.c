@@ -1,11 +1,11 @@
 /*
 ** antialiasing.c for function for the antialiasing of the image in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Sat May 30 14:45:47 2015 quentin gasparotto
-** Last update Sat Jun  6 13:34:27 2015 quentin gasparotto
+** Last update Sun Jun  7 22:52:28 2015 adrien milcent
 */
 
 #include "../include/prototypes.h"
@@ -25,7 +25,8 @@ int	cmp_colors(unsigned char *color1, unsigned char *color2,
   return (0);
 }
 
-void	add_color_to_avg(unsigned char *color, int *average, int limit, int fact)
+void	add_color_to_avg(unsigned char *color, int *average,
+			 int limit, int fact)
 {
   int	i;
 
