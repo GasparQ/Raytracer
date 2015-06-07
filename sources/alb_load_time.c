@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 15:15:33 2015 adrien milcent
+** Last update Sun Jun  7 15:32:28 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -53,8 +53,6 @@ void	load_my_image(int nb, int nb_t, t_scene *copy)
 
 void		launch_scene(t_system *sys, t_scene *copy, int nb, int nb_t)
 {
-  if (copy == NULL)
-    printf("CACA\n");
   while (copy->act_eye != NULL)
     {
       nb = omp_get_thread_num();
@@ -109,7 +107,7 @@ void		loading_time(t_system *sys)
 
   signal(SIGUSR1, sig_1);
   //  pthread_create(&t1, NULL, loading_screen, (void *)nb_t);
-  #pragma omp parallel private(nb)
+#pragma omp parallel private(nb) private(copy) private(scene)
   {
    nb = 0;
    loading_screen(omp_get_num_threads());
