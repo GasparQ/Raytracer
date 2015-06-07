@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 20:22:32 2015 adrien milcent
+** Last update Sun Jun  7 20:40:14 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -103,7 +103,8 @@ void		*output_load(void *sys)
     {
       nb_per = g_percent / 10;
       mlx_put_image_to_window(sys1->mlx, sys1->wdw,
-			      sys1->load[nb_per].img, (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
+			      sys1->load[nb_per].img,
+			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
     }
   pthread_exit(NULL);
 }
