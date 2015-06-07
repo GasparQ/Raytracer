@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 23:13:54 2015 adrien milcent
+** Last update Sun Jun  7 23:31:58 2015 quentin gasparotto
 */
 
 #include <omp.h>
@@ -67,8 +67,6 @@ void		loading_screen(int nb_t)
   else
     {
       g_percent = g_percent + (20 / nb_thread);
-      if (g_percent <= 100)
-	printf("%d%%\n", g_percent);
     }
 }
 

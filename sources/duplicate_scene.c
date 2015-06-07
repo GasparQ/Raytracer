@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 12:37:59 2015 quentin gasparotto
-** Last update Sun Jun  7 14:21:18 2015 quentin gasparotto
+** Last update Sun Jun  7 23:18:01 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -35,6 +35,9 @@ int		add_end_scene(t_scene **list, t_scene scene)
 
 int	fill_scene(t_scene *elem, t_scene ref)
 {
+  if (ref.spot_list == NULL || ref.obj_list == NULL ||
+      ref.img == NULL || ref.eye == NULL)
+    return (-1);
   *elem = ref;
   if ((elem->spot_list = duplicate_spot(ref.spot_list,
 					ref.img->bpp)) == NULL ||
@@ -54,6 +57,8 @@ t_scene		*duplicate_scene(t_scene *scene_list)
   t_scene	new_scene;
   t_scene	*tmp;
 
+  if (scene_list == NULL)
+    return (NULL);
   new_list = NULL;
   tmp = scene_list->next;
   if (fill_scene(&new_scene, *scene_list) == -1)

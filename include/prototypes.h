@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun Jun  7 22:43:42 2015 adrien milcent
+** Last update Sun Jun  7 23:08:21 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -287,6 +287,8 @@ int		        resolve_effects(t_image *act_image, t_scene *scene,
 **	loading_time.c
 */
 
+void			*output_load(void *sys);
+void			sig_1();
 void			loading_time(t_system *sys);
 
 /*

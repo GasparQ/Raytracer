@@ -23,7 +23,6 @@ int		main(int ac, char **av, char **env)
     return (my_strerror("Init fail\n"));
   loading_time(&sys);
   write_file("list.txt", NULL);
-  signal(SIGUSR2, &sig_1);
   sys.act_scene = sys.scene_list;
   sys.act_scene->act_image = sys.act_scene->img;
   mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
