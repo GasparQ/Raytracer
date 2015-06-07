@@ -45,7 +45,7 @@
 	<coord>
 	  position = (-75,-75,175)
 	</coord>
-	<limit>	
+	<limit>
 	  <object color="0xFF0FFF00">
 	    <mesh type="plane">
 	      normal = (-1,0,0)

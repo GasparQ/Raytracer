@@ -5,7 +5,7 @@
 ** Login   <veyrie_f@epitech.net>
 **
 ** Started on  Sat May 30 20:37:02 2015 fernand veyrier
-** Last update Sun Jun  7 00:51:20 2015 fernand veyrier
+** Last update Sun Jun  7 10:32:29 2015 fernand veyrier
 */
 
 #include "get_next_line.h"
@@ -32,12 +32,8 @@ void		parse_matrix(char *buf, double *matrix)
     }
 }
 
-int		parse_eye(t_system *sys, t_parser *pars)
+int		parse_eye_init(t_vector3 *pos, t_vector3 *rot, double *dist_render)
 {
-  t_vector3	pos;
-  t_vector3	rot;
-  double	dist_render[12];
-
   dist_render[0] = 0;
   dist_render[1] = 2;
   dist_render[2] = 0;
@@ -50,9 +46,18 @@ int		parse_eye(t_system *sys, t_parser *pars)
   dist_render[9] = 0;
   dist_render[10] = 0;
   dist_render[11] = 0;
-  pos = (t_vector3){0, 0, 0};
-  rot = (t_vector3){0, 0, 0};
-  if (pars->level != 1)
+  *pos = (t_vector3){0, 0, 0};
+  *rot = (t_vector3){0, 0, 0};
+  return (0);
+}
+
+int		parse_eye(t_system *sys, t_parser *pars)
+{
+  t_vector3	pos;
+  t_vector3	rot;
+  double	dist_render[12];
+
+  if (pars->level != 1 || parse_eye_init(&pos, &rot, dist_render))
     return (ERR_PARSER("eye"));
   while ((pars->buf = get_next_line(pars->fd))
 	 && regexec(&pars->regex[16], pars->buf, 0, &pars->reg_struct, 0))
@@ -78,6 +83,6 @@ int		parse_eye(t_system *sys, t_parser *pars)
 int		parse_eye_close(UNUSED t_system *sys, t_parser *pars)
 {
   if (pars->level - 10 != 1)
-    return (fprintf(stderr, "Invalid XML (eye) line %i.\n", pars->line) * -1);
+    return (ERR_PARSER("eye"));
   return (-10);
 }
