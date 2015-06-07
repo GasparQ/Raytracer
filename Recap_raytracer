@@ -53,5 +53,9 @@
 					   Fernand:
 						- Parsing XML
 
-					   Barie/Empoci:
-						- Client et serveur pour application mobile
+					   Barie:
+						- Client / Serveur : auto-upload scenes sur plateforme web. (raytracer.jean-barriere.fr)
+						- Doc web : http://raytracer.jean-barriere.fr/xml
+
+					   Empoci:
+						- Application mobile Google CardBoard, visualisation d'une scene (HeadTracking). 
