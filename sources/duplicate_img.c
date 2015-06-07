@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 12:58:27 2015 quentin gasparotto
-** Last update Sun Jun  7 13:16:07 2015 quentin gasparotto
+** Last update Sun Jun  7 13:19:53 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -13,7 +13,6 @@
 int		add_end_img(t_image **list, t_image img)
 {
   t_image	*elem;
-  t_image	*tmp;
 
   if ((elem = malloc(sizeof(*elem))) == NULL)
     return (-1);

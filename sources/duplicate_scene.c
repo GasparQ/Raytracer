@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 12:37:59 2015 quentin gasparotto
-** Last update Sun Jun  7 13:15:41 2015 quentin gasparotto
+** Last update Sun Jun  7 13:19:41 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -59,13 +59,13 @@ t_scene		*duplicate_scene(t_scene *scene_list)
   tmp = scene_list->next;
   if (fill_scene(&new_scene, *scene_list) == -1)
     return (NULL);
-  if (add_end_scene(&new_list, scene) == -1)
+  if (add_end_scene(&new_list, new_scene) == -1)
     return (NULL);
   while (tmp != scene_list)
     {
       if (fill_scene(&new_scene, *tmp) == -1)
 	return (NULL);
-      if (add_end_scene(&new_list, scene) == -1)
+      if (add_end_scene(&new_list, new_scene) == -1)
 	return (NULL);
       tmp = tmp->next;
     }
