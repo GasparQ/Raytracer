@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb  3 16:42:37 2015 quentin gasparotto
-** Last update Sun Jun  7 14:53:30 2015 adrien milcent
+** Last update Sun Jun  7 15:14:07 2015 adrien milcent
 */
 
 #include "../include/minilibx_system.h"
@@ -26,8 +26,8 @@ int	load_image(t_scene *scene, t_vector2 pos, t_vector2 dim)
 	  x = x + 1;
 	}
       y = y + 1;
-      if ((y - (int)pos.y) % ((int)dim.y / 5) == 0)
-	kill(getpid(), SIGUSR1);
+      /*      if ((y - (int)pos.y) % ((int)dim.y / 5) == 0)
+	      kill(getpid(), SIGUSR1);*/
     }
   return (CLEAN);
 }
