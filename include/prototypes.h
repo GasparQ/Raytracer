@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun Jun  7 17:08:06 2015 quentin gasparotto
+** Last update Sun Jun  7 18:07:10 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -78,6 +78,12 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	get_load.c
+*/
+
+int			get_load(t_system *sys);
 
 /*
 **	perlin2.c
