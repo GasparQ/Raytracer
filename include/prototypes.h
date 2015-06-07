@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun Jun  7 14:21:01 2015 quentin gasparotto
+** Last update Sun Jun  7 17:08:06 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -78,6 +78,12 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	perlin2.c
+*/
+
+double			noise2(t_vector2 coord);
 
 /*
 **	basic_scenes.c

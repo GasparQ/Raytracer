@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 19:28:21 2015 quentin gasparotto
-** Last update Sun Jun  7 14:40:39 2015 quentin gasparotto
+** Last update Sun Jun  7 17:19:17 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -86,8 +86,10 @@ void		sphere_proced(t_vector3 isec_point, t_object *touch)
   double	ft;
   double	fnoise;
   int		i;
+  t_vector2	map;
 
-  fnoise = smooth_noise(isec_point);
+  map = sphere_map(isec_point, touch->proced);
+  fnoise = noise2(map);
   t = 20 * fnoise;
   n = t - (int)t;
   ft = n / M_PI;

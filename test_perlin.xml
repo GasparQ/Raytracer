@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<scene>
+  <eye>
+    positon = (-500,0,150)
+    distance = 100
+  </eye>
+  <spot>
+    position = (-500,0,500)
+  </spot>
+
+  <object color="0x00FF0000">
+    <mesh type="sphere">
+      radius = 50
+    </mesh>
+    <texture type="procedural">
+      file = "images/text_perl.xpm"
+      color_one = 0x00FF0000
+      color_two = 0x0000FF00
+    </texture>
+  </object>
+
+</scene>

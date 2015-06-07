@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Sun Jun  7 14:19:15 2015 quentin gasparotto
-## Last update Sun Jun  7 15:15:55 2015 adrien milcent
+## Last update Sun Jun  7 17:08:20 2015 quentin gasparotto
 ##
 
 CC=	gcc -g -fopenmp -lpthread
@@ -96,6 +96,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/duplicate_img.c \
 	./sources/duplicate_spot.c \
 	./sources/basic_scenes.c \
+	./sources/perlin2.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_mesh_next.c	\
 	./parser/parse_coord.c 		\
