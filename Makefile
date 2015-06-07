@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ## 
 ## Started on  Sun Jun  7 14:19:15 2015 quentin gasparotto
-## Last update Sun Jun  7 14:19:33 2015 quentin gasparotto
+## Last update Sun Jun  7 14:48:09 2015 adrien milcent
 ##
 
 CC=	gcc -g -fopenmp -lpthread
@@ -91,8 +91,6 @@ SRCS=	./sources/rtracer.c \
 	./sources/cylinder_texture.c \
 	./sources/filter.c \
 	./sources/convo_filter.c \
-	./sources/fill_new_list.c \
-	./sources/multithread_copy.c \
 	./sources/duplicate_scene.c \
 	./sources/duplicate_eye.c \
 	./sources/duplicate_img.c \

@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 13:46:18 2015 adrien milcent
+** Last update Sun Jun  7 15:00:58 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -77,18 +77,24 @@ void		launch_scene(t_system *sys, t_scene *copy, int nb, int nb_t)
     }
 }
 
-void	*loading_screen()
+void		loading_screen(int nb_t)
 {
-  int	i;
+  static int	nb_thread = 0;
+  static int	percent = 0;
 
-  i = 0;
-  while (i < 100000)
+  if (nb_thread == 0)
+    nb_thread = nb_t;
+  else
     {
-      printf("salut\n");
-      ++i;
+      percent = percent + (20 / nb_thread);
+      if (percent <= 100)
+	printf("%d%%\n", percent);
     }
-  printf("finito\n");
-  pthread_exit(NULL);
+}
+
+void	sig_1()
+{
+  loading_screen(-1);
 }
 
 void		loading_time(t_system *sys)
@@ -99,23 +105,22 @@ void		loading_time(t_system *sys)
   int		nb_t;
   int		nb;
 
-  //  pthread_create(&t1, NULL, loading_screen, NULL);
+  signal(SIGUSR1, sig_1);
+  //  pthread_create(&t1, NULL, loading_screen, (void *)nb_t);
   #pragma omp parallel private(nb)
   {
    nb = 0;
+   loading_screen(omp_get_num_threads());
    nb_t = omp_get_num_threads();
    copy = duplicate_scene(sys->scene_list);
    launch_scene(sys, copy, nb, nb_t);
    scene = copy->next;
    while (scene != copy)
      {
-       launch_scene(sys, scene, nb, nb_t);
        #pragma omp barrier
-       #pragma omp single
-       {
-	 if (scene != NULL)
-	   scene = scene->next;
-       }
+       launch_scene(sys, scene, nb, nb_t);
+       if (scene != NULL)
+	 scene = scene->next;
      }
   }
 }
