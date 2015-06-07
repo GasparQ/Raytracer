@@ -5,13 +5,15 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 15:32:28 2015 adrien milcent
+** Last update Sun Jun  7 19:49:40 2015 adrien milcent
 */
 
 #include <omp.h>
 #include <pthread.h>
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
+
+int	g_percent = 0;
 
 void	check_max(int *x, int *y, int max)
 {
@@ -80,18 +82,31 @@ void		launch_scene(t_system *sys, t_scene *copy, int nb, int nb_t)
 void		loading_screen(int nb_t)
 {
   static int	nb_thread = 0;
-  static int	percent = 0;
 
   if (nb_thread == 0)
     nb_thread = nb_t;
   else
     {
-      percent = percent + (20 / nb_thread);
-      if (percent <= 100)
-	printf("%d%%\n", percent);
+      g_percent = g_percent + (20 / nb_thread);
+      if (g_percent <= 100)
+	printf("%d%%\n", g_percent);
     }
 }
+/*
+void	output_load()
+{
+  int	i;
+  int	nb_per;
 
+  while (g_percent <= 100)
+    {
+      i = 0;
+      nb_per = g_percent / 10;
+      tab[nb_per];
+      put_image;
+    }
+}
+*/
 void	sig_1()
 {
   loading_screen(-1);
@@ -106,8 +121,8 @@ void		loading_time(t_system *sys)
   int		nb;
 
   signal(SIGUSR1, sig_1);
-  //  pthread_create(&t1, NULL, loading_screen, (void *)nb_t);
-#pragma omp parallel private(nb) private(copy) private(scene)
+  //  pthread_create(&t1, NULL, output_load, NULL;
+  #pragma omp parallel private(nb) private(copy) private(scene)
   {
    nb = 0;
    loading_screen(omp_get_num_threads());
