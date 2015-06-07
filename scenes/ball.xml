@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<scene>
+  <eye>
+    position = (-50,0,20)
+    rotation = (0,20,0)
+    distance = 500
+    render_method = 0
+    filter = [0,0,0,0,1,0,0,0,0]
+    filter_mode = 0
+  </eye>
+  <spot>
+    position = (0,0,0)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
+    intensity = 1
+  </spot>
+  <spot>
+    position = (30,0,30)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
+    intensity = 1
+  </spot>
+  <object color="0x0000FF00">
+    <mesh type="sphere">
+      radius = 10
+    </mesh>
+    <coord>
+      position = (0,0,-10)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0.3
+      opacity = 0
+      refraction = 0
+      reflection = 0.1
+    </phong>
+  </object>
+  <object color="0x00FF0000">
+    <mesh type="sphere">
+      radius = 20
+    </mesh>
+    <coord>
+      position = (0,30,0)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0.3
+      opacity = 0
+      refraction = 0
+      reflection = 0.1
+    </phong>
+  </object>
+  <!-- le sol -->
+  <object color="0xF0F00FFF">
+    <mesh type="plane">
+      normal = (0,0,1)
+    </mesh>
+    <coord>
+      position = (0,0,-20)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0.3
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
+  <object color="0xF0F00FFF">
+    <mesh type="plane">
+      normal = (0,0,1)
+    </mesh>
+    <coord>
+      position = (0,0,-20)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0.3
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
+  <object color="0x00FFFFFF">
+    <mesh type="plane">
+      normal = (0,0,1)
+    </mesh>
+    <coord>
+      position = (0,0,30)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 1
+      spe_radius = 400
+      brightness = 0.3
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
+</scene>
