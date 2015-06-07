@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 14:10:17 2015 quentin gasparotto
-** Last update Sun Jun  7 15:33:26 2015 quentin gasparotto
+** Last update Sun Jun  7 18:13:33 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -76,7 +76,7 @@ int	basic_scene(t_system *sys)
     return (-1);
   if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
 	      ORIGIN, (double [12]){500, 2, 0, 0, 0, 0, 1,
-		  0, 0, 0, 0, 3}) == -1)
+		  0, 0, 0, 0, 0}) == -1)
     return (-1);
   init_objects(sys);
   init_spot(sys);

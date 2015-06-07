@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun Jun  7 18:07:10 2015 quentin gasparotto
+** Last update Sun Jun  7 19:27:19 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -83,7 +83,7 @@ enum			COLORS
 **	get_load.c
 */
 
-int			get_load(t_system *sys);
+int			get_load(void *sys, t_image *load, int mode);
 
 /*
 **	perlin2.c
