@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sat Jun  6 20:21:18 2015 adrien milcent
+** Last update Sun Jun  7 13:16:37 2015 quentin gasparotto
 */
 
 #ifndef SYS_LIBX_H_
@@ -78,6 +78,15 @@ enum			COLORS
 			SOLAS= 0xBA004A,
 			CYL= 0xDC2400,
   };
+
+/*
+**	duplicate
+*/
+
+t_scene			*duplicate_scene(t_scene *scene_list);
+t_image			*duplicate_img(t_image *list);
+t_spot			*duplicate_spot(t_spot *spot_list, int bpp);
+t_eye			*duplicate_eyes(t_eye *list);
 
 /*
 **	filter.c
