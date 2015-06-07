@@ -5,10 +5,10 @@
 ## Login   <barrie_j@epitech.net>
 ## 
 ## Started on  Sun Jun  7 21:19:58 2015 Jean BARRIERE
-## Last update Sun Jun  7 21:35:30 2015 adrien milcent
+## Last update Sun Jun  7 21:47:29 2015 Jean BARRIERE
 ##
 
-CC	= gcc -fopenmp
+CC	= gcc
 
 RM	= rm -f
 
@@ -19,7 +19,7 @@ CFLAGS	+= -I ./include
 
 LDFLAGS	+= -L/usr/lib64/ -lmlx
 LDFLAGS	+= -L/usr/lib64/X11 -lXext -lX11
-LDFLAGS	+= -lm -lpthread
+LDFLAGS	+= -lm -lpthread -fopenmp
 
 SRCS	= sources/rtracer.c		\
 	  sources/error.c		\
@@ -124,6 +124,9 @@ SRCS	= sources/rtracer.c		\
 	  online/file.c
 
 OBJS	= $(SRCS:.c=.o)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)

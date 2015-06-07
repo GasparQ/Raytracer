@@ -1,38 +1,148 @@
 <?xml version="1.0"?>
 <scene>
-  <eye>
-    position = (-100,0,0)
-    distance = 500
-    render_method = 2
-  </eye>
 
+  <!--	Définition des spot sur la scène	-->
+
+  <eye>
+    position = (0,0,0)
+    rotation = (0,0,0)
+    distance = 500
+
+    <!-- méthodes de rendu : 0 = AA; 1 = CellShading; 2 : default-->
+    render_method = 1
+  </eye>
   <spot>
-    position = (-300,0,0)
+    position = (0,0,10)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
     intensity = 1
   </spot>
+  <spot>
+    position = (-500,0,0)
+    rotation = (0,0,0)
+    color = 0x00FFFFFF
+    intensity = 1
+  </spot>
+  <!--	Définition des objets de la scène	-->
 
-  <object color="0x00FFFF00">
-    <coord>
-      position = (0,0,0)
-    </coord>
+  <!--		Le Pringles			-->
+
+  <object color="0x00FF0000">
     <mesh type="hyperboloid">
-      a = 30
-      b = 30
+      a = 50
+      b = 50
       c = 90
       d = -1
       c_factor = -1
     </mesh>
+    <!-- textures can be map, bump or procedural -->
+    <texture type="map">
+      file = "images/earth.xpm"
+
+      <!-- Que pour les bumped-->
+      bump = 0
+
+      <!-- Que pour les procedurales-->
+      color_one = 0x00000000
+      color_two = 0x00000000
+    </texture>
+    <coord>
+      position = (0,0,75)
+      rotation = (90,0,45)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 0
+      spe_radius = 0
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
     <limit>
-      <object color="0x00FF0000">
-	<mesh type="cylinder">
-	  radius = 2
+      <object color="0x00000000">
+	<mesh type="plane">
+	  normal = (0,0,1)
+	  cte = 0
 	</mesh>
 	<coord>
-	  position = (0,0,0)
-	  rotation = (0,90,45)
+	  position = (0,50,0)
+	  rotation = (90,0,45)
 	</coord>
+	<phong>
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
+	  opacity = 0
+	  refraction = 0
+	  reflection = 0
+	</phong>
+      </object>
+      <object color="0x00000000">
+	<mesh type="plane">
+	  normal = (0,0,1)
+	  cte = 0
+	</mesh>
+	<coord>
+	  position = (0,-50,0)
+	  rotation = (90,0,45)
+	</coord>
+	<phong>
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
+	  opacity = 0
+	  refraction = 0
+	  reflection = 0
+	</phong>
+      </object>
+      <object color="0x00000000">
+	<mesh type="sphere">
+	  radius = 50
+	</mesh>
+	<coord>
+	  position = (0,0,50)
+	  rotation = (0,0,0)
+	</coord>
+	<phong>
+	  ambiant = 0.2
+	  diffuse = 1
+	  specular = 0
+	  spe_radius = 0
+	  brightness = 0
+	  opacity = 0
+	  refraction = 0
+	  reflection = 0
+	</phong>
       </object>
     </limit>
   </object>
 
+  <!--		Le Plan				-->
+
+  <object color="0x00FFFFFF">
+    <mesh type="plane">
+      normal = (0,0,1)
+      cte = 0
+    </mesh>
+    <coord>
+      position = (0,0,0)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 1
+      specular = 0
+      spe_radius = 0
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
 </scene>
