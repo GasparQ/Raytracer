@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun Jun  7 21:26:30 2015 adrien milcent
+** Last update Sun Jun  7 21:43:43 2015 adrien milcent
 */
 
 #include <pthread.h>
@@ -35,7 +35,7 @@ void		*output_preload(void *sys)
 			      sys1->load[i].img,
 			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
       ++i;
-      sleep(1);
+      usleep(50000);
       if (i == 11)
 	{
 	  i = 0;
