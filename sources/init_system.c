@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun Jun  7 21:06:31 2015 adrien milcent
+** Last update Sun Jun  7 21:26:30 2015 adrien milcent
 */
 
 #include <pthread.h>
@@ -63,5 +63,6 @@ int		init_system(t_system *sys, char *file)
   else if (get_objects(sys, file) != 0)
     return (-1);
   pthread_cancel(t1);
+  mlx_clear_window(sys->mlx, sys->wdw);
   return (CLEAN);
 }
