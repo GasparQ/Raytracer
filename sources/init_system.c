@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun Jun  7 19:30:51 2015 quentin gasparotto
+** Last update Sun Jun  7 19:54:57 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -25,9 +25,7 @@ int	init_system(t_system *sys, char *file)
 {
   if (init_mlx(sys) == ERROR)
     return (ERROR);
-  if (get_load(sys->mlx, sys->preload, 1) == -1)
-    return (-1);
-  if (get_load(sys->mlx, sys->load, 0) == -1)
+  if (get_load(sys->mlx, sys->load) == -1)
     return (-1);
   sys->scene_list = NULL;
   if (file == NULL)
