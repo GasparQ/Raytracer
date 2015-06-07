@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 12:37:59 2015 quentin gasparotto
-** Last update Sun Jun  7 13:19:41 2015 quentin gasparotto
+** Last update Sun Jun  7 13:31:03 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -26,12 +26,16 @@ int		add_end_scene(t_scene **list, t_scene scene)
     }
   else
     {
-      tmp = (*list)->next;
-      while (tmp != *list)
-	tmp = tmp->next;
-      elem->next = tmp->next;
-      tmp->next = elem;
-      elem->next->prev = elem;
+      elem->next = (*list);
+      elem->prev = (*list)->prev;
+      elem->prev->next = elem;
+      (*list)->prev = elem;
+      /* tmp = (*list)->next; */
+      /* while (tmp != *list) */
+      /* 	tmp = tmp->next; */
+      /* elem->next = tmp->next; */
+      /* tmp->next = elem; */
+      /* elem->next->prev = elem; */
     }
   return (0);
 }
