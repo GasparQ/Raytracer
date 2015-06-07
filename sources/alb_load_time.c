@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 20:40:14 2015 adrien milcent
+** Last update Sun Jun  7 21:51:30 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -106,6 +106,7 @@ void		*output_load(void *sys)
 			      sys1->load[nb_per].img,
 			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
     }
+  g_percent = 0;
   pthread_exit(NULL);
 }
 
