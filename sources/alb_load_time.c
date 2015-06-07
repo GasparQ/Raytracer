@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 23:31:58 2015 quentin gasparotto
+** Last update Sun Jun  7 23:32:33 2015 quentin gasparotto
 */
 
 #include <omp.h>
@@ -90,7 +90,8 @@ void		loading_time(t_system *sys)
    nb = 0;
    loading_screen(omp_get_num_threads());
    nb_t = omp_get_num_threads();
-   copy = duplicate_scene(sys->scene_list);
+   if ((copy = duplicate_scene(sys->scene_list)) == NULL)
+     exit(3);
    launch_scene(sys, copy, nb, nb_t);
    scene = copy->next;
    while (scene != copy)
