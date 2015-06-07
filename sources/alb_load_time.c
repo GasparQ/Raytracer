@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 22:46:51 2015 adrien milcent
+** Last update Sun Jun  7 23:13:54 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -103,4 +103,5 @@ void		loading_time(t_system *sys)
 	 scene = scene->next;
      }
   }
+  pthread_cancel(t1);
 }
