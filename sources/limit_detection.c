@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Fri Jun  5 17:18:55 2015 quentin gasparotto
-** Last update Sat Jun  6 17:37:01 2015 quentin gasparotto
+** Last update Sun Jun  7 14:24:33 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -40,13 +40,21 @@ double		get_gradient(t_scene *scene, int x, int y)
   more[2] = (y + 1 < scene->act_image->hght) ? y + 1 : y;
   more[3] = (y - 1 >= 0) ? y - 1 : y;
   grad_x =
-    (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[0]] - scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] +
-     2 * (scene->act_image->i_tab[y * scene->act_image->wdth / 4 + more[0]] - scene->act_image->i_tab[y * scene->act_image->wdth / 4 + more[1]]) +
-     scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[0]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[1]]) / 3;
+    (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[0]] -
+     scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] +
+     2 * (scene->act_image->i_tab[y * scene->act_image->wdth / 4 + more[0]] -
+	  scene->act_image->i_tab[y * scene->act_image->wdth / 4 + more[1]]) +
+     scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[0]] -
+     scene->act_image->i_tab[more[2] *
+			     scene->act_image->wdth / 4 + more[1]]) / 3;
   grad_y =
-    (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[0]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[0]] +
-     2 * (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + x] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + x]) +
-     scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] - scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[1]]) / 3;
+    (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[0]] -
+     scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + more[0]] +
+     2 * (scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + x] -
+	  scene->act_image->i_tab[more[2] * scene->act_image->wdth / 4 + x]) +
+     scene->act_image->i_tab[more[3] * scene->act_image->wdth / 4 + more[1]] -
+     scene->act_image->i_tab[more[2] *
+			     scene->act_image->wdth / 4 + more[1]]) / 3;
   return (grad_y + grad_x);
 }
 
@@ -63,11 +71,9 @@ int		check_border(t_image *image, int x, int y)
     {
       if (x + i % 3 < image->wdth / 4 && x + i % 3 >= 0 &&
 	  y + i / 3 < image->hght && y + i / 3 >= 0 &&
-	  fabs(image->i_tab[(y + i / 3) * image->wdth / 4 + x + i % 3] - ref) > 0.15)
-	{
-	  //printf("%f\n", fabs(image->i_tab[(y + i / 3) * image->wdth / 4 + x + i % 3] - ref));
-	  return (1);
-	}
+	  fabs(image->i_tab[(y + i / 3) * image->wdth / 4 + x + i % 3]
+	       - ref) > 0.15)
+	return (1);
       ++i;
     }
   return (0);
@@ -83,11 +89,7 @@ int	get_border(t_scene *scene)
     {
       x = 0;
       while (x < scene->act_image->wdth / 4)
-	{
-	  printf("%f ", get_gradient(scene, x, y));
-	  ++x;
-	}
-      printf("\n");
+	++x;
       ++y;
     }
   return (0);

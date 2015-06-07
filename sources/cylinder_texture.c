@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Jun  6 09:54:34 2015 quentin gasparotto
-** Last update Sat Jun  6 19:13:53 2015 quentin gasparotto
+** Last update Sun Jun  7 13:50:08 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -24,7 +24,6 @@ t_vector2	cylinder_map(t_vector3 isec_point, t_image *texture)
   text_pos.x /= (2 * M_PI);
   text_pos.y = (int)isec_point.z % (int)texture->hght;
   text_pos.x *= texture->wdth / 4;
-  //text_pos.y *= texture->hght;
   return (text_pos);
 }
 

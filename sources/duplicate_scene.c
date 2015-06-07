@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 12:37:59 2015 quentin gasparotto
-** Last update Sun Jun  7 13:31:03 2015 quentin gasparotto
+** Last update Sun Jun  7 14:21:18 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -13,7 +13,6 @@
 int		add_end_scene(t_scene **list, t_scene scene)
 {
   t_scene	*elem;
-  t_scene	*tmp;
 
   if ((elem = malloc(sizeof(*elem))) == NULL)
     return (-1);
@@ -30,12 +29,6 @@ int		add_end_scene(t_scene **list, t_scene scene)
       elem->prev = (*list)->prev;
       elem->prev->next = elem;
       (*list)->prev = elem;
-      /* tmp = (*list)->next; */
-      /* while (tmp != *list) */
-      /* 	tmp = tmp->next; */
-      /* elem->next = tmp->next; */
-      /* tmp->next = elem; */
-      /* elem->next->prev = elem; */
     }
   return (0);
 }
@@ -43,8 +36,10 @@ int		add_end_scene(t_scene **list, t_scene scene)
 int	fill_scene(t_scene *elem, t_scene ref)
 {
   *elem = ref;
-  if ((elem->spot_list = duplicate_spot(ref.spot_list, ref.img->bpp)) == NULL ||
-      (elem->obj_list = duplicate_obj(ref.obj_list, ref.img->bpp, &ref)) == NULL ||
+  if ((elem->spot_list = duplicate_spot(ref.spot_list,
+					ref.img->bpp)) == NULL ||
+      (elem->obj_list = duplicate_obj(ref.obj_list,
+				      ref.img->bpp, &ref)) == NULL ||
       (elem->eye = duplicate_eyes(ref.eye)) == NULL ||
       (elem->img = duplicate_img(ref.img)) == NULL)
     return (-1);

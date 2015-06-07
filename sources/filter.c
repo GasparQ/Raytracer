@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sat Jun  6 15:21:59 2015 quentin gasparotto
-** Last update Sat Jun  6 19:25:49 2015 quentin gasparotto
+** Last update Sun Jun  7 14:08:14 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -78,5 +78,5 @@ void		        revert(t_image *img, t_vector2 pos, void *send_scene)
   pix_color += ((255 - red) << 16);
   pix_color += ((255 - green) << 8);
   pix_color += 255 - blue;
-  get_color(pix_color, img->color, scene);  
+  get_color(pix_color, img->color, scene);
 }

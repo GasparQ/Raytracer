@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat Jun  6 10:47:46 2015 quentin gasparotto
-** Last update Sun Jun  7 12:24:43 2015 adrien milcent
+** Last update Sun Jun  7 13:49:27 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -33,16 +33,14 @@ void		get_coeff(t_image *img, t_vector2 pos,
   int		i;
   int		tell;
   double	*matrix;
-  t_scene	*scene;
 
-  scene = (t_scene *)send_scene;
-  matrix = scene->act_eye->convolution;
+  matrix = ((t_scene *)send_scene)->act_eye->convolution;
   pos.x -= 1;
   pos.y -= 1;
   tell = 0;
-  i = 0;
+  i = -1;
   init_average(img->average, img->bpp / 8);
-  while (i < 9)
+  while (++i < 9)
     {
       if (pos.x + i % 3 >= 0 && pos.x + i % 3 < img->wdth / 4 &&
 	  pos.y + i / 3 >= 0 && pos.y + i / 3 < img->hght)
@@ -54,7 +52,6 @@ void		get_coeff(t_image *img, t_vector2 pos,
 	  if (matrix[i] != 0)
 	    ++tell;
 	}
-      ++i;
     }
   divide_it(img, tell);
 }
@@ -73,8 +70,6 @@ void		apply_filter(t_image *img, t_scene *scene)
       while (pos.x < WDW_WIDTH)
 	{
 	  scene->act_eye->filter_meth(img, pos, scene);
-	  //get_coeff(img, pos, matrix);
-	  //sepia(img, pos, (void *)scene);
 	  my_put_pixel_to_img((int)pos.x, (int)pos.y, img->color, &new_img);
 	  ++pos.x;
 	}

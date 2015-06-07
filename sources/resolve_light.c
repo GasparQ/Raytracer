@@ -5,12 +5,13 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Mon Feb 16 15:59:27 2015 quentin gasparotto
-** Last update Thu Jun  4 19:47:46 2015 quentin gasparotto
+** Last update Sun Jun  7 14:44:47 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
 
-void		resolve_brightness(t_object *act_obj, t_scene *scene, int limit)
+void		resolve_brightness(t_object *act_obj, t_scene *scene,
+				   int limit)
 {
   int		i;
   t_spot	*tmp;
@@ -87,16 +88,14 @@ void		resolve_light(t_vector3 isec_point,
   use_vectors[1] = isec_point;
   use_vectors[2] = strgt.dir;
   light_solver(use_vectors, scene, act_obj);
-  if (act_obj->phong.reflect > F_ZERO && act_obj->effects < 5)
+  if (act_obj->effects < 5)
     {
-      ++act_obj->effects;
-      resolve_reflection(REFLECT(strgt.dir), act_obj, scene);
+      act_obj->effects += 1;
+      if (act_obj->phong.reflect > F_ZERO)
+	resolve_reflection(REFLECT(strgt.dir), act_obj, scene);
+      if (act_obj->phong.opacity > F_ZERO)
+	resolve_transparency(REFRACT(strgt.dir, act_obj->phong.middle_ind),
+			     act_obj, scene);
     }
-  if (act_obj->phong.opacity > F_ZERO && act_obj->effects < 5)
-    {
-      ++act_obj->effects;
-      resolve_transparency(REFRACT(strgt.dir, act_obj->phong.middle_ind),
-			   act_obj, scene);
-    }
-  act_obj->effects -= (act_obj->effects == 5 ? 1 : 0);
+  act_obj->effects -= (act_obj->effects == 5 ? -1 : 0);
 }

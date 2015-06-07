@@ -1,3 +1,12 @@
+##
+## Makefile for raytracer makefile in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
+## 
+## Made by quentin gasparotto
+## Login   <gaspar_q@epitech.net>
+## 
+## Started on  Sun Jun  7 14:19:15 2015 quentin gasparotto
+## Last update Sun Jun  7 14:19:33 2015 quentin gasparotto
+##
 
 CC=	gcc -g -fopenmp -lpthread
 
@@ -88,6 +97,7 @@ SRCS=	./sources/rtracer.c \
 	./sources/duplicate_eye.c \
 	./sources/duplicate_img.c \
 	./sources/duplicate_spot.c \
+	./sources/basic_scenes.c \
 	./parser/parse_mesh.c 		\
 	./parser/parse_mesh_next.c	\
 	./parser/parse_coord.c 		\

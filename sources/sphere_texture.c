@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Wed Jun  3 19:28:21 2015 quentin gasparotto
-** Last update Sat Jun  6 10:37:04 2015 quentin gasparotto
+** Last update Sun Jun  7 14:40:39 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -51,17 +51,14 @@ void		sphere_bump(t_vector3 isec_point, t_object *touch,
   touch->which_bump(text_pos, touch->bump, norm);
 }
 
-void		sphere_proced(t_vector3 isec_point, t_object *touch)
+double		smooth_noise(t_vector3 isec_point)
 {
   double	fnoise;
-  double	t;
-  double	n;
-  double	ft;
+  double	max_amp;
+  double	amp;
   double	f;
   int		i;
   t_vector3	send;
-  double	max_amp;
-  double	amp;
 
   f = 0.00125;
   max_amp = 0;
@@ -79,8 +76,18 @@ void		sphere_proced(t_vector3 isec_point, t_object *touch)
       f *= 2;
       ++i;
     }
-  fnoise = fnoise * (1 - 0.5) / (1 - f);
-  /* fnoise = 1 - sqrt(fabs(sin(10 * M_PI * fnoise))); */
+  return (fnoise * (1 - 0.5) / (1 - f));
+}
+
+void		sphere_proced(t_vector3 isec_point, t_object *touch)
+{
+  double	t;
+  double	n;
+  double	ft;
+  double	fnoise;
+  int		i;
+
+  fnoise = smooth_noise(isec_point);
   t = 20 * fnoise;
   n = t - (int)t;
   ft = n / M_PI;
