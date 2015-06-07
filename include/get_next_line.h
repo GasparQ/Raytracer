@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Nov 17 15:16:33 2014 quentin gasparotto
-** Last update Sat Jun  6 23:23:06 2015 fernand veyrier
+** Last update Sun Jun  7 23:37:57 2015 fernand veyrier
 */
 
 #ifndef GET_NXT_LINE_H_
@@ -67,8 +67,8 @@
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
 # define TEXTURE_CLOSE	"^[[:space:]]*</texture>[[:space:]]*$"
 # define HYPER_PARAM(a)	"^[[:space:]]*"a"[[:space:]]*=[[:space:]]*"
-# define MATRIX_NEXT	"[:space:]]*\\[([[:digit:].]+[,]?){9,9}\\][[:space:]]*$"
-# define MATRIX		"^[[:space:]]*filter[[:space:]]*=[" MATRIX_NEXT
+# define MATRIX_NEXT	":space:]]*\\[([[:digit:].]+[,]?){9,9}\\][[:space:]]*$"
+# define MATRIX		"^[[:space:]]*filter[[:space:]]*=[[" MATRIX_NEXT
 # define FILTER_MODE	"^[[:space:]]*filter_mode[[:space:]]*=[[:space:]]*"
 # define ERR_NEXT	pars->line) * -1
 # define ERR_PARSER(s)	fprintf(stderr, "Invalid XML ("s") line %i\n", ERR_NEXT

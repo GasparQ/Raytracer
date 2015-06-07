@@ -4,9 +4,9 @@
     position = (-50,0,20)
     rotation = (0,20,0)
     distance = 500
-    render_method = 0
-    filter = [0,0,0,0,1,0,0,0,0]
-    filter_mode = 0
+    //render_method = 0
+    //filter = [0,0,0,0,1,0,0,0,0]
+    //filter_mode = 0
   </eye>
   <spot>
     position = (0,0,0)
@@ -72,7 +72,7 @@
       diffuse = 1
       specular = 1
       spe_radius = 400
-      brightness = 0.3
+      brightness = 0.8
       opacity = 0
       refraction = 0
       reflection = 0
