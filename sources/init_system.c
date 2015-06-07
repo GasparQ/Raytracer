@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Tue Feb 10 20:01:49 2015 quentin gasparotto
-** Last update Sun Jun  7 21:43:43 2015 adrien milcent
+** Last update Sun Jun  7 22:37:58 2015 adrien milcent
 */
 
 #include <pthread.h>
@@ -36,9 +36,10 @@ void		*output_preload(void *sys)
 			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
       ++i;
       usleep(50000);
-      if (i == 11)
+      if (i > 10)
 	{
-	  i = 0;
+	  if (i == 20)
+	    i = 0;
 	  mlx_clear_window(sys1->mlx, sys1->wdw);
 	}
     }

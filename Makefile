@@ -5,7 +5,7 @@
 ## Login   <barrie_j@epitech.net>
 ## 
 ## Started on  Sun Jun  7 21:19:58 2015 Jean BARRIERE
-## Last update Sun Jun  7 21:47:29 2015 Jean BARRIERE
+## Last update Sun Jun  7 22:44:05 2015 adrien milcent
 ##
 
 CC	= gcc
@@ -105,6 +105,7 @@ SRCS	= sources/rtracer.c		\
 	  sources/basic_scenes.c	\
 	  sources/perlin2.c		\
 	  sources/get_load.c		\
+	  sources/loading.c		\
 	  parser/parse_mesh.c 		\
 	  parser/parse_mesh_next.c	\
 	  parser/parse_coord.c 		\

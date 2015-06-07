@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Wed May 27 12:27:42 2015 quentin gasparotto
-** Last update Sun Jun  7 19:55:10 2015 quentin gasparotto
+** Last update Sun Jun  7 22:43:42 2015 adrien milcent
 */
 
 #ifndef SYS_LIBX_H_
@@ -732,5 +732,12 @@ int		struct_img(t_image *tmp, t_image *tmp_image, int i);
 int		fill_img(t_scene *tmp_scene, t_image *tmp_image, int i);
 int		fill_new_list(t_scene *new, t_scene *tmp, t_scene *tmp_scene);
 int		copy_list(t_scene *scene, t_scene *new, t_scene *tmp);
+
+/*
+**	loading.c
+*/
+
+void	load_my_image(int nb, int nb_t, t_scene *copy);
+void	check_max(int *x, int *y, int max);
 
 #endif /* !SYS_LIBX_H_ */

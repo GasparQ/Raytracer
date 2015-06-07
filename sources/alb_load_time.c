@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 21:51:30 2015 adrien milcent
+** Last update Sun Jun  7 22:46:51 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -15,42 +15,21 @@
 
 int	g_percent = 0;
 
-void	check_max(int *x, int *y, int max)
+void		*output_load(void *sys)
 {
-  if (*x <= max && *y <= max)
-    {
-      if (*x == max)
-	{
-	  ++(*y);
-	  *x = 0;
-	}
-      else
-	++(*x);
-    }
-}
+  int		nb_per;
+  t_system	*sys1;
 
-void	load_my_image(int nb, int nb_t, t_scene *copy)
-{
-  int	width;
-  int	height;
-  int	max;
-  int	x;
-  int	y;
-  int	i;
-
-  i = 0;
-  x = 0;
-  y = 0;
-  max = (nb_t / 2) - 1;
-  while (i != nb && i < nb_t)
+  sys1 = (t_system *)sys;
+  while (g_percent <= 100)
     {
-      check_max(&x, &y, max);
-      ++i;
+      nb_per = g_percent / 10;
+      mlx_put_image_to_window(sys1->mlx, sys1->wdw,
+			      sys1->load[nb_per].img,
+			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
     }
-  width = x * (WDW_WIDTH / (nb_t / 2));
-  height = y * (WDW_HEIGHT / 2);
-  load_image(copy, get_vector2(width, height),
-	     get_vector2(WDW_WIDTH / (nb_t / 2), WDW_HEIGHT / 2));
+  g_percent = 0;
+  pthread_exit(NULL);
 }
 
 void		launch_scene(t_system *sys, t_scene *copy, int nb, int nb_t)
@@ -93,23 +72,6 @@ void		loading_screen(int nb_t)
     }
 }
 
-void		*output_load(void *sys)
-{
-  int		nb_per;
-  t_system	*sys1;
-
-  sys1 = (t_system *)sys;
-  while (g_percent <= 100)
-    {
-      nb_per = g_percent / 10;
-      mlx_put_image_to_window(sys1->mlx, sys1->wdw,
-			      sys1->load[nb_per].img,
-			      (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
-    }
-  g_percent = 0;
-  pthread_exit(NULL);
-}
-
 void	sig_1()
 {
   loading_screen(-1);
@@ -117,9 +79,9 @@ void	sig_1()
 
 void		loading_time(t_system *sys)
 {
+  pthread_t	t1;
   t_scene	*scene;
   t_scene	*copy;
-  pthread_t	t1;
   int		nb_t;
   int		nb;
 
