@@ -9,6 +9,10 @@
   </spot>
 
   <object color="0x00FF0000">
+    <coord>
+      position = (100,0,0)
+      rotation = (0,0,45)
+    </coord>
     <mesh type="sphere">
       radius = 50
     </mesh>

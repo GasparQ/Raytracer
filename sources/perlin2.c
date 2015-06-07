@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 16:27:04 2015 quentin gasparotto
-** Last update Sun Jun  7 17:19:33 2015 quentin gasparotto
+** Last update Sun Jun  7 17:52:31 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -35,7 +35,7 @@ int	p[256] = {151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96,
 		  24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156,
 		  180};
 
-void    init_gradient(float gradient[8][2], float unit)
+void	init_gradient(float gradient[8][2], float unit)
 {
   gradient[0][0] = unit;
   gradient[0][1] = unit;
@@ -92,8 +92,8 @@ double		noise2(t_vector2 coord)
   double	unit;
   float		gradient2[8][2];
 
-  coord.x /= 100;
-  coord.y /= 100;
+  coord.x /= 200;
+  coord.y /= 200;
   unit = 1.0 / sqrt(2);
   init_gradient(gradient2, unit);
   ii = (int)coord.x & 255;
