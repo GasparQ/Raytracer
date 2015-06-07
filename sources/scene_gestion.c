@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Sun Jun  7 14:36:43 2015 quentin gasparotto
+** Last update Sun Jun  7 15:07:15 2015 quentin gasparotto
 */
 
 #include "../include/minilibx_system.h"
@@ -34,7 +34,7 @@ int		init_img(t_image *img, t_vector2 dim,
   scene->act_image = save;
   if ((img->average = malloc(sizeof(int) * (img->bpp / 8))) == NULL)
     return (-1);
-  img->render_method = ren[MIN(render, 2)];
+  img->render_method = ren[(render < 3) ? render : 2];
   return (0);
 }
 

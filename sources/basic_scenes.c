@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 ** 
 ** Started on  Sun Jun  7 14:10:17 2015 quentin gasparotto
-** Last update Sun Jun  7 14:21:47 2015 quentin gasparotto
+** Last update Sun Jun  7 15:08:27 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -56,18 +56,18 @@ void	test_texture(t_system *sys)
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, RED);
   add_coord(sys->scene_list->obj_list, (double [6]){-100, 0, 150, 0, 0, 45});
   add_sphere(sys->scene_list->obj_list, (double [1]){150});
-  add_texture(sys->scene_list->obj_list, "images/earth_for_bump.xpm",
-	      sys->scene_list);
-  add_bump(sys->scene_list->obj_list, "images/bump_earth.xpm",
-	   sys->scene_list, 0);
+  /* add_texture(sys->scene_list->obj_list, "images/earth_for_bump.xpm", */
+  /* 	      sys->scene_list); */
+  /* add_bump(sys->scene_list->obj_list, "images/bump_earth.xpm", */
+  /* 	   sys->scene_list, 0); */
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
   add_plan(sys->scene_list->obj_list, (double [4]){0, 0, 0, 1});
-  add_bump(sys->scene_list->obj_list, "images/bump_map_test.xpm",
-	   sys->scene_list, 1);
+  /* add_bump(sys->scene_list->obj_list, "images/bump_map_test.xpm", */
+  /* 	   sys->scene_list, 1); */
   add_object(&sys->scene_list->obj_list, sys->scene_list->img->bpp / 8, WHITE);
   add_cylinder(sys->scene_list->obj_list, (double [1]){75});
   add_coord(sys->scene_list->obj_list, (double [6]){0, -100, 0, 0, 0, 0});
-  add_bump(sys->scene_list->obj_list, "images/wb.xpm", sys->scene_list, 1);
+  //add_bump(sys->scene_list->obj_list, "images/wb.xpm", sys->scene_list, 1);
 }
 
 int	basic_scene(t_system *sys)
@@ -75,16 +75,18 @@ int	basic_scene(t_system *sys)
   if (add_scene(&sys->scene_list, sys->mlx) == -1)
     return (-1);
   if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
-	      ORIGIN, (double [12]){500, 0, 0, 0, 0, 0, 1,
+	      ORIGIN, (double [12]){500, 2, 0, 0, 0, 0, 1,
 		  0, 0, 0, 0, 3}) == -1)
     return (-1);
   init_objects(sys);
   init_spot(sys);
+  sys->scene_list->act_eye = sys->scene_list->eye;
+  sys->scene_list->act_image = sys->scene_list->img;
   if (add_scene(&sys->scene_list, sys->mlx) == -1)
     return (-1);
   if (add_eye(sys->scene_list, get_vector3(-500, 0, 150),
 	      ORIGIN, (double [12]){500, 2, 0, 0, 0, 0, 1,
-		  0, 0, 0, 0, 2}) == -1)
+		  0, 0, 0, 0, 0}) == -1)
     return (-1);
   test_texture(sys);
   init_spot(sys);

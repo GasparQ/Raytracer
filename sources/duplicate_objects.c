@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Jun  1 18:02:09 2015 quentin gasparotto
-** Last update Sun Jun  7 12:29:43 2015 adrien milcent
+** Last update Sun Jun  7 15:00:04 2015 quentin gasparotto
 */
 
 #include "../include/prototypes.h"
@@ -46,6 +46,8 @@ int		add_end_obj(t_object **obj_list, t_object *obj,
   if ((elem = malloc(sizeof(*elem))) == NULL)
     return (-1);
   *elem = *obj;
+  if ((elem->limit = duplicate_obj(elem->limit, bpp, scene)) == NULL)
+    return (-1);
   elem->next = NULL;
   if ((elem->disp_color = malloc(bpp / 8)) == NULL)
     return (-1);
