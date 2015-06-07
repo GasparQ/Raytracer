@@ -8,7 +8,7 @@
     render_method = 2
     filter = [0,0,0,0,1,0,0,0,0]
     <!-- 0 : traitement d'image ; 1 : filtre graphique ; 2 : black & white ; 3 : revert-->
-    filter_mode = 0
+    filter_mode = 3
   </eye>
   <eye>
     position = (-30,100,50)

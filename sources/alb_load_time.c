@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 13:16:30 2015 adrien milcent
+** Last update Sun Jun  7 13:46:18 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -51,45 +51,29 @@ void	load_my_image(int nb, int nb_t, t_scene *copy)
 	     get_vector2(WDW_WIDTH / (nb_t / 2), WDW_HEIGHT / 2));
 }
 
-void	copy_scene(t_scene **copy, t_scene **scene)
+void		launch_scene(t_system *sys, t_scene *copy, int nb, int nb_t)
 {
-  (*scene)->act_image = (*scene)->img;
-  (*scene)->act_eye = (*scene)->eye;
-  (*copy) = init_scene();
-  copy_list(*scene, *copy, NULL);
-  (*copy) = (*copy)->next;
-  (*copy)->act_image = (*copy)->img;
-  (*copy)->act_eye = (*copy)->eye;
-  (*scene)->act_image = (*scene)->img;
-  (*scene)->act_eye = (*scene)->eye;
-}
-
-void		launch_scene(t_system *sys, t_scene *scene, int nb, int nb_t)
-{
-  t_scene	*copy;
-
-  copy_scene(&copy, &scene);
-  while (scene->act_eye != NULL)
+  while (copy->act_eye != NULL)
     {
       nb = omp_get_thread_num();
       load_my_image(nb, nb_t, copy);
       #pragma omp barrier
       #pragma omp single
       {
-        if (scene->act_image->render_method == &antialias_method)
-          resolve_effects(scene->act_image, scene,
+        if (copy->act_image->render_method == &antialias_method)
+          resolve_effects(copy->act_image, copy,
                           &resolve_antialiased_color);
-        else if (scene->act_image->render_method == &cell_shade_method)
-          resolve_effects(scene->act_image, scene, &resolve_cell_shading);
-	apply_filter(scene->act_image, scene);
+        else if (copy->act_image->render_method == &cell_shade_method)
+          resolve_effects(copy->act_image, copy, &resolve_cell_shading);
+	apply_filter(copy->act_image, copy);
         mlx_put_image_to_window(sys->mlx, sys->wdw,
-                                scene->act_image->img, 0, 0);
-	if (scene->act_eye != NULL && scene->act_image != NULL)
-	  {
-            scene->act_eye = scene->act_eye->next;
-            scene->act_image = scene->act_image->next;
-          }
+                                copy->act_image->img, 0, 0);
       }
+      if (copy->act_eye != NULL && copy->act_image != NULL)
+	{
+	  copy->act_eye = copy->act_eye->next;
+	  copy->act_image = copy->act_image->next;
+	}
     }
 }
 
@@ -110,18 +94,20 @@ void	*loading_screen()
 void		loading_time(t_system *sys)
 {
   t_scene	*scene;
+  t_scene	*copy;
   pthread_t	t1;
   int		nb_t;
   int		nb;
 
-  pthread_create(&t1, NULL, loading_screen, NULL);
+  //  pthread_create(&t1, NULL, loading_screen, NULL);
   #pragma omp parallel private(nb)
   {
    nb = 0;
    nb_t = omp_get_num_threads();
-   launch_scene(sys, sys->scene_list, nb, nb_t);
-   scene = sys->scene_list->next;
-   while (scene != sys->scene_list)
+   copy = duplicate_scene(sys->scene_list);
+   launch_scene(sys, copy, nb, nb_t);
+   scene = copy->next;
+   while (scene != copy)
      {
        launch_scene(sys, scene, nb, nb_t);
        #pragma omp barrier
