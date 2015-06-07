@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 19:49:40 2015 adrien milcent
+** Last update Sun Jun  7 20:22:32 2015 adrien milcent
 */
 
 #include <omp.h>
@@ -92,21 +92,22 @@ void		loading_screen(int nb_t)
 	printf("%d%%\n", g_percent);
     }
 }
-/*
-void	output_load()
-{
-  int	i;
-  int	nb_per;
 
+void		*output_load(void *sys)
+{
+  int		nb_per;
+  t_system	*sys1;
+
+  sys1 = (t_system *)sys;
   while (g_percent <= 100)
     {
-      i = 0;
       nb_per = g_percent / 10;
-      tab[nb_per];
-      put_image;
+      mlx_put_image_to_window(sys1->mlx, sys1->wdw,
+			      sys1->load[nb_per].img, (WDW_WIDTH / 2) - 240, (WDW_HEIGHT / 2) - 240);
     }
+  pthread_exit(NULL);
 }
-*/
+
 void	sig_1()
 {
   loading_screen(-1);
@@ -121,7 +122,7 @@ void		loading_time(t_system *sys)
   int		nb;
 
   signal(SIGUSR1, sig_1);
-  //  pthread_create(&t1, NULL, output_load, NULL;
+  pthread_create(&t1, NULL, output_load, (void *)sys);
   #pragma omp parallel private(nb) private(copy) private(scene)
   {
    nb = 0;
