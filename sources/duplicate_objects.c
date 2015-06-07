@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon Jun  1 18:02:09 2015 quentin gasparotto
-** Last update Sun Jun  7 01:32:31 2015 adrien milcent
+** Last update Sun Jun  7 12:29:43 2015 adrien milcent
 */
 
 #include "../include/prototypes.h"
@@ -22,13 +22,17 @@ int	check_texture(t_object *obj, t_object *elem, int bpp, t_scene *scene)
     {
       if ((elem->proced->color = malloc(bpp / 8)) == NULL)
 	return (-1);
-      get_color(0, elem->proced->color, scene);
       if ((elem->color1 = malloc(bpp / 8)) == NULL)
 	return (-1);
       if ((elem->color2 = malloc(bpp / 8)) == NULL)
 	return (-1);
       copy_color(obj->color1, elem->color1, bpp);
       copy_color(obj->color2, elem->color2, bpp);
+    }
+  if (obj->bump != NULL)
+    {
+      if ((elem->bump->color = malloc(bpp / 8)) == NULL)
+	return (-1);
     }
   return (0);
 }

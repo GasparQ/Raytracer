@@ -1,11 +1,11 @@
 /*
 ** filter.c for function for applying a filter in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Sat Jun  6 10:47:46 2015 quentin gasparotto
-** Last update Sat Jun  6 19:13:34 2015 quentin gasparotto
+** Last update Sun Jun  7 12:24:43 2015 adrien milcent
 */
 
 #include "../include/prototypes.h"

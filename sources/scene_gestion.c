@@ -1,11 +1,11 @@
 /*
 ** scene_gestion.c for function for the scene gestion in /home/gaspar_q/rendu/semestre_2/Igraph/MUL_2014_rtracer
-** 
+**
 ** Made by quentin gasparotto
 ** Login   <gaspar_q@epitech.net>
-** 
+**
 ** Started on  Fri May 29 11:09:31 2015 quentin gasparotto
-** Last update Sat Jun  6 19:25:39 2015 quentin gasparotto
+** Last update Sun Jun  7 11:27:43 2015 adrien milcent
 */
 
 #include "../include/minilibx_system.h"

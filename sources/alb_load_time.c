@@ -5,10 +5,11 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sat Jun  6 19:29:00 2015 quentin gasparotto
+** Last update Sun Jun  7 13:16:30 2015 adrien milcent
 */
 
 #include <omp.h>
+#include <pthread.h>
 #include "../include/minilibx_system.h"
 #include "../include/prototypes.h"
 
@@ -45,9 +46,9 @@ void	load_my_image(int nb, int nb_t, t_scene *copy)
       ++i;
     }
   width = x * (WDW_WIDTH / (nb_t / 2));
-  height = y * (WDW_HEIGHT / (nb_t / 2));
+  height = y * (WDW_HEIGHT / 2);
   load_image(copy, get_vector2(width, height),
-	     get_vector2(WDW_WIDTH / (nb_t / 2), WDW_HEIGHT / (nb_t / 2)));
+	     get_vector2(WDW_WIDTH / (nb_t / 2), WDW_HEIGHT / 2));
 }
 
 void	copy_scene(t_scene **copy, t_scene **scene)
@@ -73,7 +74,7 @@ void		launch_scene(t_system *sys, t_scene *scene, int nb, int nb_t)
       nb = omp_get_thread_num();
       load_my_image(nb, nb_t, copy);
       #pragma omp barrier
-      #pragma omp master
+      #pragma omp single
       {
         if (scene->act_image->render_method == &antialias_method)
           resolve_effects(scene->act_image, scene,
@@ -89,16 +90,31 @@ void		launch_scene(t_system *sys, t_scene *scene, int nb, int nb_t)
             scene->act_image = scene->act_image->next;
           }
       }
-     #pragma omp barrier
     }
+}
+
+void	*loading_screen()
+{
+  int	i;
+
+  i = 0;
+  while (i < 100000)
+    {
+      printf("salut\n");
+      ++i;
+    }
+  printf("finito\n");
+  pthread_exit(NULL);
 }
 
 void		loading_time(t_system *sys)
 {
   t_scene	*scene;
+  pthread_t	t1;
   int		nb_t;
   int		nb;
 
+  pthread_create(&t1, NULL, loading_screen, NULL);
   #pragma omp parallel private(nb)
   {
    nb = 0;
@@ -109,12 +125,11 @@ void		loading_time(t_system *sys)
      {
        launch_scene(sys, scene, nb, nb_t);
        #pragma omp barrier
-       #pragma omp master
+       #pragma omp single
        {
 	 if (scene != NULL)
 	   scene = scene->next;
        }
-      #pragma omp barrier
      }
   }
 }
