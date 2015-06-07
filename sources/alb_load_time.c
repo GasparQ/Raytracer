@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Sat May 30 20:46:53 2015 quentin gasparotto
-** Last update Sun Jun  7 23:32:33 2015 quentin gasparotto
+** Last update Sun Jun  7 23:34:29 2015 quentin gasparotto
 */
 
 #include <omp.h>
@@ -98,8 +98,7 @@ void		loading_time(t_system *sys)
      {
        #pragma omp barrier
        launch_scene(sys, scene, nb, nb_t);
-       if (scene != NULL)
-	 scene = scene->next;
+       scene = scene->next;
      }
   }
   pthread_cancel(t1);
