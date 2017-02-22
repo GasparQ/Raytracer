@@ -8,7 +8,7 @@
 ** Last update Wed Feb 11 16:14:36 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	my_strlen(char *str)
 {

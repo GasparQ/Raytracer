@@ -8,8 +8,8 @@
 ** Last update Fri Jun  5 14:50:29 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 void	copy_img(t_image src, t_image *dest)
 {

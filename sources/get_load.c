@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 22:29:56 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_load(char **load_img)
 {

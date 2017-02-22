@@ -8,7 +8,7 @@
 ** Last update Fri May 29 11:53:53 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		get_spot_nb(t_spot *spot_list)
 {

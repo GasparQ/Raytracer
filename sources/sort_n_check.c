@@ -8,7 +8,7 @@
 ** Last update Wed May 27 10:03:20 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		sort_n_check(double tab[2])
 {

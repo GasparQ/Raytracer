@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 13:50:08 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector2	cylinder_map(t_vector3 isec_point, t_image *texture)
 {

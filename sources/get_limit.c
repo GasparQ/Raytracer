@@ -8,7 +8,7 @@
 ** Last update Fri Mar 13 19:01:42 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector3	*get_limit(t_vector3 *limit, t_vector3 f, t_vector3 s)
 {

@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 18:13:33 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		init_spot(t_system *sys)
 {

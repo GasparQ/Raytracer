@@ -8,7 +8,7 @@
 ** Last update Sat Mar 14 21:33:56 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 double		get_vec_cos(t_vector3 f, t_vector3 s)
 {

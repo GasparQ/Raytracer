@@ -9,7 +9,7 @@
 */
 
 #include <stdlib.h>
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	my_put_error(char *str)
 {

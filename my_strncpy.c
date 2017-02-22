@@ -8,7 +8,7 @@
 ** Last update Tue Jun  2 18:04:40 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	my_strncpy(char *src, char *dest, int n)
 {

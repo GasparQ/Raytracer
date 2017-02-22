@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 16:27:50 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 static int p[512] = {151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96,
 		     53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142,

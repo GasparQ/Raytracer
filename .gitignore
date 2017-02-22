@@ -6,3 +6,5 @@ rt
 parser/a.out
 list.txt
 img*bmp
+.idea
+cmake-build-debug

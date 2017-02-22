@@ -8,7 +8,7 @@
 ** Last update Fri Jun  5 09:51:46 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	height_map_bump(t_vector2 text_pos, t_image *bump, t_vector3 *norm)
 {

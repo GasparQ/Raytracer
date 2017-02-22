@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 13:16:18 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_end_spot(t_spot **list, t_spot act, int bpp)
 {

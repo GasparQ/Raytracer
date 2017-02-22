@@ -8,7 +8,7 @@
 ** Last update Sat Mar 21 17:23:06 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	valid_roots(double *roots, int size)
 {

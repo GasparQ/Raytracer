@@ -8,7 +8,7 @@
 ** Last update Fri Jun  5 14:14:23 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		add_object(t_object **obj_list, int size, int color)
 {

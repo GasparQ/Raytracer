@@ -8,7 +8,7 @@
 ** Last update Fri Mar 13 14:31:27 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	invert_translate(t_vector3 *coord, t_vector3 add_fact)
 {

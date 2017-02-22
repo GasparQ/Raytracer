@@ -8,7 +8,7 @@
 ** Last update Mon Jun  1 21:32:55 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_streight	get_refracted_ray(t_vector3 norm, t_vector3 incident_ray,
 				  t_vector3 point, double coeff)

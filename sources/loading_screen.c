@@ -8,7 +8,7 @@
 ** Last update Fri May 29 16:54:15 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_load_img(t_scene *scene, t_image *load_img)
 {

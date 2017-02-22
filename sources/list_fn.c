@@ -8,8 +8,8 @@
 ** Last update Sat Jun  6 20:14:24 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 int		my_put_in_list(t_object **list, t_object data)
 {

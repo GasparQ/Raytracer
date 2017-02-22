@@ -8,7 +8,7 @@
 ** Last update Mon Feb 16 23:30:25 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_streight	get_streight(t_vector3 dir, t_vector3 pos)
 {

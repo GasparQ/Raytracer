@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 10:09:39 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_cylinder(t_object *act_obj, double *mesh_prop)
 {

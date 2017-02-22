@@ -288,7 +288,7 @@ int		        resolve_effects(t_image *act_image, t_scene *scene,
 */
 
 void			*output_load(void *sys);
-void			sig_1();
+void			sig_1(int);
 void			loading_time(t_system *sys);
 
 /*
@@ -741,5 +741,13 @@ int		copy_list(t_scene *scene, t_scene *new, t_scene *tmp);
 
 void	load_my_image(int nb, int nb_t, t_scene *copy);
 void	check_max(int *x, int *y, int max);
+
+/*
+** safe_display.c
+*/
+
+void safe_put_image(t_system *sys, void *img, int x, int y);
+void safe_init();
+void safe_clear(t_system *sys);
 
 #endif /* !SYS_LIBX_H_ */

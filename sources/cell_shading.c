@@ -8,7 +8,7 @@
 ** Last update Mon Jun  1 13:38:13 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	cell_shading(t_image *act_image, t_scene *scene)
 {

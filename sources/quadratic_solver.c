@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 11:49:20 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_p_q_r(double *pqr, double *param)
 {

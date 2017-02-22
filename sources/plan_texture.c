@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 10:26:01 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector2	plane_mapping(t_vector3 isec_point, t_image *texture)
 {

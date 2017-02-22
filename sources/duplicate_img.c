@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 13:19:53 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_end_img(t_image **list, t_image img)
 {

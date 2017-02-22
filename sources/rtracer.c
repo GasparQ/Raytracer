@@ -8,26 +8,26 @@
 ** Last update Sun Jun  7 23:21:39 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
-int		main(int ac, char **av, char **env)
+int main(int ac, char **av, char **env)
 {
-  t_system	sys;
+    t_system sys;
 
-  (void)ac;
-  (void)av;
-  if (env[0] == NULL)
-    return (my_strerror(ENV_FAIL));
-  if (init_system(&sys, av[1]) == -1)
-    return (my_strerror("Init fail\n"));
-  loading_time(&sys);
-  write_file("list.txt", NULL);
-  signal(SIGUSR2, &sig_1);
-  sys.act_scene = sys.scene_list;
-  sys.act_scene->act_image = sys.act_scene->img;
-  mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
-  mlx_expose_hook(sys.wdw, &expose_gestion, &sys);
-  mlx_loop(sys.mlx);
-  return (CLEAN);
+    (void) ac;
+    (void) av;
+    if (env[0] == NULL)
+        return (my_strerror(ENV_FAIL));
+    safe_init();
+    if (init_system(&sys, av[1]) == -1)
+        return (my_strerror("Init fail\n"));
+    loading_time(&sys);
+    write_file("list.txt", NULL);
+    sys.act_scene            = sys.scene_list;
+    sys.act_scene->act_image = sys.act_scene->img;
+    mlx_hook(sys.wdw, KeyPress, KeyPressMask, &key_gestion, &sys);
+    mlx_expose_hook(sys.wdw, &expose_gestion, &sys);
+    mlx_loop(sys.mlx);
+    return (CLEAN);
 }

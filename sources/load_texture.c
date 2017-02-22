@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:46:14 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 size_t		strlcpy(char *dst, char *src, size_t dstsize)
 {

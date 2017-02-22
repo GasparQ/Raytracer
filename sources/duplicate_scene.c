@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 23:18:01 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_end_scene(t_scene **list, t_scene scene)
 {

@@ -8,7 +8,7 @@
 ** Last update Fri Jun  5 15:15:28 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	exit_ray_tracer(t_system *sys)
 {

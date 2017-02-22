@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:45:38 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	add_texture(t_object *obj, char *filename, t_scene *scene)
 {

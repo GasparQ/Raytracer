@@ -8,7 +8,7 @@
 ** Last update Mon Feb 16 16:36:50 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 double		get_scal(t_vector3 f_vec, t_vector3 s_vec)
 {

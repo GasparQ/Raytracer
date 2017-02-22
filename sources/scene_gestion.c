@@ -8,8 +8,8 @@
 ** Last update Sun Jun  7 15:07:15 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 int		init_img(t_image *img, t_vector2 dim,
 			 t_scene *scene, int render)

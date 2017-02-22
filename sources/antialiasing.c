@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 22:52:28 2015 adrien milcent
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	cmp_colors(unsigned char *color1, unsigned char *color2,
 		   int bpp, int limit)

@@ -8,7 +8,7 @@
 ** Last update Thu May 28 15:37:03 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	get_tore_pow(double *pow_point, double *pow_dir, t_streight strgt)
 {

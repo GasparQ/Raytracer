@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 13:16:33 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	add_end_eye(t_eye **list, t_eye act_eye)
 {

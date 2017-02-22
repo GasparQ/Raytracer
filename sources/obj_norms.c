@@ -8,7 +8,7 @@
 ** Last update Wed Jun  3 15:24:55 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_sphere_norm(t_vector3 *sphere_norm,
 			 t_vector3 isec_point, t_object *obj)

@@ -8,7 +8,7 @@
 ** Last update Sun May 31 22:27:46 2015 fernand veyrier
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_spot(t_scene *scene, t_vector3 pos, int color, double i)
 {

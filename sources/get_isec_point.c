@@ -8,7 +8,7 @@
 ** Last update Fri Mar 13 14:32:06 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector3	get_isec_point(t_streight streight, t_object *my_obj)
 {

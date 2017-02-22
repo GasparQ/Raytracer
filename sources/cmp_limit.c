@@ -8,7 +8,7 @@
 ** Last update Thu Mar 12 12:13:43 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		comp_limit(t_streight strgt, t_vector3 limit[2])
 {

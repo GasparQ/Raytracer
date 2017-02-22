@@ -8,7 +8,7 @@
 ** Last update Thu Jun  4 19:47:02 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_sphere(t_object *act_obj, double *mesh_prop)
 {

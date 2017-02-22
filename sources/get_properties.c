@@ -8,7 +8,7 @@
 ** Last update Sat May 30 14:40:12 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 double		*get_properties(double brightness,
 				double opacity, double reflect,

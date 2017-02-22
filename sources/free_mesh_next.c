@@ -8,7 +8,7 @@
 ** Last update Wed May 27 11:57:10 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		free_holed_cube(t_mesh obj_mesh)
 {

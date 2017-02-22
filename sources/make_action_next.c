@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 12:22:18 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	save_file(t_system *sys)
 {

@@ -8,7 +8,7 @@
 ** Last update Sat Mar 14 20:15:49 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector3	extract_point(t_streight ray)
 {

@@ -8,4 +8,4 @@
 ** Last update Thu Jun  4 20:09:32 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"

@@ -8,7 +8,7 @@
 ** Last update Wed Jun  3 16:16:09 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector3	get_positive_point(t_vector3 point)
 {

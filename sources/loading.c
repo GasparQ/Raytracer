@@ -8,8 +8,8 @@
 ** Last update Sun Jun  7 22:43:40 2015 adrien milcent
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 void	check_max(int *x, int *y, int max)
 {

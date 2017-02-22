@@ -8,7 +8,7 @@
 ** Last update Fri Jun  5 20:39:41 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_average(int *average, int end)
 {

@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:30:22 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		cell_shade_method(void *send_scene, t_vector2 pos,
 				  t_streight strgt)

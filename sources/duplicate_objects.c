@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 15:24:14 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	check_texture(t_object *obj, t_object *elem, int bpp, t_scene *scene)
 {

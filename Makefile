@@ -16,10 +16,11 @@ NAME	= rt
 
 CFLAGS	+= -Wall -Wextra
 CFLAGS	+= -I ./include
+CFLAGS	+= -O3
 
-LDFLAGS	+= -L/usr/lib64/ -lmlx
-LDFLAGS	+= -L/usr/lib64/X11 -lXext -lX11
-LDFLAGS	+= -lm -lpthread -fopenmp
+LDFLAGS	+= -L./minilibx -lmlx
+LDFLAGS	+= -lXext -lX11
+LDFLAGS	+= -lm -lpthread
 
 SRCS	= sources/rtracer.c		\
 	  sources/error.c		\
@@ -77,7 +78,8 @@ SRCS	= sources/rtracer.c		\
 	  sources/draw_hyperboloid.c	\
 	  sources/scene_gestion.c	\
 	  sources/intensity_gestion.c	\
-	  sources/alb_load_time.c	\
+	  sources/loading_time.c	\
+	  sources/safe_display.c    \
 	  sources/antialiasing.c	\
 	  sources/get_object.c		\
 	  sources/effects.c		\
@@ -127,7 +129,7 @@ SRCS	= sources/rtracer.c		\
 OBJS	= $(SRCS:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(LD_FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)

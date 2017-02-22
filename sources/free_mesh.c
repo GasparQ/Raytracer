@@ -8,7 +8,7 @@
 ** Last update Wed Mar 11 17:26:07 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	free_sphere(t_mesh obj_mesh)
 {

@@ -8,7 +8,7 @@
 ** Last update Mon Jun  1 23:01:51 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_object	*resolve_limits(t_object *touch_obj, t_streight *strgt)
 {

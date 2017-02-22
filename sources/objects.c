@@ -8,8 +8,8 @@
 ** Last update Wed Jun  3 15:46:15 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 double		draw_sphere(t_streight strgt, t_object *my_obj)
 {

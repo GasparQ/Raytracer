@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:44:47 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		resolve_brightness(t_object *act_obj, t_scene *scene,
 				   int limit)

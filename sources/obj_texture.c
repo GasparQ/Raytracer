@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 19:15:02 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		basic_color(UNUSED t_vector3 isec_point, UNUSED t_vector3 norm,
 			    t_object *touch, void *send_scene)

@@ -8,7 +8,7 @@
 ** Last update Wed Jun  3 18:06:44 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		write_integer(int fd, unsigned int value)
 {

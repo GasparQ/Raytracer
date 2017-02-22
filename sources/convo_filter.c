@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 13:49:27 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	divide_it(t_image *img, int tell)
 {

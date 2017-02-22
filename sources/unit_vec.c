@@ -8,7 +8,7 @@
 ** Last update Tue Mar 24 18:15:03 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector3	unit_vec(t_vector3 vec)
 {

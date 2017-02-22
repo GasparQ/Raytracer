@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:08:14 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void			sepia(t_image *img, t_vector2 pos, void *send_scene)
 {

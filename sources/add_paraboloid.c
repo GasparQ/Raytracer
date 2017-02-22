@@ -8,7 +8,7 @@
 ** Last update Thu Jun  4 20:10:35 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_paraboloid(t_object *act_obj, double *mesh_param)
 {

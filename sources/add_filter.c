@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 14:08:31 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int	add_filter()
 {

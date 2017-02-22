@@ -8,7 +8,7 @@
 ** Last update Mon Jun  1 13:26:48 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void		init_holed_cube_norm(t_vector3 *holed_cube_norm,
 				     t_vector3 isec_point, t_object *obj)

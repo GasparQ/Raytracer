@@ -8,7 +8,7 @@
 ** Last update Fri Mar 13 14:27:22 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	x_rotate(t_vector3 coord, double angle, t_vector3 *ret)
 {

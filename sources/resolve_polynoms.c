@@ -8,7 +8,7 @@
 ** Last update Sat Mar 21 17:06:51 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		resolve_polynoms(double *param, double *k_tab)
 {

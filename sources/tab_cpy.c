@@ -8,7 +8,7 @@
 ** Last update Sat Mar 21 11:17:17 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	tab_ncpy(double *src, double *dest, int n)
 {

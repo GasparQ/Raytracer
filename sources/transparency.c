@@ -8,7 +8,7 @@
 ** Last update Fri May 29 19:46:49 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	refract_color(unsigned char *obj, unsigned char *ref,
 		      double opacity, int lim)

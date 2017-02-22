@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 17:50:19 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_vector2	sphere_map(t_vector3 isec_point, t_image *texture)
 {

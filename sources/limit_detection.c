@@ -8,7 +8,7 @@
 ** Last update Sun Jun  7 14:24:33 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 unsigned int	get_color_value(t_image *img, int x, int y)
 {

@@ -8,7 +8,7 @@
 ** Last update Tue Jun  2 12:44:21 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	init_streight(t_streight *strgt, double dist, int x, int y)
 {

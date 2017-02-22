@@ -8,7 +8,7 @@
 ** Last update Wed May 27 10:12:36 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 t_object	*bomb_ray(t_streight *ray, t_object *obj_list)
 {

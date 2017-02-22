@@ -8,7 +8,7 @@
 ** Last update Wed Jun  3 17:03:55 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 int		add_cone(t_object *act_obj, double *mesh_prop)
 {

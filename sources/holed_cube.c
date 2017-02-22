@@ -8,7 +8,7 @@
 ** Last update Sat Jun  6 11:46:12 2015 quentin gasparotto
 */
 
-#include "../include/prototypes.h"
+#include "prototypes.h"
 
 void	get_holed_pow(double *d_pow, double *p_pow, t_streight strgt)
 {

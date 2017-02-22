@@ -8,8 +8,8 @@
 ** Last update Thu Jun  4 20:10:19 2015 quentin gasparotto
 */
 
-#include "../include/minilibx_system.h"
-#include "../include/prototypes.h"
+#include "minilibx_system.h"
+#include "prototypes.h"
 
 int		add_hyperboloid(t_object *act_obj, double *mesh_prop)
 {
