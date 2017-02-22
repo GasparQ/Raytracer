@@ -4,17 +4,57 @@
     position = (-50,0,0)
     rotation = (0,0,0)
     distance = 500
-    //render_method = 0
-    //filter = [0,0,0,0,1,0,0,0,0]
-    //filter_mode = 0
+    render_method = 0
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 1
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    render_method = 2
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    filter = [-5,-5,0,-5,0,5,0,5,5]
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    filter = [-2,-1,0,-1,0,1,0,1,2]
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    filter_mode = 3
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    filter_mode = 2
+  </eye>
+  <eye>
+    position = (-50,0,0)
+    rotation = (0,0,0)
+    distance = 500
+    filter_mode = 1
   </eye>
   <spot>
-    position = (0,0,50)
+    position = (-50,0,50)
     rotation = (0,0,0)
     color = 0x00FFFFFF
     intensity = 1
   </spot>
-  <object color="0x00FFFFFF">
+  <object color="0x00FF0000">
     <mesh type="sphere">
       radius = 10
     </mesh>
@@ -22,5 +62,53 @@
       position = (0,0,0)
       rotation = (0,0,0)
     </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 0.7
+      specular = 0.5
+      spe_radius = 50
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
+  <object color="0x000000FF">
+    <mesh type="sphere">
+      radius = 10
+    </mesh>
+    <coord>
+      position = (0,20,0)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 0.7
+      specular = 0.5
+      spe_radius = 50
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
+  </object>
+  <object color="0x0000FF00">
+    <mesh type="sphere">
+      radius = 10
+    </mesh>
+    <coord>
+      position = (0,-20,0)
+      rotation = (0,0,0)
+    </coord>
+    <phong>
+      ambiant = 0.2
+      diffuse = 0.7
+      specular = 0.5
+      spe_radius = 50
+      brightness = 0
+      opacity = 0
+      refraction = 0
+      reflection = 0
+    </phong>
   </object>
 </scene>

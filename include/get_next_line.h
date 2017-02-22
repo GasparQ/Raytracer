@@ -67,7 +67,7 @@
 # define TEXTURE_NEXT	"(map|bump|procedural)\"[[:space:]]*>[[:space:]]*$"
 # define TEXTURE_CLOSE	"^[[:space:]]*</texture>[[:space:]]*$"
 # define HYPER_PARAM(a)	"^[[:space:]]*"a"[[:space:]]*=[[:space:]]*"
-# define MATRIX_NEXT	":space:]]*\\[([[:digit:].]+[,]?){9,9}\\][[:space:]]*$"
+# define MATRIX_NEXT	":space:]]*\\[(\\-?[[:digit:].]+[,]?){9,9}\\][[:space:]]*$"
 # define MATRIX		"^[[:space:]]*filter[[:space:]]*=[[" MATRIX_NEXT
 # define FILTER_MODE	"^[[:space:]]*filter_mode[[:space:]]*=[[:space:]]*"
 # define ERR_NEXT	pars->line) * -1
