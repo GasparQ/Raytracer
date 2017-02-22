@@ -29,7 +29,7 @@ int	load_image(t_scene *scene, t_vector2 pos, t_vector2 dim)
         y = y + 1;
         if (x * y % glob == 0)
         {
-            kill(getpid(), SIGUSR1);
+            next_load_part();
         }
     }
   return (CLEAN);

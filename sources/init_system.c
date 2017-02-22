@@ -74,10 +74,10 @@ int init_system(t_system *sys, char *file)
     }
     else if (get_objects(sys, file) != 0)
         return (-1);
-    safe_clear(sys);
     pthread_mutex_lock(&mutex);
     run = 0;
     pthread_mutex_unlock(&mutex);
     pthread_join(t1, &toto);
+    safe_clear(sys);
     return (CLEAN);
 }

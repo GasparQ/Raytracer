@@ -26,5 +26,10 @@ set(SOURCE_FILES
         ${online_sources}
         ${other_sources})
 
+add_subdirectory(${mlx_dir})
+
 add_executable(Raytracer ${SOURCE_FILES})
-target_link_libraries(Raytracer -L ${mlx_dir} m X11 mlx Xext pthread openmp)
+
+add_dependencies(Raytracer mlx)
+
+target_link_libraries(Raytracer m mlx X11 Xext pthread)

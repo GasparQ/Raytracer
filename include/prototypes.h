@@ -287,6 +287,7 @@ int		        resolve_effects(t_image *act_image, t_scene *scene,
 **	loading_time.c
 */
 
+void 			next_load_part();
 void			*output_load(void *sys);
 void			sig_1(int);
 void			loading_time(t_system *sys);
